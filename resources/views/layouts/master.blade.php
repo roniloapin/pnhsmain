@@ -10,12 +10,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
+  <!-- CSRF Token -->
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+
   <title>PNHS Portal</title>
 
   <link rel="stylesheet" href="/css/app.css">
 </head>
 <body class="hold-transition sidebar-mini">
-<div class="wrapper">
+<div class="wrapper" id="app">
 
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -78,12 +81,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <router-link to="/dashboard" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
               </p>
-            </a>
+            </router-link>
           </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link active">
@@ -95,41 +98,47 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview" style="margin-left:20px;">
               <li class="nav-item">
-                <a href="#" class="nav-link active">
+                <router-link to="/adminusers" class="nav-link active">
                   <i class="fas fa-users-cog"></i>
                   <p>Admin Users</p>
-                </a>
+                </router-link>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <router-link to="/students" class="nav-link">
                   <i class="fas fa-user-graduate"></i>
                   <p>Students</p>
-                </a>
+                </router-link>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <router-link to="/academic" class="nav-link">
                   <i class="fas fa-book-reader"></i>
                   <p>Academic</p>
-                </a>
+                </router-link>
               </li>
             </ul>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <router-link to="/profile" class="nav-link">
               <i class="nav-icon fas fa-user-edit"></i>
               <p>
                 Profile
               </p>
-            </a>
+            </router-link>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-sign-out-alt"></i>
-              <p>
-                Logout
-              </p>
-            </a>
-          </li>
+                  <a class="nav-link" href="{{ route('logout') }}"
+                      onclick="event.preventDefault();
+                      document.getElementById('logout-form').submit();">
+                      <i class="fa fa-sign-out-alt nav-icon"></i>
+                      <p>
+                        {{ __('Logout') }}  
+                      </p>
+                  </a>
+
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                      @csrf
+                  </form>
+                </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -142,7 +151,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
-      
+            <router-view></router-view>
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
@@ -166,7 +175,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2021 <a href="#">PNHS</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; {{ now()->year }} <a href="#">PNHS</a>.</strong> All rights reserved.
   </footer>
 </div>
 <!-- ./wrapper -->
