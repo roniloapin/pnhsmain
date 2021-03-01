@@ -17,7 +17,8 @@ let routes = [
     { path: '/adminusers', component: require('./components/AdminUsers.vue').default },
     { path: '/dashboard', component: require('./components/Dashboard.vue').default },
     { path: '/profile', component: require('./components/Profile.vue').default },
-    { path: '/students', component: require('./components/Students.vue').default }
+    { path: '/students', component: require('./components/Students.vue').default },
+    { path: '/subjects', component: require('./components/Subjects.vue').default },
   ]
 
 const router = new VueRouter({

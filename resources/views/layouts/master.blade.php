@@ -56,11 +56,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <router-link to="/dashboard" class="brand-link">
+    <a href="/" class="brand-link">
       <img src="./img/logo.png" alt="PNHS" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">PNHS Portal</span>
-    </router-link>
+    </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
@@ -89,7 +89,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </router-link>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link active">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-cogs"></i>
               <p>
                 Management
@@ -98,7 +98,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </a>
             <ul class="nav nav-treeview" style="margin-left:20px;">
               <li class="nav-item">
-                <router-link to="/adminusers" class="nav-link active">
+                <router-link to="/adminusers" class="nav-link">
                   <i class="fas fa-users-cog"></i>
                   <p>Admin Users</p>
                 </router-link>
@@ -107,6 +107,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <router-link to="/students" class="nav-link">
                   <i class="fas fa-user-graduate"></i>
                   <p>Students</p>
+                </router-link>
+              </li>
+              <li class="nav-item">
+                <router-link to="/subjects" class="nav-link">
+                  <i class="fas fa-book"></i>
+                  <p>Subjects</p>
                 </router-link>
               </li>
               <li class="nav-item">

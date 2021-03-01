@@ -33,7 +33,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ## Installation
 To install the project on your PC, follow the steps below:
-- Download and installed the required installers from this [link](https://drive.google.com/file/d/1lryvDQG1vqOmXgdP4djN473sXOWOU1nm/view?usp=sharing): 
+- Download and install the required installers from this [link](https://drive.google.com/file/d/1lryvDQG1vqOmXgdP4djN473sXOWOU1nm/view?usp=sharing): 
 - Clone the repo git clone https://github.com/roniloapin/pnhsmain.git
 - cd to project folder.
 - Run composer install
