@@ -1912,6 +1912,43 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -38158,18 +38195,77 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-12" }, [
           _c("div", { staticClass: "card" }, [
             _c("div", { staticClass: "card-header" }, [
-              _vm._v("Admin Users Component")
+              _c("h3", { staticClass: "card-title" }, [_vm._v("Admin Users")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-tools" })
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              )
-            ])
+            _c(
+              "div",
+              {
+                staticClass: "card-body table-responsive p-0",
+                staticStyle: { height: "300px" }
+              },
+              [
+                _c(
+                  "table",
+                  { staticClass: "table table-head-fixed table-hover" },
+                  [
+                    _c("thead", [
+                      _c("tr", [
+                        _c("th", [_vm._v("Action")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("ID")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Name")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("E-mail")]),
+                        _vm._v(" "),
+                        _c("th", [_vm._v("Role")])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("tbody", [
+                      _c("tr", [
+                        _c("td", [
+                          _c("a", { attrs: { href: "#" } }, [
+                            _c("i", {
+                              staticClass: "fa fa-edit color-blue",
+                              attrs: { title: "Edit" }
+                            })
+                          ]),
+                          _vm._v(
+                            "\n                    |\n                    "
+                          ),
+                          _c("a", { attrs: { href: "#" } }, [
+                            _c("i", {
+                              staticClass: "fa fa-trash-alt color-red",
+                              attrs: { title: "Delete" }
+                            })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("001")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("Kim Shin Nodalo")]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c("span", { staticClass: "tag tag-success" }, [
+                            _vm._v("kimshin@gmail.com")
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("Student")])
+                      ])
+                    ])
+                  ]
+                )
+              ]
+            )
           ])
         ])
       ])

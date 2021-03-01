@@ -99,25 +99,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <ul class="nav nav-treeview" style="margin-left:20px;">
               <li class="nav-item">
                 <router-link to="/adminusers" class="nav-link">
-                  <i class="fas fa-users-cog"></i>
+                  <i class="nav-icon fas fa-users-cog"></i>
                   <p>Admin Users</p>
                 </router-link>
               </li>
               <li class="nav-item">
                 <router-link to="/students" class="nav-link">
-                  <i class="fas fa-user-graduate"></i>
+                  <i class="nav-icon fas fa-user-graduate"></i>
                   <p>Students</p>
                 </router-link>
               </li>
               <li class="nav-item">
                 <router-link to="/subjects" class="nav-link">
-                  <i class="fas fa-book"></i>
+                  <i class="nav-icon fas fa-book"></i>
                   <p>Subjects</p>
                 </router-link>
               </li>
               <li class="nav-item">
                 <router-link to="/academic" class="nav-link">
-                  <i class="fas fa-book-reader"></i>
+                  <i class="nav-icon fas fa-book-reader"></i>
                   <p>Academic</p>
                 </router-link>
               </li>
