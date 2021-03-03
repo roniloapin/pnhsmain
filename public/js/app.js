@@ -1949,6 +1949,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -38201,7 +38221,23 @@ var staticRenderFns = [
             _c("div", { staticClass: "card-header" }, [
               _c("h3", { staticClass: "card-title" }, [_vm._v("Admin Users")]),
               _vm._v(" "),
-              _c("div", { staticClass: "card-tools" })
+              _c("div", { staticClass: "card-tools" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success",
+                    attrs: {
+                      type: "button",
+                      "data-toggle": "modal",
+                      "data-target": "#addNew"
+                    }
+                  },
+                  [
+                    _vm._v("Add New "),
+                    _c("i", { staticClass: "fas fa-user-plus fa-fw" })
+                  ]
+                )
+              ])
             ]),
             _vm._v(" "),
             _c(
@@ -38234,7 +38270,7 @@ var staticRenderFns = [
                         _c("td", [
                           _c("a", { attrs: { href: "#" } }, [
                             _c("i", {
-                              staticClass: "fa fa-edit color-blue",
+                              staticClass: "fa fa-edit blue",
                               attrs: { title: "Edit" }
                             })
                           ]),
@@ -38243,7 +38279,7 @@ var staticRenderFns = [
                           ),
                           _c("a", { attrs: { href: "#" } }, [
                             _c("i", {
-                              staticClass: "fa fa-trash-alt color-red",
+                              staticClass: "fa fa-trash-alt danger",
                               attrs: { title: "Delete" }
                             })
                           ])
@@ -38268,7 +38304,65 @@ var staticRenderFns = [
             )
           ])
         ])
-      ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "modal fade",
+          attrs: {
+            id: "addNew",
+            tabindex: "-1",
+            "aria-labelledby": "addNewLabel",
+            "aria-hidden": "true"
+          }
+        },
+        [
+          _c("div", { staticClass: "modal-dialog modal-dialog-scrollable" }, [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header" }, [
+                _c(
+                  "h5",
+                  { staticClass: "modal-title", attrs: { id: "addNewLabel" } },
+                  [_vm._v("Modal title")]
+                ),
+                _vm._v(" "),
+                _c("button", {
+                  staticClass: "close",
+                  attrs: {
+                    type: "button",
+                    "data-dismiss": "modal",
+                    "aria-label": "Close"
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _vm._v("\n          ...\n        ")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger",
+                    attrs: { type: "button", "data-dismiss": "modal" }
+                  },
+                  [_vm._v("Close")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  { staticClass: "btn btn-primary", attrs: { type: "button" } },
+                  [_vm._v("Save changes")]
+                )
+              ])
+            ])
+          ])
+        ]
+      )
     ])
   }
 ]

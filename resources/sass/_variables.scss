@@ -7,13 +7,72 @@ $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 
 // Colors
-$blue: #3490dc;
+$blue: #007bff;
 $indigo: #6574cd;
 $purple: #9561e2;
 $pink: #f66d9b;
 $red: #e3342f;
 $orange: #f6993f;
 $yellow: #ffed4a;
-$green: #38c172;
+$green: #28a745;
 $teal: #4dc0b5;
 $cyan: #6cb2eb;
+$dark: #343a40;
+$info: #17a2b8;
+
+.color-blue{
+    color: $blue;
+}
+.color-indigo{
+    color: $indigo;
+}
+.color-purple{
+    color: $purple;
+}
+.color-pink{
+    color: $pink;
+}
+.color-red{
+    color: $red;
+}
+.color-orange{
+    color: $orange;
+}
+.color-yellow{
+    color: $yellow;
+}
+.color-green{
+    color: $green;
+}
+.color-teal{
+    color: $teal;
+}
+.color-cyan{
+    color: $cyan;
+}
+.color-dark{
+    color: $dark;
+}
+.color-info{
+    color: $info;
+}
+
+.bg-blue{
+    background-color: #00c0ef !important;
+    color: white;
+}
+
+.bg-red{
+    background-color: $red;
+    color: white;
+}
+
+.bg-green{
+    background-color: $green;
+    color: white;
+}
+
+.bg-orange{
+    background-color: $orange;
+    color: white;
+}
