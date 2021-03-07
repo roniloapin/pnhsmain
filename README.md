@@ -37,8 +37,8 @@ To install the project on your PC, follow the steps below:
 - Clone the repo git clone https://github.com/roniloapin/pnhsmain.git
 - cd to project folder.
 - Run composer install
-- Save as the .env.example to .env and set your database information
+- Save as the .env.example to .env and set your database information (DB_DATABASE=pnhsmain, DB_USERNAME=root)
 - Run php artisan key:generate to generate the app key
 - Run npm install
-- Run php artisan migrate
+- Run php artisan migrate:fresh --seed
 - Done !!! Enjoy!
