@@ -161,6 +161,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <div class="content-header">
       <div class="container-fluid">
             <router-view></router-view>
+            <vue-progress-bar></vue-progress-bar>
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content -->
@@ -182,7 +183,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <footer class="main-footer bg-dark">
     <!-- To the right -->
     <div class="float-right d-none d-sm-inline">
-    
+      
     </div>
     <!-- Default to the left -->
     <strong>Copyright &copy; {{ now()->year }} <a href="#">PNHS</a>.</strong> All rights reserved.

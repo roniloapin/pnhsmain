@@ -7,8 +7,28 @@
 require('./bootstrap');
 require('admin-lte');
 
+
 window.Vue = require('vue').default;
+import moment from 'moment';
 import { Form, HasError, AlertError } from 'vform'
+import Vue from 'vue';
+
+import Swal from 'sweetalert2'
+window.Swal = Swal;
+
+const Toast = Swal.mixin({
+    toast: true,
+    position: 'center',
+    showConfirmButton: false,
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: (Toast) => {
+      Toast.addEventListener('mouseenter', Swal.stopTimer)
+      Toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+
+  window.Toast = Toast;
 
 window.Form = Form;
 
@@ -17,6 +37,14 @@ Vue.component(AlertError.name, AlertError)
 
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
+
+import VueProgressBar from 'vue-progressbar'
+
+Vue.use(VueProgressBar, {
+    color: 'rgb(143, 255, 199)',
+    failedColor: 'red',
+    height: '4px'
+  })
 
 let routes = [
     { path: '/academic', component: require('./components/Academic.vue').default },
@@ -32,6 +60,15 @@ const router = new VueRouter({
     routes // short for `routes: routes`
 })
 
+Vue.filter('capitalize',function(text){
+    return text.charAt(0).toUpperCase() + text.slice(1)
+});
+
+Vue.filter('myDate', function(created){
+    return moment(created).format('l, h:mm a');
+});
+
+window.fire = new Vue();
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
