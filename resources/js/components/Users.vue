@@ -7,7 +7,7 @@
                 <h3 class="card-title">Users</h3>
 
                 <div class="card-tools">
-                  <button type="button" class="btn btn-success" data-toggle="modal" @click="newModal">Add User <i class="fas fa-user-plus fa-fw"></i></button>
+                  <button type="button" class="btn btn-success" @click="newModal">Add User <i class="fas fa-user-plus fa-fw"></i></button>
                 </div>
 
               </div>
@@ -33,6 +33,10 @@
                         |
                         <a href="#" @click="deleteUser(user.id)">
                             <i class="fa fa-trash-alt color-red" title="Delete"></i>
+                        </a>
+                        |
+                        <a href="#">
+                            <i class="fas fa-eye color-green"></i>
                         </a>
                       </td>
                       <td>{{user.id}}</td>
@@ -85,6 +89,7 @@
                     <input v-model="form.password" type="text" name="password"
                       placeholder="Enter password here (at least 6 characters)"
                       class="form-control" :class="{ 'is-invalid': form.errors.has('password') }">
+                      <!-- <input type="checkbox" @click="togglePassword()" > Hide Password -->
                     <has-error :form="form" field="password"></has-error>
                   </div>
 
@@ -131,6 +136,14 @@
           }
         },
         methods:{
+          // togglePassword(){
+          //       var x = document.getElementById("password");
+          //       if (x.type === "password") {
+          //           x.type = "text";
+          //       } else {
+          //           x.type = "password";
+          //       }
+          // },
           loadUsers(){
             axios.get("api/user").then(({ data }) => (this.users = data));
           },
@@ -149,9 +162,10 @@
 
           createUser(){
             this.$Progress.start()
+
             this.form.post('api/user') //Send HTTP request
             .then(()=>{               //if successful then
-              fire.emit('AfterCreate');
+              fire.$emit('AfterCreate');
               $('#addNew').modal('hide')
               Swal.fire('Added New user!', '', 'success')
               this.$Progress.finish();

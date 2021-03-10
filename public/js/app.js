@@ -2187,6 +2187,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2203,6 +2208,14 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    // togglePassword(){
+    //       var x = document.getElementById("password");
+    //       if (x.type === "password") {
+    //           x.type = "text";
+    //       } else {
+    //           x.type = "password";
+    //       }
+    // },
     loadUsers: function loadUsers() {
       var _this = this;
 
@@ -2229,7 +2242,7 @@ __webpack_require__.r(__webpack_exports__);
       this.form.post('api/user') //Send HTTP request
       .then(function () {
         //if successful then
-        fire.emit('AfterCreate');
+        fire.$emit('AfterCreate');
         $('#addNew').modal('hide');
         Swal.fire('Added New user!', '', 'success');
 
@@ -64751,7 +64764,7 @@ var render = function() {
                 "button",
                 {
                   staticClass: "btn btn-success",
-                  attrs: { type: "button", "data-toggle": "modal" },
+                  attrs: { type: "button" },
                   on: { click: _vm.newModal }
                 },
                 [
@@ -64816,7 +64829,11 @@ var render = function() {
                                 attrs: { title: "Delete" }
                               })
                             ]
-                          )
+                          ),
+                          _vm._v(
+                            "\n                    |\n                    "
+                          ),
+                          _vm._m(1, true)
                         ]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(user.id))]),
@@ -65192,6 +65209,14 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Date Added")])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", { attrs: { href: "#" } }, [
+      _c("i", { staticClass: "fas fa-eye color-green" })
     ])
   }
 ]

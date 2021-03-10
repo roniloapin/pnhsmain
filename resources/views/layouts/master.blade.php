@@ -74,7 +74,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <img src="./img/user.png" class="img-circle" alt="User Image">
         </div> -->
         <div class="info">
-          <span class="brand-text font-weight-light" style="color: white;">PNHS Enrollment System</span>
+          <span class="brand-text font-weight-light" style="color: white; font-size: large;">PNHS Enrollment System</span>
         </div>
       </div>
 
