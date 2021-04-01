@@ -12,6 +12,9 @@ window.Vue = require('vue').default;
 import moment from 'moment';
 import { Form, HasError, AlertError } from 'vform'
 import Vue from 'vue';
+import Gate from "./Gate";
+Vue.prototype.$gate = new Gate(window.user);
+
 
 import Swal from 'sweetalert2'
 window.Swal = Swal;
@@ -50,7 +53,8 @@ let routes = [
     { path: '/academic', component: require('./components/Academic.vue').default },
     { path: '/users', component: require('./components/Users.vue').default },
     { path: '/dashboard', component: require('./components/Dashboard.vue').default },
-    { path: '/profile', component: require('./components/Profile.vue').default },
+    { path: '/studentprofile', component: require('./components/StudentProfile.vue').default },
+    { path: '/teacherprofile', component: require('./components/TeacherProfile.vue').default },
     { path: '/students', component: require('./components/Students.vue').default },
     { path: '/subjects', component: require('./components/Subjects.vue').default },
   ]
@@ -79,6 +83,10 @@ window.fire = new Vue();
 
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+Vue.component(
+  'not-found',
+  require('./components/NotFound.vue').default
+);
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 

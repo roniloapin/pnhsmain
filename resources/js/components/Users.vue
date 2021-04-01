@@ -1,7 +1,7 @@
 <template>
     <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+        <div class="row" v-if="$gate.isAdmin()">
+          <div class="col-md-12" >
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">Users</h3>
@@ -54,6 +54,10 @@
             <!-- /.card -->
           </div>
         </div>
+
+      <div v-if="!$gate.isAdmin()">
+            <not-found></not-found>
+      </div>
 
       <!-- Modal -->
       <div class="modal fade" id="addNew" tabindex="-1" aria-labelledby="addNewLabel" aria-hidden="true">
@@ -145,7 +149,10 @@
           //       }
           // },
           loadUsers(){
-            axios.get("api/user").then(({ data }) => (this.users = data));
+            if (this.$gate.isAdmin()){
+              axios.get("api/user").then(({ data }) => (this.users = data));
+            }
+            
           },
 
           newModal(){

@@ -63,7 +63,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <a href="/" class="brand-link">
       <img src="./img/logo.png" alt="PNHS" class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">PNHS-ES</span>
+      <span class="brand-text font-weight-light">LCNHS</span>
     </a>
 
     <!-- Sidebar -->
@@ -74,7 +74,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <img src="./img/user.png" class="img-circle" alt="User Image">
         </div> -->
         <div class="info">
-          <span class="brand-text font-weight-light" style="color: white; font-size: large;">PNHS Enrollment System</span>
+          <span class="brand-text font-weight-light" style="color: white; font-size: large;">LCNHS Enrollment System</span>
         </div>
       </div>
 
@@ -83,6 +83,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+          @can('isAdmin')
           <li class="nav-item">
             <router-link to="/dashboard" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -91,6 +92,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </router-link>
           </li>
+          
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-cogs"></i>
@@ -105,13 +107,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <i class="nav-icon fas fa-users-cog"></i>
                   <p>Users</p>
                 </router-link>
-              </li>
-              <li class="nav-item">
-                <router-link to="/students" class="nav-link">
-                  <i class="nav-icon fas fa-user-graduate"></i>
-                  <p>Students</p>
-                </router-link>
-              </li>
+          </li>
+          
+              
               <li class="nav-item">
                 <router-link to="/subjects" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
@@ -126,19 +124,53 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
             </ul>
           </li>
+
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-user-graduate"></i>
+              <p>
+                Admission
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview" style="margin-left:20px;">
+              <li class="nav-item">
+                  <router-link to="/students" class="nav-link">
+                    <i class="nav-icon fas fa-user-graduate"></i>
+                    <p>Students</p>
+                  </router-link>
+              </li>
+            </ul>
+          </li>
+          @endcan
+          
+          @can('isStudent')
           <li class="nav-item">
-            <router-link to="/profile" class="nav-link">
+            <router-link to="/studentprofile" class="nav-link">
               <i class="nav-icon fas fa-user-edit"></i>
               <p>
-                Profile
+                Student Profile
               </p>
             </router-link>
-          </li>
+          </li>       
+          @endcan
+
+          @can('isTeacher')
+          <li class="nav-item">
+            <router-link to="/teacherprofile" class="nav-link">
+              <i class="nav-icon fas fa-user-edit"></i>
+              <p>
+                Teacher Profile
+              </p>
+            </router-link>
+          </li>       
+          @endcan
+
           <li class="nav-item">
                   <a class="nav-link" href="{{ route('logout') }}"
                       onclick="event.preventDefault();
                       document.getElementById('logout-form').submit();">
-                      <i class="fa fa-sign-out-alt nav-icon"></i>
+                      <i class="fa fa-sign-out-alt nav-icon" style="color:red;"></i>
                       <p>
                         {{ __('Logout') }}  
                       </p>
@@ -190,6 +222,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
   </footer>
 </div>
 <!-- ./wrapper -->
+
+@auth
+  <script>
+      window.user= @json(auth()->user())
+  </script>
+@endauth
 
 <script src="/js/app.js"></script>
 </body>
