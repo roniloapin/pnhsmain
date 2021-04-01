@@ -9,6 +9,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <link rel='icon' href='logo.png' type='image/x-icon'/>
 
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -111,17 +112,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <li class="nav-item">
                 <router-link to="/users" class="nav-link">
                   <i class="nav-icon fas fa-users-cog"></i>
-                  <p>Users</p>
+                  <p>Admin Users</p>
                 </router-link>
-          </li>
-          
-              
+              </li>
+
               <li class="nav-item">
                 <router-link to="/subjects" class="nav-link">
                   <i class="nav-icon fas fa-book"></i>
                   <p>Subjects</p>
                 </router-link>
               </li>
+
               <li class="nav-item">
                 <router-link to="/academic" class="nav-link">
                   <i class="nav-icon fas fa-book-reader"></i>
@@ -133,7 +134,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-user-graduate"></i>
+              <i class="nav-icon fas fa-university"></i>
               <p>
                 Admission
                 <i class="right fas fa-angle-left"></i>
@@ -144,6 +145,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <router-link to="/students" class="nav-link">
                     <i class="nav-icon fas fa-user-graduate"></i>
                     <p>Students</p>
+                  </router-link>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview" style="margin-left:20px;">
+              <li class="nav-item">
+                  <router-link to="/teachers" class="nav-link">
+                    <i class="nav-icon fas fa-chalkboard-teacher"></i>
+                    <p>Teachers</p>
                   </router-link>
               </li>
             </ul>
