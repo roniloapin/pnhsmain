@@ -50,6 +50,12 @@
                 </table>
               </div>
               <!-- /.card-body -->
+              <div class="pagination mb-0 justify-content-center">
+                    <pagination :data="users" @pagination-change-page="getResults">
+                        <span slot="prev-nav">&lt; Previous</span>
+                        <span slot="next-nav">Next &gt;</span>
+                    </pagination>
+                </div>
             </div>
             <!-- /.card -->
           </div>
@@ -148,6 +154,12 @@
           //           x.type = "password";
           //       }
           // },
+          getResults(page = 1) {
+            axios.get('api/user?page=' + page)
+            .then(response => {
+              this.users = response.data;
+            });
+		      },
           loadUsers(){
             if (this.$gate.isAdmin()){
               axios.get("api/user").then(({ data }) => (this.users = data));
