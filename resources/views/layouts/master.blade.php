@@ -137,16 +137,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
 
               <li class="nav-item">
-                <router-link to="/subjects" class="nav-link">
-                  <i class="nav-icon fas fa-book"></i>
-                  <p>Subjects</p>
-                </router-link>
-              </li>
-
-              <li class="nav-item">
-                <router-link to="/academic" class="nav-link">
-                  <i class="nav-icon fas fa-book-reader"></i>
-                  <p>Academic</p>
+                <router-link to="/configuration" class="nav-link">
+                  <i class="nav-icon fas fa-cog"></i>
+                  <p>Configuration</p>
                 </router-link>
               </li>
             </ul>

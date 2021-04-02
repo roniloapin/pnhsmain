@@ -52,14 +52,13 @@ Vue.use(VueProgressBar, {
   })
 
 let routes = [
-    { path: '/academic', component: require('./components/Academic.vue').default },
     { path: '/users', component: require('./components/Users.vue').default },
     { path: '/dashboard', component: require('./components/Dashboard.vue').default },
     { path: '/studentprofile', component: require('./components/StudentProfile.vue').default },
     { path: '/teacherprofile', component: require('./components/TeacherProfile.vue').default },
     { path: '/students', component: require('./components/Students.vue').default },
     { path: '/teachers', component: require('./components/Teachers.vue').default },
-    { path: '/subjects', component: require('./components/Subjects.vue').default },
+    { path: '/configuration', component: require('./components/Configuration.vue').default },
     { path: '*', component: require('./components/NotFound.vue').default },
   ]
 

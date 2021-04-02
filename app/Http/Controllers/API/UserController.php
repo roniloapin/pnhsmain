@@ -17,7 +17,7 @@ class UserController extends Controller
     public function index()
     {   
         // $this->authorize('isAdmin');
-        return User::latest()->where('role', 'admin')->paginate(5);
+        return User::latest()->where('role', 'admin')->paginate(20);
     }
 
     /**

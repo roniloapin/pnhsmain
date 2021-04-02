@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\LearnerTypeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,10 @@ Route::apiResource('user', UserController::class);
 // Route::get('findUser', 'API\UserController@search');
 Route::get('findUser', [UserController::class, 'search']);
 Route::get('profile', [UserController::class, 'profile']);
+
+
+Route::apiResource('learner_type', LearnerTypeController::class);
+// Route::apiResources(['learner_type'=> 'API\LearnerTypeController']);
+Route::get('findLearnerType', [LearnerTypeController::class, 'search']);
+
+
