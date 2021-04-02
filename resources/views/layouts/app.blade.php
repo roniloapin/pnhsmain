@@ -19,15 +19,46 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <style> 
+        /* Modify the background color */ 
+          
+        .navbar-custom { 
+            background-color: #131772; 
+        } 
+        /* Modify brand and text color */ 
+          
+        .navbar-custom .navbar-brand, 
+        .navbar-custom .navbar-text { 
+            color: white; 
+        }
+        .footer {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            color: black;
+            text-align: center;
+        }
+        body {
+            padding-bottom: 120px;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    <!-- {{ config('app.name', 'PNHS-ES') }} -->
+        <nav class="navbar navbar-expand-md navbar-light">
+            <div class="container"> 
+                <!-- <a class="navbar-brand" href="{{ url('/') }}">
                     Legazpi City National High School
-                </a>
+                </a> -->
+                <!-- <div class="col-md-4 col-sm-12 phone-number">
+						<h6 class="fa fa-phone" aria-hidden="true"> +63-052-736-0335 <a class="fa fa-envelope fa-lg">inquiry@ust-legazpi.edu.ph</a> </h6>
+						<h6 class="fa fa-envelope fa-lg" aria-hidden="true"> <a href="mailto:inquiry@ust-legazpi.edu.ph" target="_blank">inquiry@ust-legazpi.edu.ph</a></h6>
+			    </div> -->
+
+                <!-- <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();" class="navbar-brand" style="color:white;">Legazpi City National High School Student Enrollment System</marquee> -->
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -48,11 +79,11 @@
                                 </li>
                             @endif
                             
-                            @if (Route::has('register'))
+                            <!-- @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
-                            @endif
+                            @endif -->
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -82,4 +113,7 @@
         </main>
     </div>
 </body>
+        <footer class="footer fixed-bottom" >
+            <p><strong> Copyright &copy; {{ now()->year }} Legazpi City National High School</strong><br>
+        </footer>
 </html>

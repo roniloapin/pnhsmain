@@ -1,48 +1,52 @@
 @extends('layouts.app')
 
+<style>
+    .bold-title{
+        font-family: Tahoma;
+        font-weight: bold;
+    }
+    .bold-title2{
+        font-family: Tahoma;
+    }
+</style>
+
+
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
-
+    <div class="row justify-content-center align-items-center">
+        <div class="container center" style="width: 500px;">
+            <div class="container card">
                 <div class="card-body">
+                    <div class="text-center mb-3 mt-2">
+                        <img src="./img/logo.png" alt="Logo" class="" width="80" height="80">
+                        <p class="mb-0 font-weight-bold" style="font-size: 19px">Legazpi City National High School</p>
+                        <p class="mb-0" style="font-size: 15px">Student Enrollment System</p>
+                    </div>
+
                     <form method="POST" action="{{ route('login') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                        @CSRF
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" style="border-top-right-radius: 0rem; border-bottom-right-radius: 0rem;"><i class="fa fa-envelope"></i></span>
+                            <input type="text" id="email" name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email Address" aria-label="Email Address" aria-describedby="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" style="border-top-right-radius: 0rem; border-bottom-right-radius: 0rem;"><i class="fa fa-key"></i></span>
+                            <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" aria-label="Password" aria-describedby="password" required autocomplete="current-password">
+                            @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
-
                         <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
+                            <div class="col-md-12">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                    <input class="form-check-input" type="checkbox" checked="true" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
                                         {{ __('Remember Me') }}
@@ -50,19 +54,19 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-primary btn-block">
                                     {{ __('Login') }}
                                 </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
                             </div>
+
+                            <!-- <div class="col-md-12">
+                                <a style="text-size:5px;" href="{{ route('register') }}">
+                                    Not registered? Click here to register.
+                                </a>
+                            </div> -->
+
                         </div>
                     </form>
                 </div>

@@ -54,7 +54,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- SEARCH FORM -->
       <div class="input-group input-group-sm">
-        <input style="border-radius: 20px;" class="form-control form-control-navbar" @keyup="searchit" v-model="search" type="search" placeholder="Search here..." aria-label="Search">
+        <input style="border-radius: 20px; width: 500px;" class="form-control form-control-navbar" @keyup="searchit" v-model="search" type="search" placeholder="Search here..." aria-label="Search">
         <div class="input-group-append">
           <button class="btn btn-navbar" @click="search">
             <i class="fas fa-search" style="color:#FFFFFF"></i>
