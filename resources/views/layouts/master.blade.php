@@ -17,25 +17,47 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <title>PNHS Enrollment System</title>
 
   <link rel="stylesheet" href="/css/app.css">
+
+  <style> 
+        /* Modify the background color */ 
+          
+        .navbar-custom { 
+            background-color: #343a40; 
+        } 
+        /* Modify brand and text color */ 
+          
+        .navbar-custom .navbar-brand, 
+        .navbar-custom .navbar-text { 
+            color: white; 
+        }
+
+        .navbar-search{
+          
+        }
+
+        .footer-custom { 
+            background-color: #003432; 
+        } 
+    </style>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper" id="app">
 
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-dark-primary ">
+  <nav class="main-header navbar navbar-expand navbar-custom">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars" style="color:#FFFFFF"></i></a>
       </li>
     </ul>
 
     <!-- SEARCH FORM -->
       <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" @keyup="searchit" v-model="search" type="search" placeholder="Search" aria-label="Search">
+        <input style="border-radius: 20px;" class="form-control form-control-navbar" @keyup="searchit" v-model="search" type="search" placeholder="Search here..." aria-label="Search">
         <div class="input-group-append">
           <button class="btn btn-navbar" @click="search">
-            <i class="fas fa-search"></i>
+            <i class="fas fa-search" style="color:#FFFFFF"></i>
           </button>
         </div>
       </div>

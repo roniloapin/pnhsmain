@@ -109,6 +109,10 @@ const app = new Vue({
     methods:{
       searchit: _.debounce(()=>{
         fire.$emit('searching');
-      }, 1000)
+      }, 1000),
+
+      printme() {
+        window.print();
+      }
     },
 });

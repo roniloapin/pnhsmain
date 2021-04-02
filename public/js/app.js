@@ -2795,7 +2795,10 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_3__.default({
   methods: {
     searchit: _.debounce(function () {
       fire.$emit('searching');
-    }, 1000)
+    }, 1000),
+    printme: function printme() {
+      window.print();
+    }
   }
 });
 
