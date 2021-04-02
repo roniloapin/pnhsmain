@@ -58,7 +58,9 @@ let routes = [
     { path: '/studentprofile', component: require('./components/StudentProfile.vue').default },
     { path: '/teacherprofile', component: require('./components/TeacherProfile.vue').default },
     { path: '/students', component: require('./components/Students.vue').default },
+    { path: '/teachers', component: require('./components/Teachers.vue').default },
     { path: '/subjects', component: require('./components/Subjects.vue').default },
+    { path: '*', component: require('./components/NotFound.vue').default },
   ]
 
 const router = new VueRouter({
@@ -100,5 +102,13 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
-    router
+    router,
+    data:{
+      search: ''
+    },
+    methods:{
+      searchit: _.debounce(()=>{
+        fire.$emit('searching');
+      }, 1000)
+    },
 });

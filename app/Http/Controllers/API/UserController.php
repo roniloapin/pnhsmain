@@ -17,7 +17,7 @@ class UserController extends Controller
     public function index()
     {   
         // $this->authorize('isAdmin');
-        return User::latest()->paginate(5);
+        return User::latest()->where('role', 'admin')->paginate(5);
     }
 
     /**
@@ -94,5 +94,19 @@ class UserController extends Controller
         $this->authorize('isAdmin');
         $user = User::findOrFail($id);
         $user->delete();
+    }
+
+    public function search(){
+        if ($search = \Request::get('q')){
+            $users = User::where(function($query) use ($search){
+                $query->where('name', 'LIKE', "%$search%")
+                ->orWhere('id', 'LIKE', "%$search%")
+                ->orWhere('email', 'LIKE', "%$search%")
+                ->orWhere('role', 'LIKE', "%$search%");
+            })->where('role', 'admin')->paginate(20);
+        }else{
+            $users = User::latest()->where('role', 'admin')->paginate(10);
+        }
+        return $users;
     }
 }
