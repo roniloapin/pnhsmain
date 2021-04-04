@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\LearnerTypeController;
+use App\Http\Controllers\API\ReligionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,8 @@ Route::get('profile', [UserController::class, 'profile']);
 
 
 Route::apiResource('learner_type', LearnerTypeController::class);
-// Route::apiResources(['learner_type'=> 'API\LearnerTypeController']);
 Route::get('findLearnerType', [LearnerTypeController::class, 'search']);
 
+Route::apiResource('religion', ReligionController::class);
+Route::get('findReligion', [ReligionController::class, 'search']);
 

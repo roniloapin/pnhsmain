@@ -4,9 +4,9 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\LearnerType;
+use App\Models\Religion;
 
-class LearnerTypeController extends Controller
+class ReligionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class LearnerTypeController extends Controller
      */
     public function index()
     {
-        return LearnerType::latest()->paginate(20);
+        return Religion::latest()->paginate(20);
     }
 
     /**
@@ -27,12 +27,12 @@ class LearnerTypeController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'learner_type' => 'required|string|max:191|unique:learner_types',
+            'religion_name' => 'required|string|max:191|unique:religions',
         ]);
 
-        return LearnerType::create([
-            'learner_type'=>$request['learner_type'],
-            'learner_type_code'=>$request['learner_type_code'],
+        return Religion::create([
+            'religion_name'=>$request['religion_name'],
+            'religion_code'=>$request['religion_code'],
         ]);
     }
 
@@ -56,13 +56,13 @@ class LearnerTypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $learner_type = LearnerType::findOrFail($id);
+        $religion = Religion::findOrFail($id);
 
         $this->validate($request,[
-            'learner_type' => 'required|string|max:191',
+            'religion_name' => 'required|string|max:191}|unique:religions',
         ]);
 
-        $learner_type->update($request->all());
+        $religion->update($request->all());
     }
 
     /**
@@ -73,19 +73,19 @@ class LearnerTypeController extends Controller
      */
     public function destroy($id)
     {
-        $learner_type = LearnerType::findOrFail($id);
-        $learner_type->delete();
+        $religion = Religion::findOrFail($id);
+        $religion->delete();
     }
 
     public function search(){
-        if ($search = \Request::get('q')){
-            $learner_types = LearnerType::where(function($query) use ($search){
-                $query->where('learner_type', 'LIKE', "%$search%")
-                ->orWhere('learner_type_code', 'LIKE', "%$search%");
+        if ($search = \Request::get('r')){
+            $religions = Religion::where(function($query) use ($search){
+                $query->where('religion_name', 'LIKE', "%$search%")
+                ->orWhere('religion_code', 'LIKE', "%$search%");
             })->paginate(20);
         }else{
-            $learner_types = LearnerType::latest()->paginate(10);
+            $religions = Religion::latest()->paginate(10);
         }
-        return $learner_types;
+        return $religions;
     }
 }

@@ -1967,15 +1967,111 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       editMode1: false,
+      editMode2: false,
       learner_types: {},
+      religions: {},
       form1: new Form({
         id: '',
         learner_type: '',
         learner_type_code: ''
+      }),
+      form2: new Form({
+        id: '',
+        religion_name: '',
+        religion_code: ''
       })
     };
   },
@@ -1984,6 +2080,11 @@ __webpack_require__.r(__webpack_exports__);
       this.editMode1 = false;
       this.form1.reset();
       $('#addNewLearnerType').modal('show');
+    },
+    newReligion: function newReligion() {
+      this.editMode2 = false;
+      this.form2.reset();
+      $('#addNewReligion').modal('show');
     },
     createLearnerType: function createLearnerType() {
       var _this = this;
@@ -2005,34 +2106,77 @@ __webpack_require__.r(__webpack_exports__);
         _this.$Progress.fail();
       });
     },
+    createReligion: function createReligion() {
+      var _this2 = this;
+
+      this.$Progress.start();
+      this.form2.post('api/religion').then(function () {
+        fire.$emit('AfterCreate');
+        $('#addNewReligion').modal('hide');
+        Swal.fire('Added New Religion!', '', 'success');
+
+        _this2.$Progress.finish();
+      })["catch"](function () {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!'
+        });
+
+        _this2.$Progress.fail();
+      });
+    },
     editLearnerTypeModal: function editLearnerTypeModal(learner_type) {
       this.editMode1 = true;
       this.form1.reset();
       $('#addNewLearnerType').modal('show');
       this.form1.fill(learner_type);
     },
+    editReligionModal: function editReligionModal(religion) {
+      this.editMode2 = true;
+      this.form2.reset();
+      $('#addNewReligion').modal('show');
+      this.form2.fill(religion);
+    },
     updateLearnerType: function updateLearnerType() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.$Progress.start();
       this.form1.put("api/learner_type/" + this.form1.id).then(function () {
         $('#addNewLearnerType').modal('hide');
         Swal.fire('Updated!', 'Learner Type has been updated.', 'success');
 
-        _this2.$Progress.finish();
+        _this3.$Progress.finish();
 
         fire.$emit('AfterCreate');
       })["catch"](function () {
         Swal.fire("Failed!", "There was something wrong.", "warning");
 
-        _this2.$Progress.fail();
+        _this3.$Progress.fail();
+      });
+    },
+    updateReligion: function updateReligion() {
+      var _this4 = this;
+
+      this.$Progress.start();
+      this.form2.put("api/religion/" + this.form2.id).then(function () {
+        $('#addNewReligion').modal('hide');
+        Swal.fire('Updated!', 'Religion has been updated.', 'success');
+
+        _this4.$Progress.finish();
+
+        fire.$emit('AfterCreate');
+      })["catch"](function () {
+        Swal.fire("Failed!", "There was something wrong.", "warning");
+
+        _this4.$Progress.fail();
       });
     },
     deleteLearnerType: function deleteLearnerType(id) {
-      var _this3 = this;
+      var _this5 = this;
 
       Swal.fire({
-        title: 'Delete LearnerType?',
+        title: 'Delete Learner Type?',
         text: "You won't be able to revert this!",
         icon: 'warning',
         showCancelButton: true,
@@ -2041,47 +2185,97 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: 'Yes, delete it!'
       }).then(function (result) {
         if (result.value) {
-          _this3.form1["delete"]('api/learner_type/' + id).then(function () {
+          _this5.form1["delete"]('api/learner_type/' + id).then(function () {
             Swal.fire('Deleted!', 'Learner Type has been deleted.', 'success');
             fire.$emit('AfterCreate');
           })["catch"](function () {
             Swal.fire("Failed!", "There was something wrong.", "warning");
 
-            _this3.$Progress.fail();
+            _this5.$Progress.fail();
+          });
+        }
+      });
+    },
+    deleteReligion: function deleteReligion(id) {
+      var _this6 = this;
+
+      Swal.fire({
+        title: 'Delete Religion?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function (result) {
+        if (result.value) {
+          _this6.form2["delete"]('api/religion/' + id).then(function () {
+            Swal.fire('Deleted!', 'Religion has been deleted.', 'success');
+            fire.$emit('AfterCreate');
+          })["catch"](function () {
+            Swal.fire("Failed!", "There was something wrong.", "warning");
+
+            _this6.$Progress.fail();
           });
         }
       });
     },
     getLearnerTypeResults: function getLearnerTypeResults() {
-      var _this4 = this;
+      var _this7 = this;
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       axios.get('api/learner_type?page=' + page).then(function (response) {
-        _this4.learner_types = response.data;
+        _this7.learner_types = response.data;
+      });
+    },
+    getReligionResults: function getReligionResults() {
+      var _this8 = this;
+
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      axios.get('api/religion?page=' + page).then(function (response) {
+        _this8.religions = response.data;
       });
     },
     loadLearnerTypes: function loadLearnerTypes() {
-      var _this5 = this;
+      var _this9 = this;
 
       axios.get("api/learner_type").then(function (_ref) {
         var data = _ref.data;
-        return _this5.learner_types = data;
+        return _this9.learner_types = data;
+      });
+    },
+    loadReligion: function loadReligion() {
+      var _this10 = this;
+
+      axios.get("api/religion").then(function (_ref2) {
+        var data = _ref2.data;
+        return _this10.religions = data;
       });
     }
   },
   created: function created() {
-    var _this6 = this;
+    var _this11 = this;
 
     fire.$on('searching', function () {
-      var query = _this6.$parent.search;
-      axios.get('api/findLearnerType?q=' + query).then(function (_ref2) {
-        var data = _ref2.data;
-        _this6.learner_types = data.data;
+      var query = _this11.$parent.search;
+      axios.get('api/findLearnerType?q=' + query).then(function (_ref3) {
+        var data = _ref3.data;
+        _this11.learner_types = data;
+      })["catch"](function () {});
+    });
+    fire.$on('searching', function () {
+      var query = _this11.$parent.search;
+      axios.get('api/findReligion?r=' + query).then(function (_ref4) {
+        var data = _ref4.data;
+        _this11.religions = data;
       })["catch"](function () {});
     });
     this.loadLearnerTypes();
+    this.loadReligion();
     fire.$on('AfterCreate', function () {
-      _this6.loadLearnerTypes();
+      _this11.loadLearnerTypes();
+
+      _this11.loadReligion();
     });
   }
 });
@@ -66251,7 +66445,7 @@ var render = function() {
           attrs: {
             id: "nav-learner-type",
             role: "tabpanel",
-            "aria-labelledby": "nav-learner-type-tab"
+            "aria-labelledby": "nav-learner-tab"
           }
         },
         [
@@ -66296,14 +66490,6 @@ var render = function() {
                             },
                             [
                               _c("td", [
-                                _vm._v(_vm._s(learner_type.learner_type))
-                              ]),
-                              _vm._v(" "),
-                              _c("td", [
-                                _vm._v(_vm._s(learner_type.learner_type_code))
-                              ]),
-                              _vm._v(" "),
-                              _c("td", [
                                 _c(
                                   "a",
                                   {
@@ -66345,6 +66531,14 @@ var render = function() {
                                     })
                                   ]
                                 )
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _vm._v(_vm._s(learner_type.learner_type))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _vm._v(_vm._s(learner_type.learner_type_code))
                               ])
                             ]
                           )
@@ -66366,6 +66560,146 @@ var render = function() {
                         on: {
                           "pagination-change-page": _vm.getLearnerTypeResults
                         }
+                      },
+                      [
+                        _c(
+                          "span",
+                          { attrs: { slot: "prev-nav" }, slot: "prev-nav" },
+                          [_vm._v("< Previous")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "span",
+                          { attrs: { slot: "next-nav" }, slot: "next-nav" },
+                          [_vm._v("Next >")]
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ])
+            ])
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "tab-pane fade show",
+          attrs: {
+            id: "nav-religion",
+            role: "tabpanel",
+            "aria-labelledby": "nav-religion-tab"
+          }
+        },
+        [
+          _c("div", { staticClass: "row mt-4" }, [
+            _c("div", { staticClass: "col-md-12" }, [
+              _c("div", { staticClass: "card" }, [
+                _c(
+                  "div",
+                  { staticClass: "card-header card-primary card-outline" },
+                  [
+                    _c("h5", { staticClass: "m-0 fas text-primary" }, [
+                      _vm._v(" Religion")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "card-tools" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-success btn-block p-1",
+                          attrs: { title: "Add New Religion" },
+                          on: { click: _vm.newReligion }
+                        },
+                        [_vm._v("Add New")]
+                      )
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-body table-responsive p-0" }, [
+                  _c("table", { staticClass: "table table-hover" }, [
+                    _c(
+                      "tbody",
+                      [
+                        _vm._m(2),
+                        _vm._v(" "),
+                        _vm._l(_vm.religions.data, function(religion) {
+                          return _c(
+                            "tr",
+                            {
+                              key: religion.id,
+                              staticStyle: { "text-align": "center" }
+                            },
+                            [
+                              _c("td", [
+                                _vm._v(_vm._s(religion.religion_name))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _vm._v(_vm._s(religion.religion_code))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: { href: "#" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.editReligionModal(religion)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("i", {
+                                      staticClass: "fa fa-edit color-blue",
+                                      attrs: { title: "Edit" }
+                                    })
+                                  ]
+                                ),
+                                _vm._v(
+                                  "\n                                                |\n                                                "
+                                ),
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: { href: "#" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.deleteReligion(religion.id)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("i", {
+                                      staticClass: "fa fa-trash-alt color-red",
+                                      attrs: { title: "Delete" }
+                                    })
+                                  ]
+                                )
+                              ])
+                            ]
+                          )
+                        })
+                      ],
+                      2
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "card-footer" },
+                  [
+                    _c(
+                      "pagination",
+                      {
+                        attrs: { data: _vm.religions },
+                        on: { "pagination-change-page": _vm.getReligionResults }
                       },
                       [
                         _c(
@@ -66447,7 +66781,7 @@ var render = function() {
                   [_vm._v(" Update")]
                 ),
                 _vm._v(" "),
-                _vm._m(2)
+                _vm._m(3)
               ]),
               _vm._v(" "),
               _c(
@@ -66556,7 +66890,14 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "modal-footer" }, [
-                    _vm._m(3),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-danger",
+                        attrs: { type: "button", "data-dismiss": "modal" }
+                      },
+                      [_vm._v("Close ")]
+                    ),
                     _vm._v(" "),
                     _c(
                       "button",
@@ -66572,10 +66913,7 @@ var render = function() {
                         staticClass: "btn btn-primary",
                         attrs: { type: "submit" }
                       },
-                      [
-                        _vm._v("Update "),
-                        _c("i", { staticClass: "fas fa-laptop" })
-                      ]
+                      [_vm._v("Update")]
                     ),
                     _vm._v(" "),
                     _c(
@@ -66592,10 +66930,223 @@ var render = function() {
                         staticClass: "btn btn-success",
                         attrs: { type: "submit" }
                       },
+                      [_vm._v("Create")]
+                    )
+                  ])
+                ]
+              )
+            ])
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "addNewReligion",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "addNewReligionTitle",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header" }, [
+                _c(
+                  "h5",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: !_vm.editMode2,
+                        expression: "!editMode2"
+                      }
+                    ],
+                    staticClass: "modal-title",
+                    attrs: { id: "addNewReligionTitle" }
+                  },
+                  [_vm._v(" Add")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "h5",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.editMode2,
+                        expression: "editMode2"
+                      }
+                    ],
+                    staticClass: "modal-title",
+                    attrs: { id: "addNewReligionTitle" }
+                  },
+                  [_vm._v(" Update")]
+                ),
+                _vm._v(" "),
+                _vm._m(4)
+              ]),
+              _vm._v(" "),
+              _c(
+                "form",
+                {
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      _vm.editMode2
+                        ? _vm.updateReligion()
+                        : _vm.createReligion()
+                    }
+                  }
+                },
+                [
+                  _c("div", { staticClass: "modal-body" }, [
+                    _c(
+                      "div",
+                      { staticClass: "form-group" },
                       [
-                        _vm._v("Create "),
-                        _c("i", { staticClass: "fas fa-laptop" })
-                      ]
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form2.religion_name,
+                              expression: "form2.religion_name"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          class: {
+                            "is-invalid": _vm.form2.errors.has("religion_name")
+                          },
+                          attrs: {
+                            type: "text",
+                            name: "religion_name",
+                            placeholder: "Religion Name*"
+                          },
+                          domProps: { value: _vm.form2.religion_name },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.form2,
+                                "religion_name",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("has-error", {
+                          attrs: { form: _vm.form2, field: "religion_name" }
+                        })
+                      ],
+                      1
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-body" }, [
+                    _c(
+                      "div",
+                      { staticClass: "form-group" },
+                      [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form2.religion_code,
+                              expression: "form2.religion_code"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          class: {
+                            "is-invalid": _vm.form2.errors.has("religion_code")
+                          },
+                          attrs: {
+                            type: "text",
+                            name: "religion_code",
+                            placeholder: "Religion Code"
+                          },
+                          domProps: { value: _vm.form2.religion_code },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.form2,
+                                "religion_code",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("has-error", {
+                          attrs: { form: _vm.form2, field: "religion_code" }
+                        })
+                      ],
+                      1
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-footer" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-danger",
+                        attrs: { type: "button", "data-dismiss": "modal" }
+                      },
+                      [_vm._v("Close ")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.editMode2,
+                            expression: "editMode2"
+                          }
+                        ],
+                        staticClass: "btn btn-primary",
+                        attrs: { type: "submit" }
+                      },
+                      [_vm._v("Update")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: !_vm.editMode2,
+                            expression: "!editMode2"
+                          }
+                        ],
+                        staticClass: "btn btn-success",
+                        attrs: { type: "submit" }
+                      },
+                      [_vm._v("Create")]
                     )
                   ])
                 ]
@@ -66649,7 +67200,7 @@ var staticRenderFns = [
                 "aria-selected": "true"
               }
             },
-            [_c("strong", [_vm._v("Model")])]
+            [_c("strong", [_vm._v("Religion")])]
           )
         ]
       )
@@ -66660,11 +67211,23 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("tr", { staticStyle: { "text-align": "center" } }, [
+      _c("th", [_vm._v("Action")]),
+      _vm._v(" "),
       _c("th", [_vm._v("Learner Type")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Learner Type Code")]),
+      _c("th", [_vm._v("Learner Type Code")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", { staticStyle: { "text-align": "center" } }, [
+      _c("th", [_vm._v("Action")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Action")])
+      _c("th", [_vm._v("Religion")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Religion Code")])
     ])
   },
   function() {
@@ -66691,10 +67254,14 @@ var staticRenderFns = [
     return _c(
       "button",
       {
-        staticClass: "btn btn-danger",
-        attrs: { type: "button", "data-dismiss": "modal" }
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "modal",
+          "aria-label": "Close"
+        }
       },
-      [_vm._v("Close "), _c("i", { staticClass: "fas fa-times-circle" })]
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
     )
   }
 ]
