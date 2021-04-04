@@ -57,7 +57,7 @@
 						<h6 class="fa fa-envelope fa-lg" aria-hidden="true"> <a href="mailto:inquiry@ust-legazpi.edu.ph" target="_blank">inquiry@ust-legazpi.edu.ph</a></h6>
 			    </div> -->
 
-                <!-- <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();" class="navbar-brand" style="color:white;">Legazpi City National High School Student Enrollment System</marquee> -->
+                <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();" class="navbar-brand"> | System is under maintenance |  | System is under maintenance |  | System is under maintenance |  | System is under maintenance |  | System is under maintenance | </marquee>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -106,6 +106,7 @@
                     </ul>
                 </div>
             </div>
+            
         </nav>
 
         <main class="py-4">
@@ -114,6 +115,7 @@
     </div>
 </body>
         <footer class="footer fixed-bottom" >
+        
             <p><strong> Copyright &copy; {{ now()->year }} Legazpi City National High School</strong><br>
         </footer>
 </html>
