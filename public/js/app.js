@@ -2148,15 +2148,106 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       editMode1: false,
       editMode2: false,
       editMode3: false,
+      editMode4: false,
       learner_types: {},
       religions: {},
       mother_tongues: {},
+      strands: {},
       form1: new Form({
         id: '',
         learner_type: '',
@@ -2171,6 +2262,11 @@ __webpack_require__.r(__webpack_exports__);
         id: '',
         mother_tongue: '',
         mother_tongue_code: ''
+      }),
+      form4: new Form({
+        id: '',
+        strand_name: '',
+        strand_code: ''
       })
     };
   },
@@ -2189,6 +2285,11 @@ __webpack_require__.r(__webpack_exports__);
       this.editMode3 = false;
       this.form3.reset();
       $('#addNewMotherTongue').modal('show');
+    },
+    newStrand: function newStrand() {
+      this.editMode4 = false;
+      this.form4.reset();
+      $('#addNewStrand').modal('show');
     },
     createLearnerType: function createLearnerType() {
       var _this = this;
@@ -2250,6 +2351,26 @@ __webpack_require__.r(__webpack_exports__);
         _this3.$Progress.fail();
       });
     },
+    createStrand: function createStrand() {
+      var _this4 = this;
+
+      this.$Progress.start();
+      this.form4.post('api/strand').then(function () {
+        fire.$emit('AfterCreate');
+        $('#addNewStrand').modal('hide');
+        Swal.fire('Added STRAND Category!', '', 'success');
+
+        _this4.$Progress.finish();
+      })["catch"](function () {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!'
+        });
+
+        _this4.$Progress.fail();
+      });
+    },
     editLearnerTypeModal: function editLearnerTypeModal(learner_type) {
       this.editMode1 = true;
       this.form1.reset();
@@ -2268,30 +2389,19 @@ __webpack_require__.r(__webpack_exports__);
       $('#addNewMotherTongue').modal('show');
       this.form3.fill(mother_tongue);
     },
+    editStrandModal: function editStrandModal(strand) {
+      this.editMode4 = true;
+      this.form4.reset();
+      $('#addNewStrand').modal('show');
+      this.form4.fill(strand);
+    },
     updateLearnerType: function updateLearnerType() {
-      var _this4 = this;
+      var _this5 = this;
 
       this.$Progress.start();
       this.form1.put("api/learner_type/" + this.form1.id).then(function () {
         $('#addNewLearnerType').modal('hide');
         Swal.fire('Updated!', 'Learner Type has been updated.', 'success');
-
-        _this4.$Progress.finish();
-
-        fire.$emit('AfterCreate');
-      })["catch"](function () {
-        Swal.fire("Failed!", "There was something wrong.", "warning");
-
-        _this4.$Progress.fail();
-      });
-    },
-    updateReligion: function updateReligion() {
-      var _this5 = this;
-
-      this.$Progress.start();
-      this.form2.put("api/religion/" + this.form2.id).then(function () {
-        $('#addNewReligion').modal('hide');
-        Swal.fire('Updated!', 'Religion has been updated.', 'success');
 
         _this5.$Progress.finish();
 
@@ -2302,13 +2412,13 @@ __webpack_require__.r(__webpack_exports__);
         _this5.$Progress.fail();
       });
     },
-    updateMotherTongue: function updateMotherTongue() {
+    updateReligion: function updateReligion() {
       var _this6 = this;
 
       this.$Progress.start();
-      this.form3.put("api/mother_tongue/" + this.form3.id).then(function () {
-        $('#addNewMotherTongue').modal('hide');
-        Swal.fire('Updated!', 'Mother Tongue has been updated.', 'success');
+      this.form2.put("api/religion/" + this.form2.id).then(function () {
+        $('#addNewReligion').modal('hide');
+        Swal.fire('Updated!', 'Religion has been updated.', 'success');
 
         _this6.$Progress.finish();
 
@@ -2319,8 +2429,42 @@ __webpack_require__.r(__webpack_exports__);
         _this6.$Progress.fail();
       });
     },
-    deleteLearnerType: function deleteLearnerType(id) {
+    updateMotherTongue: function updateMotherTongue() {
       var _this7 = this;
+
+      this.$Progress.start();
+      this.form3.put("api/mother_tongue/" + this.form3.id).then(function () {
+        $('#addNewMotherTongue').modal('hide');
+        Swal.fire('Updated!', 'Mother Tongue has been updated.', 'success');
+
+        _this7.$Progress.finish();
+
+        fire.$emit('AfterCreate');
+      })["catch"](function () {
+        Swal.fire("Failed!", "There was something wrong.", "warning");
+
+        _this7.$Progress.fail();
+      });
+    },
+    updateStrand: function updateStrand() {
+      var _this8 = this;
+
+      this.$Progress.start();
+      this.form4.put("api/strand/" + this.form4.id).then(function () {
+        $('#addNewStrand').modal('hide');
+        Swal.fire('Updated!', 'STRAND Name has been updated.', 'success');
+
+        _this8.$Progress.finish();
+
+        fire.$emit('AfterCreate');
+      })["catch"](function () {
+        Swal.fire("Failed!", "There was something wrong.", "warning");
+
+        _this8.$Progress.fail();
+      });
+    },
+    deleteLearnerType: function deleteLearnerType(id) {
+      var _this9 = this;
 
       Swal.fire({
         title: 'Delete Learner Type?',
@@ -2332,19 +2476,19 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: 'Yes, delete it!'
       }).then(function (result) {
         if (result.value) {
-          _this7.form1["delete"]('api/learner_type/' + id).then(function () {
+          _this9.form1["delete"]('api/learner_type/' + id).then(function () {
             Swal.fire('Deleted!', 'Learner Type has been deleted.', 'success');
             fire.$emit('AfterCreate');
           })["catch"](function () {
             Swal.fire("Failed!", "There was something wrong.", "warning");
 
-            _this7.$Progress.fail();
+            _this9.$Progress.fail();
           });
         }
       });
     },
     deleteReligion: function deleteReligion(id) {
-      var _this8 = this;
+      var _this10 = this;
 
       Swal.fire({
         title: 'Delete Religion?',
@@ -2356,19 +2500,19 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: 'Yes, delete it!'
       }).then(function (result) {
         if (result.value) {
-          _this8.form2["delete"]('api/religion/' + id).then(function () {
+          _this10.form2["delete"]('api/religion/' + id).then(function () {
             Swal.fire('Deleted!', 'Religion has been deleted.', 'success');
             fire.$emit('AfterCreate');
           })["catch"](function () {
             Swal.fire("Failed!", "There was something wrong.", "warning");
 
-            _this8.$Progress.fail();
+            _this10.$Progress.fail();
           });
         }
       });
     },
     deleteMotherTongue: function deleteMotherTongue(id) {
-      var _this9 = this;
+      var _this11 = this;
 
       Swal.fire({
         title: 'Delete Mother Tongue?',
@@ -2380,99 +2524,149 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: 'Yes, delete it!'
       }).then(function (result) {
         if (result.value) {
-          _this9.form3["delete"]('api/mother_tongue/' + id).then(function () {
+          _this11.form3["delete"]('api/mother_tongue/' + id).then(function () {
             Swal.fire('Deleted!', 'Mother Tongue has been deleted.', 'success');
             fire.$emit('AfterCreate');
           })["catch"](function () {
             Swal.fire("Failed!", "There was something wrong.", "warning");
 
-            _this9.$Progress.fail();
+            _this11.$Progress.fail();
+          });
+        }
+      });
+    },
+    deleteStrand: function deleteStrand(id) {
+      var _this12 = this;
+
+      Swal.fire({
+        title: 'Delete STRAND Category?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function (result) {
+        if (result.value) {
+          _this12.form4["delete"]('api/strand/' + id).then(function () {
+            Swal.fire('Deleted!', 'STRAND Category has been deleted.', 'success');
+            fire.$emit('AfterCreate');
+          })["catch"](function () {
+            Swal.fire("Failed!", "There was something wrong.", "warning");
+
+            _this12.$Progress.fail();
           });
         }
       });
     },
     getLearnerTypeResults: function getLearnerTypeResults() {
-      var _this10 = this;
+      var _this13 = this;
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       axios.get('api/learner_type?page=' + page).then(function (response) {
-        _this10.learner_types = response.data;
+        _this13.learner_types = response.data;
       });
     },
     getReligionResults: function getReligionResults() {
-      var _this11 = this;
+      var _this14 = this;
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       axios.get('api/religion?page=' + page).then(function (response) {
-        _this11.religions = response.data;
+        _this14.religions = response.data;
       });
     },
     getMotherTongueResults: function getMotherTongueResults() {
-      var _this12 = this;
+      var _this15 = this;
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       axios.get('api/mother_tongue?page=' + page).then(function (response) {
-        _this12.mother_tongues = response.data;
+        _this15.mother_tongues = response.data;
+      });
+    },
+    getStrandResults: function getStrandResults() {
+      var _this16 = this;
+
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      axios.get('api/strand?page=' + page).then(function (response) {
+        _this16.strands = response.data;
       });
     },
     loadLearnerTypes: function loadLearnerTypes() {
-      var _this13 = this;
+      var _this17 = this;
 
       axios.get("api/learner_type").then(function (_ref) {
         var data = _ref.data;
-        return _this13.learner_types = data;
+        return _this17.learner_types = data;
       });
     },
     loadReligion: function loadReligion() {
-      var _this14 = this;
+      var _this18 = this;
 
       axios.get("api/religion").then(function (_ref2) {
         var data = _ref2.data;
-        return _this14.religions = data;
+        return _this18.religions = data;
       });
     },
     loadMotherTongue: function loadMotherTongue() {
-      var _this15 = this;
+      var _this19 = this;
 
       axios.get("api/mother_tongue").then(function (_ref3) {
         var data = _ref3.data;
-        return _this15.mother_tongues = data;
+        return _this19.mother_tongues = data;
+      });
+    },
+    loadStrand: function loadStrand() {
+      var _this20 = this;
+
+      axios.get("api/strand").then(function (_ref4) {
+        var data = _ref4.data;
+        return _this20.strands = data;
       });
     }
   },
   created: function created() {
-    var _this16 = this;
+    var _this21 = this;
 
     fire.$on('searching', function () {
-      var query = _this16.$parent.search;
-      axios.get('api/findLearnerType?q=' + query).then(function (_ref4) {
-        var data = _ref4.data;
-        _this16.learner_types = data;
-      })["catch"](function () {});
-    });
-    fire.$on('searching', function () {
-      var query = _this16.$parent.search;
-      axios.get('api/findReligion?r=' + query).then(function (_ref5) {
+      var query = _this21.$parent.search;
+      axios.get('api/findLearnerType?q=' + query).then(function (_ref5) {
         var data = _ref5.data;
-        _this16.religions = data;
+        _this21.learner_types = data;
       })["catch"](function () {});
     });
     fire.$on('searching', function () {
-      var query = _this16.$parent.search;
-      axios.get('api/findMotherTongue?s=' + query).then(function (_ref6) {
+      var query = _this21.$parent.search;
+      axios.get('api/findReligion?r=' + query).then(function (_ref6) {
         var data = _ref6.data;
-        _this16.mother_tongues = data;
+        _this21.religions = data;
+      })["catch"](function () {});
+    });
+    fire.$on('searching', function () {
+      var query = _this21.$parent.search;
+      axios.get('api/findMotherTongue?s=' + query).then(function (_ref7) {
+        var data = _ref7.data;
+        _this21.mother_tongues = data;
+      })["catch"](function () {});
+    });
+    fire.$on('searching', function () {
+      var query = _this21.$parent.search;
+      axios.get('api/findStrand?t=' + query).then(function (_ref8) {
+        var data = _ref8.data;
+        _this21.strands = data;
       })["catch"](function () {});
     });
     this.loadLearnerTypes();
     this.loadReligion();
     this.loadMotherTongue();
+    this.loadStrand();
     fire.$on('AfterCreate', function () {
-      _this16.loadLearnerTypes();
+      _this21.loadLearnerTypes();
 
-      _this16.loadReligion();
+      _this21.loadReligion();
 
-      _this16.loadMotherTongue();
+      _this21.loadMotherTongue();
+
+      _this21.loadStrand();
     });
   }
 });
@@ -67065,6 +67259,142 @@ var render = function() {
             ])
           ])
         ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "tab-pane fade show",
+          attrs: {
+            id: "nav-strand",
+            role: "tabpanel",
+            "aria-labelledby": "nav-strand-tab"
+          }
+        },
+        [
+          _c("div", { staticClass: "row mt-4" }, [
+            _c("div", { staticClass: "col-md-12" }, [
+              _c("div", { staticClass: "card" }, [
+                _c(
+                  "div",
+                  { staticClass: "card-header card-primary card-outline" },
+                  [
+                    _c("h5", { staticClass: "m-0 fas text-primary" }, [
+                      _vm._v(" STRAND Categories")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "card-tools" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-success btn-block p-1",
+                          attrs: { title: "Add New STRAND" },
+                          on: { click: _vm.newStrand }
+                        },
+                        [_vm._v("Add New")]
+                      )
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-body table-responsive p-0" }, [
+                  _c("table", { staticClass: "table table-hover" }, [
+                    _c(
+                      "tbody",
+                      [
+                        _vm._m(4),
+                        _vm._v(" "),
+                        _vm._l(_vm.strands.data, function(strand) {
+                          return _c(
+                            "tr",
+                            {
+                              key: strand.id,
+                              staticStyle: { "text-align": "center" }
+                            },
+                            [
+                              _c("td", [
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: { href: "#" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.editStrandModal(strand)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("i", {
+                                      staticClass: "fa fa-edit color-blue",
+                                      attrs: { title: "Edit" }
+                                    })
+                                  ]
+                                ),
+                                _vm._v(
+                                  "\n                                                |\n                                                "
+                                ),
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: { href: "#" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.deleteStrand(strand.id)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("i", {
+                                      staticClass: "fa fa-trash-alt color-red",
+                                      attrs: { title: "Delete" }
+                                    })
+                                  ]
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(strand.strand_name))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(strand.strand_code))])
+                            ]
+                          )
+                        })
+                      ],
+                      2
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "card-footer" },
+                  [
+                    _c(
+                      "pagination",
+                      {
+                        attrs: { data: _vm.strands },
+                        on: { "pagination-change-page": _vm.getStrandResults }
+                      },
+                      [
+                        _c(
+                          "span",
+                          { attrs: { slot: "prev-nav" }, slot: "prev-nav" },
+                          [_vm._v("< Previous")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "span",
+                          { attrs: { slot: "next-nav" }, slot: "next-nav" },
+                          [_vm._v("Next >")]
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ])
+            ])
+          ])
+        ]
       )
     ]),
     _vm._v(" "),
@@ -67124,7 +67454,7 @@ var render = function() {
                   [_vm._v(" Update")]
                 ),
                 _vm._v(" "),
-                _vm._m(4)
+                _vm._m(5)
               ]),
               _vm._v(" "),
               _c(
@@ -67340,7 +67670,7 @@ var render = function() {
                   [_vm._v(" Update")]
                 ),
                 _vm._v(" "),
-                _vm._m(5)
+                _vm._m(6)
               ]),
               _vm._v(" "),
               _c(
@@ -67556,7 +67886,7 @@ var render = function() {
                   [_vm._v(" Update")]
                 ),
                 _vm._v(" "),
-                _vm._m(6)
+                _vm._m(7)
               ]),
               _vm._v(" "),
               _c(
@@ -67719,6 +68049,220 @@ var render = function() {
           ]
         )
       ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "addNewStrand",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "addNewStrandTitle",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header" }, [
+                _c(
+                  "h5",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: !_vm.editMode4,
+                        expression: "!editMode4"
+                      }
+                    ],
+                    staticClass: "modal-title",
+                    attrs: { id: "addNewStrandTitle" }
+                  },
+                  [_vm._v(" Add")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "h5",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.editMode4,
+                        expression: "editMode4"
+                      }
+                    ],
+                    staticClass: "modal-title",
+                    attrs: { id: "addNewStrandTitle" }
+                  },
+                  [_vm._v(" Update")]
+                ),
+                _vm._v(" "),
+                _vm._m(8)
+              ]),
+              _vm._v(" "),
+              _c(
+                "form",
+                {
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      _vm.editMode4 ? _vm.updateStrand() : _vm.createStrand()
+                    }
+                  }
+                },
+                [
+                  _c("div", { staticClass: "modal-body" }, [
+                    _c(
+                      "div",
+                      { staticClass: "form-group" },
+                      [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form4.strand_name,
+                              expression: "form4.strand_name"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          class: {
+                            "is-invalid": _vm.form4.errors.has("strand_name")
+                          },
+                          attrs: {
+                            type: "text",
+                            name: "strand_name",
+                            placeholder: "STRAND Name*"
+                          },
+                          domProps: { value: _vm.form4.strand_name },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.form4,
+                                "strand_name",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("has-error", {
+                          attrs: { form: _vm.form4, field: "strand_name" }
+                        })
+                      ],
+                      1
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-body" }, [
+                    _c(
+                      "div",
+                      { staticClass: "form-group" },
+                      [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form4.strand_code,
+                              expression: "form4.strand_code"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          class: {
+                            "is-invalid": _vm.form4.errors.has("strand_code")
+                          },
+                          attrs: {
+                            type: "text",
+                            name: "strand_code",
+                            placeholder: "STRAND Code"
+                          },
+                          domProps: { value: _vm.form4.strand_code },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.form4,
+                                "strand_code",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("has-error", {
+                          attrs: { form: _vm.form4, field: "strand_code" }
+                        })
+                      ],
+                      1
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-footer" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-danger",
+                        attrs: { type: "button", "data-dismiss": "modal" }
+                      },
+                      [_vm._v("Close ")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.editMode4,
+                            expression: "editMode4"
+                          }
+                        ],
+                        staticClass: "btn btn-primary",
+                        attrs: { type: "submit" }
+                      },
+                      [_vm._v("Update")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: !_vm.editMode4,
+                            expression: "!editMode4"
+                          }
+                        ],
+                        staticClass: "btn btn-success",
+                        attrs: { type: "submit" }
+                      },
+                      [_vm._v("Create")]
+                    )
+                  ])
+                ]
+              )
+            ])
+          ]
+        )
+      ]
     )
   ])
 }
@@ -67754,7 +68298,7 @@ var staticRenderFns = [
           _c(
             "a",
             {
-              staticClass: "nav-item nav-link color-green",
+              staticClass: "nav-item nav-link color-blue",
               attrs: {
                 id: "nav-religion-tab",
                 "data-toggle": "tab",
@@ -67770,7 +68314,7 @@ var staticRenderFns = [
           _c(
             "a",
             {
-              staticClass: "nav-item nav-link color-red",
+              staticClass: "nav-item nav-link color-blue",
               attrs: {
                 id: "nav-mother-tongue-tab",
                 "data-toggle": "tab",
@@ -67781,6 +68325,22 @@ var staticRenderFns = [
               }
             },
             [_c("strong", [_vm._v("Mother Tongue")])]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "nav-item nav-link color-blue",
+              attrs: {
+                id: "nav-strand-tab",
+                "data-toggle": "tab",
+                href: "#nav-strand",
+                role: "tab",
+                "aria-controls": "nav-strand",
+                "aria-selected": "true"
+              }
+            },
+            [_c("strong", [_vm._v("STRAND")])]
           )
         ]
       )
@@ -67821,6 +68381,35 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("th", [_vm._v("Mother Tongue Code")])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", { staticStyle: { "text-align": "center" } }, [
+      _c("th", [_vm._v("Action")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("STRAND Name")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("STRAND Code")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "modal",
+          "aria-label": "Close"
+        }
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
   },
   function() {
     var _vm = this

@@ -3,8 +3,9 @@
         <nav class="mt-3">
             <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
                 <a class="nav-item nav-link color-blue active" id="nav-learner-type-tab" data-toggle="tab" href="#nav-learner-type" role="tab" aria-controls="nav-learner-type" aria-selected="true"> <strong>Learner Type</strong> </a>
-                <a class="nav-item nav-link color-green" id="nav-religion-tab" data-toggle="tab" href="#nav-religion" role="tab" aria-controls="nav-religion" aria-selected="true"><strong>Religion</strong> </a>
-                <a class="nav-item nav-link color-red" id="nav-mother-tongue-tab" data-toggle="tab" href="#nav-mother-tongue" role="tab" aria-controls="nav-mother-tongue" aria-selected="true"><strong>Mother Tongue</strong> </a>
+                <a class="nav-item nav-link color-blue" id="nav-religion-tab" data-toggle="tab" href="#nav-religion" role="tab" aria-controls="nav-religion" aria-selected="true"><strong>Religion</strong> </a>
+                <a class="nav-item nav-link color-blue" id="nav-mother-tongue-tab" data-toggle="tab" href="#nav-mother-tongue" role="tab" aria-controls="nav-mother-tongue" aria-selected="true"><strong>Mother Tongue</strong> </a>
+                <a class="nav-item nav-link color-blue" id="nav-strand-tab" data-toggle="tab" href="#nav-strand" role="tab" aria-controls="nav-strand" aria-selected="true"><strong>STRAND</strong> </a>
             </div>
         </nav>
 
@@ -157,7 +158,55 @@
                 </div>
             </div>
 
-            
+            <div class="tab-pane fade show" id="nav-strand" role="tabpanel" aria-labelledby="nav-strand-tab">
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header card-primary card-outline">
+                                <h5 class="m-0 fas text-primary"> STRAND Categories</h5>
+                                <div class="card-tools">
+                                    <button class="btn btn-success btn-block p-1" @click="newStrand" title="Add New STRAND">Add New</button>
+                                </div>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body table-responsive p-0" >
+                                <table class="table table-hover" >
+                                    <tbody >
+                                        <tr style="text-align:center;">
+                                            <th>Action</th>
+                                            <th>STRAND Name</th>
+                                            <th>STRAND Code</th>
+                                        </tr>
+                                        <tr style="text-align:center;" v-for="strand in strands.data" :key="strand.id" >
+                                            <td>
+                                                <a href="#" @click="editStrandModal(strand)">
+                                                    <i class="fa fa-edit color-blue" title="Edit"></i>
+                                                </a>
+                                                |
+                                                <a href="#" @click="deleteStrand(strand.id)">
+                                                    <i class="fa fa-trash-alt color-red" title="Delete"></i>
+                                                </a>
+                                            </td>
+                                            <td>{{strand.strand_name}}</td>
+                                            <td>{{strand.strand_code}}</td>
+                                            
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer">
+                                    <pagination :data="strands" @pagination-change-page="getStrandResults">
+                                        <span slot="prev-nav">&lt; Previous</span>
+                                        <span slot="next-nav">Next &gt;</span>
+                                    </pagination>
+                            </div>
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                </div>
+            </div>
+
         </div>
 
 <!-- Modals  -->
@@ -281,6 +330,46 @@
                 </div>
             </div>
         </div>
+    <!-- 4. STRAND Modal -->
+        <div class="modal fade" id="addNewStrand" tabindex="-1" role="dialog" aria-labelledby="addNewStrandTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" v-show="!editMode4" id="addNewStrandTitle"> Add</h5>
+                        <h5 class="modal-title" v-show="editMode4" id="addNewStrandTitle"> Update</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <form @submit.prevent="editMode4 ? updateStrand() : createStrand()">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <input v-model="form4.strand_name" type="text" name="strand_name"
+                                    placeholder="STRAND Name*"
+                                    class="form-control" :class="{ 'is-invalid': form4.errors.has('strand_name') }">
+                                <has-error :form="form4" field="strand_name"></has-error>
+                            </div>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <input v-model="form4.strand_code" type="text" name="strand_code"
+                                    placeholder="STRAND Code"
+                                    class="form-control" :class="{ 'is-invalid': form4.errors.has('strand_code') }">
+                                <has-error :form="form4" field="strand_code"></has-error>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close </button>
+                            <button v-show="editMode4" type="submit" class="btn btn-primary">Update</button>
+                            <button v-show="!editMode4" type="submit" class="btn btn-success">Create</button>
+                        </div>
+                    </form> 
+                </div>
+            </div>
+        </div>
 
     </div>
 </template>
@@ -292,9 +381,11 @@
                 editMode1: false,
                 editMode2: false,
                 editMode3: false,
+                editMode4: false,
                 learner_types:{},
                 religions:{},
                 mother_tongues: {},
+                strands:{},
                 form1: new Form({
                     id: '',
                     learner_type: '',
@@ -309,6 +400,11 @@
                     id: '',
                     mother_tongue: '',
                     mother_tongue_code: '',
+                }),
+                form4: new Form({
+                    id: '',
+                    strand_name: '',
+                    strand_code: '',
                 }),
             }
         },
@@ -327,6 +423,11 @@
                 this.editMode3 = false;
                 this.form3.reset();
                 $('#addNewMotherTongue').modal('show')
+            },
+            newStrand(){
+                this.editMode4 = false;
+                this.form4.reset();
+                $('#addNewStrand').modal('show')
             },
 
             createLearnerType(){
@@ -386,6 +487,25 @@
                     this.$Progress.fail();
                 })
             },
+            createStrand(){
+                this.$Progress.start();
+
+                this.form4.post('api/strand')
+                .then(()=>{
+                    fire.$emit('AfterCreate');
+                    $('#addNewStrand').modal('hide')
+                    Swal.fire('Added STRAND Category!', '', 'success')
+                    this.$Progress.finish();
+                })
+                .catch(()=>{
+                    Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong!',
+                    })
+                    this.$Progress.fail();
+                })
+            },
 
             editLearnerTypeModal(learner_type){
                 this.editMode1 = true;
@@ -404,6 +524,12 @@
                 this.form3.reset();
                 $('#addNewMotherTongue').modal('show')
                 this.form3.fill(mother_tongue);
+            },
+            editStrandModal(strand){
+                this.editMode4 = true;
+                this.form4.reset();
+                $('#addNewStrand').modal('show')
+                this.form4.fill(strand);
             },
 
             updateLearnerType(){
@@ -450,6 +576,24 @@
                     Swal.fire(
                         'Updated!',
                         'Mother Tongue has been updated.',
+                        'success'
+                    )
+                    this.$Progress.finish();
+                    fire.$emit('AfterCreate')
+                })
+                .catch(()=>{
+                    Swal.fire("Failed!", "There was something wrong.", "warning");
+                    this.$Progress.fail();
+                })
+            },
+            updateStrand(){
+                this.$Progress.start();
+                this.form4.put("api/strand/"+this.form4.id)
+                .then(()=>{
+                    $('#addNewStrand').modal('hide')
+                    Swal.fire(
+                        'Updated!',
+                        'STRAND Name has been updated.',
                         'success'
                     )
                     this.$Progress.finish();
@@ -536,6 +680,31 @@
                         }
                     })
             },
+            deleteStrand(id){
+                Swal.fire({
+                        title: 'Delete STRAND Category?',
+                        text: "You won't be able to revert this!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, delete it!'
+                    }).then((result) => {
+                        if (result.value){
+                            this.form4.delete('api/strand/'+id).then(()=>{
+                                    Swal.fire(
+                                        'Deleted!',
+                                        'STRAND Category has been deleted.',
+                                        'success'
+                                    )
+                                    fire.$emit('AfterCreate');
+                            }).catch(()=>{
+                                Swal.fire("Failed!", "There was something wrong.", "warning");
+                                this.$Progress.fail();
+                            })
+                        }
+                    })
+            },
 
             getLearnerTypeResults(page = 1) {
 			    axios.get('api/learner_type?page=' + page)
@@ -555,6 +724,12 @@
 					this.mother_tongues = response.data;
 				});
             },
+            getStrandResults(page = 1) {
+			    axios.get('api/strand?page=' + page)
+				.then(response => {
+					this.strands = response.data;
+				});
+            },
 
             loadLearnerTypes(){
                 axios.get("api/learner_type").then(({ data }) => (this.learner_types = data));
@@ -564,6 +739,9 @@
             },
             loadMotherTongue(){
                 axios.get("api/mother_tongue").then(({ data }) => (this.mother_tongues = data));
+            },
+            loadStrand(){
+                axios.get("api/strand").then(({ data }) => (this.strands = data));
             },
         },
         created() {
@@ -577,7 +755,6 @@
                     
                 }) 
             })
-            
             fire.$on('searching', ()=>{
                 let query = this.$parent.search;
                 axios.get('api/findReligion?r=' + query)
@@ -588,7 +765,6 @@
                     
                 }) 
             })
-
             fire.$on('searching', ()=>{
                 let query = this.$parent.search;
                 axios.get('api/findMotherTongue?s=' + query)
@@ -599,15 +775,27 @@
                     
                 }) 
             })
+            fire.$on('searching', ()=>{
+                let query = this.$parent.search;
+                axios.get('api/findStrand?t=' + query)
+                .then(({data}) => {
+                    this.strands = data
+                })
+                .catch(()=>{
+                    
+                }) 
+            })
 
             this.loadLearnerTypes();
             this.loadReligion();
             this.loadMotherTongue();
+            this.loadStrand();
 
             fire.$on('AfterCreate', ()=>{
                 this.loadLearnerTypes();
                 this.loadReligion();
                 this.loadMotherTongue();
+                this.loadStrand();
             });
         }
     }
