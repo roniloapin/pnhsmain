@@ -2056,13 +2056,107 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       editMode1: false,
       editMode2: false,
+      editMode3: false,
       learner_types: {},
       religions: {},
+      mother_tongues: {},
       form1: new Form({
         id: '',
         learner_type: '',
@@ -2072,6 +2166,11 @@ __webpack_require__.r(__webpack_exports__);
         id: '',
         religion_name: '',
         religion_code: ''
+      }),
+      form3: new Form({
+        id: '',
+        mother_tongue: '',
+        mother_tongue_code: ''
       })
     };
   },
@@ -2085,6 +2184,11 @@ __webpack_require__.r(__webpack_exports__);
       this.editMode2 = false;
       this.form2.reset();
       $('#addNewReligion').modal('show');
+    },
+    newMotherTongue: function newMotherTongue() {
+      this.editMode3 = false;
+      this.form3.reset();
+      $('#addNewMotherTongue').modal('show');
     },
     createLearnerType: function createLearnerType() {
       var _this = this;
@@ -2126,6 +2230,26 @@ __webpack_require__.r(__webpack_exports__);
         _this2.$Progress.fail();
       });
     },
+    createMotherTongue: function createMotherTongue() {
+      var _this3 = this;
+
+      this.$Progress.start();
+      this.form3.post('api/mother_tongue').then(function () {
+        fire.$emit('AfterCreate');
+        $('#addNewMotherTongue').modal('hide');
+        Swal.fire('Added New Mother Tongue!', '', 'success');
+
+        _this3.$Progress.finish();
+      })["catch"](function () {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!'
+        });
+
+        _this3.$Progress.fail();
+      });
+    },
     editLearnerTypeModal: function editLearnerTypeModal(learner_type) {
       this.editMode1 = true;
       this.form1.reset();
@@ -2138,30 +2262,19 @@ __webpack_require__.r(__webpack_exports__);
       $('#addNewReligion').modal('show');
       this.form2.fill(religion);
     },
+    editMotherTongueModal: function editMotherTongueModal(mother_tongue) {
+      this.editMode3 = true;
+      this.form3.reset();
+      $('#addNewMotherTongue').modal('show');
+      this.form3.fill(mother_tongue);
+    },
     updateLearnerType: function updateLearnerType() {
-      var _this3 = this;
+      var _this4 = this;
 
       this.$Progress.start();
       this.form1.put("api/learner_type/" + this.form1.id).then(function () {
         $('#addNewLearnerType').modal('hide');
         Swal.fire('Updated!', 'Learner Type has been updated.', 'success');
-
-        _this3.$Progress.finish();
-
-        fire.$emit('AfterCreate');
-      })["catch"](function () {
-        Swal.fire("Failed!", "There was something wrong.", "warning");
-
-        _this3.$Progress.fail();
-      });
-    },
-    updateReligion: function updateReligion() {
-      var _this4 = this;
-
-      this.$Progress.start();
-      this.form2.put("api/religion/" + this.form2.id).then(function () {
-        $('#addNewReligion').modal('hide');
-        Swal.fire('Updated!', 'Religion has been updated.', 'success');
 
         _this4.$Progress.finish();
 
@@ -2172,8 +2285,42 @@ __webpack_require__.r(__webpack_exports__);
         _this4.$Progress.fail();
       });
     },
-    deleteLearnerType: function deleteLearnerType(id) {
+    updateReligion: function updateReligion() {
       var _this5 = this;
+
+      this.$Progress.start();
+      this.form2.put("api/religion/" + this.form2.id).then(function () {
+        $('#addNewReligion').modal('hide');
+        Swal.fire('Updated!', 'Religion has been updated.', 'success');
+
+        _this5.$Progress.finish();
+
+        fire.$emit('AfterCreate');
+      })["catch"](function () {
+        Swal.fire("Failed!", "There was something wrong.", "warning");
+
+        _this5.$Progress.fail();
+      });
+    },
+    updateMotherTongue: function updateMotherTongue() {
+      var _this6 = this;
+
+      this.$Progress.start();
+      this.form3.put("api/mother_tongue/" + this.form3.id).then(function () {
+        $('#addNewMotherTongue').modal('hide');
+        Swal.fire('Updated!', 'Mother Tongue has been updated.', 'success');
+
+        _this6.$Progress.finish();
+
+        fire.$emit('AfterCreate');
+      })["catch"](function () {
+        Swal.fire("Failed!", "There was something wrong.", "warning");
+
+        _this6.$Progress.fail();
+      });
+    },
+    deleteLearnerType: function deleteLearnerType(id) {
+      var _this7 = this;
 
       Swal.fire({
         title: 'Delete Learner Type?',
@@ -2185,19 +2332,19 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: 'Yes, delete it!'
       }).then(function (result) {
         if (result.value) {
-          _this5.form1["delete"]('api/learner_type/' + id).then(function () {
+          _this7.form1["delete"]('api/learner_type/' + id).then(function () {
             Swal.fire('Deleted!', 'Learner Type has been deleted.', 'success');
             fire.$emit('AfterCreate');
           })["catch"](function () {
             Swal.fire("Failed!", "There was something wrong.", "warning");
 
-            _this5.$Progress.fail();
+            _this7.$Progress.fail();
           });
         }
       });
     },
     deleteReligion: function deleteReligion(id) {
-      var _this6 = this;
+      var _this8 = this;
 
       Swal.fire({
         title: 'Delete Religion?',
@@ -2209,73 +2356,123 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: 'Yes, delete it!'
       }).then(function (result) {
         if (result.value) {
-          _this6.form2["delete"]('api/religion/' + id).then(function () {
+          _this8.form2["delete"]('api/religion/' + id).then(function () {
             Swal.fire('Deleted!', 'Religion has been deleted.', 'success');
             fire.$emit('AfterCreate');
           })["catch"](function () {
             Swal.fire("Failed!", "There was something wrong.", "warning");
 
-            _this6.$Progress.fail();
+            _this8.$Progress.fail();
+          });
+        }
+      });
+    },
+    deleteMotherTongue: function deleteMotherTongue(id) {
+      var _this9 = this;
+
+      Swal.fire({
+        title: 'Delete Mother Tongue?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function (result) {
+        if (result.value) {
+          _this9.form3["delete"]('api/mother_tongue/' + id).then(function () {
+            Swal.fire('Deleted!', 'Mother Tongue has been deleted.', 'success');
+            fire.$emit('AfterCreate');
+          })["catch"](function () {
+            Swal.fire("Failed!", "There was something wrong.", "warning");
+
+            _this9.$Progress.fail();
           });
         }
       });
     },
     getLearnerTypeResults: function getLearnerTypeResults() {
-      var _this7 = this;
+      var _this10 = this;
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       axios.get('api/learner_type?page=' + page).then(function (response) {
-        _this7.learner_types = response.data;
+        _this10.learner_types = response.data;
       });
     },
     getReligionResults: function getReligionResults() {
-      var _this8 = this;
+      var _this11 = this;
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       axios.get('api/religion?page=' + page).then(function (response) {
-        _this8.religions = response.data;
+        _this11.religions = response.data;
+      });
+    },
+    getMotherTongueResults: function getMotherTongueResults() {
+      var _this12 = this;
+
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      axios.get('api/mother_tongue?page=' + page).then(function (response) {
+        _this12.mother_tongues = response.data;
       });
     },
     loadLearnerTypes: function loadLearnerTypes() {
-      var _this9 = this;
+      var _this13 = this;
 
       axios.get("api/learner_type").then(function (_ref) {
         var data = _ref.data;
-        return _this9.learner_types = data;
+        return _this13.learner_types = data;
       });
     },
     loadReligion: function loadReligion() {
-      var _this10 = this;
+      var _this14 = this;
 
       axios.get("api/religion").then(function (_ref2) {
         var data = _ref2.data;
-        return _this10.religions = data;
+        return _this14.religions = data;
+      });
+    },
+    loadMotherTongue: function loadMotherTongue() {
+      var _this15 = this;
+
+      axios.get("api/mother_tongue").then(function (_ref3) {
+        var data = _ref3.data;
+        return _this15.mother_tongues = data;
       });
     }
   },
   created: function created() {
-    var _this11 = this;
+    var _this16 = this;
 
     fire.$on('searching', function () {
-      var query = _this11.$parent.search;
-      axios.get('api/findLearnerType?q=' + query).then(function (_ref3) {
-        var data = _ref3.data;
-        _this11.learner_types = data;
+      var query = _this16.$parent.search;
+      axios.get('api/findLearnerType?q=' + query).then(function (_ref4) {
+        var data = _ref4.data;
+        _this16.learner_types = data;
       })["catch"](function () {});
     });
     fire.$on('searching', function () {
-      var query = _this11.$parent.search;
-      axios.get('api/findReligion?r=' + query).then(function (_ref4) {
-        var data = _ref4.data;
-        _this11.religions = data;
+      var query = _this16.$parent.search;
+      axios.get('api/findReligion?r=' + query).then(function (_ref5) {
+        var data = _ref5.data;
+        _this16.religions = data;
+      })["catch"](function () {});
+    });
+    fire.$on('searching', function () {
+      var query = _this16.$parent.search;
+      axios.get('api/findMotherTongue?s=' + query).then(function (_ref6) {
+        var data = _ref6.data;
+        _this16.mother_tongues = data;
       })["catch"](function () {});
     });
     this.loadLearnerTypes();
     this.loadReligion();
+    this.loadMotherTongue();
     fire.$on('AfterCreate', function () {
-      _this11.loadLearnerTypes();
+      _this16.loadLearnerTypes();
 
-      _this11.loadReligion();
+      _this16.loadReligion();
+
+      _this16.loadMotherTongue();
     });
   }
 });
@@ -66636,14 +66833,6 @@ var render = function() {
                             },
                             [
                               _c("td", [
-                                _vm._v(_vm._s(religion.religion_name))
-                              ]),
-                              _vm._v(" "),
-                              _c("td", [
-                                _vm._v(_vm._s(religion.religion_code))
-                              ]),
-                              _vm._v(" "),
-                              _c("td", [
                                 _c(
                                   "a",
                                   {
@@ -66681,7 +66870,13 @@ var render = function() {
                                     })
                                   ]
                                 )
-                              ])
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _vm._v(_vm._s(religion.religion_name))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(religion.religion_code))])
                             ]
                           )
                         })
@@ -66700,6 +66895,154 @@ var render = function() {
                       {
                         attrs: { data: _vm.religions },
                         on: { "pagination-change-page": _vm.getReligionResults }
+                      },
+                      [
+                        _c(
+                          "span",
+                          { attrs: { slot: "prev-nav" }, slot: "prev-nav" },
+                          [_vm._v("< Previous")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "span",
+                          { attrs: { slot: "next-nav" }, slot: "next-nav" },
+                          [_vm._v("Next >")]
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ])
+            ])
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "tab-pane fade show",
+          attrs: {
+            id: "nav-mother-tongue",
+            role: "tabpanel",
+            "aria-labelledby": "nav-mother-tongue-tab"
+          }
+        },
+        [
+          _c("div", { staticClass: "row mt-4" }, [
+            _c("div", { staticClass: "col-md-12" }, [
+              _c("div", { staticClass: "card" }, [
+                _c(
+                  "div",
+                  { staticClass: "card-header card-primary card-outline" },
+                  [
+                    _c("h5", { staticClass: "m-0 fas text-primary" }, [
+                      _vm._v(" Mother Tongue")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "card-tools" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-success btn-block p-1",
+                          attrs: { title: "Add New Mother Tongue" },
+                          on: { click: _vm.newMotherTongue }
+                        },
+                        [_vm._v("Add New")]
+                      )
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-body table-responsive p-0" }, [
+                  _c("table", { staticClass: "table table-hover" }, [
+                    _c(
+                      "tbody",
+                      [
+                        _vm._m(3),
+                        _vm._v(" "),
+                        _vm._l(_vm.mother_tongues.data, function(
+                          mother_tongue
+                        ) {
+                          return _c(
+                            "tr",
+                            {
+                              key: mother_tongue.id,
+                              staticStyle: { "text-align": "center" }
+                            },
+                            [
+                              _c("td", [
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: { href: "#" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.editMotherTongueModal(
+                                          mother_tongue
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("i", {
+                                      staticClass: "fa fa-edit color-blue",
+                                      attrs: { title: "Edit" }
+                                    })
+                                  ]
+                                ),
+                                _vm._v(
+                                  "\n                                                |\n                                                "
+                                ),
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: { href: "#" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.deleteMotherTongue(
+                                          mother_tongue.id
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("i", {
+                                      staticClass: "fa fa-trash-alt color-red",
+                                      attrs: { title: "Delete" }
+                                    })
+                                  ]
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _vm._v(_vm._s(mother_tongue.mother_tongue))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _vm._v(_vm._s(mother_tongue.mother_tongue_code))
+                              ])
+                            ]
+                          )
+                        })
+                      ],
+                      2
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "card-footer" },
+                  [
+                    _c(
+                      "pagination",
+                      {
+                        attrs: { data: _vm.mother_tongues },
+                        on: {
+                          "pagination-change-page": _vm.getMotherTongueResults
+                        }
                       },
                       [
                         _c(
@@ -66781,7 +67124,7 @@ var render = function() {
                   [_vm._v(" Update")]
                 ),
                 _vm._v(" "),
-                _vm._m(3)
+                _vm._m(4)
               ]),
               _vm._v(" "),
               _c(
@@ -66997,7 +67340,7 @@ var render = function() {
                   [_vm._v(" Update")]
                 ),
                 _vm._v(" "),
-                _vm._m(4)
+                _vm._m(5)
               ]),
               _vm._v(" "),
               _c(
@@ -67155,6 +67498,227 @@ var render = function() {
           ]
         )
       ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "addNewMotherTongue",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "addNewMotherTongueTitle",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header" }, [
+                _c(
+                  "h5",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: !_vm.editMode3,
+                        expression: "!editMode3"
+                      }
+                    ],
+                    staticClass: "modal-title",
+                    attrs: { id: "addNewMotherTongueTitle" }
+                  },
+                  [_vm._v(" Add")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "h5",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.editMode3,
+                        expression: "editMode3"
+                      }
+                    ],
+                    staticClass: "modal-title",
+                    attrs: { id: "addNewMotherTongueTitle" }
+                  },
+                  [_vm._v(" Update")]
+                ),
+                _vm._v(" "),
+                _vm._m(6)
+              ]),
+              _vm._v(" "),
+              _c(
+                "form",
+                {
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      _vm.editMode3
+                        ? _vm.updateMotherTongue()
+                        : _vm.createMotherTongue()
+                    }
+                  }
+                },
+                [
+                  _c("div", { staticClass: "modal-body" }, [
+                    _c(
+                      "div",
+                      { staticClass: "form-group" },
+                      [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form3.mother_tongue,
+                              expression: "form3.mother_tongue"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          class: {
+                            "is-invalid": _vm.form3.errors.has("mother_tongue")
+                          },
+                          attrs: {
+                            type: "text",
+                            name: "mother_tongue",
+                            placeholder: "Mother Tongue*"
+                          },
+                          domProps: { value: _vm.form3.mother_tongue },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.form3,
+                                "mother_tongue",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("has-error", {
+                          attrs: { form: _vm.form3, field: "mother_tongue" }
+                        })
+                      ],
+                      1
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-body" }, [
+                    _c(
+                      "div",
+                      { staticClass: "form-group" },
+                      [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form3.mother_tongue_code,
+                              expression: "form3.mother_tongue_code"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          class: {
+                            "is-invalid": _vm.form3.errors.has(
+                              "mother_tongue_code"
+                            )
+                          },
+                          attrs: {
+                            type: "text",
+                            name: "mother_tongue_code",
+                            placeholder: "Mother Tongue Code"
+                          },
+                          domProps: { value: _vm.form3.mother_tongue_code },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.form3,
+                                "mother_tongue_code",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("has-error", {
+                          attrs: {
+                            form: _vm.form3,
+                            field: "mother_tongue_code"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-footer" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-danger",
+                        attrs: { type: "button", "data-dismiss": "modal" }
+                      },
+                      [_vm._v("Close ")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.editMode3,
+                            expression: "editMode3"
+                          }
+                        ],
+                        staticClass: "btn btn-primary",
+                        attrs: { type: "submit" }
+                      },
+                      [_vm._v("Update")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: !_vm.editMode3,
+                            expression: "!editMode3"
+                          }
+                        ],
+                        staticClass: "btn btn-success",
+                        attrs: { type: "submit" }
+                      },
+                      [_vm._v("Create")]
+                    )
+                  ])
+                ]
+              )
+            ])
+          ]
+        )
+      ]
     )
   ])
 }
@@ -67201,6 +67765,22 @@ var staticRenderFns = [
               }
             },
             [_c("strong", [_vm._v("Religion")])]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "nav-item nav-link color-red",
+              attrs: {
+                id: "nav-mother-tongue-tab",
+                "data-toggle": "tab",
+                href: "#nav-mother-tongue",
+                role: "tab",
+                "aria-controls": "nav-mother-tongue",
+                "aria-selected": "true"
+              }
+            },
+            [_c("strong", [_vm._v("Mother Tongue")])]
           )
         ]
       )
@@ -67229,6 +67809,35 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("th", [_vm._v("Religion Code")])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", { staticStyle: { "text-align": "center" } }, [
+      _c("th", [_vm._v("Action")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Mother Tongue")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Mother Tongue Code")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "modal",
+          "aria-label": "Close"
+        }
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
   },
   function() {
     var _vm = this

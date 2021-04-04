@@ -17,7 +17,7 @@ class UserController extends Controller
     public function index()
     {   
         // $this->authorize('isAdmin');
-        return User::latest()->where('role', 'admin')->paginate(20);
+        return User::orderBy('name', 'asc')->where('role', 'admin')->paginate(20);
     }
 
     /**
@@ -103,9 +103,9 @@ class UserController extends Controller
                 ->orWhere('id', 'LIKE', "%$search%")
                 ->orWhere('email', 'LIKE', "%$search%")
                 ->orWhere('role', 'LIKE', "%$search%");
-            })->where('role', 'admin')->paginate(20);
+            })->orderBy('name', 'asc')->where('role', 'admin')->paginate(20);
         }else{
-            $users = User::latest()->where('role', 'admin')->paginate(10);
+            $users = User::orderBy('name', 'asc')->where('role', 'admin')->paginate(10);
         }
         return $users;
     }

@@ -15,7 +15,7 @@ class LearnerTypeController extends Controller
      */
     public function index()
     {
-        return LearnerType::latest()->paginate(20);
+        return LearnerType::orderBy('learner_type', 'asc')->paginate(20);
     }
 
     /**
@@ -82,9 +82,9 @@ class LearnerTypeController extends Controller
             $learner_types = LearnerType::where(function($query) use ($search){
                 $query->where('learner_type', 'LIKE', "%$search%")
                 ->orWhere('learner_type_code', 'LIKE', "%$search%");
-            })->paginate(20);
+            })->orderBy('learner_type', 'asc')->paginate(20);
         }else{
-            $learner_types = LearnerType::latest()->paginate(10);
+            $learner_types = LearnerType::orderBy('learner_type', 'asc')->paginate(10);
         }
         return $learner_types;
     }

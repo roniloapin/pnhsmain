@@ -4,6 +4,7 @@
             <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
                 <a class="nav-item nav-link color-blue active" id="nav-learner-type-tab" data-toggle="tab" href="#nav-learner-type" role="tab" aria-controls="nav-learner-type" aria-selected="true"> <strong>Learner Type</strong> </a>
                 <a class="nav-item nav-link color-green" id="nav-religion-tab" data-toggle="tab" href="#nav-religion" role="tab" aria-controls="nav-religion" aria-selected="true"><strong>Religion</strong> </a>
+                <a class="nav-item nav-link color-red" id="nav-mother-tongue-tab" data-toggle="tab" href="#nav-mother-tongue" role="tab" aria-controls="nav-mother-tongue" aria-selected="true"><strong>Mother Tongue</strong> </a>
             </div>
         </nav>
 
@@ -77,8 +78,6 @@
                                             
                                         </tr>
                                         <tr style="text-align:center;" v-for="religion in religions.data" :key="religion.id" >
-                                            <td>{{religion.religion_name}}</td>
-                                            <td>{{religion.religion_code}}</td>
                                             <td>
                                                 <a href="#" @click="editReligionModal(religion)">
                                                     <i class="fa fa-edit color-blue" title="Edit"></i>
@@ -88,6 +87,9 @@
                                                     <i class="fa fa-trash-alt color-red" title="Delete"></i>
                                                 </a>
                                             </td>
+                                            <td>{{religion.religion_name}}</td>
+                                            <td>{{religion.religion_code}}</td>
+                                            
                                         </tr>
                                     </tbody>
                                 </table>
@@ -95,6 +97,56 @@
                             <!-- /.card-body -->
                             <div class="card-footer">
                                     <pagination :data="religions" @pagination-change-page="getReligionResults">
+                                        <span slot="prev-nav">&lt; Previous</span>
+                                        <span slot="next-nav">Next &gt;</span>
+                                    </pagination>
+                            </div>
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade show" id="nav-mother-tongue" role="tabpanel" aria-labelledby="nav-mother-tongue-tab">
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header card-primary card-outline">
+                                <h5 class="m-0 fas text-primary"> Mother Tongue</h5>
+                                <div class="card-tools">
+                                    <button class="btn btn-success btn-block p-1" @click="newMotherTongue" title="Add New Mother Tongue">Add New</button>
+                                 </div>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body table-responsive p-0" >
+                                <table class="table table-hover" >
+                                    <tbody >
+                                        <tr style="text-align:center;">
+                                            <th>Action</th>
+                                            <th>Mother Tongue</th>
+                                            <th>Mother Tongue Code</th>
+                                            
+                                        </tr>
+                                        <tr style="text-align:center;" v-for="mother_tongue in mother_tongues.data" :key="mother_tongue.id" >
+                                            <td>
+                                                <a href="#" @click="editMotherTongueModal(mother_tongue)">
+                                                    <i class="fa fa-edit color-blue" title="Edit"></i>
+                                                </a>
+                                                |
+                                                <a href="#" @click="deleteMotherTongue(mother_tongue.id)">
+                                                    <i class="fa fa-trash-alt color-red" title="Delete"></i>
+                                                </a>
+                                            </td>
+                                            <td>{{mother_tongue.mother_tongue}}</td>
+                                            <td>{{mother_tongue.mother_tongue_code}}</td>
+                                            
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer">
+                                    <pagination :data="mother_tongues" @pagination-change-page="getMotherTongueResults">
                                         <span slot="prev-nav">&lt; Previous</span>
                                         <span slot="next-nav">Next &gt;</span>
                                     </pagination>
@@ -189,6 +241,46 @@
                 </div>
             </div>
         </div>
+    <!-- 3. Mother Tongue Modal -->
+        <div class="modal fade" id="addNewMotherTongue" tabindex="-1" role="dialog" aria-labelledby="addNewMotherTongueTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" v-show="!editMode3" id="addNewMotherTongueTitle"> Add</h5>
+                        <h5 class="modal-title" v-show="editMode3" id="addNewMotherTongueTitle"> Update</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <form @submit.prevent="editMode3 ? updateMotherTongue() : createMotherTongue()">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <input v-model="form3.mother_tongue" type="text" name="mother_tongue"
+                                    placeholder="Mother Tongue*"
+                                    class="form-control" :class="{ 'is-invalid': form3.errors.has('mother_tongue') }">
+                                <has-error :form="form3" field="mother_tongue"></has-error>
+                            </div>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <input v-model="form3.mother_tongue_code" type="text" name="mother_tongue_code"
+                                    placeholder="Mother Tongue Code"
+                                    class="form-control" :class="{ 'is-invalid': form3.errors.has('mother_tongue_code') }">
+                                <has-error :form="form3" field="mother_tongue_code"></has-error>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close </button>
+                            <button v-show="editMode3" type="submit" class="btn btn-primary">Update</button>
+                            <button v-show="!editMode3" type="submit" class="btn btn-success">Create</button>
+                        </div>
+                    </form> 
+                </div>
+            </div>
+        </div>
 
     </div>
 </template>
@@ -199,8 +291,10 @@
             return{
                 editMode1: false,
                 editMode2: false,
+                editMode3: false,
                 learner_types:{},
                 religions:{},
+                mother_tongues: {},
                 form1: new Form({
                     id: '',
                     learner_type: '',
@@ -210,6 +304,11 @@
                     id: '',
                     religion_name: '',
                     religion_code: '',
+                }),
+                form3: new Form({
+                    id: '',
+                    mother_tongue: '',
+                    mother_tongue_code: '',
                 }),
             }
         },
@@ -223,6 +322,11 @@
                 this.editMode2 = false;
                 this.form2.reset();
                 $('#addNewReligion').modal('show')
+            },
+            newMotherTongue(){
+                this.editMode3 = false;
+                this.form3.reset();
+                $('#addNewMotherTongue').modal('show')
             },
 
             createLearnerType(){
@@ -263,6 +367,25 @@
                     this.$Progress.fail();
                 })
             },
+            createMotherTongue(){
+                this.$Progress.start();
+
+                this.form3.post('api/mother_tongue')
+                .then(()=>{
+                    fire.$emit('AfterCreate');
+                    $('#addNewMotherTongue').modal('hide')
+                    Swal.fire('Added New Mother Tongue!', '', 'success')
+                    this.$Progress.finish();
+                })
+                .catch(()=>{
+                    Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong!',
+                    })
+                    this.$Progress.fail();
+                })
+            },
 
             editLearnerTypeModal(learner_type){
                 this.editMode1 = true;
@@ -275,6 +398,12 @@
                 this.form2.reset();
                 $('#addNewReligion').modal('show')
                 this.form2.fill(religion);
+            },
+            editMotherTongueModal(mother_tongue){
+                this.editMode3 = true;
+                this.form3.reset();
+                $('#addNewMotherTongue').modal('show')
+                this.form3.fill(mother_tongue);
             },
 
             updateLearnerType(){
@@ -303,6 +432,24 @@
                     Swal.fire(
                         'Updated!',
                         'Religion has been updated.',
+                        'success'
+                    )
+                    this.$Progress.finish();
+                    fire.$emit('AfterCreate')
+                })
+                .catch(()=>{
+                    Swal.fire("Failed!", "There was something wrong.", "warning");
+                    this.$Progress.fail();
+                })
+            },
+            updateMotherTongue(){
+                this.$Progress.start();
+                this.form3.put("api/mother_tongue/"+this.form3.id)
+                .then(()=>{
+                    $('#addNewMotherTongue').modal('hide')
+                    Swal.fire(
+                        'Updated!',
+                        'Mother Tongue has been updated.',
                         'success'
                     )
                     this.$Progress.finish();
@@ -364,6 +511,31 @@
                         }
                     })
             },
+            deleteMotherTongue(id){
+                Swal.fire({
+                        title: 'Delete Mother Tongue?',
+                        text: "You won't be able to revert this!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, delete it!'
+                    }).then((result) => {
+                        if (result.value){
+                            this.form3.delete('api/mother_tongue/'+id).then(()=>{
+                                    Swal.fire(
+                                        'Deleted!',
+                                        'Mother Tongue has been deleted.',
+                                        'success'
+                                    )
+                                    fire.$emit('AfterCreate');
+                            }).catch(()=>{
+                                Swal.fire("Failed!", "There was something wrong.", "warning");
+                                this.$Progress.fail();
+                            })
+                        }
+                    })
+            },
 
             getLearnerTypeResults(page = 1) {
 			    axios.get('api/learner_type?page=' + page)
@@ -377,12 +549,21 @@
 					this.religions = response.data;
 				});
             },
+            getMotherTongueResults(page = 1) {
+			    axios.get('api/mother_tongue?page=' + page)
+				.then(response => {
+					this.mother_tongues = response.data;
+				});
+            },
 
             loadLearnerTypes(){
                 axios.get("api/learner_type").then(({ data }) => (this.learner_types = data));
             },
             loadReligion(){
                 axios.get("api/religion").then(({ data }) => (this.religions = data));
+            },
+            loadMotherTongue(){
+                axios.get("api/mother_tongue").then(({ data }) => (this.mother_tongues = data));
             },
         },
         created() {
@@ -408,12 +589,25 @@
                 }) 
             })
 
+            fire.$on('searching', ()=>{
+                let query = this.$parent.search;
+                axios.get('api/findMotherTongue?s=' + query)
+                .then(({data}) => {
+                    this.mother_tongues = data
+                })
+                .catch(()=>{
+                    
+                }) 
+            })
+
             this.loadLearnerTypes();
             this.loadReligion();
+            this.loadMotherTongue();
 
             fire.$on('AfterCreate', ()=>{
                 this.loadLearnerTypes();
                 this.loadReligion();
+                this.loadMotherTongue();
             });
         }
     }

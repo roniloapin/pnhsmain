@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\LearnerTypeController;
 use App\Http\Controllers\API\ReligionController;
+use App\Http\Controllers\API\MotherTongueController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,3 +35,5 @@ Route::get('findLearnerType', [LearnerTypeController::class, 'search']);
 Route::apiResource('religion', ReligionController::class);
 Route::get('findReligion', [ReligionController::class, 'search']);
 
+Route::apiResource('mother_tongue', MotherTongueController::class);
+Route::get('findMotherTongue', [MotherTongueController::class, 'search']);
