@@ -17,6 +17,10 @@ Route::get('/', function () {
     return redirect('/register');
 });
 
+Route::get('/registrationform', function () {
+    return view('registrationform');
+});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

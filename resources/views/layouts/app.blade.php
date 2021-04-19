@@ -114,8 +114,7 @@
         </main>
     </div>
 </body>
-        <footer class="footer fixed-bottom" >
-        
+        <!-- <footer class="footer fixed-bottom" >
             <p><strong> Copyright &copy; {{ now()->year }} Legazpi City National High School</strong><br>
-        </footer>
+        </footer> -->
 </html>

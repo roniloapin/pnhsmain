@@ -7,6 +7,7 @@ use App\Http\Controllers\API\LearnerTypeController;
 use App\Http\Controllers\API\ReligionController;
 use App\Http\Controllers\API\MotherTongueController;
 use App\Http\Controllers\API\StrandController;
+use App\Http\Controllers\API\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,3 +42,6 @@ Route::get('findMotherTongue', [MotherTongueController::class, 'search']);
 
 Route::apiResource('strand', StrandController::class);
 Route::get('findStrand', [StrandController::class, 'search']);
+
+Route::apiResource('student', StudentController::class);
+Route::get('findStudent', [StudentController::class, 'search']);
