@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Religion;
+use App\Models\LearnerType;
+use App\Models\MotherTongue;
+use App\Models\Strand;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,8 +22,13 @@ Route::get('/', function () {
 });
 
 Route::get('/registrationform', function () {
-    return view('registrationform');
+    $religions = Religion::all();
+    $learnerTypes = LearnerType::all();
+    $motherTongues = MotherTongue::all();
+    $strands = Strand::all();
+    return view('registrationform')->with(['religions' => $religions, 'learnerTypes' => $learnerTypes, 'motherTongues' => $motherTongues, 'strands' => $strands]);
 });
+Route::post('/registrationform', [App\Http\Controllers\API\StudentController::class, 'store'])->name('registrationform');
 
 Auth::routes();
 

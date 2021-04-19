@@ -11,4 +11,5 @@ class Strand extends Model
     protected $fillable = [
         'strand_name','strand_code',
     ];
+
 }

@@ -26,6 +26,7 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request);
         $this->validate($request,[
             'learner_type' => 'required|string|max:191',
             'lrn' => 'required|string|max:191|unique:students',

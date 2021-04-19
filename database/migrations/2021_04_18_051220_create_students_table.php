@@ -18,6 +18,7 @@ class CreateStudentsTable extends Migration
             $table->string('learner_type');
             $table->string('lrn');
             $table->string('last_name');
+            $table->integer('strand_id');
             $table->string('first_name');
             $table->string('middle_name')->nullable();
             $table->string('extension')->nullable();

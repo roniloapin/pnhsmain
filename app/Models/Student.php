@@ -16,4 +16,8 @@ class Student extends Model
         'middle_name',
         'extension',
     ];
+
+    public function strand(){
+    	return $this->belongsTo('App\Models\Strand');
+    }
 }
