@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class UsersTableSeeder extends Seeder
 {
@@ -13,16 +15,12 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $users = [
-            [
-                'email' => 'admin@pnhs.com', 
-                'name' => 'PNHS Admin',
-                'role' => 'admin', 
-                'password' => '$2y$10$x7lGdBM5m2CoxL02cubOw.JIECgsJlC3.Z.3NmjidwqSUGyhHtnBq' // password
-            ],
-         ];
-
-        foreach ($users as $user) 
-        User::create($user);
+        
+        User::create([
+            'email' => 'admin@pnhs.com', 
+            'name' => 'PNHS Admin',
+            'role' => 'admin', 
+            'password' => Hash::make('12345678') // password
+        ]);
     }
 }
