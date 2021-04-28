@@ -116,6 +116,12 @@
             <p><strong> Copyright &copy; {{ now()->year }} Legazpi City National High School</strong><br>
         </footer>
     </div>
+
+    <script>
+        if(window.history.replaceState){
+            window.history.replaceState(null, null, window.location.href);
+        }
+    </script>
 </body>
 
 </html>
