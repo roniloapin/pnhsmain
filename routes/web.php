@@ -18,7 +18,7 @@ use App\Models\Strand;
 */
 
 Route::get('/', function () {
-    return redirect('/register');
+    return redirect('/registrationform');
 });
 
 Route::get('/registrationform', function () {

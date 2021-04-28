@@ -35,7 +35,7 @@
         .footer {
             position: absolute;
             left: 0;
-            bottom: 0;
+            /* bottom: 0; */
             width: 100%;
             color: black;
             text-align: center;
@@ -112,9 +112,10 @@
         <main class="py-4">
             @yield('content')
         </main>
+    <footer class="footer" >
+            <p><strong> Copyright &copy; {{ now()->year }} Legazpi City National High School</strong><br>
+        </footer>
     </div>
 </body>
-        <!-- <footer class="footer fixed-bottom" >
-            <p><strong> Copyright &copy; {{ now()->year }} Legazpi City National High School</strong><br>
-        </footer> -->
+
 </html>

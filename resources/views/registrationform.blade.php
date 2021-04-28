@@ -5,6 +5,11 @@
 <div>
     <div class="row d-flex justify-content-center align-items-center">
         <div class="center">
+        @if (session('success_registration'))
+            <div class="alert alert-success" role="alert">
+                {{ session('success_registration') }}
+            </div>
+        @endif
             <div class="card">
                 <div class="card-body">
                     <div class="text-center mb-3 mt-2">
@@ -16,6 +21,7 @@
                     <div class="text-center mb-3 mt-2">
                         <p class="mb-0 font-weight-bold" style="font-size: 15px; background-color: #007bff; color:white;">Online Registration Form</p>
                     </div>
+                    
 
                     <form method="POST" action="{{ route('registrationform') }}">
                         @CSRF
@@ -23,18 +29,18 @@
                             <h3>Personal Information</h3>
                         </div>
 						<div class="form-group mb-3">
-                            {{-- <span class="input-group-text" style="border-top-right-radius: 0rem; border-bottom-right-radius: 0rem;" ><i class="fa fa-user"></i></span> --}}
-                            {{-- <input id="name" type="text" placeholder="Learner Type" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus> --}}
+                            <!-- {{-- <span class="input-group-text" style="border-top-right-radius: 0rem; border-bottom-right-radius: 0rem;" ><i class="fa fa-user"></i></span> --}}
+                            {{-- <input id="name" type="text" placeholder="Learner Type" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus> --}} -->
                             
-                            <label for="learner_type">Learner Type <span class="text-danger">*</span> </label>
-                            <select class="form-control @error('learner_type') is-invalid @enderror" name="learner_type" id="learner_type">
+                            <label for="learner_type_id">Learner Type <span class="text-danger">*</span> </label>
+                            <select class="form-control @error('learner_type_id') is-invalid @enderror" name="learner_type_id" id="learner_type_id">
                                 <option disabled selected>Select</option>
                                 @foreach ($learnerTypes as $learnerType)
-                                    <option>{{ $learnerType->learner_type }}</option>
+                                    <option value="{{ $learnerType->id}}">{{ $learnerType->learner_type }}</option>
                                 @endforeach
                             </select>
 
-                            @error('learner_type')
+                            @error('learner_type_id')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -45,7 +51,7 @@
                             {{-- <span class="input-group-text" style="border-top-right-radius: 0rem; border-bottom-right-radius: 0rem;" ><i class="fa fa-key"></i></span> --}}
                             
                             <label for="lrn">Learner Reference Number</label>
-                            <input id="lrn" type="text" placeholder="Enter 12 Digit LRN Learner Reference Number (refer to your SF9/F138)" class="form-control @error('lrn') is-invalid @enderror" name="lrn" required autocomplete="lrn">
+                            <input id="lrn" type="text" placeholder="Enter 12 Digit LRN Learner Reference Number (refer to your SF9/F138)" class="form-control @error('lrn') is-invalid @enderror" name="lrn" >
                             @error('lrn')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -76,7 +82,7 @@
                             </div>
                             <div class="col-sm-2">
                                 <label for="middle_name">Middle Name</label>
-                                <input id="middle_name" type="text" class="form-control @error('middle_name') is-invalid @enderror" placeholder="Middle Name" name="middle_name" value="{{ old('middle_name') }}" required autocomplete="middle_name" autofocus>
+                                <input id="middle_name" type="text" class="form-control @error('middle_name') is-invalid @enderror" placeholder="Middle Name" name="middle_name" value="{{ old('middle_name') }}" >
                                 @error('middle_name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -110,7 +116,7 @@
                             {{-- <span class="input-group-text" style="border-top-right-radius: 0rem; border-bottom-right-radius: 0rem;" ><i class="fa fa-envelope"></i></span> --}}
                             
                             <label for="email">Email Address</label>
-                            <input id="email" type="email" placeholder="Enter valid e-mail address" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                            <input id="email" type="email" placeholder="Enter valid e-mail address" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}">
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -134,7 +140,7 @@
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
                                 </select> 
-                                @error('date_of_birth')
+                                @error('gender')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -144,14 +150,14 @@
                         <div class="form-group mb-2">
                             {{-- <span class="input-group-text" style="border-top-right-radius: 0rem; border-bottom-right-radius: 0rem;" ><i class="fa fa-envelope"></i></span> --}}
                             
-                            <label for="religion">Religion <span class="text-danger">*</span> </label>
-                            <select class="form-select custom-select" id="religion" name="religion" required>
+                            <label for="religion_id">Religion <span class="text-danger">*</span> </label>
+                            <select class="form-select custom-select" id="religion_id" name="religion_id" required>
                                 <option disabled selected>Select</option>
                                 @foreach ($religions as $religion)
-                                    <option>{{ $religion->religion_name }}</option>
+                                    <option value="{{ $religion->id}}">{{ $religion->religion_name }}</option>
                                 @endforeach
                             </select> 
-                            @error('religion')
+                            @error('religion_id')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -170,7 +176,7 @@
                         </div>
                         <div class="form-group mb-2">
                             <label for="indigenous">Do you belong to the Indigenous People (IP) Community/Tribe? <span class="text-danger">*</span> </label>
-                            <select class="form-select custom-select @error('indigenous') is-invalid @enderror" id="mothe_tongue" name="mothe_tongue">
+                            <select class="form-select custom-select @error('indigenous') is-invalid @enderror" id="indigenous" name="indigenous">
                                 <option disabled selected>Select</option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
@@ -182,14 +188,14 @@
                             @enderror
                         </div>
                         <div class="form-group mb-2">
-                            <label for="indigenous">Mother Tongue <span class="text-danger">*</span> </label>
-                            <select class="form-select custom-select @error('indigenous') is-invalid @enderror" id="mothe_tongue" name="mothe_tongue">
+                            <label for="mother_tongue_id">Mother Tongue <span class="text-danger">*</span> </label>
+                            <select class="form-select custom-select @error('mother_tongue_id') is-invalid @enderror" id="mother_tongue_id" name="mother_tongue_id">
                                 <option disabled selected>Select</option>
                                 @foreach ($motherTongues as $motherTongue)
-                                    <option>{{ $motherTongue->mother_tongue }}</option>
+                                    <option value="{{ $motherTongue->id}}">{{ $motherTongue->mother_tongue }}</option>
                                 @endforeach
                             </select> 
-                            @error('mothe_tongue')
+                            @error('mother_tongue_id')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -197,7 +203,7 @@
                         </div>
                         <div class="form-group mb-2">
                             <label for="special_educational">Are you a Learner with Special Educational Need (LSEN) or PWD? <span class="text-danger">*</span> </label>
-                            <select class="form-select custom-select @error('special_educational') is-invalid @enderror" id="mothe_tongue" name="mothe_tongue" required>
+                            <select class="form-select custom-select @error('special_educational') is-invalid @enderror" id="special_educational" name="special_educational" required>
                                 <option disabled selected>Select</option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
@@ -211,6 +217,11 @@
                         <div class="form-group mb-2">
                             <label for="specify_lrn">If you answer "Yes" as LSEN/PWD, please specify the category</label>
                             <input id="specify_lrn" type="text" placeholder="specify lrn" class="form-control" name="specify_lrn" />
+                            @error('specify_lrn')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <hr>
                         <h3>Address</h3>
@@ -305,7 +316,7 @@
                             <select class="form-control @error('key_stage') is-invalid @enderror" name="key_stage" id="key_stage" required>
                                 <option disabled selected>Select</option>
                                 <option>Junior High School (G7 to G10)</option>
-                                <option>Junior High School (G7 to G10)</option>
+                                <option>Senior High School</option>
                             </select>
                         </div>
                         <div class="form-group mb-2">
@@ -313,18 +324,18 @@
                             <input id="jhs_grade_level" type="text" placeholder="Enter Grade Level" class="form-control" name="jhs_grade_level"/>
                         </div>
                         <div class="form-group mb-2">
-                            <label for="shs_strand">SHS Strand</label>
-                            <select class="form-control @error('shs_strand') is-invalid @enderror" name="shs_strand" id="shs_strand" required>
+                            <label for="shs_strand_id">SHS Strand</label>
+                            <select class="form-control @error('shs_strand_id') is-invalid @enderror" name="shs_strand_id" id="shs_strand_id">
                                 <option disabled selected>Select</option>
                                 @foreach ($strands as $strand)
                                     <option value="{{ $strand->id}}">{{ $strand->strand_name }}</option>
                                 @endforeach
-                                {{-- {{ $student->strand->strand_name }} --}}
+                                <!-- {{-- {{ $student->strand->strand_name }} --}} -->
                             </select>
                         </div>
                         <div class="form-group mb-2">
                             <label for="school_year">School Year</label>
-                            <input id="school_year" type="text" placeholder="Enter School Year" class="form-control" name="school_year" required/>
+                            <input id="school_year" type="text" placeholder="Enter School Year (e.g. 2020-2021)" class="form-control" name="school_year" required/>
                         </div>
                         
                         {{-- Button --}}
