@@ -5,6 +5,7 @@ use App\Models\Religion;
 use App\Models\LearnerType;
 use App\Models\MotherTongue;
 use App\Models\Strand;
+use App\Models\Schoolyear;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +27,8 @@ Route::get('/registrationform', function () {
     $learnerTypes = LearnerType::all();
     $motherTongues = MotherTongue::all();
     $strands = Strand::all();
-    return view('registrationform')->with(['religions' => $religions, 'learnerTypes' => $learnerTypes, 'motherTongues' => $motherTongues, 'strands' => $strands]);
+    $schoolyears = Schoolyear::all();
+    return view('registrationform')->with(['religions' => $religions, 'learnerTypes' => $learnerTypes, 'motherTongues' => $motherTongues, 'strands' => $strands, 'schoolyears' => $schoolyears]);
 });
 Route::post('/registrationform', [App\Http\Controllers\API\StudentController::class, 'store'])->name('registrationform');
 

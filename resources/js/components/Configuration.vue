@@ -6,6 +6,7 @@
                 <a class="nav-item nav-link color-blue" id="nav-religion-tab" data-toggle="tab" href="#nav-religion" role="tab" aria-controls="nav-religion" aria-selected="true"><strong>Religion</strong> </a>
                 <a class="nav-item nav-link color-blue" id="nav-mother-tongue-tab" data-toggle="tab" href="#nav-mother-tongue" role="tab" aria-controls="nav-mother-tongue" aria-selected="true"><strong>Mother Tongue</strong> </a>
                 <a class="nav-item nav-link color-blue" id="nav-strand-tab" data-toggle="tab" href="#nav-strand" role="tab" aria-controls="nav-strand" aria-selected="true"><strong>STRAND</strong> </a>
+                <a class="nav-item nav-link color-blue" id="nav-schoolyear-tab" data-toggle="tab" href="#nav-schoolyear" role="tab" aria-controls="nav-schoolyear" aria-selected="true"><strong>School Year</strong> </a>
             </div>
         </nav>
 
@@ -207,6 +208,55 @@
                 </div>
             </div>
 
+            <div class="tab-pane fade show" id="nav-schoolyear" role="tabpanel" aria-labelledby="nav-schoolyear-tab">
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header card-primary card-outline">
+                                <h5 class="m-0 fas text-primary"> School Year</h5>
+                                <div class="card-tools">
+                                    <button class="btn btn-success btn-block p-1" @click="newSchoolyear" title="Add New School Year">Add New</button>
+                                </div>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body table-responsive p-0" >
+                                <table class="table table-hover" >
+                                    <tbody >
+                                        <tr style="text-align:center;">
+                                            <th>Action</th>
+                                            <th>School Year</th>
+                                            <th>Status</th>
+                                        </tr>
+                                        <tr style="text-align:center;" v-for="schoolyear in schoolyears.data" :key="schoolyear.id" >
+                                            <td>
+                                                <a href="#" @click="editSchoolyearModal(schoolyear)">
+                                                    <i class="fa fa-edit color-blue" title="Edit"></i>
+                                                </a>
+                                                |
+                                                <a href="#" @click="deleteSchoolyear(schoolyear.id)">
+                                                    <i class="fa fa-trash-alt color-red" title="Delete"></i>
+                                                </a>
+                                            </td>
+                                            <td>{{schoolyear.schoolyear}}</td>
+                                            <td>{{schoolyear.schoolyear_status}}</td>
+                                            
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer">
+                                    <pagination :data="schoolyears" @pagination-change-page="getSchoolyearResults">
+                                        <span slot="prev-nav">&lt; Previous</span>
+                                        <span slot="next-nav">Next &gt;</span>
+                                    </pagination>
+                            </div>
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                </div>
+            </div>
+
         </div>
 
 <!-- Modals  -->
@@ -370,6 +420,59 @@
                 </div>
             </div>
         </div>
+    <!-- 5. School Year Modal -->
+        <div class="modal fade" id="addNewSchoolyear" tabindex="-1" role="dialog" aria-labelledby="addNewSchoolyearTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" v-show="!editMode5" id="addNewSchoolyearTitle"> Add</h5>
+                        <h5 class="modal-title" v-show="editMode5" id="addNewSchoolyearTitle"> Update</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <form @submit.prevent="editMode5 ? updateSchoolyear() : createSchoolyear()">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <input v-model="form5.schoolyear" type="text" name="schoolyear"
+                                    placeholder="Enter School Year"
+                                    class="form-control" :class="{ 'is-invalid': form5.errors.has('schoolyear') }">
+                                <has-error :form="form5" field="schoolyear"></has-error>
+                            </div>
+                        </div>
+
+                        <!-- <div class="modal-body">
+                            <div class="form-group">
+                                <input v-model="form5.schoolyear_status" type="text" name="schoolyear_status"
+                                    placeholder="Status"
+                                    class="form-control" :class="{ 'is-invalid': form5.errors.has('schoolyear_status') }">
+                                <has-error :form="form5" field="schoolyear_status"></has-error>
+                            </div>
+                        </div> -->
+
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <select name="schoolyear_status" v-model="form5.schoolyear_status" id="schoolyear_status" class="form-control custom-select"
+                                        :class="{
+                                        'is-invalid': form5.errors.has('schoolyear_status') }">
+                                    <option value="" disabled>Select Status</option>
+                                    <option value="Active">Active</option>
+                                    <option value="Inactive">Inactive</option>
+                                </select>
+                                <has-error :form="form5" field="schoolyear_status"></has-error>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close </button>
+                            <button v-show="editMode5" type="submit" class="btn btn-primary">Update</button>
+                            <button v-show="!editMode5" type="submit" class="btn btn-success">Create</button>
+                        </div>
+                    </form> 
+                </div>
+            </div>
+        </div>
 
     </div>
 </template>
@@ -382,10 +485,12 @@
                 editMode2: false,
                 editMode3: false,
                 editMode4: false,
+                editMode5: false,
                 learner_types:{},
                 religions:{},
                 mother_tongues: {},
                 strands:{},
+                schoolyears:{},
                 form1: new Form({
                     id: '',
                     learner_type: '',
@@ -405,6 +510,11 @@
                     id: '',
                     strand_name: '',
                     strand_code: '',
+                }),
+                form5: new Form({
+                    id: '',
+                    schoolyear: '',
+                    schoolyear_status: '',
                 }),
             }
         },
@@ -428,6 +538,11 @@
                 this.editMode4 = false;
                 this.form4.reset();
                 $('#addNewStrand').modal('show')
+            },
+            newSchoolyear(){
+                this.editMode5 = false;
+                this.form5.reset();
+                $('#addNewSchoolyear').modal('show')
             },
 
             createLearnerType(){
@@ -506,6 +621,25 @@
                     this.$Progress.fail();
                 })
             },
+            createSchoolyear(){
+                this.$Progress.start();
+
+                this.form5.post('api/schoolyear')
+                .then(()=>{
+                    fire.$emit('AfterCreate');
+                    $('#addNewSchoolyear').modal('hide')
+                    Swal.fire('Added School Year!', '', 'success')
+                    this.$Progress.finish();
+                })
+                .catch(()=>{
+                    Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong!',
+                    })
+                    this.$Progress.fail();
+                })
+            },
 
             editLearnerTypeModal(learner_type){
                 this.editMode1 = true;
@@ -530,6 +664,12 @@
                 this.form4.reset();
                 $('#addNewStrand').modal('show')
                 this.form4.fill(strand);
+            },
+            editSchoolyearModal(schoolyear){
+                this.editMode5 = true;
+                this.form5.reset();
+                $('#addNewSchoolyear').modal('show')
+                this.form5.fill(schoolyear);
             },
 
             updateLearnerType(){
@@ -594,6 +734,24 @@
                     Swal.fire(
                         'Updated!',
                         'STRAND Name has been updated.',
+                        'success'
+                    )
+                    this.$Progress.finish();
+                    fire.$emit('AfterCreate')
+                })
+                .catch(()=>{
+                    Swal.fire("Failed!", "There was something wrong.", "warning");
+                    this.$Progress.fail();
+                })
+            },
+            updateSchoolyear(){
+                this.$Progress.start();
+                this.form5.put("api/schoolyear/"+this.form5.id)
+                .then(()=>{
+                    $('#addNewSchoolyear').modal('hide')
+                    Swal.fire(
+                        'Updated!',
+                        'School Year has been updated.',
                         'success'
                     )
                     this.$Progress.finish();
@@ -705,6 +863,31 @@
                         }
                     })
             },
+            deleteSchoolyear(id){
+                Swal.fire({
+                        title: 'Delete School Year?',
+                        text: "You won't be able to revert this!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, delete it!'
+                    }).then((result) => {
+                        if (result.value){
+                            this.form5.delete('api/schoolyear/'+id).then(()=>{
+                                    Swal.fire(
+                                        'Deleted!',
+                                        'School Year has been deleted.',
+                                        'success'
+                                    )
+                                    fire.$emit('AfterCreate');
+                            }).catch(()=>{
+                                Swal.fire("Failed!", "There was something wrong.", "warning");
+                                this.$Progress.fail();
+                            })
+                        }
+                    })
+            },
 
             getLearnerTypeResults(page = 1) {
 			    axios.get('api/learner_type?page=' + page)
@@ -730,6 +913,13 @@
 					this.strands = response.data;
 				});
             },
+            getSchoolyearResults(page = 1) {
+			    axios.get('api/schoolyear?page=' + page)
+				.then(response => {
+					this.schoolyears = response.data;
+				});
+            },
+
 
             loadLearnerTypes(){
                 axios.get("api/learner_type").then(({ data }) => (this.learner_types = data));
@@ -742,6 +932,9 @@
             },
             loadStrand(){
                 axios.get("api/strand").then(({ data }) => (this.strands = data));
+            },
+            loadSchoolyear(){
+                axios.get("api/schoolyear").then(({ data }) => (this.schoolyears = data));
             },
         },
         created() {
@@ -790,12 +983,14 @@
             this.loadReligion();
             this.loadMotherTongue();
             this.loadStrand();
+            this.loadSchoolyear();
 
             fire.$on('AfterCreate', ()=>{
                 this.loadLearnerTypes();
                 this.loadReligion();
                 this.loadMotherTongue();
                 this.loadStrand();
+                this.loadSchoolyear();
             });
         }
     }

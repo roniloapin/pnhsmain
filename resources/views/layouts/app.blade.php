@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- <title>{{ config('app.name', 'PNHS-ES') }}</title> -->
-    <title>LCNHS</title>
+    <title>PNHS</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -37,11 +37,14 @@
             left: 0;
             /* bottom: 0; */
             width: 100%;
-            color: black;
+            color: white;
             text-align: center;
         }
         body {
             padding-bottom: 120px;
+            /* background-color: #75c1dd; */
+            /* background: linear-gradient(to right, #4285f4, #34a853, #fbbc05, #ea4335); */
+            background: linear-gradient(to top, #71A8EE, #3072EB, #1552C6, #0542A8);
         }
     </style>
 </head>
@@ -54,10 +57,10 @@
                 </a> -->
                 <!-- <div class="col-md-4 col-sm-12 phone-number">
 						<h6 class="fa fa-phone" aria-hidden="true"> +63-052-736-0335 <a class="fa fa-envelope fa-lg">inquiry@ust-legazpi.edu.ph</a> </h6>
-						<h6 class="fa fa-envelope fa-lg" aria-hidden="true"> <a href="mailto:inquiry@ust-legazpi.edu.ph" target="_blank">inquiry@ust-legazpi.edu.ph</a></h6>
+						<h6 class="fa fa-envelope fa-lg" aria-hidden="true"> <a href="mailto:inquiry@pnhs.edu.ph" target="_blank">inquiry@ust-legazpi.edu.ph</a></h6>
 			    </div> -->
 
-                <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();" class="navbar-brand"> | System is under maintenance |  | System is under maintenance |  | System is under maintenance |  | System is under maintenance |  | System is under maintenance | </marquee>
+                <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();" class="navbar-brand" style="color: white;"> | System is under maintenance |  | System is under maintenance |  | System is under maintenance |  | System is under maintenance |  | System is under maintenance | </marquee>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -75,7 +78,7 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}" style="color: white;">{{ __('Login') }}</a>
                                 </li>
                             @endif
                             
@@ -85,8 +88,11 @@
                                 </li>
                             @endif -->
                         @else
+                            <li class="nav-item">
+                                    <a class="nav-link" style="color: white;" href="/dashboard">{{ __('Dashboard') }}</a>
+                            </li> 
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" style="color: white;" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
@@ -102,6 +108,8 @@
                                     </form>
                                 </div>
                             </li>
+
+                            
                         @endguest
                     </ul>
                 </div>
@@ -113,7 +121,7 @@
             @yield('content')
         </main>
     <footer class="footer" >
-            <p><strong> Copyright &copy; {{ now()->year }} Legazpi City National High School</strong><br>
+            <p> Copyright &copy; {{ now()->year }} Pagasa National High School<br>
         </footer>
     </div>
 

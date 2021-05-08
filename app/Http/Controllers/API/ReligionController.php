@@ -89,3 +89,5 @@ class ReligionController extends Controller
         return $religions;
     }
 }
+
+//SEARCH R

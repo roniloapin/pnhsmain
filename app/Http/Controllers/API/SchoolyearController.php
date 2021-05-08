@@ -4,9 +4,9 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\MotherTongue;
+use App\Models\Schoolyear;
 
-class MotherTongueController extends Controller
+class SchoolyearController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class MotherTongueController extends Controller
      */
     public function index()
     {
-        return MotherTongue::orderBy('mother_tongue', 'asc')->paginate(20);
+        return Schoolyear::orderBy('schoolyear', 'asc')->paginate(20);
     }
 
     /**
@@ -27,12 +27,12 @@ class MotherTongueController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'mother_tongue' => 'required|string|max:191|unique:mother_tongues',
+            'schoolyear' => 'required|string|max:191|unique:schoolyears',
         ]);
 
-        return MotherTongue::create([
-            'mother_tongue'=>$request['mother_tongue'],
-            'mother_tongue_code'=>$request['mother_tongue_code'],
+        return Schoolyear::create([
+            'schoolyear'=>$request['schoolyear'],
+            'schoolyear_status'=>$request['schoolyear_status'],
         ]);
     }
 
@@ -56,13 +56,13 @@ class MotherTongueController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $mother_tongue = MotherTongue::findOrFail($id);
+        $schoolyear = Schoolyear::findOrFail($id);
 
         $this->validate($request,[
-            'mother_tongue' => 'required|string|max:191',
+            'schoolyear' => 'required|string|max:191',
         ]);
 
-        $mother_tongue->update($request->all());
+        $schoolyear->update($request->all());
     }
 
     /**
@@ -73,21 +73,10 @@ class MotherTongueController extends Controller
      */
     public function destroy($id)
     {
-        $mother_tongue = MotherTongue::findOrFail($id);
-        $mother_tongue->delete();
+        $schoolyear = Schoolyear::findOrFail($id);
+        $schoolyear->delete();
     }
 
-    public function search(){
-        if ($search = \Request::get('s')){
-            $mother_tongues = MotherTongue::where(function($query) use ($search){
-                $query->where('mother_tongue', 'LIKE', "%$search%")
-                ->orWhere('mother_tongue_code', 'LIKE', "%$search%");
-            })->orderBy('mother_tongue', 'asc')->paginate(20);
-        }else{
-            $mother_tongues = MotherTongue::orderBy('mother_tongue', 'asc')->paginate(10);
-        }
-        return $mother_tongues;
-    }
 }
 
-//SEARCH S
+//searh V last

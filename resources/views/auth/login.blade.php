@@ -19,7 +19,7 @@
                 <div class="card-body">
                     <div class="text-center mb-3 mt-2">
                         <img src="./img/logo.png" alt="Logo" class="" width="80" height="80">
-                        <p class="mb-0 font-weight-bold" style="font-size: 19px">Legazpi City National High School</p>
+                        <p class="mb-0 font-weight-bold" style="font-size: 19px">Pagasa National High School</p>
                         <p class="mb-0" style="font-size: 15px">Student Enrollment System</p>
                     </div>
 

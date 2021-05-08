@@ -91,7 +91,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $this->authorize('isAdmin');
+        // $this->authorize('isAdmin');
         $user = User::findOrFail($id);
         $user->delete();
     }
@@ -110,3 +110,5 @@ class UserController extends Controller
         return $users;
     }
 }
+
+//SEARCH Q

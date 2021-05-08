@@ -9,6 +9,7 @@ use App\Models\LearnerType;
 use App\Models\MotherTongue;
 use App\Models\Religion;
 use App\Models\Strand;
+use App\Models\Schoolyear;
 
 class StudentController extends Controller
 {
@@ -82,13 +83,14 @@ class StudentController extends Controller
         'status' => 'Pending',
         ]);
 
-        $request->session()->flash('success_registration', 'Task was successful!');
+        $request->session()->flash('success_registration', 'Pre-registration has been successful!     Proceed to Office of the Registrar for the approval');
 
         $religions = Religion::all();
         $learnerTypes = LearnerType::all();
         $motherTongues = MotherTongue::all();
         $strands = Strand::all();
-        return view('registrationform')->with(['religions' => $religions, 'learnerTypes' => $learnerTypes, 'motherTongues' => $motherTongues, 'strands' => $strands]);
+        $schoolyears = Schoolyear::all();
+        return view('registrationform')->with(['religions' => $religions, 'learnerTypes' => $learnerTypes, 'motherTongues' => $motherTongues, 'strands' => $strands, 'schoolyears' => $schoolyears]);
     }
 
     /**
@@ -147,3 +149,5 @@ class StudentController extends Controller
         return $students;
     }
 }
+
+//SEARCH U

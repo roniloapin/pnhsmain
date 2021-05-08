@@ -84,7 +84,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <a href="/" class="brand-link">
       <img src="./img/logo.png" alt="PNHS" class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">LCNHS</span>
+      <span class="brand-text font-weight-light">PNHS</span>
     </a>
 
     <!-- Sidebar -->
@@ -95,7 +95,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <img src="./img/user.png" class="img-circle" alt="User Image">
         </div> -->
         <div class="info">
-          <span class="brand-text font-weight-light" style="color: white; font-size: large;">LCNHS Enrollment System</span><br>
+          <span class="brand-text font-weight-light" style="color: white; font-size: large;">PNHS Enrollment System</span><br>
           <a class="d-block" style="margin-left:20px;">Hello!<strong style="color:white;"> {{ Auth::user()->name }}</strong> </a>
           <!-- <a style="font-size: 11px; margin-left:40px;" class="d-block">User ID:<strong style="color:white;"> {{ Auth::user()->id }}</strong> </a> -->
           <a style="font-size: 11px; margin-left:20px;" class="d-block">Status:<strong style="color:#39ea39;"> Online</strong> </a>
@@ -246,7 +246,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; {{ now()->year }} <a href="#">LCNHS</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; {{ now()->year }} <a href="#">PNHS</a>.</strong> All rights reserved.
   </footer>
 </div>
 <!-- ./wrapper -->

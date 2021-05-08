@@ -14,7 +14,7 @@
                 <div class="card-body">
                     <div class="text-center mb-3 mt-2">
                         <img src="./img/logo.png" alt="Logo" class="" width="80" height="80">
-                        <p class="mb-0 font-weight-bold" style="font-size: 19px">Legazpi City National High School</p>
+                        <p class="mb-0 font-weight-bold" style="font-size: 19px;">Pagasa National High School</p>
                         <p class="mb-0" style="font-size: 15px">Student Enrollment System</p>
                     </div>
 
@@ -216,7 +216,7 @@
                         </div>
                         <div class="form-group mb-2">
                             <label for="specify_lrn">If you answer "Yes" as LSEN/PWD, please specify the category</label>
-                            <input id="specify_lrn" type="text" placeholder="specify lrn" class="form-control" name="specify_lrn" />
+                            <input id="specify_lrn" type="text" placeholder="Specify LRN" class="form-control" name="specify_lrn" />
                             @error('specify_lrn')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -256,8 +256,8 @@
                             </small>
                         </div>
                         <div class="form-group mb-2">
-                            <label for="father_education">Father’s Highest Educational Attainment <span class="text-danger">*</span></label>
-                            <input id="father_education" type="text" placeholder="Enter Highest Educational Attainment" class="form-control" name="father_education" required/>
+                            <label for="father_education">Father’s Highest Educational Attainment</label>
+                            <input id="father_education" type="text" placeholder="Enter Highest Educational Attainment" class="form-control" name="father_education"/>
                         </div>
                         <div class="form-group mb-2">
                             <label for="father_employment">Father’s Employment Status</label>
@@ -310,7 +310,7 @@
                         </div>
 
                         <hr>
-                        <h3>Addmission Data</h3>
+                        <h3>Admission Data</h3>
                         <div class="form-group mb-3">
                             <label for="key_stage">Key Stage <span class="text-danger">*</span> </label>
                             <select class="form-control @error('key_stage') is-invalid @enderror" name="key_stage" id="key_stage" required>
@@ -320,11 +320,11 @@
                             </select>
                         </div>
                         <div class="form-group mb-2">
-                            <label for="jhs_grade_level">JHS Grade Level to enroll</label>
+                            <label for="jhs_grade_level">If Junior High School, input Grade Level to enrol<span class="text-danger">*</span></label>
                             <input id="jhs_grade_level" type="text" placeholder="Enter Grade Level" class="form-control" name="jhs_grade_level"/>
                         </div>
                         <div class="form-group mb-2">
-                            <label for="shs_strand_id">SHS Strand</label>
+                            <label for="shs_strand_id">If Senior High School, select STRAND <span class="text-danger">*</span></label>
                             <select class="form-control @error('shs_strand_id') is-invalid @enderror" name="shs_strand_id" id="shs_strand_id">
                                 <option disabled selected>Select</option>
                                 @foreach ($strands as $strand)
@@ -333,9 +333,24 @@
                                 <!-- {{-- {{ $student->strand->strand_name }} --}} -->
                             </select>
                         </div>
-                        <div class="form-group mb-2">
+                        <!-- <div class="form-group mb-2">
                             <label for="school_year">School Year</label>
                             <input id="school_year" type="text" placeholder="Enter School Year (e.g. 2020-2021)" class="form-control" name="school_year" required/>
+                        </div> -->
+
+                        <div class="form-group mb-2">
+                            <label for="school_year">School Year <span class="text-danger">*</span> </label>
+                            <select class="form-select custom-select @error('school_year') is-invalid @enderror" id="school_year" name="school_year">
+                                <option disabled selected>Select School Year</option>
+                                @foreach ($schoolyears as $schoolyear)
+                                    <option value="{{ $schoolyear->id}}">{{ $schoolyear->schoolyear }}</option>
+                                @endforeach
+                            </select> 
+                            @error('school_year')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         
                         {{-- Button --}}
