@@ -32,7 +32,7 @@
                                     </tr>
                                   </thead>
                                   <tbody>
-                                    <tr v-for="student in students.data" :key="student.id">
+                                    <tr v-for="student in approved_students.data" :key="student.id">
                                       <td>
                                         <a href="#" @click="editModal(student)">
                                             <i class="fa fa-edit color-blue" title="Edit"></i>
@@ -166,8 +166,11 @@
 </template>
 
 <script>
+    import Vue2Filters from 'vue2-filters'
     export default {
+      mixins: [Vue2Filters.mixin],
         data(){
+          
             return{
                 editMode1: false,
                 learner_types:{},
@@ -175,8 +178,9 @@
                 mother_tongues: {},
                 strands:{},
                 schoolyears:{},
-                students:{},
-                form: new Form({
+                approved_students:{},
+                pending_students:{},
+                form1: new Form({
                   id: '',
                   learner_type_id: '',
                   lrn: '',
@@ -657,8 +661,11 @@
             loadSchoolyear(){
                 axios.get("api/schoolyear").then(({ data }) => (this.schoolyears = data));
             },
-            loadStudents(){
-                axios.get("api/student").then(({ data }) => (this.students = data));
+            loadApprovedStudents(){
+                axios.get("api/approved_student").then(({ data }) => (this.approved_students = data));
+            },
+            loadPendingStudents(){
+                axios.get("api/pending_student").then(({ data }) => (this.pending_students = data));
             },
         },
         created() {
@@ -708,7 +715,9 @@
             this.loadMotherTongue();
             this.loadStrand();
             this.loadSchoolyear();
-            this.loadStudents();
+            // this.loadStudents();
+            this.loadPendingStudents();
+            this.loadApprovedStudents();
 
             fire.$on('AfterCreate', ()=>{
                 this.loadLearnerTypes();
@@ -716,7 +725,8 @@
                 this.loadMotherTongue();
                 this.loadStrand();
                 this.loadSchoolyear();
-                
+                this.loadPendingStudents();
+                this.loadApprovedStudents();
             });
         }
     }

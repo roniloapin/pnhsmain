@@ -3110,6 +3110,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var vue2_filters__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue2-filters */ "./node_modules/vue2-filters/dist/vue2-filters.js");
+/* harmony import */ var vue2_filters__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue2_filters__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -3277,7 +3279,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  mixins: [(vue2_filters__WEBPACK_IMPORTED_MODULE_0___default().mixin)],
   data: function data() {
     return {
       editMode1: false,
@@ -3286,8 +3290,9 @@ __webpack_require__.r(__webpack_exports__);
       mother_tongues: {},
       strands: {},
       schoolyears: {},
-      students: {},
-      form: new Form({
+      approved_students: {},
+      pending_students: {},
+      form1: new Form({
         id: '',
         learner_type_id: '',
         lrn: '',
@@ -3791,62 +3796,76 @@ __webpack_require__.r(__webpack_exports__);
         return _this25.schoolyears = data;
       });
     },
-    loadStudents: function loadStudents() {
+    loadApprovedStudents: function loadApprovedStudents() {
       var _this26 = this;
 
-      axios.get("api/student").then(function (_ref6) {
+      axios.get("api/approved_student").then(function (_ref6) {
         var data = _ref6.data;
-        return _this26.students = data;
+        return _this26.approved_students = data;
+      });
+    },
+    loadPendingStudents: function loadPendingStudents() {
+      var _this27 = this;
+
+      axios.get("api/pending_student").then(function (_ref7) {
+        var data = _ref7.data;
+        return _this27.pending_students = data;
       });
     }
   },
   created: function created() {
-    var _this27 = this;
+    var _this28 = this;
 
     fire.$on('searching', function () {
-      var query = _this27.$parent.search;
-      axios.get('api/findLearnerType?q=' + query).then(function (_ref7) {
-        var data = _ref7.data;
-        _this27.learner_types = data;
-      })["catch"](function () {});
-    });
-    fire.$on('searching', function () {
-      var query = _this27.$parent.search;
-      axios.get('api/findReligion?r=' + query).then(function (_ref8) {
+      var query = _this28.$parent.search;
+      axios.get('api/findLearnerType?q=' + query).then(function (_ref8) {
         var data = _ref8.data;
-        _this27.religions = data;
+        _this28.learner_types = data;
       })["catch"](function () {});
     });
     fire.$on('searching', function () {
-      var query = _this27.$parent.search;
-      axios.get('api/findMotherTongue?s=' + query).then(function (_ref9) {
+      var query = _this28.$parent.search;
+      axios.get('api/findReligion?r=' + query).then(function (_ref9) {
         var data = _ref9.data;
-        _this27.mother_tongues = data;
+        _this28.religions = data;
       })["catch"](function () {});
     });
     fire.$on('searching', function () {
-      var query = _this27.$parent.search;
-      axios.get('api/findStrand?t=' + query).then(function (_ref10) {
+      var query = _this28.$parent.search;
+      axios.get('api/findMotherTongue?s=' + query).then(function (_ref10) {
         var data = _ref10.data;
-        _this27.strands = data;
+        _this28.mother_tongues = data;
+      })["catch"](function () {});
+    });
+    fire.$on('searching', function () {
+      var query = _this28.$parent.search;
+      axios.get('api/findStrand?t=' + query).then(function (_ref11) {
+        var data = _ref11.data;
+        _this28.strands = data;
       })["catch"](function () {});
     });
     this.loadLearnerTypes();
     this.loadReligion();
     this.loadMotherTongue();
     this.loadStrand();
-    this.loadSchoolyear();
-    this.loadStudents();
+    this.loadSchoolyear(); // this.loadStudents();
+
+    this.loadPendingStudents();
+    this.loadApprovedStudents();
     fire.$on('AfterCreate', function () {
-      _this27.loadLearnerTypes();
+      _this28.loadLearnerTypes();
 
-      _this27.loadReligion();
+      _this28.loadReligion();
 
-      _this27.loadMotherTongue();
+      _this28.loadMotherTongue();
 
-      _this27.loadStrand();
+      _this28.loadStrand();
 
-      _this27.loadSchoolyear();
+      _this28.loadSchoolyear();
+
+      _this28.loadPendingStudents();
+
+      _this28.loadApprovedStudents();
     });
   }
 });
@@ -70508,7 +70527,7 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "tbody",
-                        _vm._l(_vm.students.data, function(student) {
+                        _vm._l(_vm.approved_students.data, function(student) {
                           return _c("tr", { key: student.id }, [
                             _c("td", [
                               _c(

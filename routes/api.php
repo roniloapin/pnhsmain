@@ -44,7 +44,8 @@ Route::get('findMotherTongue', [MotherTongueController::class, 'search']);
 Route::apiResource('strand', StrandController::class);
 Route::get('findStrand', [StrandController::class, 'search']);
 
-Route::apiResource('student', StudentController::class);
+Route::apiResource('approved_student', StudentController::class);
+Route::apiResource('pending_student', StudentController::class);
 Route::get('findStudent', [StudentController::class, 'search']);
 
 Route::apiResource('schoolyear', SchoolyearController::class);
