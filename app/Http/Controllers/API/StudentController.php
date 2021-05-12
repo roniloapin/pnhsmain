@@ -21,6 +21,7 @@ class StudentController extends Controller
     public function index()
     {
         return Student::orderBy('last_name', 'asc')->paginate(20);
+        // $learnerTypes = LearnerType::all();
     }
 
     /**
@@ -89,8 +90,11 @@ class StudentController extends Controller
         $learnerTypes = LearnerType::all();
         $motherTongues = MotherTongue::all();
         $strands = Strand::all();
-        $schoolyears = Schoolyear::all();
+        // $schoolyears = Schoolyear::all();
+        $schoolyears = Schoolyear::where('schoolyear_status', 'Active')->get();
         return view('registrationform')->with(['religions' => $religions, 'learnerTypes' => $learnerTypes, 'motherTongues' => $motherTongues, 'strands' => $strands, 'schoolyears' => $schoolyears]);
+        // return view('/students')->with(['religions' => $religions, 'learnerTypes' => $learnerTypes, 'motherTongues' => $motherTongues, 'strands' => $strands, 'schoolyears' => $schoolyears]);
+        
     }
 
     /**

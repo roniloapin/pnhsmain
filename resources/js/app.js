@@ -9,11 +9,17 @@ require('admin-lte');
 
 
 window.Vue = require('vue').default;
+import Vue2Filters from 'vue2-filters'
 import moment from 'moment';
 import { Form, HasError, AlertError } from 'vform'
 import Vue from 'vue';
 import Gate from "./Gate";
 Vue.prototype.$gate = new Gate(window.user);
+
+Vue.use(Vue2Filters)
+new Vue({
+  mixins: [Vue2Filters.mixin],
+})
 
 
 import Swal from 'sweetalert2'

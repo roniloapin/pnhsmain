@@ -44,7 +44,7 @@
             padding-bottom: 120px;
             /* background-color: #75c1dd; */
             /* background: linear-gradient(to right, #4285f4, #34a853, #fbbc05, #ea4335); */
-            background: linear-gradient(to top, #71A8EE, #3072EB, #1552C6, #0542A8);
+            background: linear-gradient(to bottom, #71A8EE, #3072EB);
         }
     </style>
 </head>

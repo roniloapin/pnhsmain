@@ -32,6 +32,7 @@
         "sweetalert2": "^10.15.5",
         "vform": "^1.0.1",
         "vue-progressbar": "^0.7.5",
-        "vue-router": "^3.5.1"
+        "vue-router": "^3.5.1",
+        "vue2-filters": "^0.12.0"
     }
 }

@@ -22,14 +22,25 @@ Route::get('/', function () {
     return redirect('/registrationform');
 });
 
+
 Route::get('/registrationform', function () {
     $religions = Religion::all();
     $learnerTypes = LearnerType::all();
     $motherTongues = MotherTongue::all();
     $strands = Strand::all();
-    $schoolyears = Schoolyear::all();
+    // $schoolyears = Schoolyear::all();
+    $schoolyears = Schoolyear::where('schoolyear_status', 'Active')->get();
     return view('registrationform')->with(['religions' => $religions, 'learnerTypes' => $learnerTypes, 'motherTongues' => $motherTongues, 'strands' => $strands, 'schoolyears' => $schoolyears]);
+    
 });
+// Route::get('/students', function () {
+//     $religions = Religion::all();
+//     $learnerTypes = LearnerType::all();
+//     $motherTongues = MotherTongue::all();
+//     $strands = Strand::all();
+//     $schoolyears = Schoolyear::all();
+//     return view('/students')->with(['religions' => $religions, 'learnerTypes' => $learnerTypes, 'motherTongues' => $motherTongues, 'strands' => $strands, 'schoolyears' => $schoolyears]);
+// });
 Route::post('/registrationform', [App\Http\Controllers\API\StudentController::class, 'store'])->name('registrationform');
 
 Auth::routes();

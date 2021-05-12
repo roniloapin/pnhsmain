@@ -257,7 +257,23 @@
                         </div>
                         <div class="form-group mb-2">
                             <label for="father_education">Father’s Highest Educational Attainment</label>
-                            <input id="father_education" type="text" placeholder="Enter Highest Educational Attainment" class="form-control" name="father_education"/>
+                                <select class="form-select custom-select" id="father_education" name="father_education">
+                                    <option disabled selected>Select</option>
+                                    <option value="Elementary">Elementary</option>
+                                    <option value="High School">High School</option>
+                                    <option value="Technical/Vocational">Technical/Vocational</option>
+                                    <option value="College Undergraduate">College Undergraduate</option>
+                                    <option value="College Graduate">College Graduate</option>
+                                    <option value="Master's Degree">Master's Degree</option>
+                                    <option value="Doctorate Degree">Doctorate Degree</option>
+                                </select> 
+                                @error('father_education')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            <!-- <label for="father_education">Father’s Highest Educational Attainment</label>
+                            <input id="father_education" type="text" placeholder="Enter Highest Educational Attainment" class="form-control" name="father_education"/> -->
                         </div>
                         <div class="form-group mb-2">
                             <label for="father_employment">Father’s Employment Status</label>
@@ -275,9 +291,26 @@
                                 Last Name, First Name, Middle Name
                             </small>
                         </div>
+                        
                         <div class="form-group mb-2">
-                            <label for="mother_education">Mother's Highest Educational Attainment</label>
-                            <input id="mother_education" type="text" placeholder="Enter Highest Educational Attainment" class="form-control" name="mother_education"/>
+                            <label for="mother_education">Mother’s Highest Educational Attainment</label>
+                            <select class="form-select custom-select" id="mother_education" name="mother_education">
+                                <option disabled selected>Select</option>
+                                <option value="Elementary">Elementary</option>
+                                <option value="High School">High School</option>
+                                <option value="Technical/Vocational">Technical/Vocational</option>
+                                <option value="College Undergraduate">College Undergraduate</option>
+                                <option value="College Graduate">College Graduate</option>
+                                <option value="Master's Degree">Master's Degree</option>
+                                <option value="Doctorate Degree">Doctorate Degree</option>
+                            </select> 
+                            @error('mother_education')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                            <!-- <label for="mothe r_education">Mother's Highest Educational Attainment</label>
+                            <input id="mother_education" type="text" placeholder="Enter Highest Educational Attainment" class="form-control" name="mother_education"/> -->
                         </div>
                         <div class="form-group mb-2">
                             <label for="mother_employment">Mother's Employment Status</label>
@@ -296,9 +329,26 @@
                                 Last Name, First Name, Middle Name
                             </small>
                         </div>
+                        
                         <div class="form-group mb-2">
-                            <label for="guardian_education">Guardian's Highest Educational Attainment</label>
-                            <input id="guardian_education" type="text" placeholder="Enter Highest Educational Attainment" class="form-control" name="guardian_education"/>
+                        <label for="guardian_education">Guardian’s Highest Educational Attainment</label>
+                            <select class="form-select custom-select" id="guardian_education" name="guardian_education">
+                                <option disabled selected>Select</option>
+                                <option value="Elementary">Elementary</option>
+                                <option value="High School">High School</option>
+                                <option value="Technical/Vocational">Technical/Vocational</option>
+                                <option value="College Undergraduate">College Undergraduate</option>
+                                <option value="College Graduate">College Graduate</option>
+                                <option value="Master's Degree">Master's Degree</option>
+                                <option value="Doctorate Degree">Doctorate Degree</option>
+                            </select> 
+                            @error('guardian_education')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                            <!-- <label for="guardian_education">Guardian's Highest Educational Attainment</label>
+                            <input id="guardian_education" type="text" placeholder="Enter Highest Educational Attainment" class="form-control" name="guardian_education"/> -->
                         </div>
                         <div class="form-group mb-2">
                             <label for="guardian_employment">Guardian's Employment Status</label>
