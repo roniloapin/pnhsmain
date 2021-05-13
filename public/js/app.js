@@ -3285,6 +3285,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mixins: [(vue2_filters__WEBPACK_IMPORTED_MODULE_0___default().mixin)],
@@ -3338,62 +3351,22 @@ __webpack_require__.r(__webpack_exports__);
         school_year: '',
         picture: '',
         status: ''
-      }),
-      form2: new Form({
-        id: '',
-        religion_name: '',
-        religion_code: ''
-      }),
-      form3: new Form({
-        id: '',
-        mother_tongue: '',
-        mother_tongue_code: ''
-      }),
-      form4: new Form({
-        id: '',
-        strand_name: '',
-        strand_code: ''
-      }),
-      form5: new Form({
-        id: '',
-        schoolyear: '',
-        schoolyear_status: ''
       })
     };
   },
   methods: {
-    newLearnerType: function newLearnerType() {
+    addNewStudent: function addNewStudent() {
       this.editMode1 = false;
       this.form1.reset();
-      $('#addNewLearnerType').modal('show');
+      $('#addNewStudent').modal('show');
     },
-    newReligion: function newReligion() {
-      this.editMode2 = false;
-      this.form2.reset();
-      $('#addNewReligion').modal('show');
-    },
-    newMotherTongue: function newMotherTongue() {
-      this.editMode3 = false;
-      this.form3.reset();
-      $('#addNewMotherTongue').modal('show');
-    },
-    newStrand: function newStrand() {
-      this.editMode4 = false;
-      this.form4.reset();
-      $('#addNewStrand').modal('show');
-    },
-    newSchoolyear: function newSchoolyear() {
-      this.editMode5 = false;
-      this.form5.reset();
-      $('#addNewSchoolyear').modal('show');
-    },
-    createLearnerType: function createLearnerType() {
+    createStudent: function createStudent() {
       var _this = this;
 
       this.$Progress.start();
       this.form1.post('api/learner_type').then(function () {
         fire.$emit('AfterCreate');
-        $('#addNewLearnerType').modal('hide');
+        $('#addNewStudent').modal('hide');
         Swal.fire('Added New Learner Type!', '', 'success');
 
         _this.$Progress.finish();
@@ -3407,203 +3380,31 @@ __webpack_require__.r(__webpack_exports__);
         _this.$Progress.fail();
       });
     },
-    createReligion: function createReligion() {
+    editStudentModal: function editStudentModal(learner_type) {
+      this.editMode1 = true;
+      this.form1.reset();
+      $('#addNewStudent').modal('show');
+      this.form1.fill(learner_type);
+    },
+    updateStudent: function updateStudent() {
       var _this2 = this;
 
       this.$Progress.start();
-      this.form2.post('api/religion').then(function () {
-        fire.$emit('AfterCreate');
-        $('#addNewReligion').modal('hide');
-        Swal.fire('Added New Religion!', '', 'success');
+      this.form1.put("api/learner_type/" + this.form1.id).then(function () {
+        $('#addNewStudent').modal('hide');
+        Swal.fire('Updated!', 'Learner Type has been updated.', 'success');
 
         _this2.$Progress.finish();
+
+        fire.$emit('AfterCreate');
       })["catch"](function () {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Something went wrong!'
-        });
+        Swal.fire("Failed!", "There was something wrong.", "warning");
 
         _this2.$Progress.fail();
       });
     },
-    createMotherTongue: function createMotherTongue() {
+    deleteStudent: function deleteStudent(id) {
       var _this3 = this;
-
-      this.$Progress.start();
-      this.form3.post('api/mother_tongue').then(function () {
-        fire.$emit('AfterCreate');
-        $('#addNewMotherTongue').modal('hide');
-        Swal.fire('Added New Mother Tongue!', '', 'success');
-
-        _this3.$Progress.finish();
-      })["catch"](function () {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Something went wrong!'
-        });
-
-        _this3.$Progress.fail();
-      });
-    },
-    createStrand: function createStrand() {
-      var _this4 = this;
-
-      this.$Progress.start();
-      this.form4.post('api/strand').then(function () {
-        fire.$emit('AfterCreate');
-        $('#addNewStrand').modal('hide');
-        Swal.fire('Added STRAND Category!', '', 'success');
-
-        _this4.$Progress.finish();
-      })["catch"](function () {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Something went wrong!'
-        });
-
-        _this4.$Progress.fail();
-      });
-    },
-    createSchoolyear: function createSchoolyear() {
-      var _this5 = this;
-
-      this.$Progress.start();
-      this.form5.post('api/schoolyear').then(function () {
-        fire.$emit('AfterCreate');
-        $('#addNewSchoolyear').modal('hide');
-        Swal.fire('Added School Year!', '', 'success');
-
-        _this5.$Progress.finish();
-      })["catch"](function () {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Something went wrong!'
-        });
-
-        _this5.$Progress.fail();
-      });
-    },
-    editLearnerTypeModal: function editLearnerTypeModal(learner_type) {
-      this.editMode1 = true;
-      this.form1.reset();
-      $('#addNewLearnerType').modal('show');
-      this.form1.fill(learner_type);
-    },
-    editReligionModal: function editReligionModal(religion) {
-      this.editMode2 = true;
-      this.form2.reset();
-      $('#addNewReligion').modal('show');
-      this.form2.fill(religion);
-    },
-    editMotherTongueModal: function editMotherTongueModal(mother_tongue) {
-      this.editMode3 = true;
-      this.form3.reset();
-      $('#addNewMotherTongue').modal('show');
-      this.form3.fill(mother_tongue);
-    },
-    editStrandModal: function editStrandModal(strand) {
-      this.editMode4 = true;
-      this.form4.reset();
-      $('#addNewStrand').modal('show');
-      this.form4.fill(strand);
-    },
-    editSchoolyearModal: function editSchoolyearModal(schoolyear) {
-      this.editMode5 = true;
-      this.form5.reset();
-      $('#addNewSchoolyear').modal('show');
-      this.form5.fill(schoolyear);
-    },
-    updateLearnerType: function updateLearnerType() {
-      var _this6 = this;
-
-      this.$Progress.start();
-      this.form1.put("api/learner_type/" + this.form1.id).then(function () {
-        $('#addNewLearnerType').modal('hide');
-        Swal.fire('Updated!', 'Learner Type has been updated.', 'success');
-
-        _this6.$Progress.finish();
-
-        fire.$emit('AfterCreate');
-      })["catch"](function () {
-        Swal.fire("Failed!", "There was something wrong.", "warning");
-
-        _this6.$Progress.fail();
-      });
-    },
-    updateReligion: function updateReligion() {
-      var _this7 = this;
-
-      this.$Progress.start();
-      this.form2.put("api/religion/" + this.form2.id).then(function () {
-        $('#addNewReligion').modal('hide');
-        Swal.fire('Updated!', 'Religion has been updated.', 'success');
-
-        _this7.$Progress.finish();
-
-        fire.$emit('AfterCreate');
-      })["catch"](function () {
-        Swal.fire("Failed!", "There was something wrong.", "warning");
-
-        _this7.$Progress.fail();
-      });
-    },
-    updateMotherTongue: function updateMotherTongue() {
-      var _this8 = this;
-
-      this.$Progress.start();
-      this.form3.put("api/mother_tongue/" + this.form3.id).then(function () {
-        $('#addNewMotherTongue').modal('hide');
-        Swal.fire('Updated!', 'Mother Tongue has been updated.', 'success');
-
-        _this8.$Progress.finish();
-
-        fire.$emit('AfterCreate');
-      })["catch"](function () {
-        Swal.fire("Failed!", "There was something wrong.", "warning");
-
-        _this8.$Progress.fail();
-      });
-    },
-    updateStrand: function updateStrand() {
-      var _this9 = this;
-
-      this.$Progress.start();
-      this.form4.put("api/strand/" + this.form4.id).then(function () {
-        $('#addNewStrand').modal('hide');
-        Swal.fire('Updated!', 'STRAND Name has been updated.', 'success');
-
-        _this9.$Progress.finish();
-
-        fire.$emit('AfterCreate');
-      })["catch"](function () {
-        Swal.fire("Failed!", "There was something wrong.", "warning");
-
-        _this9.$Progress.fail();
-      });
-    },
-    updateSchoolyear: function updateSchoolyear() {
-      var _this10 = this;
-
-      this.$Progress.start();
-      this.form5.put("api/schoolyear/" + this.form5.id).then(function () {
-        $('#addNewSchoolyear').modal('hide');
-        Swal.fire('Updated!', 'School Year has been updated.', 'success');
-
-        _this10.$Progress.finish();
-
-        fire.$emit('AfterCreate');
-      })["catch"](function () {
-        Swal.fire("Failed!", "There was something wrong.", "warning");
-
-        _this10.$Progress.fail();
-      });
-    },
-    deleteLearnerType: function deleteLearnerType(id) {
-      var _this11 = this;
 
       Swal.fire({
         title: 'Delete Learner Type?',
@@ -3615,191 +3416,71 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: 'Yes, delete it!'
       }).then(function (result) {
         if (result.value) {
-          _this11.form1["delete"]('api/learner_type/' + id).then(function () {
+          _this3.form1["delete"]('api/learner_type/' + id).then(function () {
             Swal.fire('Deleted!', 'Learner Type has been deleted.', 'success');
             fire.$emit('AfterCreate');
           })["catch"](function () {
             Swal.fire("Failed!", "There was something wrong.", "warning");
 
-            _this11.$Progress.fail();
+            _this3.$Progress.fail();
           });
         }
       });
     },
-    deleteReligion: function deleteReligion(id) {
-      var _this12 = this;
-
-      Swal.fire({
-        title: 'Delete Religion?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-      }).then(function (result) {
-        if (result.value) {
-          _this12.form2["delete"]('api/religion/' + id).then(function () {
-            Swal.fire('Deleted!', 'Religion has been deleted.', 'success');
-            fire.$emit('AfterCreate');
-          })["catch"](function () {
-            Swal.fire("Failed!", "There was something wrong.", "warning");
-
-            _this12.$Progress.fail();
-          });
-        }
-      });
-    },
-    deleteMotherTongue: function deleteMotherTongue(id) {
-      var _this13 = this;
-
-      Swal.fire({
-        title: 'Delete Mother Tongue?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-      }).then(function (result) {
-        if (result.value) {
-          _this13.form3["delete"]('api/mother_tongue/' + id).then(function () {
-            Swal.fire('Deleted!', 'Mother Tongue has been deleted.', 'success');
-            fire.$emit('AfterCreate');
-          })["catch"](function () {
-            Swal.fire("Failed!", "There was something wrong.", "warning");
-
-            _this13.$Progress.fail();
-          });
-        }
-      });
-    },
-    deleteStrand: function deleteStrand(id) {
-      var _this14 = this;
-
-      Swal.fire({
-        title: 'Delete STRAND Category?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-      }).then(function (result) {
-        if (result.value) {
-          _this14.form4["delete"]('api/strand/' + id).then(function () {
-            Swal.fire('Deleted!', 'STRAND Category has been deleted.', 'success');
-            fire.$emit('AfterCreate');
-          })["catch"](function () {
-            Swal.fire("Failed!", "There was something wrong.", "warning");
-
-            _this14.$Progress.fail();
-          });
-        }
-      });
-    },
-    deleteSchoolyear: function deleteSchoolyear(id) {
-      var _this15 = this;
-
-      Swal.fire({
-        title: 'Delete School Year?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-      }).then(function (result) {
-        if (result.value) {
-          _this15.form5["delete"]('api/schoolyear/' + id).then(function () {
-            Swal.fire('Deleted!', 'School Year has been deleted.', 'success');
-            fire.$emit('AfterCreate');
-          })["catch"](function () {
-            Swal.fire("Failed!", "There was something wrong.", "warning");
-
-            _this15.$Progress.fail();
-          });
-        }
-      });
-    },
-    getLearnerTypeResults: function getLearnerTypeResults() {
-      var _this16 = this;
+    getStudentResults_a: function getStudentResults_a() {
+      var _this4 = this;
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       axios.get('api/learner_type?page=' + page).then(function (response) {
-        _this16.learner_types = response.data;
+        _this4.learner_types = response.data;
       });
     },
-    getReligionResults: function getReligionResults() {
-      var _this17 = this;
+    getStudentResults_p: function getStudentResults_p() {
+      var _this5 = this;
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
-      axios.get('api/religion?page=' + page).then(function (response) {
-        _this17.religions = response.data;
-      });
-    },
-    getMotherTongueResults: function getMotherTongueResults() {
-      var _this18 = this;
-
-      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
-      axios.get('api/mother_tongue?page=' + page).then(function (response) {
-        _this18.mother_tongues = response.data;
-      });
-    },
-    getStrandResults: function getStrandResults() {
-      var _this19 = this;
-
-      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
-      axios.get('api/strand?page=' + page).then(function (response) {
-        _this19.strands = response.data;
-      });
-    },
-    getSchoolyearResults: function getSchoolyearResults() {
-      var _this20 = this;
-
-      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
-      axios.get('api/schoolyear?page=' + page).then(function (response) {
-        _this20.schoolyears = response.data;
+      axios.get('api/learner_type?page=' + page).then(function (response) {
+        _this5.learner_types = response.data;
       });
     },
     loadLearnerTypes: function loadLearnerTypes() {
-      var _this21 = this;
+      var _this6 = this;
 
       axios.get("api/learner_type").then(function (_ref) {
         var data = _ref.data;
-        return _this21.learner_types = data;
+        return _this6.learner_types = data;
       });
     },
     loadReligion: function loadReligion() {
-      var _this22 = this;
+      var _this7 = this;
 
       axios.get("api/religion").then(function (_ref2) {
         var data = _ref2.data;
-        return _this22.religions = data;
+        return _this7.religions = data;
       });
     },
     loadMotherTongue: function loadMotherTongue() {
-      var _this23 = this;
+      var _this8 = this;
 
       axios.get("api/mother_tongue").then(function (_ref3) {
         var data = _ref3.data;
-        return _this23.mother_tongues = data;
+        return _this8.mother_tongues = data;
       });
     },
     loadStrand: function loadStrand() {
-      var _this24 = this;
+      var _this9 = this;
 
       axios.get("api/strand").then(function (_ref4) {
         var data = _ref4.data;
-        return _this24.strands = data;
+        return _this9.strands = data;
       });
     },
     loadSchoolyear: function loadSchoolyear() {
-      var _this25 = this;
+      var _this10 = this;
 
       axios.get("api/schoolyear").then(function (_ref5) {
         var data = _ref5.data;
-        return _this25.schoolyears = data;
+        return _this10.schoolyears = data;
       });
     },
     load_students: function load_students() {
@@ -3816,34 +3497,13 @@ __webpack_require__.r(__webpack_exports__);
 
   },
   created: function created() {
-    var _this26 = this;
+    var _this11 = this;
 
     fire.$on('searching', function () {
-      var query = _this26.$parent.search;
+      var query = _this11.$parent.search;
       axios.get('api/findLearnerType?q=' + query).then(function (_ref6) {
         var data = _ref6.data;
-        _this26.learner_types = data;
-      })["catch"](function () {});
-    });
-    fire.$on('searching', function () {
-      var query = _this26.$parent.search;
-      axios.get('api/findReligion?r=' + query).then(function (_ref7) {
-        var data = _ref7.data;
-        _this26.religions = data;
-      })["catch"](function () {});
-    });
-    fire.$on('searching', function () {
-      var query = _this26.$parent.search;
-      axios.get('api/findMotherTongue?s=' + query).then(function (_ref8) {
-        var data = _ref8.data;
-        _this26.mother_tongues = data;
-      })["catch"](function () {});
-    });
-    fire.$on('searching', function () {
-      var query = _this26.$parent.search;
-      axios.get('api/findStrand?t=' + query).then(function (_ref9) {
-        var data = _ref9.data;
-        _this26.strands = data;
+        _this11.learner_types = data;
       })["catch"](function () {});
     });
     this.loadLearnerTypes();
@@ -3855,18 +3515,18 @@ __webpack_require__.r(__webpack_exports__);
 
     this.load_students();
     fire.$on('AfterCreate', function () {
-      _this26.loadLearnerTypes();
+      _this11.loadLearnerTypes();
 
-      _this26.loadReligion();
+      _this11.loadReligion();
 
-      _this26.loadMotherTongue();
+      _this11.loadMotherTongue();
 
-      _this26.loadStrand();
+      _this11.loadStrand();
 
-      _this26.loadSchoolyear(); // this.loadPendingStudents();
+      _this11.loadSchoolyear(); // this.loadPendingStudents();
 
 
-      _this26.load_students();
+      _this11.load_students();
     });
   }
 });
@@ -70502,7 +70162,7 @@ var render = function() {
                   { staticClass: "card-header card-primary card-outline" },
                   [
                     _c("h5", { staticClass: "m-0 fas text-primary" }, [
-                      _vm._v(" Aproved Students")
+                      _vm._v(" Approved Students")
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "card-tools" }, [
@@ -70510,8 +70170,8 @@ var render = function() {
                         "button",
                         {
                           staticClass: "btn btn-success btn-block p-1",
-                          attrs: { title: "Add New Learner Type" },
-                          on: { click: _vm.newLearnerType }
+                          attrs: { title: "Add New Student" },
+                          on: { click: _vm.addNewStudent }
                         },
                         [_vm._v("Add New")]
                       )
@@ -70542,7 +70202,7 @@ var render = function() {
                                     attrs: { href: "#" },
                                     on: {
                                       click: function($event) {
-                                        return _vm.editModal(student)
+                                        return _vm.editStudentModal(student)
                                       }
                                     }
                                   },
@@ -70562,7 +70222,7 @@ var render = function() {
                                     attrs: { href: "#" },
                                     on: {
                                       click: function($event) {
-                                        return _vm.deleteUser(student.id)
+                                        return _vm.deleteStudent(student.id)
                                       }
                                     }
                                   },
@@ -70596,9 +70256,14 @@ var render = function() {
                               ),
                               _vm._v(" "),
                               _c("td", [
-                                _c("span", { staticClass: "tag tag-success" }, [
-                                  _vm._v(_vm._s(student.email))
-                                ])
+                                _c(
+                                  "span",
+                                  {
+                                    staticClass: "tag tag-success",
+                                    staticStyle: { "text-align": "center" }
+                                  },
+                                  [_vm._v(_vm._s(student.jhs_grade_level))]
+                                )
                               ]),
                               _vm._v(" "),
                               _c("td", [_vm._v(_vm._s(student.gender))]),
@@ -70620,9 +70285,9 @@ var render = function() {
                     _c(
                       "pagination",
                       {
-                        attrs: { data: _vm.learner_types },
+                        attrs: { data: _vm.approved_students },
                         on: {
-                          "pagination-change-page": _vm.getLearnerTypeResults
+                          "pagination-change-page": _vm.getStudentResults_a
                         }
                       },
                       [
@@ -70667,7 +70332,7 @@ var render = function() {
                   { staticClass: "card-header card-primary card-outline" },
                   [
                     _c("h5", { staticClass: "m-0 fas text-primary" }, [
-                      _vm._v(" Religion")
+                      _vm._v(" Pending Students")
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "card-tools" }, [
@@ -70675,8 +70340,8 @@ var render = function() {
                         "button",
                         {
                           staticClass: "btn btn-success btn-block p-1",
-                          attrs: { title: "Add New Religion" },
-                          on: { click: _vm.newReligion }
+                          attrs: { title: "Add New Learner Type" },
+                          on: { click: _vm.addNewStudent }
                         },
                         [_vm._v("Add New")]
                       )
@@ -70685,24 +70350,21 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c("div", { staticClass: "card-body table-responsive p-0" }, [
-                  _c("table", { staticClass: "table table-hover" }, [
-                    _c(
-                      "tbody",
-                      [
-                        _vm._m(4),
-                        _vm._v(" "),
-                        _vm.religions.total == 0
-                          ? _c("tr", [_vm._m(5)])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm._l(_vm.religions.data, function(religion) {
-                          return _c(
-                            "tr",
-                            {
-                              key: religion.id,
-                              staticStyle: { "text-align": "center" }
-                            },
-                            [
+                  _c(
+                    "table",
+                    { staticClass: "table table-head-fixed table-hover" },
+                    [
+                      _vm._m(4),
+                      _vm._v(" "),
+                      _c(
+                        "tbody",
+                        [
+                          _vm.pending_students.total == 0
+                            ? _c("tr", [_vm._m(5)])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm._l(_vm.pending_students.data, function(student) {
+                            return _c("tr", { key: student.id }, [
                               _c("td", [
                                 _c(
                                   "a",
@@ -70710,7 +70372,7 @@ var render = function() {
                                     attrs: { href: "#" },
                                     on: {
                                       click: function($event) {
-                                        return _vm.editReligionModal(religion)
+                                        return _vm.editStudentModal(student)
                                       }
                                     }
                                   },
@@ -70722,7 +70384,7 @@ var render = function() {
                                   ]
                                 ),
                                 _vm._v(
-                                  "\n                                                |\n                                                "
+                                  "\n                                        |\n                                        "
                                 ),
                                 _c(
                                   "a",
@@ -70730,7 +70392,7 @@ var render = function() {
                                     attrs: { href: "#" },
                                     on: {
                                       click: function($event) {
-                                        return _vm.deleteReligion(religion.id)
+                                        return _vm.deleteStudent(student.id)
                                       }
                                     }
                                   },
@@ -70740,21 +70402,45 @@ var render = function() {
                                       attrs: { title: "Delete" }
                                     })
                                   ]
-                                )
+                                ),
+                                _vm._v(
+                                  "\n                                        |\n                                        "
+                                ),
+                                _vm._m(6, true)
                               ]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(student.id))]),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                { staticStyle: { "text-align": "left" } },
+                                [
+                                  _vm._v(
+                                    _vm._s(student.last_name) +
+                                      ", " +
+                                      _vm._s(student.first_name) +
+                                      " " +
+                                      _vm._s(student.middle_name)
+                                  )
+                                ]
+                              ),
                               _vm._v(" "),
                               _c("td", [
-                                _vm._v(_vm._s(religion.religion_name))
+                                _c("span", { staticClass: "tag tag-success" }, [
+                                  _vm._v(_vm._s(student.email))
+                                ])
                               ]),
                               _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(religion.religion_code))])
-                            ]
-                          )
-                        })
-                      ],
-                      2
-                    )
-                  ])
+                              _c("td", [_vm._v(_vm._s(student.gender))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(student.status))])
+                            ])
+                          })
+                        ],
+                        2
+                      )
+                    ]
+                  )
                 ]),
                 _vm._v(" "),
                 _c(
@@ -70764,8 +70450,10 @@ var render = function() {
                     _c(
                       "pagination",
                       {
-                        attrs: { data: _vm.religions },
-                        on: { "pagination-change-page": _vm.getReligionResults }
+                        attrs: { data: _vm.pending_students },
+                        on: {
+                          "pagination-change-page": _vm.getStudentResults_p
+                        }
                       },
                       [
                         _c(
@@ -70796,10 +70484,10 @@ var render = function() {
       {
         staticClass: "modal fade",
         attrs: {
-          id: "addNewLearnerType",
+          id: "addNewStudent",
           tabindex: "-1",
           role: "dialog",
-          "aria-labelledby": "addNewLearnerTypeTitle",
+          "aria-labelledby": "addNewStudentTitle",
           "aria-hidden": "true"
         }
       },
@@ -70825,7 +70513,7 @@ var render = function() {
                       }
                     ],
                     staticClass: "modal-title",
-                    attrs: { id: "addNewLearnerTypeTitle" }
+                    attrs: { id: "addNewStudentTitle" }
                   },
                   [_vm._v(" Add")]
                 ),
@@ -70842,12 +70530,12 @@ var render = function() {
                       }
                     ],
                     staticClass: "modal-title",
-                    attrs: { id: "addNewLearnerTypeTitle" }
+                    attrs: { id: "addNewStudentTitle" }
                   },
                   [_vm._v(" Update")]
                 ),
                 _vm._v(" "),
-                _vm._m(6)
+                _vm._m(7)
               ]),
               _vm._v(" "),
               _c(
@@ -70856,57 +70544,79 @@ var render = function() {
                   on: {
                     submit: function($event) {
                       $event.preventDefault()
-                      _vm.editMode1
-                        ? _vm.updateLearnerType()
-                        : _vm.createLearnerType()
+                      _vm.editMode1 ? _vm.updateStudent() : _vm.createStudent()
                     }
                   }
                 },
                 [
                   _c("div", { staticClass: "modal-body" }, [
-                    _c(
-                      "div",
-                      { staticClass: "form-group" },
-                      [
-                        _c("input", {
+                    _c("div", { staticClass: "form-group" }, [
+                      _c(
+                        "select",
+                        {
                           directives: [
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.form1.learner_type,
-                              expression: "form1.learner_type"
+                              value: _vm.form1.learner_type_id,
+                              expression: "form1.learner_type_id"
                             }
                           ],
                           staticClass: "form-control",
                           class: {
-                            "is-invalid": _vm.form1.errors.has("learner_type")
+                            "is-invalid": _vm.form.errors.has("learner_type_id")
                           },
-                          attrs: {
-                            type: "text",
-                            name: "learner_type",
-                            placeholder: "Learner Type*"
-                          },
-                          domProps: { value: _vm.form1.learner_type },
+                          attrs: { name: "learner_type_id" },
                           on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
                               _vm.$set(
                                 _vm.form1,
-                                "learner_type",
-                                $event.target.value
+                                "learner_type_id",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
                               )
                             }
                           }
-                        }),
-                        _vm._v(" "),
-                        _c("has-error", {
-                          attrs: { form: _vm.form1, field: "learner_type" }
-                        })
-                      ],
-                      1
-                    )
+                        },
+                        [
+                          _c(
+                            "option",
+                            {
+                              attrs: { value: "", disabled: "", selected: "" }
+                            },
+                            [_vm._v("Select Learner Type")]
+                          ),
+                          _vm._v(" "),
+                          _vm._l(_vm.learner_types.data, function(
+                            learner_type
+                          ) {
+                            return _c(
+                              "option",
+                              {
+                                key: learner_type.id,
+                                attrs: { selected: "" },
+                                domProps: { value: learner_type.id }
+                              },
+                              [_vm._v(_vm._s(learner_type.learner_type))]
+                            )
+                          }),
+                          _vm._v(" "),
+                          _c("has-error", {
+                            attrs: { form: _vm.form, field: "unit" }
+                          })
+                        ],
+                        2
+                      )
+                    ])
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "modal-body" }, [
@@ -71068,7 +70778,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Name")]),
         _vm._v(" "),
-        _c("th", [_vm._v("E-mail")]),
+        _c("th", [_vm._v("Grade Level")]),
         _vm._v(" "),
         _c("th", [_vm._v("Gender")]),
         _vm._v(" "),
@@ -71096,20 +70806,36 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("tr", { staticStyle: { "text-align": "center" } }, [
-      _c("th", [_vm._v("Action")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Religion")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Religion Code")])
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Action")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("ID")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Grade Level")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Gender")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Status")])
+      ])
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("td", { staticClass: "text-center", attrs: { colspan: "3" } }, [
+    return _c("td", { staticClass: "text-center", attrs: { colspan: "6" } }, [
       _c("label", [_vm._v("No records yet.")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", { attrs: { href: "#" } }, [
+      _c("i", { staticClass: "fas fa-eye color-green" })
     ])
   },
   function() {
