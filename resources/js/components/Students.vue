@@ -32,6 +32,9 @@
                                     </tr>
                                   </thead>
                                   <tbody>
+                                    <tr v-if="approved_students.total == 0">
+                                        <td colspan="6" class="text-center"><label>No records yet.</label></td>
+                                    </tr>
                                     <tr v-for="student in approved_students.data" :key="student.id">
                                       <td>
                                         <a href="#" @click="editModal(student)">
@@ -88,6 +91,9 @@
                                             <th>Religion</th>
                                             <th>Religion Code</th>
                                             
+                                        </tr>
+                                        <tr v-if="religions.total == 0">
+                                            <td colspan="3" class="text-center"><label>No records yet.</label></td>
                                         </tr>
                                         <tr style="text-align:center;" v-for="religion in religions.data" :key="religion.id" >
                                             <td>
@@ -661,12 +667,18 @@
             loadSchoolyear(){
                 axios.get("api/schoolyear").then(({ data }) => (this.schoolyears = data));
             },
-            loadApprovedStudents(){
-                axios.get("api/approved_student").then(({ data }) => (this.approved_students = data));
+            load_students(){
+                // axios.get("api/approved_student").then(({ data }) => (this.approved_students = data));
+                axios.get("api/approved_student").then(function( response ){
+                    this.approved_students = response.data.approved_students;
+                    this.pending_students = response.data.pending_students;
+                    console.log(this.approved_students.total);
+                    console.log(response.data.pending_students);
+                }.bind(this));
             },
-            loadPendingStudents(){
-                axios.get("api/pending_student").then(({ data }) => (this.pending_students = data));
-            },
+            // loadPendingStudents(){
+            //     axios.get("api/pending_student").then(({ data }) => (this.pending_students = data));
+            // },
         },
         created() {
             fire.$on('searching', ()=>{
@@ -716,8 +728,8 @@
             this.loadStrand();
             this.loadSchoolyear();
             // this.loadStudents();
-            this.loadPendingStudents();
-            this.loadApprovedStudents();
+            // this.loadPendingStudents();
+            this.load_students();
 
             fire.$on('AfterCreate', ()=>{
                 this.loadLearnerTypes();
@@ -725,8 +737,8 @@
                 this.loadMotherTongue();
                 this.loadStrand();
                 this.loadSchoolyear();
-                this.loadPendingStudents();
-                this.loadApprovedStudents();
+                // this.loadPendingStudents();
+                this.load_students();
             });
         }
     }

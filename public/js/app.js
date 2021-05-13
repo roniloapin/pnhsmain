@@ -3279,6 +3279,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mixins: [(vue2_filters__WEBPACK_IMPORTED_MODULE_0___default().mixin)],
@@ -3796,52 +3802,48 @@ __webpack_require__.r(__webpack_exports__);
         return _this25.schoolyears = data;
       });
     },
-    loadApprovedStudents: function loadApprovedStudents() {
-      var _this26 = this;
+    load_students: function load_students() {
+      // axios.get("api/approved_student").then(({ data }) => (this.approved_students = data));
+      axios.get("api/approved_student").then(function (response) {
+        this.approved_students = response.data.approved_students;
+        this.pending_students = response.data.pending_students;
+        console.log(this.approved_students.total);
+        console.log(response.data.pending_students);
+      }.bind(this));
+    } // loadPendingStudents(){
+    //     axios.get("api/pending_student").then(({ data }) => (this.pending_students = data));
+    // },
 
-      axios.get("api/approved_student").then(function (_ref6) {
-        var data = _ref6.data;
-        return _this26.approved_students = data;
-      });
-    },
-    loadPendingStudents: function loadPendingStudents() {
-      var _this27 = this;
-
-      axios.get("api/pending_student").then(function (_ref7) {
-        var data = _ref7.data;
-        return _this27.pending_students = data;
-      });
-    }
   },
   created: function created() {
-    var _this28 = this;
+    var _this26 = this;
 
     fire.$on('searching', function () {
-      var query = _this28.$parent.search;
-      axios.get('api/findLearnerType?q=' + query).then(function (_ref8) {
+      var query = _this26.$parent.search;
+      axios.get('api/findLearnerType?q=' + query).then(function (_ref6) {
+        var data = _ref6.data;
+        _this26.learner_types = data;
+      })["catch"](function () {});
+    });
+    fire.$on('searching', function () {
+      var query = _this26.$parent.search;
+      axios.get('api/findReligion?r=' + query).then(function (_ref7) {
+        var data = _ref7.data;
+        _this26.religions = data;
+      })["catch"](function () {});
+    });
+    fire.$on('searching', function () {
+      var query = _this26.$parent.search;
+      axios.get('api/findMotherTongue?s=' + query).then(function (_ref8) {
         var data = _ref8.data;
-        _this28.learner_types = data;
+        _this26.mother_tongues = data;
       })["catch"](function () {});
     });
     fire.$on('searching', function () {
-      var query = _this28.$parent.search;
-      axios.get('api/findReligion?r=' + query).then(function (_ref9) {
+      var query = _this26.$parent.search;
+      axios.get('api/findStrand?t=' + query).then(function (_ref9) {
         var data = _ref9.data;
-        _this28.religions = data;
-      })["catch"](function () {});
-    });
-    fire.$on('searching', function () {
-      var query = _this28.$parent.search;
-      axios.get('api/findMotherTongue?s=' + query).then(function (_ref10) {
-        var data = _ref10.data;
-        _this28.mother_tongues = data;
-      })["catch"](function () {});
-    });
-    fire.$on('searching', function () {
-      var query = _this28.$parent.search;
-      axios.get('api/findStrand?t=' + query).then(function (_ref11) {
-        var data = _ref11.data;
-        _this28.strands = data;
+        _this26.strands = data;
       })["catch"](function () {});
     });
     this.loadLearnerTypes();
@@ -3849,23 +3851,22 @@ __webpack_require__.r(__webpack_exports__);
     this.loadMotherTongue();
     this.loadStrand();
     this.loadSchoolyear(); // this.loadStudents();
+    // this.loadPendingStudents();
 
-    this.loadPendingStudents();
-    this.loadApprovedStudents();
+    this.load_students();
     fire.$on('AfterCreate', function () {
-      _this28.loadLearnerTypes();
+      _this26.loadLearnerTypes();
 
-      _this28.loadReligion();
+      _this26.loadReligion();
 
-      _this28.loadMotherTongue();
+      _this26.loadMotherTongue();
 
-      _this28.loadStrand();
+      _this26.loadStrand();
 
-      _this28.loadSchoolyear();
+      _this26.loadSchoolyear(); // this.loadPendingStudents();
 
-      _this28.loadPendingStudents();
 
-      _this28.loadApprovedStudents();
+      _this26.load_students();
     });
   }
 });
@@ -70527,80 +70528,86 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "tbody",
-                        _vm._l(_vm.approved_students.data, function(student) {
-                          return _c("tr", { key: student.id }, [
-                            _c("td", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: { href: "#" },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.editModal(student)
+                        [
+                          _vm.approved_students.total == 0
+                            ? _c("tr", [_vm._m(2)])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm._l(_vm.approved_students.data, function(student) {
+                            return _c("tr", { key: student.id }, [
+                              _c("td", [
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: { href: "#" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.editModal(student)
+                                      }
                                     }
-                                  }
-                                },
-                                [
-                                  _c("i", {
-                                    staticClass: "fa fa-edit color-blue",
-                                    attrs: { title: "Edit" }
-                                  })
-                                ]
-                              ),
-                              _vm._v(
-                                "\n                                        |\n                                        "
-                              ),
-                              _c(
-                                "a",
-                                {
-                                  attrs: { href: "#" },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.deleteUser(student.id)
-                                    }
-                                  }
-                                },
-                                [
-                                  _c("i", {
-                                    staticClass: "fa fa-trash-alt color-red",
-                                    attrs: { title: "Delete" }
-                                  })
-                                ]
-                              ),
-                              _vm._v(
-                                "\n                                        |\n                                        "
-                              ),
-                              _vm._m(2, true)
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(student.id))]),
-                            _vm._v(" "),
-                            _c(
-                              "td",
-                              { staticStyle: { "text-align": "left" } },
-                              [
+                                  },
+                                  [
+                                    _c("i", {
+                                      staticClass: "fa fa-edit color-blue",
+                                      attrs: { title: "Edit" }
+                                    })
+                                  ]
+                                ),
                                 _vm._v(
-                                  _vm._s(student.last_name) +
-                                    ", " +
-                                    _vm._s(student.first_name) +
-                                    " " +
-                                    _vm._s(student.middle_name)
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c("span", { staticClass: "tag tag-success" }, [
-                                _vm._v(_vm._s(student.email))
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(student.gender))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(student.status))])
-                          ])
-                        }),
-                        0
+                                  "\n                                        |\n                                        "
+                                ),
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: { href: "#" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.deleteUser(student.id)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("i", {
+                                      staticClass: "fa fa-trash-alt color-red",
+                                      attrs: { title: "Delete" }
+                                    })
+                                  ]
+                                ),
+                                _vm._v(
+                                  "\n                                        |\n                                        "
+                                ),
+                                _vm._m(3, true)
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(student.id))]),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                { staticStyle: { "text-align": "left" } },
+                                [
+                                  _vm._v(
+                                    _vm._s(student.last_name) +
+                                      ", " +
+                                      _vm._s(student.first_name) +
+                                      " " +
+                                      _vm._s(student.middle_name)
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("td", [
+                                _c("span", { staticClass: "tag tag-success" }, [
+                                  _vm._v(_vm._s(student.email))
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(student.gender))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(student.status))])
+                            ])
+                          })
+                        ],
+                        2
                       )
                     ]
                   )
@@ -70682,7 +70689,11 @@ var render = function() {
                     _c(
                       "tbody",
                       [
-                        _vm._m(3),
+                        _vm._m(4),
+                        _vm._v(" "),
+                        _vm.religions.total == 0
+                          ? _c("tr", [_vm._m(5)])
+                          : _vm._e(),
                         _vm._v(" "),
                         _vm._l(_vm.religions.data, function(religion) {
                           return _c(
@@ -70836,7 +70847,7 @@ var render = function() {
                   [_vm._v(" Update")]
                 ),
                 _vm._v(" "),
-                _vm._m(4)
+                _vm._m(6)
               ]),
               _vm._v(" "),
               _c(
@@ -71069,6 +71080,14 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("td", { staticClass: "text-center", attrs: { colspan: "6" } }, [
+      _c("label", [_vm._v("No records yet.")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("a", { attrs: { href: "#" } }, [
       _c("i", { staticClass: "fas fa-eye color-green" })
     ])
@@ -71083,6 +71102,14 @@ var staticRenderFns = [
       _c("th", [_vm._v("Religion")]),
       _vm._v(" "),
       _c("th", [_vm._v("Religion Code")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { staticClass: "text-center", attrs: { colspan: "3" } }, [
+      _c("label", [_vm._v("No records yet.")])
     ])
   },
   function() {
