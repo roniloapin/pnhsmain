@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+         <h3><strong> System Users</strong></h3>
         <div class="row" v-if="$gate.isAdmin()">
           <div class="col-md-12" >
             <div class="card">
@@ -109,8 +110,8 @@
                     'is-invalid': form.errors.has('role') }">
                         <option value="" disabled>Select User Role</option>
                         <option value="admin">Admin</option>
-                        <option value="teacher">Teacher</option>
-                        <option value="student">Student</option>
+                        <!-- <option value="teacher">Teacher</option>
+                        <option value="student">Student</option> -->
                     </select>
                     <has-error :form="form" field="role"></has-error>
                 </div>

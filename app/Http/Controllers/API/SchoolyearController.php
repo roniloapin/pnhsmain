@@ -16,6 +16,7 @@ class SchoolyearController extends Controller
     public function index()
     {
         return Schoolyear::orderBy('schoolyear', 'asc')->paginate(20);
+        // $schoolyears = Schoolyear::where('schoolyear_status', 'Active')->get();
     }
 
     /**

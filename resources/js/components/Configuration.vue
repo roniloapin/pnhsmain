@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        <h3><strong> Settings</strong></h3>
         <nav class="mt-3">
             <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
                 <a class="nav-item nav-link color-blue active" id="nav-learner-type-tab" data-toggle="tab" href="#nav-learner-type" role="tab" aria-controls="nav-learner-type" aria-selected="true"> <strong>Learner Type</strong> </a>

@@ -234,10 +234,6 @@
                             <input id="province" type="text" placeholder="Enter Province" class="form-control" name="province" required/>
                         </div>
                         <div class="form-group mb-2">
-                            <label for="house_no_street">House No. and Street <span class="text-danger">*</span></label>
-                            <input id="house_no_street" type="text" placeholder="Enter House Number and Street" class="form-control" name="house_no_street" required/>
-                        </div>
-                        <div class="form-group mb-2">
                             <label for="city_municipality">City/Municipality <span class="text-danger">*</span></label>
                             <input id="city_municipality" type="text" placeholder="Enter City or Municipality" class="form-control" name="city_municipality" required/>
                         </div>
@@ -245,11 +241,15 @@
                             <label for="barangay">Barangay <span class="text-danger">*</span></label>
                             <input id="barangay" type="text" placeholder="Enter Barangay" class="form-control" name="barangay" required/>
                         </div>
+                        <div class="form-group mb-2">
+                            <label for="house_no_street">House No. and Street <span class="text-danger">*</span></label>
+                            <input id="house_no_street" type="text" placeholder="Enter House Number and Street" class="form-control" name="house_no_street" required/>
+                        </div>
                         <hr>
                         <h3>Parent/Guardian Information</h3>
                         
                         <div class="form-group mb-2">
-                            <label for="father_name">Father's name <span class="text-danger">*</span></label>
+                            <label for="father_name">Father's Name <span class="text-danger">*</span></label>
                             <input id="father_name" type="text" placeholder="Enter Father's Name" class="form-control" name="father_name" required/>
                             <small id="passwordHelpInline" class="text-muted">
                                 Last Name, First Name, Middle Name
@@ -371,7 +371,14 @@
                         </div>
                         <div class="form-group mb-2">
                             <label for="jhs_grade_level">If Junior High School, input Grade Level to enrol<span class="text-danger">*</span></label>
-                            <input id="jhs_grade_level" type="text" placeholder="Enter Grade Level" class="form-control" name="jhs_grade_level"/>
+                            <!-- <input id="jhs_grade_level" type="text" placeholder="Enter Grade Level" class="form-control" name="jhs_grade_level"/> -->
+                            <select class="form-control @error('jhs_grade_level') is-invalid @enderror" name="jhs_grade_level" id="jhs_grade_level">
+                                <option disabled selected>Select</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </select>
                         </div>
                         <div class="form-group mb-2">
                             <label for="shs_strand_id">If Senior High School, select STRAND <span class="text-danger">*</span></label>

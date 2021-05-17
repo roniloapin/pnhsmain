@@ -123,12 +123,12 @@ class StudentController extends Controller
     {
         $student = Student::findOrFail($id);
 
-        $this->validate($request,[
-            'learner_type' => 'required|string|max:191',
-            'lrn' => 'required|string|max:191',
-            'last_name' => 'required|string|max:191',
-            'first_name' => 'required|string|max:191',
-        ]);
+        // $this->validate($request,[
+        //     'learner_type' => 'required|string|max:191',
+        //     'lrn' => 'required|string|max:191',
+        //     'last_name' => 'required|string|max:191',
+        //     'first_name' => 'required|string|max:191',
+        // ]);
 
         $student->update($request->all());
     }

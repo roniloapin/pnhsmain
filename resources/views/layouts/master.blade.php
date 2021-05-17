@@ -120,6 +120,42 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </router-link>
           </li>
           
+         
+
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-university"></i>
+              <p>
+                Admission
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview" style="margin-left:20px;">
+              <li class="nav-item">
+                  <router-link to="/jhsstudents" class="nav-link">
+                    <i class="nav-icon fas fa-user-graduate"></i>
+                    <p>JHS Students</p>
+                  </router-link>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview" style="margin-left:20px;">
+              <li class="nav-item">
+                  <router-link to="/shsstudents" class="nav-link">
+                    <i class="nav-icon fas fa-user-graduate"></i>
+                    <p>SHS Students</p>
+                  </router-link>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview" style="margin-left:20px;">
+              <li class="nav-item">
+                  <router-link to="/teachers" class="nav-link">
+                    <i class="nav-icon fas fa-chalkboard-teacher"></i>
+                    <p>Teachers</p>
+                  </router-link>
+              </li>
+            </ul>
+          </li>
+
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-cogs"></i>
@@ -141,32 +177,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <i class="nav-icon fas fa-cog"></i>
                   <p>Configuration</p>
                 </router-link>
-              </li>
-            </ul>
-          </li>
-
-          <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-university"></i>
-              <p>
-                Admission
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview" style="margin-left:20px;">
-              <li class="nav-item">
-                  <router-link to="/students" class="nav-link">
-                    <i class="nav-icon fas fa-user-graduate"></i>
-                    <p>Students</p>
-                  </router-link>
-              </li>
-            </ul>
-            <ul class="nav nav-treeview" style="margin-left:20px;">
-              <li class="nav-item">
-                  <router-link to="/teachers" class="nav-link">
-                    <i class="nav-icon fas fa-chalkboard-teacher"></i>
-                    <p>Teachers</p>
-                  </router-link>
               </li>
             </ul>
           </li>
