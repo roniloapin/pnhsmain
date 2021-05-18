@@ -20,8 +20,19 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $pending_students = Student::where('status', 'Pending')->orderBy('last_name', 'asc')->paginate(20);
-        $approved_students = Student::where('status', 'Approved')->orderBy('last_name', 'asc')->paginate(20);
+        $pending_students = Student::where(['status'=> 'Pending', 'key_stage' => 'jhs'])->orderBy('last_name', 'asc')->paginate(20);
+        $approved_students = Student::where(['status'=> 'Approved', 'key_stage' => 'jhs'])->orderBy('last_name', 'asc')->paginate(20);
+        return response()->json([
+            'pending_students' => $pending_students,
+            'approved_students' => $approved_students,
+        ]);
+    }
+
+    
+    public function indexSHS()
+    {
+        $pending_students = Student::where(['status'=> 'Pending', 'key_stage' => 'shs'])->orderBy('last_name', 'asc')->paginate(20);
+        $approved_students = Student::where(['status'=> 'Approved', 'key_stage' => 'shs'])->orderBy('last_name', 'asc')->paginate(20);
         return response()->json([
             'pending_students' => $pending_students,
             'approved_students' => $approved_students,

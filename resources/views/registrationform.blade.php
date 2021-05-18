@@ -363,13 +363,13 @@
                         <h3>Admission Data</h3>
                         <div class="form-group mb-3">
                             <label for="key_stage">Key Stage <span class="text-danger">*</span> </label>
-                            <select class="form-control @error('key_stage') is-invalid @enderror" name="key_stage" id="key_stage" required>
+                            <select class="form-control @error('key_stage') is-invalid @enderror" name="key_stage" id="key_stage" onchange="change()" required>
                                 <option disabled selected>Select</option>
-                                <option>Junior High School (G7 to G10)</option>
-                                <option>Senior High School</option>
+                                <option value="jhs">Junior High School (G7 to G10)</option>
+                                <option value="shs">Senior High School</option>
                             </select>
                         </div>
-                        <div class="form-group mb-2">
+                        <div class="form-group mb-2" id="for_jh" style="display: none">
                             <label for="jhs_grade_level">If Junior High School, input Grade Level to enrol<span class="text-danger">*</span></label>
                             <!-- <input id="jhs_grade_level" type="text" placeholder="Enter Grade Level" class="form-control" name="jhs_grade_level"/> -->
                             <select class="form-control @error('jhs_grade_level') is-invalid @enderror" name="jhs_grade_level" id="jhs_grade_level">
@@ -380,7 +380,7 @@
                                 <option>10</option>
                             </select>
                         </div>
-                        <div class="form-group mb-2">
+                        <div class="form-group mb-2" id="for_sh" style="display: none">
                             <label for="shs_strand_id">If Senior High School, select STRAND <span class="text-danger">*</span></label>
                             <select class="form-control @error('shs_strand_id') is-invalid @enderror" name="shs_strand_id" id="shs_strand_id">
                                 <option disabled selected>Select</option>

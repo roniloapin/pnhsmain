@@ -125,6 +125,20 @@
         </footer>
     </div>
 
+    
+    <script src="{{ asset('js/jquery/jquery.min.js')  }}"></script>
+    <script>
+        function change() {
+            var selected = $('#key_stage').val();
+            if (selected == 'jhs'){
+                $('#for_jh').css('display', 'block');
+                $('#for_sh').css('display', 'none');
+            }else if(selected == 'shs'){
+                $('#for_jh').css('display', 'none');
+                $('#for_sh').css('display', 'block');
+            }
+        }
+    </script>
     <script>
         if(window.history.replaceState){
             window.history.replaceState(null, null, window.location.href);

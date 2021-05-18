@@ -56,6 +56,10 @@ class Student extends Model
     ];
 
     public function strand(){
-    	return $this->belongsTo('App\Models\Strand');
+    	return $this->hasOne('App\Models\Strand');
+    }
+
+    public function religion(){
+    	return $this->hasOne('App\Models\Religion');
     }
 }

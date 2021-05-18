@@ -4484,7 +4484,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     load_students: function load_students() {
       // axios.get("api/approved_student").then(({ data }) => (this.approved_students = data));
-      axios.get("api/approved_student").then(function (response) {
+      axios.get("api/shsstudent").then(function (response) {
         this.approved_students = response.data.approved_students;
         this.pending_students = response.data.pending_students;
         console.log(this.approved_students.total);
@@ -73341,7 +73341,7 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "form-group mb-1" }, [
-                        _c("label", { attrs: { for: "school_year_id" } }, [
+                        _c("label", { attrs: { for: "school_year" } }, [
                           _vm._v("School Year")
                         ]),
                         _vm._v(" "),
@@ -73352,17 +73352,15 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.form1.school_year_id,
-                                expression: "form1.school_year_id"
+                                value: _vm.form1.school_year,
+                                expression: "form1.school_year"
                               }
                             ],
                             staticClass: "form-control",
                             class: {
-                              "is-invalid": _vm.form1.errors.has(
-                                "school_year_id"
-                              )
+                              "is-invalid": _vm.form1.errors.has("school_year")
                             },
-                            attrs: { name: "school_year_id" },
+                            attrs: { name: "school_year" },
                             on: {
                               change: function($event) {
                                 var $$selectedVal = Array.prototype.filter
@@ -73375,7 +73373,7 @@ var render = function() {
                                   })
                                 _vm.$set(
                                   _vm.form1,
-                                  "school_year_id",
+                                  "school_year",
                                   $event.target.multiple
                                     ? $$selectedVal
                                     : $$selectedVal[0]
@@ -73384,14 +73382,6 @@ var render = function() {
                             }
                           },
                           [
-                            _c(
-                              "option",
-                              {
-                                attrs: { value: "", disabled: "", selected: "" }
-                              },
-                              [_vm._v("Select School Year")]
-                            ),
-                            _vm._v(" "),
                             _vm._l(_vm.schoolyears.data, function(schoolyear) {
                               return _c(
                                 "option",
@@ -73405,10 +73395,7 @@ var render = function() {
                             }),
                             _vm._v(" "),
                             _c("has-error", {
-                              attrs: {
-                                form: _vm.form1,
-                                field: "school_year_id"
-                              }
+                              attrs: { form: _vm.form1, field: "school_year" }
                             })
                           ],
                           2
@@ -76657,7 +76644,7 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "form-group mb-1" }, [
-                        _c("label", { attrs: { for: "school_year_id" } }, [
+                        _c("label", { attrs: { for: "school_year" } }, [
                           _vm._v("School Year")
                         ]),
                         _vm._v(" "),
@@ -76668,17 +76655,15 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.form1.school_year_id,
-                                expression: "form1.school_year_id"
+                                value: _vm.form1.school_year,
+                                expression: "form1.school_year"
                               }
                             ],
                             staticClass: "form-control",
                             class: {
-                              "is-invalid": _vm.form1.errors.has(
-                                "school_year_id"
-                              )
+                              "is-invalid": _vm.form1.errors.has("school_year")
                             },
-                            attrs: { name: "school_year_id" },
+                            attrs: { name: "school_year" },
                             on: {
                               change: function($event) {
                                 var $$selectedVal = Array.prototype.filter
@@ -76691,7 +76676,7 @@ var render = function() {
                                   })
                                 _vm.$set(
                                   _vm.form1,
-                                  "school_year_id",
+                                  "school_year",
                                   $event.target.multiple
                                     ? $$selectedVal
                                     : $$selectedVal[0]
@@ -76721,10 +76706,7 @@ var render = function() {
                             }),
                             _vm._v(" "),
                             _c("has-error", {
-                              attrs: {
-                                form: _vm.form1,
-                                field: "school_year_id"
-                              }
+                              attrs: { form: _vm.form1, field: "school_year" }
                             })
                           ],
                           2

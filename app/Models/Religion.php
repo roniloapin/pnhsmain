@@ -12,4 +12,9 @@ class Religion extends Model
     protected $fillable = [
         'religion_name','religion_code',
     ];
+    
+    public function student(){
+    	return $this->belongsTo('App\Models\Student');
+    }
+
 }

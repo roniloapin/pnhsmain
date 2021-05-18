@@ -46,6 +46,7 @@ Route::get('findStrand', [StrandController::class, 'search']);
 
 Route::apiResource('approved_student', StudentController::class);
 Route::apiResource('pending_student', StudentController::class);
+Route::get('shsstudent', [StudentController::class, 'indexSHS']);
 Route::get('findStudent', [StudentController::class, 'search']);
 
 Route::apiResource('schoolyear', SchoolyearController::class);

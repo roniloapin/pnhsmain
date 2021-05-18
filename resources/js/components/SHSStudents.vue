@@ -498,11 +498,11 @@
                             </div>
 
                             <div class="form-group mb-1">
-                                <label for="school_year_id">School Year</label>
-                                <select class="form-control"  name="school_year_id"  v-model="form1.school_year_id" :class="{ 'is-invalid': form1.errors.has('school_year_id') }">
+                                <label for="school_year">School Year</label>
+                                <select class="form-control"  name="school_year"  v-model="form1.school_year" :class="{ 'is-invalid': form1.errors.has('school_year') }">
                                     <option value="" disabled selected>Select School Year</option>
                                     <option v-for="schoolyear in schoolyears.data" :key="schoolyear.id" :value="schoolyear.id" selected>{{ schoolyear.schoolyear}}</option>
-                                    <has-error :form="form1" field="school_year_id"></has-error>
+                                    <has-error :form="form1" field="school_year"></has-error>
                                 </select>
                             </div>
 
@@ -700,7 +700,7 @@
             },
             load_students(){
                 // axios.get("api/approved_student").then(({ data }) => (this.approved_students = data));
-                axios.get("api/approved_student").then(function( response ){
+                axios.get("api/shsstudent").then(function( response ){
                     this.approved_students = response.data.approved_students;
                     this.pending_students = response.data.pending_students;
                     console.log(this.approved_students.total);
