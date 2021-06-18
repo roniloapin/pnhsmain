@@ -93,9 +93,9 @@ class StudentController extends Controller
         'guardian_number'=>$request['guardian_number'],
         'key_stage'=>$request['key_stage'],
         'jhs_grade_level'=>$request['jhs_grade_level'],
-        'shs_strand_id'=>$request['shs_strand_id'],
-        'school_year'=>$request['school_year'],
-        'picture' => $request['picture'],
+        'strand_id'=>$request['strand_id'],
+        'schoolyear_id'=>$request['schoolyear_id'],
+        'requirement' => $request['requirement'],
         'status' => 'Pending',
         ]);
 

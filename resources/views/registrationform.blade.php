@@ -381,8 +381,8 @@
                             </select>
                         </div>
                         <div class="form-group mb-2" id="for_sh" style="display: none">
-                            <label for="shs_strand_id">If Senior High School, select STRAND <span class="text-danger">*</span></label>
-                            <select class="form-control @error('shs_strand_id') is-invalid @enderror" name="shs_strand_id" id="shs_strand_id">
+                            <label for="strand_id">If Senior High School, select STRAND <span class="text-danger">*</span></label>
+                            <select class="form-control @error('strand_id') is-invalid @enderror" name="strand_id" id="strand_id">
                                 <option disabled selected>Select</option>
                                 @foreach ($strands as $strand)
                                     <option value="{{ $strand->id}}">{{ $strand->strand_name }}</option>
@@ -396,14 +396,27 @@
                         </div> -->
 
                         <div class="form-group mb-2">
-                            <label for="school_year">School Year <span class="text-danger">*</span> </label>
-                            <select class="form-select custom-select @error('school_year') is-invalid @enderror" id="school_year" name="school_year">
+                            <label for="schoolyear_id">School Year <span class="text-danger">*</span> </label>
+                            <select class="form-select custom-select @error('schoolyear_id') is-invalid @enderror" id="schoolyear_id" name="schoolyear_id">
                                 <option disabled selected>Select School Year</option>
                                 @foreach ($schoolyears as $schoolyear)
                                     <option value="{{ $schoolyear->id}}">{{ $schoolyear->schoolyear }}</option>
                                 @endforeach
                             </select> 
-                            @error('school_year')
+                            @error('schoolyear_id')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group mb-2">
+                            <label for="requirement">Upload Requirements<span class="text-danger">*</span> </label>
+                            <input type="file" name="requirement" id="requirement" ref="requirement"> <br>
+                            <small id="passwordHelpInline" class="text-muted">
+                                *The requirements shall be scanned and saved as one PDF file.
+                            </small>
+                            @error('requirement')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

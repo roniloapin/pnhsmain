@@ -3538,9 +3538,9 @@ __webpack_require__.r(__webpack_exports__);
         guardian_number: '',
         key_stage: '',
         jhs_grade_level: '',
-        shs_strand_id: '',
-        school_year: '',
-        picture: '',
+        strand_id: '',
+        schoolyear_id: '',
+        requirement: '',
         status: ''
       })
     };
@@ -4346,8 +4346,8 @@ __webpack_require__.r(__webpack_exports__);
         guardian_number: '',
         key_stage: '',
         jhs_grade_level: '',
-        shs_strand_id: '',
-        school_year: '',
+        strand_id: '',
+        schoolyear_id: '',
         picture: '',
         status: ''
       })
@@ -73173,21 +73173,13 @@ var render = function() {
                               [_vm._v("Select")]
                             ),
                             _vm._v(" "),
-                            _c(
-                              "option",
-                              {
-                                attrs: {
-                                  value: "Junior High School (G7 to G10)"
-                                }
-                              },
-                              [_vm._v("Junior High School (G7 to G10)")]
-                            ),
+                            _c("option", { attrs: { value: "jhs" } }, [
+                              _vm._v("Junior High School (G7 to G10)")
+                            ]),
                             _vm._v(" "),
-                            _c(
-                              "option",
-                              { attrs: { value: "Senior High School" } },
-                              [_vm._v("Senior High School")]
-                            )
+                            _c("option", { attrs: { value: "shs" } }, [
+                              _vm._v("Senior High School")
+                            ])
                           ]
                         )
                       ]),
@@ -73269,7 +73261,7 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "form-group mb-1" }, [
-                        _c("label", { attrs: { for: "shs_strand_id" } }, [
+                        _c("label", { attrs: { for: "strand_id" } }, [
                           _vm._v("If Senior High School, select STRAND  ")
                         ]),
                         _vm._v(" "),
@@ -73280,17 +73272,15 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.form1.shs_strand_id,
-                                expression: "form1.shs_strand_id"
+                                value: _vm.form1.strand_id,
+                                expression: "form1.strand_id"
                               }
                             ],
                             staticClass: "form-control",
                             class: {
-                              "is-invalid": _vm.form1.errors.has(
-                                "shs_strand_id"
-                              )
+                              "is-invalid": _vm.form1.errors.has("strand_id")
                             },
-                            attrs: { name: "shs_strand_id" },
+                            attrs: { name: "strand_id" },
                             on: {
                               change: function($event) {
                                 var $$selectedVal = Array.prototype.filter
@@ -73303,7 +73293,7 @@ var render = function() {
                                   })
                                 _vm.$set(
                                   _vm.form1,
-                                  "shs_strand_id",
+                                  "strand_id",
                                   $event.target.multiple
                                     ? $$selectedVal
                                     : $$selectedVal[0]
@@ -73333,7 +73323,7 @@ var render = function() {
                             }),
                             _vm._v(" "),
                             _c("has-error", {
-                              attrs: { form: _vm.form1, field: "shs_strand_id" }
+                              attrs: { form: _vm.form1, field: "strand_id" }
                             })
                           ],
                           2
@@ -73341,7 +73331,7 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "form-group mb-1" }, [
-                        _c("label", { attrs: { for: "school_year" } }, [
+                        _c("label", { attrs: { for: "schoolyear_id" } }, [
                           _vm._v("School Year")
                         ]),
                         _vm._v(" "),
@@ -73352,15 +73342,17 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.form1.school_year,
-                                expression: "form1.school_year"
+                                value: _vm.form1.schoolyear_id,
+                                expression: "form1.schoolyear_id"
                               }
                             ],
                             staticClass: "form-control",
                             class: {
-                              "is-invalid": _vm.form1.errors.has("school_year")
+                              "is-invalid": _vm.form1.errors.has(
+                                "schoolyear_id"
+                              )
                             },
-                            attrs: { name: "school_year" },
+                            attrs: { name: "schoolyear_id" },
                             on: {
                               change: function($event) {
                                 var $$selectedVal = Array.prototype.filter
@@ -73373,7 +73365,7 @@ var render = function() {
                                   })
                                 _vm.$set(
                                   _vm.form1,
-                                  "school_year",
+                                  "schoolyear_id",
                                   $event.target.multiple
                                     ? $$selectedVal
                                     : $$selectedVal[0]
@@ -73395,7 +73387,7 @@ var render = function() {
                             }),
                             _vm._v(" "),
                             _c("has-error", {
-                              attrs: { form: _vm.form1, field: "school_year" }
+                              attrs: { form: _vm.form1, field: "schoolyear_id" }
                             })
                           ],
                           2
@@ -74257,7 +74249,7 @@ var render = function() {
                                     staticClass: "tag tag-success",
                                     staticStyle: { "text-align": "center" }
                                   },
-                                  [_vm._v(_vm._s(student.shs_strand_id))]
+                                  [_vm._v(_vm._s(student.strand_id))]
                                 )
                               ]),
                               _vm._v(" "),
@@ -76476,21 +76468,13 @@ var render = function() {
                               [_vm._v("Select")]
                             ),
                             _vm._v(" "),
-                            _c(
-                              "option",
-                              {
-                                attrs: {
-                                  value: "Junior High School (G7 to G10)"
-                                }
-                              },
-                              [_vm._v("Junior High School (G7 to G10)")]
-                            ),
+                            _c("option", { attrs: { value: "jhs" } }, [
+                              _vm._v("Junior High School (G7 to G10)")
+                            ]),
                             _vm._v(" "),
-                            _c(
-                              "option",
-                              { attrs: { value: "Senior High School" } },
-                              [_vm._v("Senior High School")]
-                            )
+                            _c("option", { attrs: { value: "shs" } }, [
+                              _vm._v("Senior High School")
+                            ])
                           ]
                         )
                       ]),
@@ -76572,7 +76556,7 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "form-group mb-1" }, [
-                        _c("label", { attrs: { for: "shs_strand_id" } }, [
+                        _c("label", { attrs: { for: "strand_id" } }, [
                           _vm._v("If Senior High School, select STRAND  ")
                         ]),
                         _vm._v(" "),
@@ -76583,17 +76567,15 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.form1.shs_strand_id,
-                                expression: "form1.shs_strand_id"
+                                value: _vm.form1.strand_id,
+                                expression: "form1.strand_id"
                               }
                             ],
                             staticClass: "form-control",
                             class: {
-                              "is-invalid": _vm.form1.errors.has(
-                                "shs_strand_id"
-                              )
+                              "is-invalid": _vm.form1.errors.has("strand_id")
                             },
-                            attrs: { name: "shs_strand_id" },
+                            attrs: { name: "strand_id" },
                             on: {
                               change: function($event) {
                                 var $$selectedVal = Array.prototype.filter
@@ -76606,7 +76588,7 @@ var render = function() {
                                   })
                                 _vm.$set(
                                   _vm.form1,
-                                  "shs_strand_id",
+                                  "strand_id",
                                   $event.target.multiple
                                     ? $$selectedVal
                                     : $$selectedVal[0]
@@ -76636,7 +76618,7 @@ var render = function() {
                             }),
                             _vm._v(" "),
                             _c("has-error", {
-                              attrs: { form: _vm.form1, field: "shs_strand_id" }
+                              attrs: { form: _vm.form1, field: "strand_id" }
                             })
                           ],
                           2
@@ -76644,7 +76626,7 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "form-group mb-1" }, [
-                        _c("label", { attrs: { for: "school_year" } }, [
+                        _c("label", { attrs: { for: "schoolyear_id" } }, [
                           _vm._v("School Year")
                         ]),
                         _vm._v(" "),
@@ -76655,15 +76637,17 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.form1.school_year,
-                                expression: "form1.school_year"
+                                value: _vm.form1.schoolyear_id,
+                                expression: "form1.schoolyear_id"
                               }
                             ],
                             staticClass: "form-control",
                             class: {
-                              "is-invalid": _vm.form1.errors.has("school_year")
+                              "is-invalid": _vm.form1.errors.has(
+                                "schoolyear_id"
+                              )
                             },
-                            attrs: { name: "school_year" },
+                            attrs: { name: "schoolyear_id" },
                             on: {
                               change: function($event) {
                                 var $$selectedVal = Array.prototype.filter
@@ -76676,7 +76660,7 @@ var render = function() {
                                   })
                                 _vm.$set(
                                   _vm.form1,
-                                  "school_year",
+                                  "schoolyear_id",
                                   $event.target.multiple
                                     ? $$selectedVal
                                     : $$selectedVal[0]
@@ -76706,7 +76690,7 @@ var render = function() {
                             }),
                             _vm._v(" "),
                             _c("has-error", {
-                              attrs: { form: _vm.form1, field: "school_year" }
+                              attrs: { form: _vm.form1, field: "schoolyear_id" }
                             })
                           ],
                           2
@@ -76935,7 +76919,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Name")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Grade Level")]),
+        _c("th", [_vm._v("STRAND")]),
         _vm._v(" "),
         _c("th", [_vm._v("Gender")]),
         _vm._v(" "),

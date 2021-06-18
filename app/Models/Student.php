@@ -49,9 +49,9 @@ class Student extends Model
         'guardian_number',
         'key_stage',
         'jhs_grade_level',
-        'shs_strand_id',
-        'school_year',
-        'picture',
+        'strand_id',
+        'schoolyear_id',
+        'requirement',
         'status',
     ];
 

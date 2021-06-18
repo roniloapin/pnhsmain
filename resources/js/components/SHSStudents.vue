@@ -54,7 +54,7 @@
                                       </td>
                                       <td>{{student.id}}</td>
                                       <td style="text-align:left;">{{student.last_name}},&nbsp;{{student.first_name}}&nbsp;{{student.middle_name}}</td>
-                                      <td><span class="tag tag-success" style="text-align:center;">{{student.shs_strand_id}}</span></td>
+                                      <td><span class="tag tag-success" style="text-align:center;">{{student.strand_id}}</span></td>
                                       <td>{{student.gender}}</td>
                                       <td>{{student.status}}</td>
                                     </tr>
@@ -94,7 +94,7 @@
                                       <th>Action</th>
                                       <th>ID</th>
                                       <th>Name</th>
-                                      <th>Grade Level</th>
+                                      <th>STRAND</th>
                                       <th>Gender</th>
                                       <th>Status</th>
                                     </tr>
@@ -470,8 +470,8 @@
                                     :class="{
                                     'is-invalid': form1.errors.has('key_stage') }">
                                     <option value="" disabled selected>Select</option>
-                                    <option value="Junior High School (G7 to G10)">Junior High School (G7 to G10)</option>
-                                    <option value="Senior High School">Senior High School</option>
+                                    <option value="jhs">Junior High School (G7 to G10)</option>
+                                    <option value="shs">Senior High School</option>
                                 </select> 
                             </div>
 
@@ -489,20 +489,20 @@
                             </div>
 
                             <div class="form-group mb-1">
-                                <label for="shs_strand_id">If Senior High School, select STRAND  </label>
-                                <select class="form-control"  name="shs_strand_id"  v-model="form1.shs_strand_id" :class="{ 'is-invalid': form1.errors.has('shs_strand_id') }">
+                                <label for="strand_id">If Senior High School, select STRAND  </label>
+                                <select class="form-control"  name="strand_id"  v-model="form1.strand_id" :class="{ 'is-invalid': form1.errors.has('strand_id') }">
                                     <option value="" disabled selected>Select Strand</option>
                                     <option v-for="strand in strands.data" :key="strand.id" :value="strand.id" selected>{{ strand.strand_name}}</option>
-                                    <has-error :form="form1" field="shs_strand_id"></has-error>
+                                    <has-error :form="form1" field="strand_id"></has-error>
                                 </select>
                             </div>
 
                             <div class="form-group mb-1">
-                                <label for="school_year">School Year</label>
-                                <select class="form-control"  name="school_year"  v-model="form1.school_year" :class="{ 'is-invalid': form1.errors.has('school_year') }">
+                                <label for="schoolyear_id">School Year</label>
+                                <select class="form-control"  name="schoolyear_id"  v-model="form1.schoolyear_id" :class="{ 'is-invalid': form1.errors.has('schoolyear_id') }">
                                     <option value="" disabled selected>Select School Year</option>
                                     <option v-for="schoolyear in schoolyears.data" :key="schoolyear.id" :value="schoolyear.id" selected>{{ schoolyear.schoolyear}}</option>
-                                    <has-error :form="form1" field="school_year"></has-error>
+                                    <has-error :form="form1" field="schoolyear_id"></has-error>
                                 </select>
                             </div>
 
@@ -582,8 +582,8 @@
                   guardian_number:'',
                   key_stage:'',
                   jhs_grade_level: '',
-                  shs_strand_id: '',
-                  school_year: '',
+                  strand_id: '',
+                  schoolyear_id: '',
                   picture:'',
                   status:'',
                 }),

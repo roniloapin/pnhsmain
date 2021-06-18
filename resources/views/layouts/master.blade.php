@@ -182,7 +182,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
           @endcan
           
-          @can('isStudent')
+          <!-- @can('isStudent')
           <li class="nav-item">
             <router-link to="/studentprofile" class="nav-link">
               <i class="nav-icon fas fa-user-edit"></i>
@@ -191,7 +191,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </router-link>
           </li>       
-          @endcan
+          @endcan -->
 
           @can('isTeacher')
           <li class="nav-item">
