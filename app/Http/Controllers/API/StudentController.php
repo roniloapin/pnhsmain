@@ -10,6 +10,7 @@ use App\Models\MotherTongue;
 use App\Models\Religion;
 use App\Models\Strand;
 use App\Models\Schoolyear;
+use File;
 
 class StudentController extends Controller
 {
@@ -47,7 +48,7 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
+        // dd($request->file('requirement'));
         // $this->validate($request,[
         //     'learner_type' => 'required|string|max:191',
         //     'lrn' => 'required|string|max:191|unique:students',
@@ -56,8 +57,10 @@ class StudentController extends Controller
         // ]);
 
         // $learnertype = LearnerType::findOrFail($request['learner_type_id']);
+        
+        $requirement_filename = $request['last_name'].date("Ymdhis");
 
-       Student::create([
+       $new_student = Student::create([
         'learner_type_id'=>$request['learner_type_id'],
         
         'lrn'=>$request['lrn'],
@@ -95,9 +98,14 @@ class StudentController extends Controller
         'jhs_grade_level'=>$request['jhs_grade_level'],
         'strand_id'=>$request['strand_id'],
         'schoolyear_id'=>$request['schoolyear_id'],
-        'requirement' => $request['requirement'],
+        'requirement' => $requirement_filename.'.pdf',
         'status' => 'Pending',
         ]);
+
+        $path = public_path().'/requirements/'.$new_student->id;
+        File::makeDirectory($path, 0775, true, true);
+
+        $request->file('requirement')->move($path, $requirement_filename.'.pdf');
 
         $request->session()->flash('success_registration', 'Pre-registration has been successful!     Proceed to Office of the Registrar for the approval');
 

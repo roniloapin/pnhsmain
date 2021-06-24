@@ -51,6 +51,10 @@
                                         <a href="#">
                                             <i class="fas fa-eye color-green"></i>
                                         </a>
+                                        |
+                                        <a :href="'requirements/'+student.id+'/'+student.requirement">
+                                            <i class="fas fa-file-pdf color-green"></i>
+                                        </a>
                                       </td>
                                       <td>{{student.id}}</td>
                                       <td style="text-align:left;">{{student.last_name}},&nbsp;{{student.first_name}}&nbsp;{{student.middle_name}}</td>
@@ -115,6 +119,10 @@
                                         |
                                         <a href="#">
                                             <i class="fas fa-eye color-green"></i>
+                                        </a>
+                                        |
+                                        <a :href="'requirements/'+student.id+'/'+student.requirement">
+                                            <i class="fas fa-file-pdf color-green"></i>
                                         </a>
                                       </td>
                                       <td>{{student.id}}</td>

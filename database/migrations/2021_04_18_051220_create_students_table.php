@@ -50,8 +50,9 @@ class CreateStudentsTable extends Migration
             $table->string('guardian_number')->nullable();
             $table->string('key_stage')->nullable();
             $table->string('jhs_grade_level')->nullable();
-            $table->integer('shs_strand_id')->nullable();
-            $table->string('school_year')->nullable();
+            $table->integer('strand_id')->nullable();
+            $table->string('schoolyear_id')->nullable();
+            $table->string('requirement')->nullable();
             $table->string('picture')->nullable();
             $table->string('status')->nullable();
             $table->timestamps();

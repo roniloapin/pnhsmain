@@ -23,7 +23,7 @@
                     </div>
                     
 
-                    <form method="POST" action="{{ route('registrationform') }}">
+                    <form method="POST" action="{{ route('registrationform') }}" enctype="multipart/form-data">
                         @CSRF
                         <div class="text-left mb-3 mt-2">
                             <h3>Personal Information</h3>
@@ -412,7 +412,7 @@
 
                         <div class="form-group mb-2">
                             <label for="requirement">Upload Requirements<span class="text-danger">*</span> </label>
-                            <input type="file" name="requirement" id="requirement" ref="requirement"> <br>
+                            <input type="file" name="requirement" id="requirement" ref="requirement" accept="application/pdf"> <br>
                             <small id="passwordHelpInline" class="text-muted">
                                 *The requirements shall be scanned and saved as one PDF file.
                             </small>

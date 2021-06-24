@@ -12,4 +12,9 @@ class Strand extends Model
         'strand_name','strand_code',
     ];
 
+    public function student()
+    {
+    	return $this->belongsTo('App\Models\Student');
+    }
+
 }

@@ -3489,6 +3489,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mixins: [(vue2_filters__WEBPACK_IMPORTED_MODULE_0___default().mixin)],
@@ -3764,6 +3772,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue2_filters__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue2-filters */ "./node_modules/vue2-filters/dist/vue2-filters.js");
 /* harmony import */ var vue2_filters__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue2_filters__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -70928,7 +70944,27 @@ var render = function() {
                                 _vm._v(
                                   "\n                                        |\n                                        "
                                 ),
-                                _vm._m(4, true)
+                                _vm._m(4, true),
+                                _vm._v(
+                                  "\n                                        |\n                                        "
+                                ),
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: {
+                                      href:
+                                        "requirements/" +
+                                        student.id +
+                                        "/" +
+                                        student.requirement
+                                    }
+                                  },
+                                  [
+                                    _c("i", {
+                                      staticClass: "fas fa-file-pdf color-green"
+                                    })
+                                  ]
+                                )
                               ]),
                               _vm._v(" "),
                               _c("td", [_vm._v(_vm._s(student.id))]),
@@ -71098,10 +71134,30 @@ var render = function() {
                                 _vm._v(
                                   "\n                                        |\n                                        "
                                 ),
-                                _vm._m(7, true)
+                                _vm._m(7, true),
+                                _vm._v(
+                                  "\n                                        |\n                                        "
+                                ),
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: {
+                                      href:
+                                        "requirements/" +
+                                        student.id +
+                                        "/" +
+                                        student.requirement
+                                    }
+                                  },
+                                  [
+                                    _c("i", {
+                                      staticClass: "fas fa-file-pdf color-green"
+                                    })
+                                  ]
+                                )
                               ]),
                               _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(student.id))]),
+                              _c("td", [_vm._v(_vm._s(student.id) + "s")]),
                               _vm._v(" "),
                               _c(
                                 "td",
@@ -74223,7 +74279,27 @@ var render = function() {
                                 _vm._v(
                                   "\n                                        |\n                                        "
                                 ),
-                                _vm._m(4, true)
+                                _vm._m(4, true),
+                                _vm._v(
+                                  "\n                                        |\n                                        "
+                                ),
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: {
+                                      href:
+                                        "requirements/" +
+                                        student.id +
+                                        "/" +
+                                        student.requirement
+                                    }
+                                  },
+                                  [
+                                    _c("i", {
+                                      staticClass: "fas fa-file-pdf color-green"
+                                    })
+                                  ]
+                                )
                               ]),
                               _vm._v(" "),
                               _c("td", [_vm._v(_vm._s(student.id))]),
@@ -74393,7 +74469,27 @@ var render = function() {
                                 _vm._v(
                                   "\n                                        |\n                                        "
                                 ),
-                                _vm._m(7, true)
+                                _vm._m(7, true),
+                                _vm._v(
+                                  "\n                                        |\n                                        "
+                                ),
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: {
+                                      href:
+                                        "requirements/" +
+                                        student.id +
+                                        "/" +
+                                        student.requirement
+                                    }
+                                  },
+                                  [
+                                    _c("i", {
+                                      staticClass: "fas fa-file-pdf color-green"
+                                    })
+                                  ]
+                                )
                               ]),
                               _vm._v(" "),
                               _c("td", [_vm._v(_vm._s(student.id))]),
