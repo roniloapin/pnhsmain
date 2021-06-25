@@ -50,7 +50,7 @@
                                             <i class="fas fa-eye color-green"></i>
                                         </a>
                                         |
-                                        <a :href="'requirements/'+student.id+'/'+student.requirement">
+                                        <a target="_blank" :href="'requirements/'+student.id+'/'+student.requirement">
                                             <i class="fas fa-file-pdf color-green"></i>
                                         </a>
                                       </td>
@@ -119,7 +119,7 @@
                                             <i class="fas fa-eye color-green"></i>
                                         </a>
                                         |
-                                        <a :href="'requirements/'+student.id+'/'+student.requirement">
+                                        <a target="_blank" :href="'requirements/'+student.id+'/'+student.requirement">
                                             <i class="fas fa-file-pdf color-green"></i>
                                         </a>
                                       </td>

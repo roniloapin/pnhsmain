@@ -70952,6 +70952,7 @@ var render = function() {
                                   "a",
                                   {
                                     attrs: {
+                                      target: "_blank",
                                       href:
                                         "requirements/" +
                                         student.id +
@@ -71142,6 +71143,7 @@ var render = function() {
                                   "a",
                                   {
                                     attrs: {
+                                      target: "_blank",
                                       href:
                                         "requirements/" +
                                         student.id +
@@ -74287,6 +74289,7 @@ var render = function() {
                                   "a",
                                   {
                                     attrs: {
+                                      target: "_blank",
                                       href:
                                         "requirements/" +
                                         student.id +
@@ -74477,6 +74480,7 @@ var render = function() {
                                   "a",
                                   {
                                     attrs: {
+                                      target: "_blank",
                                       href:
                                         "requirements/" +
                                         student.id +
