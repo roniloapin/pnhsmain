@@ -9,6 +9,10 @@ use App\Http\Controllers\API\MotherTongueController;
 use App\Http\Controllers\API\StrandController;
 use App\Http\Controllers\API\StudentController;
 use App\Http\Controllers\API\SchoolyearController;
+use App\Http\Controllers\API\SubjectController;
+use App\Http\Controllers\API\RoomController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -51,3 +55,9 @@ Route::get('findStudent', [StudentController::class, 'search']);
 
 Route::apiResource('schoolyear', SchoolyearController::class);
 Route::get('findSchoolyear', [SchoolyearController::class, 'search']);
+
+Route::apiResource('subject', SubjectController::class);
+Route::get('findSubject', [SubjectController::class, 'search']);
+
+Route::apiResource('room', RoomController::class);
+Route::get('findRoom', [RoomController::class, 'search']);

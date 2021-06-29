@@ -4,9 +4,10 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Schoolyear;
+use App\Models\Room;
 
-class SchoolyearController extends Controller
+
+class RoomController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +16,8 @@ class SchoolyearController extends Controller
      */
     public function index()
     {
-        return Schoolyear::orderBy('schoolyear', 'asc')->paginate(20);
-        // $schoolyears = Schoolyear::where('schoolyear_status', 'Active')->get();
+        return Room::orderBy('room', 'asc')->paginate(20);
+
     }
 
     /**
@@ -28,12 +29,12 @@ class SchoolyearController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'schoolyear' => 'required|string|max:191|unique:schoolyears',
+            'room' => 'required|string|max:191|unique:rooms',
         ]);
 
-        return Schoolyear::create([
-            'schoolyear'=>$request['schoolyear'],
-            'schoolyear_status'=>$request['schoolyear_status'],
+        return Room::create([
+            'room'=>$request['room'],
+            'room_number'=>$request['room_number'],
         ]);
     }
 
@@ -57,13 +58,13 @@ class SchoolyearController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $schoolyear = Schoolyear::findOrFail($id);
+        $room = Room::findOrFail($id);
 
         $this->validate($request,[
-            'schoolyear' => 'required|string|max:191',
+            'room' => 'required|string|max:191',
         ]);
 
-        $schoolyear->update($request->all());
+        $room->update($request->all());
     }
 
     /**
@@ -74,21 +75,20 @@ class SchoolyearController extends Controller
      */
     public function destroy($id)
     {
-        $schoolyear = Schoolyear::findOrFail($id);
-        $schoolyear->delete();
+        $room = Room::findOrFail($id);
+        $room->delete();
     }
 
     public function search(){
-        if ($search = \Request::get('w')){
-            $schoolyears = Schoolyear::where(function($query) use ($search){
-                $query->where('schoolyear', 'LIKE', "%$search%");
-            })->orderBy('schoolyear', 'asc')->paginate(20);
+        if ($search = \Request::get('y')){
+            $rooms = Room::where(function($query) use ($search){
+                $query->where('room', 'LIKE', "%$search%");
+            })->orderBy('room', 'asc')->paginate(20);
         }else{
-            $schoolyears = Schoolyear::orderBy('schoolyear', 'asc')->paginate(10);
+            $rooms = Room::orderBy('room', 'asc')->paginate(10);
         }
-        return $schoolyears;
+        return $rooms;
     }
-
 }
 
-//searh V last
+//last is y

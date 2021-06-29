@@ -2341,6 +2341,210 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2349,11 +2553,15 @@ __webpack_require__.r(__webpack_exports__);
       editMode3: false,
       editMode4: false,
       editMode5: false,
+      editMode6: false,
+      editMode7: false,
       learner_types: {},
       religions: {},
       mother_tongues: {},
       strands: {},
       schoolyears: {},
+      subjects: {},
+      rooms: {},
       form1: new Form({
         id: '',
         learner_type: '',
@@ -2378,6 +2586,16 @@ __webpack_require__.r(__webpack_exports__);
         id: '',
         schoolyear: '',
         schoolyear_status: ''
+      }),
+      form6: new Form({
+        id: '',
+        subject: '',
+        subject_code: ''
+      }),
+      form7: new Form({
+        id: '',
+        room: '',
+        room_number: ''
       })
     };
   },
@@ -2406,6 +2624,16 @@ __webpack_require__.r(__webpack_exports__);
       this.editMode5 = false;
       this.form5.reset();
       $('#addNewSchoolyear').modal('show');
+    },
+    newSubject: function newSubject() {
+      this.editMode6 = false;
+      this.form6.reset();
+      $('#addNewSubject').modal('show');
+    },
+    newRoom: function newRoom() {
+      this.editMode7 = false;
+      this.form7.reset();
+      $('#addNewRoom').modal('show');
     },
     createLearnerType: function createLearnerType() {
       var _this = this;
@@ -2507,6 +2735,46 @@ __webpack_require__.r(__webpack_exports__);
         _this5.$Progress.fail();
       });
     },
+    createSubject: function createSubject() {
+      var _this6 = this;
+
+      this.$Progress.start();
+      this.form6.post('api/subject').then(function () {
+        fire.$emit('AfterCreate');
+        $('#addNewSubject').modal('hide');
+        Swal.fire('Added Subject!', '', 'success');
+
+        _this6.$Progress.finish();
+      })["catch"](function () {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!'
+        });
+
+        _this6.$Progress.fail();
+      });
+    },
+    createRoom: function createRoom() {
+      var _this7 = this;
+
+      this.$Progress.start();
+      this.form7.post('api/room').then(function () {
+        fire.$emit('AfterCreate');
+        $('#addNewRoom').modal('hide');
+        Swal.fire('Added Room!', '', 'success');
+
+        _this7.$Progress.finish();
+      })["catch"](function () {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!'
+        });
+
+        _this7.$Progress.fail();
+      });
+    },
     editLearnerTypeModal: function editLearnerTypeModal(learner_type) {
       this.editMode1 = true;
       this.form1.reset();
@@ -2537,47 +2805,25 @@ __webpack_require__.r(__webpack_exports__);
       $('#addNewSchoolyear').modal('show');
       this.form5.fill(schoolyear);
     },
+    editSubjectModal: function editSubjectModal(subject) {
+      this.editMode6 = true;
+      this.form6.reset();
+      $('#addNewSubject').modal('show');
+      this.form6.fill(subject);
+    },
+    editRoomModal: function editRoomModal(room) {
+      this.editMode7 = true;
+      this.form7.reset();
+      $('#addNewRoom').modal('show');
+      this.form7.fill(room);
+    },
     updateLearnerType: function updateLearnerType() {
-      var _this6 = this;
+      var _this8 = this;
 
       this.$Progress.start();
       this.form1.put("api/learner_type/" + this.form1.id).then(function () {
         $('#addNewLearnerType').modal('hide');
         Swal.fire('Updated!', 'Learner Type has been updated.', 'success');
-
-        _this6.$Progress.finish();
-
-        fire.$emit('AfterCreate');
-      })["catch"](function () {
-        Swal.fire("Failed!", "There was something wrong.", "warning");
-
-        _this6.$Progress.fail();
-      });
-    },
-    updateReligion: function updateReligion() {
-      var _this7 = this;
-
-      this.$Progress.start();
-      this.form2.put("api/religion/" + this.form2.id).then(function () {
-        $('#addNewReligion').modal('hide');
-        Swal.fire('Updated!', 'Religion has been updated.', 'success');
-
-        _this7.$Progress.finish();
-
-        fire.$emit('AfterCreate');
-      })["catch"](function () {
-        Swal.fire("Failed!", "There was something wrong.", "warning");
-
-        _this7.$Progress.fail();
-      });
-    },
-    updateMotherTongue: function updateMotherTongue() {
-      var _this8 = this;
-
-      this.$Progress.start();
-      this.form3.put("api/mother_tongue/" + this.form3.id).then(function () {
-        $('#addNewMotherTongue').modal('hide');
-        Swal.fire('Updated!', 'Mother Tongue has been updated.', 'success');
 
         _this8.$Progress.finish();
 
@@ -2588,13 +2834,13 @@ __webpack_require__.r(__webpack_exports__);
         _this8.$Progress.fail();
       });
     },
-    updateStrand: function updateStrand() {
+    updateReligion: function updateReligion() {
       var _this9 = this;
 
       this.$Progress.start();
-      this.form4.put("api/strand/" + this.form4.id).then(function () {
-        $('#addNewStrand').modal('hide');
-        Swal.fire('Updated!', 'STRAND Name has been updated.', 'success');
+      this.form2.put("api/religion/" + this.form2.id).then(function () {
+        $('#addNewReligion').modal('hide');
+        Swal.fire('Updated!', 'Religion has been updated.', 'success');
 
         _this9.$Progress.finish();
 
@@ -2605,13 +2851,13 @@ __webpack_require__.r(__webpack_exports__);
         _this9.$Progress.fail();
       });
     },
-    updateSchoolyear: function updateSchoolyear() {
+    updateMotherTongue: function updateMotherTongue() {
       var _this10 = this;
 
       this.$Progress.start();
-      this.form5.put("api/schoolyear/" + this.form5.id).then(function () {
-        $('#addNewSchoolyear').modal('hide');
-        Swal.fire('Updated!', 'School Year has been updated.', 'success');
+      this.form3.put("api/mother_tongue/" + this.form3.id).then(function () {
+        $('#addNewMotherTongue').modal('hide');
+        Swal.fire('Updated!', 'Mother Tongue has been updated.', 'success');
 
         _this10.$Progress.finish();
 
@@ -2622,8 +2868,76 @@ __webpack_require__.r(__webpack_exports__);
         _this10.$Progress.fail();
       });
     },
-    deleteLearnerType: function deleteLearnerType(id) {
+    updateStrand: function updateStrand() {
       var _this11 = this;
+
+      this.$Progress.start();
+      this.form4.put("api/strand/" + this.form4.id).then(function () {
+        $('#addNewStrand').modal('hide');
+        Swal.fire('Updated!', 'STRAND Name has been updated.', 'success');
+
+        _this11.$Progress.finish();
+
+        fire.$emit('AfterCreate');
+      })["catch"](function () {
+        Swal.fire("Failed!", "There was something wrong.", "warning");
+
+        _this11.$Progress.fail();
+      });
+    },
+    updateSchoolyear: function updateSchoolyear() {
+      var _this12 = this;
+
+      this.$Progress.start();
+      this.form5.put("api/schoolyear/" + this.form5.id).then(function () {
+        $('#addNewSchoolyear').modal('hide');
+        Swal.fire('Updated!', 'School Year has been updated.', 'success');
+
+        _this12.$Progress.finish();
+
+        fire.$emit('AfterCreate');
+      })["catch"](function () {
+        Swal.fire("Failed!", "There was something wrong.", "warning");
+
+        _this12.$Progress.fail();
+      });
+    },
+    updateSubject: function updateSubject() {
+      var _this13 = this;
+
+      this.$Progress.start();
+      this.form6.put("api/subject/" + this.form6.id).then(function () {
+        $('#addNewSubject').modal('hide');
+        Swal.fire('Updated!', 'School Year has been updated.', 'success');
+
+        _this13.$Progress.finish();
+
+        fire.$emit('AfterCreate');
+      })["catch"](function () {
+        Swal.fire("Failed!", "There was something wrong.", "warning");
+
+        _this13.$Progress.fail();
+      });
+    },
+    updateRoom: function updateRoom() {
+      var _this14 = this;
+
+      this.$Progress.start();
+      this.form7.put("api/room/" + this.form7.id).then(function () {
+        $('#addNewRoom').modal('hide');
+        Swal.fire('Updated!', 'Room has been updated.', 'success');
+
+        _this14.$Progress.finish();
+
+        fire.$emit('AfterCreate');
+      })["catch"](function () {
+        Swal.fire("Failed!", "There was something wrong.", "warning");
+
+        _this14.$Progress.fail();
+      });
+    },
+    deleteLearnerType: function deleteLearnerType(id) {
+      var _this15 = this;
 
       Swal.fire({
         title: 'Delete Learner Type?',
@@ -2635,19 +2949,19 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: 'Yes, delete it!'
       }).then(function (result) {
         if (result.value) {
-          _this11.form1["delete"]('api/learner_type/' + id).then(function () {
+          _this15.form1["delete"]('api/learner_type/' + id).then(function () {
             Swal.fire('Deleted!', 'Learner Type has been deleted.', 'success');
             fire.$emit('AfterCreate');
           })["catch"](function () {
             Swal.fire("Failed!", "There was something wrong.", "warning");
 
-            _this11.$Progress.fail();
+            _this15.$Progress.fail();
           });
         }
       });
     },
     deleteReligion: function deleteReligion(id) {
-      var _this12 = this;
+      var _this16 = this;
 
       Swal.fire({
         title: 'Delete Religion?',
@@ -2659,19 +2973,19 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: 'Yes, delete it!'
       }).then(function (result) {
         if (result.value) {
-          _this12.form2["delete"]('api/religion/' + id).then(function () {
+          _this16.form2["delete"]('api/religion/' + id).then(function () {
             Swal.fire('Deleted!', 'Religion has been deleted.', 'success');
             fire.$emit('AfterCreate');
           })["catch"](function () {
             Swal.fire("Failed!", "There was something wrong.", "warning");
 
-            _this12.$Progress.fail();
+            _this16.$Progress.fail();
           });
         }
       });
     },
     deleteMotherTongue: function deleteMotherTongue(id) {
-      var _this13 = this;
+      var _this17 = this;
 
       Swal.fire({
         title: 'Delete Mother Tongue?',
@@ -2683,19 +2997,19 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: 'Yes, delete it!'
       }).then(function (result) {
         if (result.value) {
-          _this13.form3["delete"]('api/mother_tongue/' + id).then(function () {
+          _this17.form3["delete"]('api/mother_tongue/' + id).then(function () {
             Swal.fire('Deleted!', 'Mother Tongue has been deleted.', 'success');
             fire.$emit('AfterCreate');
           })["catch"](function () {
             Swal.fire("Failed!", "There was something wrong.", "warning");
 
-            _this13.$Progress.fail();
+            _this17.$Progress.fail();
           });
         }
       });
     },
     deleteStrand: function deleteStrand(id) {
-      var _this14 = this;
+      var _this18 = this;
 
       Swal.fire({
         title: 'Delete STRAND Category?',
@@ -2707,19 +3021,19 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: 'Yes, delete it!'
       }).then(function (result) {
         if (result.value) {
-          _this14.form4["delete"]('api/strand/' + id).then(function () {
+          _this18.form4["delete"]('api/strand/' + id).then(function () {
             Swal.fire('Deleted!', 'STRAND Category has been deleted.', 'success');
             fire.$emit('AfterCreate');
           })["catch"](function () {
             Swal.fire("Failed!", "There was something wrong.", "warning");
 
-            _this14.$Progress.fail();
+            _this18.$Progress.fail();
           });
         }
       });
     },
     deleteSchoolyear: function deleteSchoolyear(id) {
-      var _this15 = this;
+      var _this19 = this;
 
       Swal.fire({
         title: 'Delete School Year?',
@@ -2731,127 +3045,228 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: 'Yes, delete it!'
       }).then(function (result) {
         if (result.value) {
-          _this15.form5["delete"]('api/schoolyear/' + id).then(function () {
+          _this19.form5["delete"]('api/schoolyear/' + id).then(function () {
             Swal.fire('Deleted!', 'School Year has been deleted.', 'success');
             fire.$emit('AfterCreate');
           })["catch"](function () {
             Swal.fire("Failed!", "There was something wrong.", "warning");
 
-            _this15.$Progress.fail();
+            _this19.$Progress.fail();
+          });
+        }
+      });
+    },
+    deleteSubject: function deleteSubject(id) {
+      var _this20 = this;
+
+      Swal.fire({
+        title: 'Delete Subject?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function (result) {
+        if (result.value) {
+          _this20.form6["delete"]('api/subject/' + id).then(function () {
+            Swal.fire('Deleted!', 'Subject has been deleted.', 'success');
+            fire.$emit('AfterCreate');
+          })["catch"](function () {
+            Swal.fire("Failed!", "There was something wrong.", "warning");
+
+            _this20.$Progress.fail();
+          });
+        }
+      });
+    },
+    deleteRoom: function deleteRoom(id) {
+      var _this21 = this;
+
+      Swal.fire({
+        title: 'Delete Room?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function (result) {
+        if (result.value) {
+          _this21.form7["delete"]('api/room/' + id).then(function () {
+            Swal.fire('Deleted!', 'Room has been deleted.', 'success');
+            fire.$emit('AfterCreate');
+          })["catch"](function () {
+            Swal.fire("Failed!", "There was something wrong.", "warning");
+
+            _this21.$Progress.fail();
           });
         }
       });
     },
     getLearnerTypeResults: function getLearnerTypeResults() {
-      var _this16 = this;
+      var _this22 = this;
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       axios.get('api/learner_type?page=' + page).then(function (response) {
-        _this16.learner_types = response.data;
+        _this22.learner_types = response.data;
       });
     },
     getReligionResults: function getReligionResults() {
-      var _this17 = this;
+      var _this23 = this;
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       axios.get('api/religion?page=' + page).then(function (response) {
-        _this17.religions = response.data;
+        _this23.religions = response.data;
       });
     },
     getMotherTongueResults: function getMotherTongueResults() {
-      var _this18 = this;
+      var _this24 = this;
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       axios.get('api/mother_tongue?page=' + page).then(function (response) {
-        _this18.mother_tongues = response.data;
+        _this24.mother_tongues = response.data;
       });
     },
     getStrandResults: function getStrandResults() {
-      var _this19 = this;
+      var _this25 = this;
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       axios.get('api/strand?page=' + page).then(function (response) {
-        _this19.strands = response.data;
+        _this25.strands = response.data;
       });
     },
     getSchoolyearResults: function getSchoolyearResults() {
-      var _this20 = this;
+      var _this26 = this;
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       axios.get('api/schoolyear?page=' + page).then(function (response) {
-        _this20.schoolyears = response.data;
+        _this26.schoolyears = response.data;
+      });
+    },
+    getSubjectResults: function getSubjectResults() {
+      var _this27 = this;
+
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      axios.get('api/subject?page=' + page).then(function (response) {
+        _this27.subjects = response.data;
+      });
+    },
+    getRoomResults: function getRoomResults() {
+      var _this28 = this;
+
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      axios.get('api/room?page=' + page).then(function (response) {
+        _this28.rooms = response.data;
       });
     },
     loadLearnerTypes: function loadLearnerTypes() {
-      var _this21 = this;
+      var _this29 = this;
 
       axios.get("api/learner_type").then(function (_ref) {
         var data = _ref.data;
-        return _this21.learner_types = data;
+        return _this29.learner_types = data;
       });
     },
     loadReligion: function loadReligion() {
-      var _this22 = this;
+      var _this30 = this;
 
       axios.get("api/religion").then(function (_ref2) {
         var data = _ref2.data;
-        return _this22.religions = data;
+        return _this30.religions = data;
       });
     },
     loadMotherTongue: function loadMotherTongue() {
-      var _this23 = this;
+      var _this31 = this;
 
       axios.get("api/mother_tongue").then(function (_ref3) {
         var data = _ref3.data;
-        return _this23.mother_tongues = data;
+        return _this31.mother_tongues = data;
       });
     },
     loadStrand: function loadStrand() {
-      var _this24 = this;
+      var _this32 = this;
 
       axios.get("api/strand").then(function (_ref4) {
         var data = _ref4.data;
-        return _this24.strands = data;
+        return _this32.strands = data;
       });
     },
     loadSchoolyear: function loadSchoolyear() {
-      var _this25 = this;
+      var _this33 = this;
 
       axios.get("api/schoolyear").then(function (_ref5) {
         var data = _ref5.data;
-        return _this25.schoolyears = data;
+        return _this33.schoolyears = data;
+      });
+    },
+    loadSubject: function loadSubject() {
+      var _this34 = this;
+
+      axios.get("api/subject").then(function (_ref6) {
+        var data = _ref6.data;
+        return _this34.subjects = data;
+      });
+    },
+    loadRoom: function loadRoom() {
+      var _this35 = this;
+
+      axios.get("api/room").then(function (_ref7) {
+        var data = _ref7.data;
+        return _this35.rooms = data;
       });
     }
   },
   created: function created() {
-    var _this26 = this;
+    var _this36 = this;
 
     fire.$on('searching', function () {
-      var query = _this26.$parent.search;
-      axios.get('api/findLearnerType?q=' + query).then(function (_ref6) {
-        var data = _ref6.data;
-        _this26.learner_types = data;
-      })["catch"](function () {});
-    });
-    fire.$on('searching', function () {
-      var query = _this26.$parent.search;
-      axios.get('api/findReligion?r=' + query).then(function (_ref7) {
-        var data = _ref7.data;
-        _this26.religions = data;
-      })["catch"](function () {});
-    });
-    fire.$on('searching', function () {
-      var query = _this26.$parent.search;
-      axios.get('api/findMotherTongue?s=' + query).then(function (_ref8) {
+      var query = _this36.$parent.search;
+      axios.get('api/findLearnerType?q=' + query).then(function (_ref8) {
         var data = _ref8.data;
-        _this26.mother_tongues = data;
+        _this36.learner_types = data;
       })["catch"](function () {});
     });
     fire.$on('searching', function () {
-      var query = _this26.$parent.search;
-      axios.get('api/findStrand?t=' + query).then(function (_ref9) {
+      var query = _this36.$parent.search;
+      axios.get('api/findReligion?r=' + query).then(function (_ref9) {
         var data = _ref9.data;
-        _this26.strands = data;
+        _this36.religions = data;
+      })["catch"](function () {});
+    });
+    fire.$on('searching', function () {
+      var query = _this36.$parent.search;
+      axios.get('api/findMotherTongue?s=' + query).then(function (_ref10) {
+        var data = _ref10.data;
+        _this36.mother_tongues = data;
+      })["catch"](function () {});
+    });
+    fire.$on('searching', function () {
+      var query = _this36.$parent.search;
+      axios.get('api/findStrand?t=' + query).then(function (_ref11) {
+        var data = _ref11.data;
+        _this36.strands = data;
+      })["catch"](function () {});
+    });
+    fire.$on('searching', function () {
+      var query = _this36.$parent.search;
+      axios.get('api/findSchoolyear?w=' + query).then(function (_ref12) {
+        var data = _ref12.data;
+        _this36.schoolyears = data;
+      })["catch"](function () {});
+    });
+    fire.$on('searching', function () {
+      var query = _this36.$parent.search;
+      axios.get('api/findSubject?x=' + query).then(function (_ref13) {
+        var data = _ref13.data;
+        _this36.subjects = data;
+      })["catch"](function () {});
+    });
+    fire.$on('searching', function () {
+      var query = _this36.$parent.search;
+      axios.get('api/findRoom?y=' + query).then(function (_ref14) {
+        var data = _ref14.data;
+        _this36.rooms = data;
       })["catch"](function () {});
     });
     this.loadLearnerTypes();
@@ -2859,16 +3274,22 @@ __webpack_require__.r(__webpack_exports__);
     this.loadMotherTongue();
     this.loadStrand();
     this.loadSchoolyear();
+    this.loadSubject();
+    this.loadRoom();
     fire.$on('AfterCreate', function () {
-      _this26.loadLearnerTypes();
+      _this36.loadLearnerTypes();
 
-      _this26.loadReligion();
+      _this36.loadReligion();
 
-      _this26.loadMotherTongue();
+      _this36.loadMotherTongue();
 
-      _this26.loadStrand();
+      _this36.loadStrand();
 
-      _this26.loadSchoolyear();
+      _this36.loadSchoolyear();
+
+      _this36.loadSubject();
+
+      _this36.loadRoom();
     });
   }
 });
@@ -68700,6 +69121,10 @@ var render = function() {
                       [
                         _vm._m(2),
                         _vm._v(" "),
+                        _vm.learner_types.total == 0
+                          ? _c("tr", [_vm._m(3)])
+                          : _vm._e(),
+                        _vm._v(" "),
                         _vm._l(_vm.learner_types.data, function(learner_type) {
                           return _c(
                             "tr",
@@ -68844,7 +69269,11 @@ var render = function() {
                     _c(
                       "tbody",
                       [
-                        _vm._m(3),
+                        _vm._m(4),
+                        _vm._v(" "),
+                        _vm.religions.total == 0
+                          ? _c("tr", [_vm._m(5)])
+                          : _vm._e(),
                         _vm._v(" "),
                         _vm._l(_vm.religions.data, function(religion) {
                           return _c(
@@ -68982,7 +69411,11 @@ var render = function() {
                     _c(
                       "tbody",
                       [
-                        _vm._m(4),
+                        _vm._m(6),
+                        _vm._v(" "),
+                        _vm.mother_tongues.total == 0
+                          ? _c("tr", [_vm._m(7)])
+                          : _vm._e(),
                         _vm._v(" "),
                         _vm._l(_vm.mother_tongues.data, function(
                           mother_tongue
@@ -69130,7 +69563,11 @@ var render = function() {
                     _c(
                       "tbody",
                       [
-                        _vm._m(5),
+                        _vm._m(8),
+                        _vm._v(" "),
+                        _vm.strands.total == 0
+                          ? _c("tr", [_vm._m(9)])
+                          : _vm._e(),
                         _vm._v(" "),
                         _vm._l(_vm.strands.data, function(strand) {
                           return _c(
@@ -69266,7 +69703,11 @@ var render = function() {
                     _c(
                       "tbody",
                       [
-                        _vm._m(6),
+                        _vm._m(10),
+                        _vm._v(" "),
+                        _vm.schoolyears.total == 0
+                          ? _c("tr", [_vm._m(11)])
+                          : _vm._e(),
                         _vm._v(" "),
                         _vm._l(_vm.schoolyears.data, function(schoolyear) {
                           return _c(
@@ -69367,6 +69808,286 @@ var render = function() {
             ])
           ])
         ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "tab-pane fade show",
+          attrs: {
+            id: "nav-subject",
+            role: "tabpanel",
+            "aria-labelledby": "nav-subject-tab"
+          }
+        },
+        [
+          _c("div", { staticClass: "row mt-4" }, [
+            _c("div", { staticClass: "col-md-12" }, [
+              _c("div", { staticClass: "card" }, [
+                _c(
+                  "div",
+                  { staticClass: "card-header card-primary card-outline" },
+                  [
+                    _c("h5", { staticClass: "m-0 fas text-primary" }, [
+                      _vm._v(" Subjects")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "card-tools" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-success btn-block p-1",
+                          attrs: { title: "Add New Subject" },
+                          on: { click: _vm.newSubject }
+                        },
+                        [_vm._v("Add New")]
+                      )
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-body table-responsive p-0" }, [
+                  _c("table", { staticClass: "table table-hover" }, [
+                    _c(
+                      "tbody",
+                      [
+                        _vm._m(12),
+                        _vm._v(" "),
+                        _vm.subjects.total == 0
+                          ? _c("tr", [_vm._m(13)])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm._l(_vm.subjects.data, function(subject) {
+                          return _c(
+                            "tr",
+                            {
+                              key: subject.id,
+                              staticStyle: { "text-align": "center" }
+                            },
+                            [
+                              _c("td", [
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: { href: "#" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.editSubjectModal(subject)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("i", {
+                                      staticClass: "fa fa-edit color-blue",
+                                      attrs: { title: "Edit" }
+                                    })
+                                  ]
+                                ),
+                                _vm._v(
+                                  "\n                                                |\n                                                "
+                                ),
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: { href: "#" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.deleteSubject(subject.id)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("i", {
+                                      staticClass: "fa fa-trash-alt color-red",
+                                      attrs: { title: "Delete" }
+                                    })
+                                  ]
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(subject.subject))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(subject.subject_code))])
+                            ]
+                          )
+                        })
+                      ],
+                      2
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "card-footer" },
+                  [
+                    _c(
+                      "pagination",
+                      {
+                        attrs: { data: _vm.subjects },
+                        on: { "pagination-change-page": _vm.getSubjectResults }
+                      },
+                      [
+                        _c(
+                          "span",
+                          { attrs: { slot: "prev-nav" }, slot: "prev-nav" },
+                          [_vm._v("< Previous")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "span",
+                          { attrs: { slot: "next-nav" }, slot: "next-nav" },
+                          [_vm._v("Next >")]
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ])
+            ])
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "tab-pane fade show",
+          attrs: {
+            id: "nav-room",
+            role: "tabpanel",
+            "aria-labelledby": "nav-room-tab"
+          }
+        },
+        [
+          _c("div", { staticClass: "row mt-4" }, [
+            _c("div", { staticClass: "col-md-12" }, [
+              _c("div", { staticClass: "card" }, [
+                _c(
+                  "div",
+                  { staticClass: "card-header card-primary card-outline" },
+                  [
+                    _c("h5", { staticClass: "m-0 fas text-primary" }, [
+                      _vm._v(" Rooms")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "card-tools" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-success btn-block p-1",
+                          attrs: { title: "Add New Room" },
+                          on: { click: _vm.newRoom }
+                        },
+                        [_vm._v("Add New")]
+                      )
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-body table-responsive p-0" }, [
+                  _c("table", { staticClass: "table table-hover" }, [
+                    _c(
+                      "tbody",
+                      [
+                        _vm._m(14),
+                        _vm._v(" "),
+                        _vm.rooms.total == 0
+                          ? _c("tr", [_vm._m(15)])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm._l(_vm.rooms.data, function(room) {
+                          return _c(
+                            "tr",
+                            {
+                              key: room.id,
+                              staticStyle: { "text-align": "center" }
+                            },
+                            [
+                              _c("td", [
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: { href: "#" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.editRoomModal(room)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("i", {
+                                      staticClass: "fa fa-edit color-blue",
+                                      attrs: { title: "Edit" }
+                                    })
+                                  ]
+                                ),
+                                _vm._v(
+                                  "\n                                                |\n                                                "
+                                ),
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: { href: "#" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.deleteRoom(room.id)
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("i", {
+                                      staticClass: "fa fa-trash-alt color-red",
+                                      attrs: { title: "Delete" }
+                                    })
+                                  ]
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(room.room))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(room.room_number))])
+                            ]
+                          )
+                        })
+                      ],
+                      2
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "card-footer" },
+                  [
+                    _c(
+                      "pagination",
+                      {
+                        attrs: { data: _vm.rooms },
+                        on: { "pagination-change-page": _vm.getRoomResults }
+                      },
+                      [
+                        _c(
+                          "span",
+                          { attrs: { slot: "prev-nav" }, slot: "prev-nav" },
+                          [_vm._v("< Previous")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "span",
+                          { attrs: { slot: "next-nav" }, slot: "next-nav" },
+                          [_vm._v("Next >")]
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ])
+            ])
+          ])
+        ]
       )
     ]),
     _vm._v(" "),
@@ -69426,7 +70147,7 @@ var render = function() {
                   [_vm._v(" Update")]
                 ),
                 _vm._v(" "),
-                _vm._m(7)
+                _vm._m(16)
               ]),
               _vm._v(" "),
               _c(
@@ -69642,7 +70363,7 @@ var render = function() {
                   [_vm._v(" Update")]
                 ),
                 _vm._v(" "),
-                _vm._m(8)
+                _vm._m(17)
               ]),
               _vm._v(" "),
               _c(
@@ -69858,7 +70579,7 @@ var render = function() {
                   [_vm._v(" Update")]
                 ),
                 _vm._v(" "),
-                _vm._m(9)
+                _vm._m(18)
               ]),
               _vm._v(" "),
               _c(
@@ -70079,7 +70800,7 @@ var render = function() {
                   [_vm._v(" Update")]
                 ),
                 _vm._v(" "),
-                _vm._m(10)
+                _vm._m(19)
               ]),
               _vm._v(" "),
               _c(
@@ -70293,7 +71014,7 @@ var render = function() {
                   [_vm._v(" Update")]
                 ),
                 _vm._v(" "),
-                _vm._m(11)
+                _vm._m(20)
               ]),
               _vm._v(" "),
               _c(
@@ -70476,6 +71197,428 @@ var render = function() {
           ]
         )
       ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "addNewSubject",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "addNewSubjectTitle",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header" }, [
+                _c(
+                  "h5",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: !_vm.editMode6,
+                        expression: "!editMode6"
+                      }
+                    ],
+                    staticClass: "modal-title",
+                    attrs: { id: "addNewSubjectTitle" }
+                  },
+                  [_vm._v(" Add")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "h5",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.editMode6,
+                        expression: "editMode6"
+                      }
+                    ],
+                    staticClass: "modal-title",
+                    attrs: { id: "addNewSubjectTitle" }
+                  },
+                  [_vm._v(" Update")]
+                ),
+                _vm._v(" "),
+                _vm._m(21)
+              ]),
+              _vm._v(" "),
+              _c(
+                "form",
+                {
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      _vm.editMode6 ? _vm.updateSubject() : _vm.createSubject()
+                    }
+                  }
+                },
+                [
+                  _c("div", { staticClass: "modal-body" }, [
+                    _c(
+                      "div",
+                      { staticClass: "form-group" },
+                      [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form6.subject,
+                              expression: "form6.subject"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          class: {
+                            "is-invalid": _vm.form6.errors.has("subject")
+                          },
+                          attrs: {
+                            type: "text",
+                            name: "subject",
+                            placeholder: "Enter Subject Name"
+                          },
+                          domProps: { value: _vm.form6.subject },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.form6,
+                                "subject",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("has-error", {
+                          attrs: { form: _vm.form6, field: "subject" }
+                        })
+                      ],
+                      1
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-body" }, [
+                    _c(
+                      "div",
+                      { staticClass: "form-group" },
+                      [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form6.subject_code,
+                              expression: "form6.subject_code"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          class: {
+                            "is-invalid": _vm.form6.errors.has("subject_code")
+                          },
+                          attrs: {
+                            type: "text",
+                            name: "subject_code",
+                            placeholder: "Enter Subject Code"
+                          },
+                          domProps: { value: _vm.form6.subject_code },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.form6,
+                                "subject_code",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("has-error", {
+                          attrs: { form: _vm.form6, field: "subject_code" }
+                        })
+                      ],
+                      1
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-footer" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-danger",
+                        attrs: { type: "button", "data-dismiss": "modal" }
+                      },
+                      [_vm._v("Close ")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.editMode6,
+                            expression: "editMode6"
+                          }
+                        ],
+                        staticClass: "btn btn-primary",
+                        attrs: { type: "submit" }
+                      },
+                      [_vm._v("Update")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: !_vm.editMode6,
+                            expression: "!editMode6"
+                          }
+                        ],
+                        staticClass: "btn btn-success",
+                        attrs: { type: "submit" }
+                      },
+                      [_vm._v("Create")]
+                    )
+                  ])
+                ]
+              )
+            ])
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "addNewRoom",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "addNewRoomTitle",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header" }, [
+                _c(
+                  "h5",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: !_vm.editMode7,
+                        expression: "!editMode7"
+                      }
+                    ],
+                    staticClass: "modal-title",
+                    attrs: { id: "addNewRoomTitle" }
+                  },
+                  [_vm._v(" Add")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "h5",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.editMode7,
+                        expression: "editMode7"
+                      }
+                    ],
+                    staticClass: "modal-title",
+                    attrs: { id: "addNewRoomTitle" }
+                  },
+                  [_vm._v(" Update")]
+                ),
+                _vm._v(" "),
+                _vm._m(22)
+              ]),
+              _vm._v(" "),
+              _c(
+                "form",
+                {
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      _vm.editMode7 ? _vm.updateRoom() : _vm.createRoom()
+                    }
+                  }
+                },
+                [
+                  _c("div", { staticClass: "modal-body" }, [
+                    _c(
+                      "div",
+                      { staticClass: "form-group" },
+                      [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form7.room,
+                              expression: "form7.room"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          class: { "is-invalid": _vm.form7.errors.has("room") },
+                          attrs: {
+                            type: "text",
+                            name: "room",
+                            placeholder: "Enter Room Name"
+                          },
+                          domProps: { value: _vm.form7.room },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(_vm.form7, "room", $event.target.value)
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("has-error", {
+                          attrs: { form: _vm.form7, field: "room" }
+                        })
+                      ],
+                      1
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-body" }, [
+                    _c(
+                      "div",
+                      { staticClass: "form-group" },
+                      [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form7.room_number,
+                              expression: "form7.room_number"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          class: {
+                            "is-invalid": _vm.form7.errors.has("room_number")
+                          },
+                          attrs: {
+                            type: "text",
+                            name: "room_number",
+                            placeholder: "Enter Room Number"
+                          },
+                          domProps: { value: _vm.form7.room_number },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.form7,
+                                "room_number",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("has-error", {
+                          attrs: { form: _vm.form7, field: "room_number" }
+                        })
+                      ],
+                      1
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-footer" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-danger",
+                        attrs: { type: "button", "data-dismiss": "modal" }
+                      },
+                      [_vm._v("Close ")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.editMode7,
+                            expression: "editMode7"
+                          }
+                        ],
+                        staticClass: "btn btn-primary",
+                        attrs: { type: "submit" }
+                      },
+                      [_vm._v("Update")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: !_vm.editMode7,
+                            expression: "!editMode7"
+                          }
+                        ],
+                        staticClass: "btn btn-success",
+                        attrs: { type: "submit" }
+                      },
+                      [_vm._v("Create")]
+                    )
+                  ])
+                ]
+              )
+            ])
+          ]
+        )
+      ]
     )
   ])
 }
@@ -70576,6 +71719,38 @@ var staticRenderFns = [
               }
             },
             [_c("strong", [_vm._v("School Year")])]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "nav-item nav-link color-blue",
+              attrs: {
+                id: "nav-subject-tab",
+                "data-toggle": "tab",
+                href: "#nav-subject",
+                role: "tab",
+                "aria-controls": "nav-subject",
+                "aria-selected": "true"
+              }
+            },
+            [_c("strong", [_vm._v("Subjects")])]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "nav-item nav-link color-blue",
+              attrs: {
+                id: "nav-room-tab",
+                "data-toggle": "tab",
+                href: "#nav-room",
+                role: "tab",
+                "aria-controls": "nav-room",
+                "aria-selected": "true"
+              }
+            },
+            [_c("strong", [_vm._v("Rooms")])]
           )
         ]
       )
@@ -70597,12 +71772,28 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("td", { staticClass: "text-center", attrs: { colspan: "6" } }, [
+      _c("label", [_vm._v("No records yet.")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("tr", { staticStyle: { "text-align": "center" } }, [
       _c("th", [_vm._v("Action")]),
       _vm._v(" "),
       _c("th", [_vm._v("Religion")]),
       _vm._v(" "),
       _c("th", [_vm._v("Religion Code")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { staticClass: "text-center", attrs: { colspan: "6" } }, [
+      _c("label", [_vm._v("No records yet.")])
     ])
   },
   function() {
@@ -70621,12 +71812,28 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("td", { staticClass: "text-center", attrs: { colspan: "6" } }, [
+      _c("label", [_vm._v("No records yet.")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("tr", { staticStyle: { "text-align": "center" } }, [
       _c("th", [_vm._v("Action")]),
       _vm._v(" "),
       _c("th", [_vm._v("STRAND Name")]),
       _vm._v(" "),
       _c("th", [_vm._v("STRAND Code")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { staticClass: "text-center", attrs: { colspan: "6" } }, [
+      _c("label", [_vm._v("No records yet.")])
     ])
   },
   function() {
@@ -70640,6 +71847,88 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("th", [_vm._v("Status")])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { staticClass: "text-center", attrs: { colspan: "6" } }, [
+      _c("label", [_vm._v("No records yet.")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", { staticStyle: { "text-align": "center" } }, [
+      _c("th", [_vm._v("Action")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Subject Name")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Subject Code")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { staticClass: "text-center", attrs: { colspan: "6" } }, [
+      _c("label", [_vm._v("No records yet.")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", { staticStyle: { "text-align": "center" } }, [
+      _c("th", [_vm._v("Action")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Room Name")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Room Number")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { staticClass: "text-center", attrs: { colspan: "6" } }, [
+      _c("label", [_vm._v("No records yet.")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "modal",
+          "aria-label": "Close"
+        }
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "modal",
+          "aria-label": "Close"
+        }
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
   },
   function() {
     var _vm = this

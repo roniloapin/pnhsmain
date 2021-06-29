@@ -4,9 +4,10 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Schoolyear;
+use App\Models\Subject;
 
-class SchoolyearController extends Controller
+
+class SubjectController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +16,8 @@ class SchoolyearController extends Controller
      */
     public function index()
     {
-        return Schoolyear::orderBy('schoolyear', 'asc')->paginate(20);
-        // $schoolyears = Schoolyear::where('schoolyear_status', 'Active')->get();
+        return Subject::orderBy('subject', 'asc')->paginate(20);
+
     }
 
     /**
@@ -28,12 +29,12 @@ class SchoolyearController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'schoolyear' => 'required|string|max:191|unique:schoolyears',
+            'subject' => 'required|string|max:191|unique:subjects',
         ]);
 
-        return Schoolyear::create([
-            'schoolyear'=>$request['schoolyear'],
-            'schoolyear_status'=>$request['schoolyear_status'],
+        return Subject::create([
+            'subject'=>$request['subject'],
+            'subject_code'=>$request['subject_code'],
         ]);
     }
 
@@ -45,7 +46,7 @@ class SchoolyearController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -57,13 +58,13 @@ class SchoolyearController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $schoolyear = Schoolyear::findOrFail($id);
+        $subject = Subject::findOrFail($id);
 
         $this->validate($request,[
-            'schoolyear' => 'required|string|max:191',
+            'subject' => 'required|string|max:191',
         ]);
 
-        $schoolyear->update($request->all());
+        $subject->update($request->all());
     }
 
     /**
@@ -74,21 +75,18 @@ class SchoolyearController extends Controller
      */
     public function destroy($id)
     {
-        $schoolyear = Schoolyear::findOrFail($id);
-        $schoolyear->delete();
+        $subject = Subject::findOrFail($id);
+        $subject->delete();
     }
 
     public function search(){
-        if ($search = \Request::get('w')){
-            $schoolyears = Schoolyear::where(function($query) use ($search){
-                $query->where('schoolyear', 'LIKE', "%$search%");
-            })->orderBy('schoolyear', 'asc')->paginate(20);
+        if ($search = \Request::get('x')){
+            $subjects = Subject::where(function($query) use ($search){
+                $query->where('subject', 'LIKE', "%$search%");
+            })->orderBy('subject', 'asc')->paginate(20);
         }else{
-            $schoolyears = Schoolyear::orderBy('schoolyear', 'asc')->paginate(10);
+            $subjects = Subject::orderBy('subject', 'asc')->paginate(10);
         }
-        return $schoolyears;
+        return $subjects;
     }
-
 }
-
-//searh V last
