@@ -11,6 +11,8 @@ use App\Http\Controllers\API\StudentController;
 use App\Http\Controllers\API\SchoolyearController;
 use App\Http\Controllers\API\SubjectController;
 use App\Http\Controllers\API\RoomController;
+use App\Http\Controllers\API\ScheduleController;
+
 
 
 
@@ -61,3 +63,6 @@ Route::get('findSubject', [SubjectController::class, 'search']);
 
 Route::apiResource('room', RoomController::class);
 Route::get('findRoom', [RoomController::class, 'search']);
+
+Route::apiResource('schedule', ScheduleController::class);
+Route::get('findSchedule', [ScheduleController::class, 'search']);

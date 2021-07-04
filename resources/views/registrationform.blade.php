@@ -135,7 +135,7 @@
                             </div>
                             <div class="col-6">
                                 <label for="gender">Gender <span class="text-danger">*</span> </label>
-                                <select class="form-select custom-select" id="gender" name="gender">
+                                <select class="form-select custom-select" id="gender" name="gender" required>
                                     <option disabled selected>Select</option>
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>

@@ -11,4 +11,8 @@ class Room extends Model
     protected $fillable = [
         'room','room_number',
     ];
+
+    // public function schedule(){
+    // 	return $this->belongsTo('App\Models\Schedule');
+    // }
 }

@@ -146,12 +146,30 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   </router-link>
               </li>
             </ul>
+            
+          </li>
+
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-clock"></i>
+              <p>
+                Schedule
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
             <ul class="nav nav-treeview" style="margin-left:20px;">
               <li class="nav-item">
-                  <router-link to="/teachers" class="nav-link">
-                    <i class="nav-icon fas fa-chalkboard-teacher"></i>
-                    <p>Teachers</p>
-                  </router-link>
+                <router-link to="/jhsschedule" class="nav-link">
+                  <i class="nav-icon fas fa-clock"></i>
+                  <p>JHS Schedule</p>
+                </router-link>
+              </li>
+
+              <li class="nav-item">
+                <router-link to="/shsschedule" class="nav-link">
+                  <i class="nav-icon fas fa-clock"></i>
+                  <p>SHS Schedule</p>
+                </router-link>
               </li>
             </ul>
           </li>
@@ -168,10 +186,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <li class="nav-item">
                 <router-link to="/users" class="nav-link">
                   <i class="nav-icon fas fa-users-cog"></i>
-                  <p>Admin Users</p>
+                  <p>System Users</p>
                 </router-link>
               </li>
-
+              
+              <!-- <li class="nav-item">
+                  <router-link to="/teachers" class="nav-link">
+                    <i class="nav-icon fas fa-chalkboard-teacher"></i>
+                    <p>Teachers</p>
+                  </router-link>
+              </li> -->
+            
               <li class="nav-item">
                 <router-link to="/configuration" class="nav-link">
                   <i class="nav-icon fas fa-cog"></i>

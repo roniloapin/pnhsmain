@@ -161,7 +161,7 @@
                         </button>
                     </div>
                     <form @submit.prevent="editMode1 ? updateStudent() : createStudent()">
-                        <div class="modal-body" style="height: 500px; overflow-y: auto;">
+                        <div class="modal-body" style="height: 300px; overflow-y: auto;">
                             <div class="form-group mb-1">
                                 <label for="learner_type_id">Learner Type <span class="text-danger">*</span> </label>
                                 <select class="form-control"  name="learner_type_id"  v-model="form1.learner_type_id" :class="{ 'is-invalid': form1.errors.has('learner_type_id') }">

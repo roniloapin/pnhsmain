@@ -12,4 +12,8 @@ class Subject extends Model
     protected $fillable = [
         'subject','subject_code',
     ];
+
+    // public function schedule(){
+    // 	return $this->belongsTo('App\Models\Schedule');
+    // }
 }

@@ -5,7 +5,7 @@
           <div class="col-md-12" >
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Admin Users</h3>
+                <h3 class="card-title">Admin Users A</h3>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-success" @click="newModal">Add User <i class="fas fa-user-plus fa-fw"></i></button>
@@ -110,7 +110,6 @@
                     'is-invalid': form.errors.has('role') }">
                         <option value="" disabled>Select User Role</option>
                         <option value="admin">Admin</option>
-                        <option value="teacher">Teacher</option>
                         <!-- <option value="teacher">Teacher</option>
                         <option value="student">Student</option> -->
                     </select>
