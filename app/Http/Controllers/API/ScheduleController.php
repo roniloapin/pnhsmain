@@ -22,7 +22,7 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-        return Schedule::orderBy('day', 'asc')->paginate(20);
+        return Schedule::with(['subject','room', 'strand','user'])->orderBy('day', 'asc')->paginate(20);
 
     }
 

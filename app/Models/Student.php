@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\Strand;
+
 class Student extends Model
 {
     use HasFactory;
@@ -56,8 +58,10 @@ class Student extends Model
     ];
 
     public function strand(){
-    	return $this->hasOne('App\Models\Strand');
+    	return $this->belongsTo('App\Models\Strand');
     }
+
+
 
     public function religion(){
     	return $this->hasOne('App\Models\Religion');

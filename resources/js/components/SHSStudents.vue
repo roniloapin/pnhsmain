@@ -58,7 +58,7 @@
                                       </td>
                                       <td>{{student.id}}</td>
                                       <td style="text-align:left;">{{student.last_name}},&nbsp;{{student.first_name}}&nbsp;{{student.middle_name}}</td>
-                                      <td><span class="tag tag-success" style="text-align:center;">{{student.strand_id}}</span></td>
+                                      <td><span class="tag tag-success" style="text-align:center;">{{student.strand.strand_code}}</span></td>
                                       <td>{{student.gender}}</td>
                                       <td>{{student.status}}</td>
                                     </tr>
@@ -127,7 +127,7 @@
                                       </td>
                                       <td>{{student.id}}</td>
                                       <td style="text-align:left;">{{student.last_name}},&nbsp;{{student.first_name}}&nbsp;{{student.middle_name}}</td>
-                                      <td><span class="tag tag-success" style="text-align:center;">{{student.jhs_grade_level}}</span></td>
+                                      <td><span class="tag tag-success" style="text-align:center;">{{student.strand.strand_code}}</span></td>
                                       <td>{{student.gender}}</td>
                                       <td>{{student.status}}</td>
                                     </tr>

@@ -41,11 +41,11 @@
                             </a>
                         </td>
                         <td>{{schedule.grade_level}}</td>
-                        <td>{{schedule.subject_id}}</td> 
+                        <td>{{schedule.subject.subject}}</td> 
                         <td>{{schedule.day}}</td> 
                         <td>{{schedule.time_start}}&nbsp;-&nbsp;{{schedule.time_end}}</td>
-                        <td>{{schedule.room_id}}</td> 
-                        <td>{{schedule.user_id}}</td>
+                        <td>{{schedule.room.room}}</td> 
+                        <td>{{schedule.user.name}}</td>
                     </tr>
                     
                   </tbody>

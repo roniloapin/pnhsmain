@@ -40,12 +40,12 @@
                                 <i class="fa fa-trash-alt color-red" title="Delete"></i>
                             </a>
                         </td>
-                        <td>{{schedule.strand_id}}</td>
-                        <td>{{schedule.subject_id}}</td> 
+                        <td>{{schedule.strand.strand_code}}</td>
+                        <td>{{schedule.subject.subject}}</td> 
                         <td>{{schedule.day}}</td> 
                         <td>{{schedule.time_start}}&nbsp;-&nbsp;{{schedule.time_end}}</td>
-                        <td>{{schedule.room_id}}</td> 
-                        <td>{{schedule.user_id}}</td>
+                        <td>{{schedule.room.room}}</td> 
+                        <td>{{schedule.user.name}}</td>
                     </tr>
                     
                   </tbody>

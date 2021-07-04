@@ -73110,7 +73110,9 @@ var render = function() {
                               _vm._v(" "),
                               _c("td", [_vm._v(_vm._s(schedule.grade_level))]),
                               _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(schedule.subject_id))]),
+                              _c("td", [
+                                _vm._v(_vm._s(schedule.subject.subject))
+                              ]),
                               _vm._v(" "),
                               _c("td", [_vm._v(_vm._s(schedule.day))]),
                               _vm._v(" "),
@@ -73122,9 +73124,9 @@ var render = function() {
                                 )
                               ]),
                               _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(schedule.room_id))]),
+                              _c("td", [_vm._v(_vm._s(schedule.room.room))]),
                               _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(schedule.user_id))])
+                              _c("td", [_vm._v(_vm._s(schedule.user.name))])
                             ]
                           )
                         })
@@ -77253,9 +77255,13 @@ var render = function() {
                                 )
                               ]),
                               _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(schedule.strand_id))]),
+                              _c("td", [
+                                _vm._v(_vm._s(schedule.strand.strand_code))
+                              ]),
                               _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(schedule.subject_id))]),
+                              _c("td", [
+                                _vm._v(_vm._s(schedule.subject.subject))
+                              ]),
                               _vm._v(" "),
                               _c("td", [_vm._v(_vm._s(schedule.day))]),
                               _vm._v(" "),
@@ -77267,9 +77273,9 @@ var render = function() {
                                 )
                               ]),
                               _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(schedule.room_id))]),
+                              _c("td", [_vm._v(_vm._s(schedule.room.room))]),
                               _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(schedule.user_id))])
+                              _c("td", [_vm._v(_vm._s(schedule.user.name))])
                             ]
                           )
                         })
@@ -78136,7 +78142,7 @@ var render = function() {
                                     staticClass: "tag tag-success",
                                     staticStyle: { "text-align": "center" }
                                   },
-                                  [_vm._v(_vm._s(student.strand_id))]
+                                  [_vm._v(_vm._s(student.strand.strand_code))]
                                 )
                               ]),
                               _vm._v(" "),
@@ -78327,7 +78333,7 @@ var render = function() {
                                     staticClass: "tag tag-success",
                                     staticStyle: { "text-align": "center" }
                                   },
-                                  [_vm._v(_vm._s(student.jhs_grade_level))]
+                                  [_vm._v(_vm._s(student.strand.strand_code))]
                                 )
                               ]),
                               _vm._v(" "),
