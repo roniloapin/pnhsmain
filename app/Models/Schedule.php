@@ -9,25 +9,24 @@ class Schedule extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_id',
-        'subject_id',
-        'time_start',
-        'time_end',
-        'room_id',
         'key_stage',
         'grade_level',
         'strand_id',
+        'subject_id',
         'day',
+        'time_start',
+        'time_end',
+        'room_id',
+        'user_id',
     ];
 
-    // public function subject(){
-    // 	return $this->hasOne('App\Models\Subject');
-    // }
-    // public function room(){
-    // 	return $this->hasOne('App\Models\Room');
-    // }
-    // public function strand(){
-    // 	return $this->hasOne('App\Models\Strand');
-    // }
-    
+    public function subject(){
+    	return $this->hasOne('App\Models\Subject');
+    }
+    public function room(){
+    	return $this->hasOne('App\Models\Room');
+    }
+    public function strand(){
+    	return $this->hasOne('App\Models\Strand');
+    }
 }

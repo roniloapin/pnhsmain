@@ -27,7 +27,7 @@ window.Swal = Swal;
 
 const Toast = Swal.mixin({
     toast: true,
-    position: 'center',
+    position: 'top-end',
     showConfirmButton: false,
     timer: 2000,
     timerProgressBar: true,

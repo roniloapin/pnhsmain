@@ -13,7 +13,7 @@ class Subject extends Model
         'subject','subject_code',
     ];
 
-    // public function schedule(){
-    // 	return $this->belongsTo('App\Models\Schedule');
-    // }
+    public function schedule(){
+    	return $this->belongsTo('App\Models\Schedule');
+    }
 }

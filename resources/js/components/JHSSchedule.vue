@@ -13,13 +13,14 @@
 
               </div>
               <!-- /.card-header -->
-              <div class="card-body table-responsive p-0" style="height: 300px;">
+              <div class="card-body table-responsive p-0">
                 <table class="table table-head-fixed table-hover">
                   <thead>
-                    <tr>
+                    <tr style="text-align:center;">
                         <th>Action</th>
                         <th>Grade Level</th>
                         <th>Subject</th>
+                        <th>Day</th>
                         <th>Time</th>
                         <th>Room</th>
                         <th>Teacher</th>
@@ -29,7 +30,7 @@
                     <tr v-if="schedules.total == 0">
                         <td colspan="6" class="text-center"><label>No records yet.</label></td>
                     </tr>
-                    <tr v-for="schedule in schedules.data" :key="schedule.id">
+                    <tr style="text-align:center;" v-for="schedule in schedules.data" :key="schedule.id">
                         <td>
                             <a href="#" @click="editModal(schedule)">
                                 <i class="fa fa-edit color-blue" title="Edit"></i>
@@ -41,7 +42,8 @@
                         </td>
                         <td>{{schedule.grade_level}}</td>
                         <td>{{schedule.subject_id}}</td> 
-                        <td>{{schedule.time_start}}&nbsp;-{{schedule.time_end}}&nbsp;</td>
+                        <td>{{schedule.day}}</td> 
+                        <td>{{schedule.time_start}}&nbsp;-&nbsp;{{schedule.time_end}}</td>
                         <td>{{schedule.room_id}}</td> 
                         <td>{{schedule.user_id}}</td>
                     </tr>
@@ -229,11 +231,11 @@
             .then(()=>{               //if successful then
               fire.$emit('AfterCreate');
               $('#addNew').modal('hide')
-              Swal.fire('Added New schedule!', '', 'success')
-              // toast.fire({
-              //     icon: 'success',
-              //     title: 'Schedule added successfully'
-              // })
+              // Swal.fire('Added New schedule!', '', 'success')
+              Toast.fire({
+                  icon: 'success',
+                  title: 'Schedule added successfully'
+              })
               this.$Progress.finish();
             })
             .catch(()=>{
@@ -282,7 +284,7 @@
                   //     'User has been updated.',
                   //     'success'
                   // )
-                  toast.fire({
+                  Toast.fire({
                       icon: 'success',
                       title: 'Schedule has been updated'
                   })

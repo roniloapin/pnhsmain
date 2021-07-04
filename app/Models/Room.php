@@ -12,7 +12,7 @@ class Room extends Model
         'room','room_number',
     ];
 
-    // public function schedule(){
-    // 	return $this->belongsTo('App\Models\Schedule');
-    // }
+    public function schedule(){
+    	return $this->belongsTo('App\Models\Schedule');
+    }
 }

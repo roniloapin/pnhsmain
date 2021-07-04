@@ -17,8 +17,8 @@ class Strand extends Model
     	return $this->belongsTo('App\Models\Student');
     }
 
-    // public function schedule(){
-    // 	return $this->belongsTo('App\Models\Schedule');
-    // }
+    public function schedule(){
+    	return $this->belongsTo('App\Models\Schedule');
+    }
 
 }
