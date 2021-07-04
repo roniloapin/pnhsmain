@@ -16,14 +16,13 @@ class UserController extends Controller
      */
     public function index()
     {   
-        // $this->authorize('isAdmin');
-        return User::orderBy('name', 'asc')->where('role', 'admin')->orWhere('role', 'teacher')->paginate(20);
-        // $teachers = User::where('role', 'teacher')->paginate(20);
-        // return response()->json([
-        //     'teachers' => $teachers,
-        // ]);
+        return User::orderBy('name', 'asc')->where('role', 'admin')->paginate(20);
     }
 
+    public function indexTeacher()
+    {   
+        return User::orderBy('name', 'asc')->where('role', 'teacher')->paginate(20);
+    }
     /**
      * Store a newly created resource in storage.
      *

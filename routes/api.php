@@ -36,6 +36,7 @@ Route::apiResource('user', UserController::class);
 // Route::get('findUser', 'API\UserController@search');
 Route::get('findUser', [UserController::class, 'search']);
 Route::get('profile', [UserController::class, 'profile']);
+Route::get('teacher', [UserController::class, 'indexTeacher']);
 
 
 Route::apiResource('learner_type', LearnerTypeController::class);
@@ -65,4 +66,5 @@ Route::apiResource('room', RoomController::class);
 Route::get('findRoom', [RoomController::class, 'search']);
 
 Route::apiResource('schedule', ScheduleController::class);
+Route::get('scheduleSHS', [ScheduleController::class,'indexSHS']);
 Route::get('findSchedule', [ScheduleController::class, 'search']);

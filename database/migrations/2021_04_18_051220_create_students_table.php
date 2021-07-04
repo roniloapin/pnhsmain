@@ -56,7 +56,7 @@ class CreateStudentsTable extends Migration
             $table->string('picture')->nullable();
             $table->string('status')->nullable();
 
-            $table->foreignId('strand_id')->constrained()->onDelete('cascade')->onUpdate('casade');
+            $table->foreignId('strand_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

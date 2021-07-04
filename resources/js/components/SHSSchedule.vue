@@ -195,7 +195,7 @@
             });
 		      },
           loadSchedules(){
-              axios.get("api/schedule").then(({ data }) => (this.schedules = data));
+              axios.get("api/scheduleSHS").then(({ data }) => (this.schedules = data));
           },
           loadUsers(){
               axios.get("api/user").then(({ data }) => (this.users = data));

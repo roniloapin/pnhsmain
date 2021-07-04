@@ -514,6 +514,14 @@
                                 </select>
                             </div>
 
+                            <div class="form-group mb-2">
+                                <label for="requirement">Upload Requirements<span class="text-danger">*</span> </label>
+                                <input type="file" name="requirement" id="requirement" ref="requirement" accept="application/pdf"> <br>
+                                <small id="passwordHelpInline" class="text-muted">
+                                    *The requirements shall be scanned and saved as one PDF file.
+                                </small>
+                            </div>
+
                             <div class="form-group mb-1">
                                 <label for="status">Enrollment Status</label>
                                 <select name="status" v-model="form1.status" id="status" class="form-control custom-select"

@@ -123,7 +123,7 @@
                                             <i class="fas fa-file-pdf color-green"></i>
                                         </a>
                                       </td>
-                                      <td>{{student.id}}s</td>
+                                      <td>{{student.id}}</td>
                                       <td style="text-align:left;">{{student.last_name}},&nbsp;{{student.first_name}}&nbsp;{{student.middle_name}}</td>
                                       <td><span class="tag tag-success" style="text-align:center;">{{student.jhs_grade_level}}</span></td>
                                       <td>{{student.gender}}</td>
@@ -510,6 +510,14 @@
                                     <option v-for="schoolyear in schoolyears.data" :key="schoolyear.id" :value="schoolyear.id" selected>{{ schoolyear.schoolyear}}</option>
                                     <has-error :form="form1" field="schoolyear_id"></has-error>
                                 </select>
+                            </div>
+
+                            <div class="form-group mb-2">
+                                <label for="requirement">Upload Requirements<span class="text-danger">*</span> </label>
+                                <input type="file" name="requirement" id="requirement" ref="requirement" accept="application/pdf"> <br>
+                                <small id="passwordHelpInline" class="text-muted">
+                                    *The requirements shall be scanned and saved as one PDF file.
+                                </small>
                             </div>
 
                             <div class="form-group mb-1">

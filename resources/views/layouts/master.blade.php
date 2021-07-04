@@ -186,16 +186,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <li class="nav-item">
                 <router-link to="/users" class="nav-link">
                   <i class="nav-icon fas fa-users-cog"></i>
-                  <p>System Users</p>
+                  <p>Admin Users</p>
                 </router-link>
               </li>
               
-              <!-- <li class="nav-item">
-                  <router-link to="/teachers" class="nav-link">
+              <li class="nav-item">
+                  <router-link to="/teacher" class="nav-link">
                     <i class="nav-icon fas fa-chalkboard-teacher"></i>
                     <p>Teachers</p>
                   </router-link>
-              </li> -->
+              </li>
             
               <li class="nav-item">
                 <router-link to="/configuration" class="nav-link">

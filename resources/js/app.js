@@ -68,6 +68,7 @@ let routes = [
     { path: '/configuration', component: require('./components/Configuration.vue').default },
     { path: '/jhsschedule', component: require('./components/JHSSchedule.vue').default },
     { path: '/shsschedule', component: require('./components/SHSSchedule.vue').default },
+    { path: '/teacher', component: require('./components/Teachers.vue').default },
     { path: '*', component: require('./components/NotFound.vue').default },
 
   ]

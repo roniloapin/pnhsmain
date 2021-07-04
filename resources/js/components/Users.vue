@@ -13,7 +13,7 @@
 
               </div>
               <!-- /.card-header -->
-              <div class="card-body table-responsive p-0" style="height: 300px;">
+              <div class="card-body table-responsive p-0">
                 <table class="table table-head-fixed table-hover">
                   <thead>
                     <tr>

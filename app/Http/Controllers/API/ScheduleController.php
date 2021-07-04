@@ -22,8 +22,13 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-        return Schedule::with(['subject','room', 'strand','user'])->orderBy('day', 'asc')->paginate(20);
+        return Schedule::with(['subject','room','user',])->where('key_stage','jhs')->orderBy('day', 'asc')->paginate(20);
 
+    }
+
+    public function indexSHS()
+    {
+        return Schedule::with(['subject','room','user','strand'])->where('key_stage','shs')->orderBy('day', 'asc')->paginate(20);
     }
 
     /**

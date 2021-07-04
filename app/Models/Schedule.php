@@ -45,7 +45,7 @@ class Schedule extends Model
     }
     public function strand()
     {
-    	return $this->belongsTo(Strand::class, 'strand_id');
+    	return $this->belongsTo(\App\Models\Strand::class);
     }
     public function user()
     {
