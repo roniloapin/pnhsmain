@@ -58,7 +58,7 @@ class Student extends Model
     ];
 
     public function strand(){
-    	return $this->belongsTo('App\Models\Strand');
+    	return $this->belongsTo(\App\Models\Strand::class);
     }
 
 
