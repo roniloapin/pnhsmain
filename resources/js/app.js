@@ -69,6 +69,7 @@ let routes = [
     { path: '/jhsschedule', component: require('./components/JHSSchedule.vue').default },
     { path: '/shsschedule', component: require('./components/SHSSchedule.vue').default },
     { path: '/teacher', component: require('./components/Teachers.vue').default },
+    { name: 'print.profile', path: '/print/printprofile/:id', component: require('./components/PrintSHSStudent.vue').default, props: true },
     { path: '*', component: require('./components/NotFound.vue').default },
 
   ]

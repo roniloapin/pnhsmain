@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Student;
 use App\Models\Religion;
 use App\Models\LearnerType;
 use App\Models\MotherTongue;
@@ -46,6 +47,9 @@ Route::post('/registrationform', [App\Http\Controllers\API\StudentController::cl
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/printstudent', 'PrintStudentController@index')->name('printstudent');
+
 
 //Route::get('{path}',"HomeController@index")->where('path','([A-z\d\-\/_.]+)?' );
 Route::get('/{any}', [App\Http\Controllers\HomeController::class, 'index'])->where('any', '.*');

@@ -79,7 +79,7 @@
             </div>
 
             <form @submit.prevent="editMode ? updateSchedule() : createSchedule()">
-              <div class="modal-body">
+              <div class="modal-body" style="height: 300px; overflow-y: auto;">
                 <div class="form-group mb-1">
                     <label for="grade_level">Grade Level</label>
                     <select name="grade_level" v-model="form1.grade_level" id="grade_level" class="form-control custom-select"

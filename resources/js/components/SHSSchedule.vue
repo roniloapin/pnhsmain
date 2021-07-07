@@ -79,7 +79,7 @@
             </div>
 
             <form @submit.prevent="editMode ? updateSchedule() : createSchedule()">
-              <div class="modal-body">
+              <div class="modal-body" style="height: 300px; overflow-y: auto;">
                 
 
                 <div class="form-group mb-1">

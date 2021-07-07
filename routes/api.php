@@ -53,8 +53,10 @@ Route::get('findStrand', [StrandController::class, 'search']);
 
 Route::apiResource('approved_student', StudentController::class);
 Route::apiResource('pending_student', StudentController::class);
+// Route::apiResource('student', StudentController::class);
 Route::get('shsstudent', [StudentController::class, 'indexSHS']);
 Route::get('findStudent', [StudentController::class, 'search']);
+Route::apiResource('student', StudentController::class);
 
 Route::apiResource('schoolyear', SchoolyearController::class);
 Route::get('findSchoolyear', [SchoolyearController::class, 'search']);

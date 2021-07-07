@@ -115,9 +115,12 @@
                                             <i class="fa fa-trash-alt color-red" title="Delete"></i>
                                         </a>
                                         |
-                                        <a href="#">
+                                        <!-- <a href="#">
                                             <i class="fas fa-eye color-green"></i>
-                                        </a>
+                                        </a> -->
+                                        <router-link :to="{name: 'print.profile', params:{id: student.id}}" target="_blank">
+                                            <i class="fa fa-print color-dark" title="Print"></i>
+                                        </router-link>
                                         |
                                         <a target="_blank" :href="'requirements/'+student.id+'/'+student.requirement">
                                             <i class="fas fa-file-pdf color-green"></i>
