@@ -123,9 +123,12 @@
                                         <!-- <router-link :to="{name: 'student', params:{id: student.id}}" target="_blank">
                                             <i class="fa fa-print color-dark" title="Print"></i>
                                         </router-link> -->
-                                        <router-link :to="{name: 'print.profile', params:{id: student.id}}" target="_blank">
+                                        <!-- <router-link :to="{name: 'print.profile', params:{id: student.id}}" target="_blank">
                                             <i class="fa fa-print color-dark" title="Print"></i>
-                                        </router-link>
+                                        </router-link> -->
+                                        <a target="_blank" :href="'/printstudent/'+student.id">
+                                            <i class="fa fa-print color-dark" title="Print"></i>
+                                        </a>
                                         <!-- <a class="button" href=""></a> -->
                                         |
                                         <a target="_blank" :href="'requirements/'+student.id+'/'+student.requirement">
