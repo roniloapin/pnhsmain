@@ -14,7 +14,7 @@
     .tg .tg-8jgo{border-color:#ffffff;text-align:center;vertical-align:top}
     .tg .tg-zgs3{border-color:#ffffff;font-family:Arial, Helvetica, sans-serif !important;;font-size:15px;font-weight:bold;
     text-align:center;vertical-align:top}
-    .tg .tg-t6b0{border-color:#ffffff;color:#00009b;font-weight:bold;text-align:left;text-decoration:underline;vertical-align:top}
+    .tg .tg-t6b0{border-color:#ffffff;color:#00009b;font-weight:bold;text-align:left;text-decoration:underline;vertical-align:top;line-height:200%;}
     .tg .tg-63xc{border-color:#ffffff;color:#000000;font-family:"Arial Black", Gadget, sans-serif !important;;font-size:18px;
     font-weight:bold;text-align:center;vertical-align:top}
     .tg .tg-2eyt{border-color:#ffffff;font-weight:bold;text-align:left;vertical-align:middle}
@@ -141,7 +141,7 @@
                                 
                                 <tr>
                                 
-                                <br><br><br><br><br><br><td class="tg-t6b0" colspan="4">PARENT/GUARDIAN INFORMATION</td>
+                                <br><br><br><br><td class="tg-t6b0" colspan="4">PARENT/GUARDIAN INFORMATION</td>
                                 </tr>
                                 <tr>
                                     <td class="tg-zv4m">Father's Name:</td>
