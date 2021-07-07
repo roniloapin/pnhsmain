@@ -14,8 +14,8 @@ use App\Models\Schoolyear;
 class PrintStudentController extends Controller
 {
     public function index($id){
-        $data = Student::with(['learner_type','mother_tongue'])->findOrFail($id);
-        
+        // $data = Student::with(['learner_type','mother_tongue'])->findOrFail($id);
+        $data = Student::findOrFail($id);
         $pdf = PDF::loadView('print', [
             'data' => $data,
         ])->setPaper('Legal', 'portrait');;
