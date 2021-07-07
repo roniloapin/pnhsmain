@@ -46,9 +46,12 @@
                                             <i class="fa fa-trash-alt color-red" title="Delete"></i>
                                         </a>
                                         |
-                                        <router-link :to="{name: 'print.profile', params:{id: student.id}}" target="_blank">
+                                        <!-- <router-link :to="{name: 'print.profile', params:{id: student.id}}" target="_blank">
                                             <i class="fa fa-print color-dark" title="Print"></i>
-                                        </router-link>
+                                        </router-link> -->
+                                        <a target="_blank" :href="'/printstudent/'+student.id">
+                                            <i class="fa fa-print color-dark" title="Print"></i>
+                                        </a>
                                         |
                                         <a target="_blank" :href="'requirements/'+student.id+'/'+student.requirement">
                                             <i class="fas fa-file-pdf color-green"></i>
@@ -118,9 +121,12 @@
                                         <!-- <a href="#">
                                             <i class="fas fa-eye color-green"></i>
                                         </a> -->
-                                        <router-link :to="{name: 'print.profile', params:{id: student.id}}" target="_blank">
+                                        <!-- <router-link :to="{name: 'print.profile', params:{id: student.id}}" target="_blank">
                                             <i class="fa fa-print color-dark" title="Print"></i>
-                                        </router-link>
+                                        </router-link> -->
+                                        <a target="_blank" :href="'/printstudent/'+student.id">
+                                            <i class="fa fa-print color-dark" title="Print"></i>
+                                        </a>
                                         |
                                         <a target="_blank" :href="'requirements/'+student.id+'/'+student.requirement">
                                             <i class="fas fa-file-pdf color-green"></i>

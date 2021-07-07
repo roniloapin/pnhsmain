@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Models\Strand;
+use App\Models\LearnerType;
+use App\Models\MotherTongue;
+use App\Models\Religion;
+use App\Models\SchoolYear;
 
 class Student extends Model
 {
@@ -62,9 +66,24 @@ class Student extends Model
     	return $this->belongsTo(\App\Models\Strand::class);
     }
 
+    public function learner_type(){
+    	return $this->belongsTo(\App\Models\LearnerType::class);
+    }
 
+    public function mother_tongue(){
+    	return $this->belongsTo(\App\Models\MotherTongue::class);
+    }
 
     public function religion(){
-    	return $this->hasOne('App\Models\Religion');
+    	return $this->belongsTo(\App\Models\Religion::class);
     }
+
+    public function schoolyear(){
+    	return $this->belongsTo(\App\Models\Schoolyear::class);
+    }
+
+
+    // public function religion(){
+    // 	return $this->hasOne('App\Models\Religion');
+    // }
 }
