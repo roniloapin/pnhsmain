@@ -3543,6 +3543,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -3586,7 +3591,7 @@ __webpack_require__.r(__webpack_exports__);
     loadUsers: function loadUsers() {
       var _this3 = this;
 
-      axios.get("api/user").then(function (_ref2) {
+      axios.get("api/teacher").then(function (_ref2) {
         var data = _ref2.data;
         return _this3.users = data;
       });
@@ -5049,7 +5054,7 @@ __webpack_require__.r(__webpack_exports__);
     loadUsers: function loadUsers() {
       var _this3 = this;
 
-      axios.get("api/user").then(function (_ref2) {
+      axios.get("api/teacher").then(function (_ref2) {
         var data = _ref2.data;
         return _this3.users = data;
       });
@@ -73957,14 +73962,15 @@ var render = function() {
                     staticStyle: { height: "300px", "overflow-y": "auto" }
                   },
                   [
-                    _c("div", { staticClass: "form-group mb-1" }, [
-                      _c("label", { attrs: { for: "grade_level" } }, [
-                        _vm._v("Grade Level")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "select",
-                        {
+                    _c(
+                      "div",
+                      { staticClass: "form-group mb-1" },
+                      [
+                        _c("label", { attrs: { for: "grade_level" } }, [
+                          _vm._v("Grade Level and Section")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
                           directives: [
                             {
                               name: "model",
@@ -73973,58 +73979,36 @@ var render = function() {
                               expression: "form1.grade_level"
                             }
                           ],
-                          staticClass: "form-control custom-select",
+                          staticClass: "form-control",
                           class: {
                             "is-invalid": _vm.form1.errors.has("grade_level")
                           },
-                          attrs: { name: "grade_level", id: "grade_level" },
+                          attrs: {
+                            type: "text",
+                            name: "grade_level",
+                            placeholder: "Enter Grade Level and Section"
+                          },
+                          domProps: { value: _vm.form1.grade_level },
                           on: {
-                            change: function($event) {
-                              var $$selectedVal = Array.prototype.filter
-                                .call($event.target.options, function(o) {
-                                  return o.selected
-                                })
-                                .map(function(o) {
-                                  var val = "_value" in o ? o._value : o.value
-                                  return val
-                                })
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
                               _vm.$set(
                                 _vm.form1,
                                 "grade_level",
-                                $event.target.multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
+                                $event.target.value
                               )
                             }
                           }
-                        },
-                        [
-                          _c(
-                            "option",
-                            {
-                              attrs: { value: "", disabled: "", selected: "" }
-                            },
-                            [_vm._v("Select")]
-                          ),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "7" } }, [
-                            _vm._v("7")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "8" } }, [
-                            _vm._v("8")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "9" } }, [
-                            _vm._v("9")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "10" } }, [
-                            _vm._v("10")
-                          ])
-                        ]
-                      )
-                    ]),
+                        }),
+                        _vm._v(" "),
+                        _c("has-error", {
+                          attrs: { form: _vm.form1, field: "grade_level" }
+                        })
+                      ],
+                      1
+                    ),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group mb-1" }, [
                       _vm._m(3),
@@ -77732,7 +77716,7 @@ var render = function() {
       _c("div", { staticClass: "col-md-10" }, [
         _c("h3", [
           _vm._v(
-            "\n                Sorry, we are not able to find what you are looking for..."
+            "\n                Sorry, you don't have access to this site. Please contact the system administrator."
           )
         ]),
         _vm._v(" "),

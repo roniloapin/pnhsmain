@@ -23,6 +23,12 @@ Route::get('/', function () {
     return redirect('/registrationform');
 });
 
+Route::get('/schedule', function () {
+    return view('schedule');
+});
+
+// Route::get('/schedule', [App\Http\Controllers\ScheduleController::class, 'index'])->name('schedule');
+
 
 Route::get('/registrationform', function () {
     $religions = Religion::all();

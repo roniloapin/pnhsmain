@@ -81,8 +81,8 @@
             <form @submit.prevent="editMode ? updateSchedule() : createSchedule()">
               <div class="modal-body" style="height: 300px; overflow-y: auto;">
                 <div class="form-group mb-1">
-                    <label for="grade_level">Grade Level</label>
-                    <select name="grade_level" v-model="form1.grade_level" id="grade_level" class="form-control custom-select"
+                    <label for="grade_level">Grade Level and Section</label>
+                    <!-- <select name="grade_level" v-model="form1.grade_level" id="grade_level" class="form-control custom-select"
                         :class="{
                         'is-invalid': form1.errors.has('grade_level') }">
                         <option value="" disabled selected>Select</option>
@@ -90,7 +90,11 @@
                         <option value="8">8</option>
                         <option value="9">9</option>
                         <option value="10">10</option>
-                    </select> 
+                    </select>  -->
+                    <input v-model="form1.grade_level" type="text" name="grade_level"
+                        placeholder="Enter Grade Level and Section"
+                        class="form-control" :class="{ 'is-invalid': form1.errors.has('grade_level') }">
+                    <has-error :form="form1" field="grade_level"></has-error>
                 </div>
 
                 <div class="form-group mb-1">
@@ -148,6 +152,7 @@
                         <option value="" disabled selected>Select Teacher</option>
                         <option v-for="user in users.data" :key="user.id" :value="user.id" selected>{{ user.name}}</option>
                         <has-error :form="form1" field="user_id"></has-error>
+                        
                     </select>
                 </div>
               </div>
@@ -165,7 +170,9 @@
 </template>
 
 <script>
+    
     export default {
+      
         data(){
           return{
             editMode: false,
@@ -200,7 +207,7 @@
               axios.get("api/schedule").then(({ data }) => (this.schedules = data));
           },
           loadUsers(){
-              axios.get("api/user").then(({ data }) => (this.users = data));
+              axios.get("api/teacher").then(({ data }) => (this.users = data));
           },
           loadSubjects(){
               axios.get("api/subject").then(({ data }) => (this.subjects = data));

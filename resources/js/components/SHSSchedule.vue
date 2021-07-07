@@ -198,7 +198,7 @@
               axios.get("api/scheduleSHS").then(({ data }) => (this.schedules = data));
           },
           loadUsers(){
-              axios.get("api/user").then(({ data }) => (this.users = data));
+              axios.get("api/teacher").then(({ data }) => (this.users = data));
           },
           loadSubjects(){
               axios.get("api/subject").then(({ data }) => (this.subjects = data));
