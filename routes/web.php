@@ -48,7 +48,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/printstudent', 'PrintStudentController@index')->name('printstudent');
+// Route::get('/printstudent', 'PrintStudentController@index')->name('printstudent');
+Route::get('/printstudent/{id}', [App\Http\Controllers\PrintStudentController::class, 'index'])->name('printstudent');
 
 
 //Route::get('{path}',"HomeController@index")->where('path','([A-z\d\-\/_.]+)?' );

@@ -5771,6 +5771,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mixins: [(vue2_filters__WEBPACK_IMPORTED_MODULE_0___default().mixin)],
@@ -79483,95 +79486,86 @@ var render = function() {
                           _vm._v(" "),
                           _vm._l(_vm.pending_students.data, function(student) {
                             return _c("tr", { key: student.id }, [
-                              _c(
-                                "td",
-                                [
-                                  _c(
-                                    "a",
-                                    {
-                                      attrs: { href: "#" },
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.editStudentModal(student)
-                                        }
+                              _c("td", [
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: { href: "#" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.editStudentModal(student)
                                       }
-                                    },
-                                    [
-                                      _c("i", {
-                                        staticClass: "fa fa-edit color-blue",
-                                        attrs: { title: "Edit" }
-                                      })
-                                    ]
-                                  ),
-                                  _vm._v(
-                                    "\n                                        |\n                                        "
-                                  ),
-                                  _c(
-                                    "a",
-                                    {
-                                      attrs: { href: "#" },
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.deleteStudent(student.id)
-                                        }
+                                    }
+                                  },
+                                  [
+                                    _c("i", {
+                                      staticClass: "fa fa-edit color-blue",
+                                      attrs: { title: "Edit" }
+                                    })
+                                  ]
+                                ),
+                                _vm._v(
+                                  "\n                                        |\n                                        "
+                                ),
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: { href: "#" },
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.deleteStudent(student.id)
                                       }
-                                    },
-                                    [
-                                      _c("i", {
-                                        staticClass:
-                                          "fa fa-trash-alt color-red",
-                                        attrs: { title: "Delete" }
-                                      })
-                                    ]
-                                  ),
-                                  _vm._v(
-                                    "\n                                        |\n                                        "
-                                  ),
-                                  _vm._v(" "),
-                                  _c(
-                                    "router-link",
-                                    {
-                                      attrs: {
-                                        to: {
-                                          name: "print.profile",
-                                          params: { id: student.id }
-                                        },
-                                        target: "_blank"
-                                      }
-                                    },
-                                    [
-                                      _c("i", {
-                                        staticClass: "fa fa-print color-dark",
-                                        attrs: { title: "Print" }
-                                      })
-                                    ]
-                                  ),
-                                  _vm._v(" "),
-                                  _vm._v(
-                                    "\n                                        |\n                                        "
-                                  ),
-                                  _c(
-                                    "a",
-                                    {
-                                      attrs: {
-                                        target: "_blank",
-                                        href:
-                                          "requirements/" +
-                                          student.id +
-                                          "/" +
-                                          student.requirement
-                                      }
-                                    },
-                                    [
-                                      _c("i", {
-                                        staticClass:
-                                          "fas fa-file-pdf color-green"
-                                      })
-                                    ]
-                                  )
-                                ],
-                                1
-                              ),
+                                    }
+                                  },
+                                  [
+                                    _c("i", {
+                                      staticClass: "fa fa-trash-alt color-red",
+                                      attrs: { title: "Delete" }
+                                    })
+                                  ]
+                                ),
+                                _vm._v(
+                                  "\n                                        |\n                                        "
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: {
+                                      target: "_blank",
+                                      href: "/printstudent/" + student.id
+                                    }
+                                  },
+                                  [
+                                    _c("i", {
+                                      staticClass: "fa fa-print color-dark",
+                                      attrs: { title: "Print" }
+                                    })
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _vm._v(
+                                  "\n                                        |\n                                        "
+                                ),
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: {
+                                      target: "_blank",
+                                      href:
+                                        "requirements/" +
+                                        student.id +
+                                        "/" +
+                                        student.requirement
+                                    }
+                                  },
+                                  [
+                                    _c("i", {
+                                      staticClass: "fas fa-file-pdf color-green"
+                                    })
+                                  ]
+                                )
+                              ]),
                               _vm._v(" "),
                               _c("td", [_vm._v(_vm._s(student.id))]),
                               _vm._v(" "),
