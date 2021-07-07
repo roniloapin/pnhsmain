@@ -99,6 +99,7 @@ class StudentController extends Controller
         'strand_id'=>$request['strand_id'],
         'schoolyear_id'=>$request['schoolyear_id'],
         'requirement' => $requirement_filename.'.pdf',
+        'picture'=>$request['picture'],
         'status' => 'Pending',
         ]);
 

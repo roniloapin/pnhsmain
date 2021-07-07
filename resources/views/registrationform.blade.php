@@ -148,6 +148,17 @@
                             </div>
                         </div>
                         <div class="form-group mb-2">
+                            <!-- {{-- <span class="input-group-text" style="border-top-right-radius: 0rem; border-bottom-right-radius: 0rem;" ><i class="fa fa-envelope"></i></span> --}} -->
+                            
+                            <label for="psa">Contact No.</label>
+                            <input id="picture" type="text" placeholder="Enter Contact No." class="form-control @error('picture') is-invalid @enderror" name="picture" value="{{ old('picture') }}"  autocomplete="picture">
+                            @error('picture')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group mb-2">
                             {{-- <span class="input-group-text" style="border-top-right-radius: 0rem; border-bottom-right-radius: 0rem;" ><i class="fa fa-envelope"></i></span> --}}
                             
                             <label for="religion_id">Religion <span class="text-danger">*</span> </label>
@@ -163,9 +174,8 @@
                                 </span>
                             @enderror
                         </div>
+                        
                         <div class="form-group mb-2">
-                            {{-- <span class="input-group-text" style="border-top-right-radius: 0rem; border-bottom-right-radius: 0rem;" ><i class="fa fa-envelope"></i></span> --}}
-                            
                             <label for="psa">Birth Certificate No.</label>
                             <input id="psa" type="text" placeholder="Enter PSA Birth Certificate No." class="form-control @error('psa') is-invalid @enderror" name="psa" value="{{ old('psa') }}"  autocomplete="psa">
                             @error('psa')

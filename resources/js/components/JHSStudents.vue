@@ -46,9 +46,9 @@
                                             <i class="fa fa-trash-alt color-red" title="Delete"></i>
                                         </a>
                                         |
-                                        <a href="#">
-                                            <i class="fas fa-eye color-green"></i>
-                                        </a>
+                                        <router-link :to="{name: 'print.profile', params:{id: student.id}}" target="_blank">
+                                            <i class="fa fa-print color-dark" title="Print"></i>
+                                        </router-link>
                                         |
                                         <a target="_blank" :href="'requirements/'+student.id+'/'+student.requirement">
                                             <i class="fas fa-file-pdf color-green"></i>
@@ -245,6 +245,14 @@
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
                                 </select> 
+                            </div>
+
+                            <div class="form-group mb-1">
+                                <label for="picture">Contact No. </label>
+                                <input v-model="form1.picture" type="text" name="picture"
+                                    placeholder="Contact No."
+                                    class="form-control" :class="{ 'is-invalid': form1.errors.has('picture') }">
+                                <has-error :form="form1" field="picture"></has-error>
                             </div>
 
                             <div class="form-group mb-1">
@@ -489,7 +497,7 @@
                                 <select name="jhs_grade_level" v-model="form1.jhs_grade_level" id="jhs_grade_level" class="form-control custom-select"
                                     :class="{
                                     'is-invalid': form1.errors.has('jhs_grade_level') }">
-                                    <option value="" disabled selected>Select</option>
+                                    <option value="" selected>Select</option>
                                     <option value="7">7</option>
                                     <option value="8">8</option>
                                     <option value="9">9</option>
@@ -500,7 +508,7 @@
                             <div class="form-group mb-1">
                                 <label for="strand_id">If Senior High School, select STRAND  </label>
                                 <select class="form-control"  name="strand_id"  v-model="form1.strand_id" :class="{ 'is-invalid': form1.errors.has('strand_id') }">
-                                    <option value="" disabled selected>Select Strand</option>
+                                    <option value="" selected>Select Strand</option>
                                     <option v-for="strand in strands.data" :key="strand.id" :value="strand.id" selected>{{ strand.strand_name}}</option>
                                     <has-error :form="form1" field="strand_id"></has-error>
                                 </select>
@@ -602,6 +610,7 @@
                   strand_id: '',
                   schoolyear_id: '',
                   requirement:'',
+                  picture:'',
                   status:'',
                 }),
             }

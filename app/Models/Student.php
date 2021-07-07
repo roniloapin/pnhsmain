@@ -54,6 +54,7 @@ class Student extends Model
         'strand_id',
         'schoolyear_id',
         'requirement',
+        'picture',
         'status',
     ];
 
