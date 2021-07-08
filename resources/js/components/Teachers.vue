@@ -109,7 +109,7 @@
                     <select name="role" v-model="form.role" id="role" class="form-control custom-select" :class="{
                     'is-invalid': form.errors.has('role') }">
                         <option value="" disabled>Select User Role</option>
-                        <option value="admin">Admin</option>
+                        <!-- <option value="admin">Admin</option> -->
                         <option value="teacher">Teacher</option>
                         <!-- <option value="teacher">Teacher</option>
                         <option value="student">Student</option> -->

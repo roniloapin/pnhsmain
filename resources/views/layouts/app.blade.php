@@ -60,7 +60,7 @@
 						<h6 class="fa fa-envelope fa-lg" aria-hidden="true"> <a href="mailto:inquiry@pnhs.edu.ph" target="_blank">inquiry@ust-legazpi.edu.ph</a></h6>
 			    </div> -->
 
-                <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();" class="navbar-brand" style="color: white;"> | System is under maintenance |  | System is under maintenance |  | System is under maintenance |  | System is under maintenance |  | System is under maintenance | </marquee>
+                <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();" class="navbar-brand" style="color: white;"> Enrollment for School Year 2021-2022 is on-going. </marquee>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -75,6 +75,9 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="/announcement" style="color: white;">Announcement</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/schedule" style="color: white;">Schedule</a>
                         </li>

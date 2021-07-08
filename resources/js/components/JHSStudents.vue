@@ -237,7 +237,7 @@
                             <div class="form-group mb-1">
                                 <label for="date_of_birth">Date of Birth <span class="text-danger">*</span> </label>
                                 <input v-model="form1.date_of_birth" type="date" name="date_of_birth"
-                                    placeholder="E-mail Address"
+                                    placeholder="Date of Birth"
                                     class="form-control" :class="{ 'is-invalid': form1.errors.has('date_of_birth') }">
                                 <has-error :form="form1" field="date_of_birth"></has-error>
                             </div>

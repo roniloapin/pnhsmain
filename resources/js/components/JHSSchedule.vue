@@ -1,14 +1,14 @@
 <template>
     <div class="container">
          <h3><strong> Class Schedule</strong></h3>
-        <div class="row" v-if="$gate.isAdmin()">
+        <div class="row" v-if="$gate.isTeacherOrAdmin()">
           <div class="col-md-12" >
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">JHS Schedule</h3>
 
                 <div class="card-tools">
-                  <button type="button" class="btn btn-success" @click="newModal">Add Schedule</button>
+                  <button type="button" class="btn btn-success" @click="newModal" v-if="$gate.isAdmin()">Add Schedule</button>
                 </div>
 
               </div>
@@ -17,7 +17,7 @@
                 <table class="table table-head-fixed table-hover">
                   <thead>
                     <tr style="text-align:center;">
-                        <th>Action</th>
+                        <th v-if="$gate.isAdmin()">Action</th>
                         <th>Grade Level</th>
                         <th>Subject</th>
                         <th>Day</th>
@@ -31,7 +31,7 @@
                         <td colspan="6" class="text-center"><label>No records yet.</label></td>
                     </tr>
                     <tr style="text-align:center;" v-for="schedule in schedules.data" :key="schedule.id">
-                        <td>
+                        <td v-if="$gate.isAdmin()">
                             <a href="#" @click="editModal(schedule)">
                                 <i class="fa fa-edit color-blue" title="Edit"></i>
                             </a>
@@ -63,7 +63,7 @@
           </div>
         </div>
 
-      <div v-if="!$gate.isAdmin()">
+      <div v-if="!$gate.isTeacherOrAdmin()">
             <not-found></not-found>
       </div>
 

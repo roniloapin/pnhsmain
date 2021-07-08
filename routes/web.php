@@ -8,6 +8,7 @@ use App\Models\MotherTongue;
 use App\Models\Strand;
 use App\Models\Schoolyear;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,11 +24,12 @@ Route::get('/', function () {
     return redirect('/registrationform');
 });
 
-// Route::get('/schedule', function () {
-//     return view('schedule');
+// Route::get('/announcement', function () {
+//     return view('announcement');
 // });
 
 Route::get('/schedule', [App\Http\Controllers\ScheduleController::class, 'index'])->name('sched','schedd');
+Route::get('/announcement', [App\Http\Controllers\PublicAnnouncementController::class, 'index'])->name('announcement');
 // Route::get('/schedule', [App\Http\Controllers\ScheduleController::class, 'indexSHS'])->name('sdata');
 
 

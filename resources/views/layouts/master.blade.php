@@ -149,7 +149,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </ul>
             
           </li>
-
+          @endcan
+          @can('isTeacherOrAdmin')
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-clock"></i>
@@ -174,7 +175,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </li>
             </ul>
           </li>
-
+          @endcan
+          @can('isAdmin')
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-cogs"></i>
@@ -228,6 +230,39 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </router-link>
           </li>       
+          @endcan
+
+
+          @can('isTeacherOrAdmin')
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-bullhorn"></i>
+              <p>
+                Announcements
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview" style="margin-left:20px;">
+              <li class="nav-item">
+                <router-link to="/announcement" class="nav-link">
+                  <i class="nav-icon fas fa-bullhorn"></i>
+                  <p>
+                    Faculty Announcement
+                  </p>
+                </router-link>
+              </li> 
+
+              <li class="nav-item">
+                <router-link to="/publicannouncement" class="nav-link">
+                  <i class="nav-icon fas fa-bullhorn"></i>
+                  <p>
+                    Public Announcement
+                  </p>
+                </router-link>
+              </li>
+              
+            </ul>
+          </li>
           @endcan
 
           <li class="nav-item">

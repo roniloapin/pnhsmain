@@ -12,6 +12,10 @@ use App\Http\Controllers\API\SchoolyearController;
 use App\Http\Controllers\API\SubjectController;
 use App\Http\Controllers\API\RoomController;
 use App\Http\Controllers\API\ScheduleController;
+use App\Http\Controllers\API\AnnouncementController;
+use App\Http\Controllers\API\PublicAnnouncementController;
+
+
 
 
 
@@ -70,3 +74,9 @@ Route::get('findRoom', [RoomController::class, 'search']);
 Route::apiResource('schedule', ScheduleController::class);
 Route::get('scheduleSHS', [ScheduleController::class,'indexSHS']);
 Route::get('findSchedule', [ScheduleController::class, 'search']);
+
+Route::apiResource('announcement', AnnouncementController::class);
+Route::get('findAnnouncement', [AnnouncementController::class, 'search']);
+
+Route::apiResource('publicannouncement', PublicAnnouncementController::class);
+Route::get('findPublicAnnouncement', [PublicAnnouncementController::class, 'search']);

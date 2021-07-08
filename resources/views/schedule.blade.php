@@ -28,7 +28,7 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header card-primary card-outline">
-                                    <h5 class="m-0 fas text-primary"> Junior High School Schedule</h5>
+                                    <h5 class=" text-primary bold-title"> Junior High School Schedule</h5>
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body table-responsive p-0" >
@@ -69,7 +69,7 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header card-success card-outline">
-                                        <h5 class="m-0 fas text-success"> Senior High School Schedule</h5>
+                                        <h5 class=" text-success bold-title"> Senior High School Schedule</h5>
                                     </div>
                                     <!-- /.card-header -->
                                     <div class="card-body table-responsive p-0" >
