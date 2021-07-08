@@ -14,11 +14,12 @@ class ScheduleController extends Controller
 {
     public function index(){
         $data = Schedule::where('key_stage','jhs')->orderBy('grade_level', 'asc')->orderBy('day', 'asc')->paginate(20); 
-        // $sdata = Schedule::where('key_stage','shs')->orderBy('grade_level', 'asc')->orderBy('day', 'asc')->paginate(20); 
+        $sdata = Schedule::where('key_stage','shs')->orderBy('day', 'asc')->paginate(20); 
         // return response()->json([
         //     'data' => $data,
+        //     'sdata' => $sdata,
         // ]);
-        return view('schedule',['schedules'=>$data]);
+        return view('schedule',['sched'=>$data, 'schedd'=>$sdata]);
     }
 
 }

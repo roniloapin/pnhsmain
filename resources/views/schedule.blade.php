@@ -35,8 +35,8 @@
                                     <table class="table table-head-fixed table-hover">
                                         <thead>
                                             <tr style="text-align:center;">
-                                                <th>Grade Level</th>
-                                                <th>Subject</th>
+                                                <th>Grade Level/Section</th>
+                                                <th>Subject</th>    
                                                 <th>Day</th>
                                                 <th>Time</th>
                                                 <th>Room</th>
@@ -44,14 +44,14 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach($schedules as $schedule)
+                                            @foreach($sched as $sched)
                                             <tr style="text-align:center;">
-                                                <td>{{ $schedule->grade_level }}</td>
-                                                <td>{{ $schedule->subject->subject }}</td> 
-                                                <td>{{ $schedule->day }}</td> 
-                                                <td>{{ $schedule->time_start }}&nbsp;-&nbsp;{{ $schedule->time_end }}</td>
-                                                <td>{{ $schedule->room->room }}</td> 
-                                                <td>{{ $schedule->user->name }}</td>
+                                                <td>{{ $sched->grade_level }}</td>
+                                                <td>{{ $sched->subject->subject }}</td> 
+                                                <td>{{ $sched->day }}</td> 
+                                                <td>{{ $sched->time_start }}&nbsp;-&nbsp;{{ $sched->time_end }}</td>
+                                                <td>{{ $sched->room->room }}</td> 
+                                                <td>{{ $sched->user->name }}</td>
                                             </tr>
                                             @endforeach
                                         </tbody>
@@ -76,7 +76,7 @@
                                         <table class="table table-head-fixed table-hover">
                                             <thead>
                                                 <tr style="text-align:center;">
-                                                    <th>Grade Level</th>
+                                                    <th>STRAND</th>
                                                     <th>Subject</th>
                                                     <th>Day</th>
                                                     <th>Time</th>
@@ -85,14 +85,14 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach($schedules as $schedule)
+                                                @foreach($schedd as $schedd)
                                                 <tr style="text-align:center;">
-                                                    <td>{{ $schedule->grade_level }}</td>
-                                                    <td>{{ $schedule->subject->subject }}</td> 
-                                                    <td>{{ $schedule->day }}</td> 
-                                                    <td>{{ $schedule->time_start }}&nbsp;-&nbsp;{{ $schedule->time_end }}</td>
-                                                    <td>{{ $schedule->room->room }}</td> 
-                                                    <td>{{ $schedule->user->name }}</td>
+                                                    <td>{{ $schedd->strand->strand_code }}</td>
+                                                    <td>{{ $schedd->subject->subject }}</td> 
+                                                    <td>{{ $schedd->day }}</td> 
+                                                    <td>{{ $schedd->time_start }}&nbsp;-&nbsp;{{ $schedd->time_end }}</td>
+                                                    <td>{{ $schedd->room->room }}</td> 
+                                                    <td>{{ $schedd->user->name }}</td>
                                                 </tr>
                                                 @endforeach
                                             </tbody>

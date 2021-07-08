@@ -27,7 +27,7 @@ Route::get('/', function () {
 //     return view('schedule');
 // });
 
-Route::get('/schedule', [App\Http\Controllers\ScheduleController::class, 'index'])->name('schedule');
+Route::get('/schedule', [App\Http\Controllers\ScheduleController::class, 'index'])->name('sched','schedd');
 // Route::get('/schedule', [App\Http\Controllers\ScheduleController::class, 'indexSHS'])->name('sdata');
 
 
