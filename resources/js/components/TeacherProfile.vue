@@ -57,14 +57,16 @@
     import Form from 'vform'
     export default {
         data(){
+            
             return{
+                
                 form: new Form({
-                id: '',
-                name: '',
-                email: '',
-                password: '',
-                role: '',
-                remarks: '',
+                    id: '',
+                    name: '',
+                    email: '',
+                    password: '',
+                    role: '',
+                    remarks: '',
                 })
             }
         },
@@ -72,7 +74,7 @@
             updateUser(){
                 // console.log('editing data');
               this.$Progress.start();
-              this.form.put("api/user/"+this.form.id)
+              this.form.put("api/profile/"+this.form.id)
               .then(()=>{
                   $('#addNew').modal('hide')
                   Swal.fire(
@@ -88,14 +90,6 @@
                   this.$Progress.fail();
               })
             },
-            // togglePassword(){
-            //     var x = document.getElementById("password");
-            //     if (x.type === "password") {
-            //         x.type = "text";
-            //     } else {
-            //         x.type = "password";
-            //     }
-            // }
         },
         created(){
             axios.get("api/profile").then(({ data }) => (this.form.fill(data)));

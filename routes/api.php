@@ -14,6 +14,7 @@ use App\Http\Controllers\API\RoomController;
 use App\Http\Controllers\API\ScheduleController;
 use App\Http\Controllers\API\AnnouncementController;
 use App\Http\Controllers\API\PublicAnnouncementController;
+use Illuminate\Support\Facades\Auth;
 
 
 

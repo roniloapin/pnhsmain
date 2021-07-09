@@ -6,9 +6,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+    // public function __construct()
+    // {
+    //     $this->middleware('auth:api');
+    // }
     /**
      * Display a listing of the resource.
      *
@@ -59,7 +64,8 @@ class UserController extends Controller
 
     public function profile()
     {
-        return auth('api')->user();
+        // return auth('api')->user();
+        Auth::user();
     }
 
     /**

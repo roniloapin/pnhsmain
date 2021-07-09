@@ -221,16 +221,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>       
           @endcan -->
 
-          @can('isTeacher')
-          <li class="nav-item">
-            <router-link to="/teacherprofile" class="nav-link">
-              <i class="nav-icon fas fa-user-edit"></i>
-              <p>
-                Teacher Profile
-              </p>
-            </router-link>
-          </li>       
-          @endcan
+
 
 
           @can('isTeacherOrAdmin')
@@ -265,20 +256,39 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
           @endcan
 
+          <!-- @can('isTeacher')
           <li class="nav-item">
-                  <a class="nav-link" href="{{ route('logout') }}"
-                      onclick="event.preventDefault();
-                      document.getElementById('logout-form').submit();">
-                      <i class="fa fa-sign-out-alt nav-icon" style="color:red;"></i>
-                      <p>
-                        {{ __('Logout') }}  
-                      </p>
-                  </a>
+            <router-link to="/teacherprofile" class="nav-link">
+              <i class="nav-icon fas fa-user-edit"></i>
+              <p>
+                Teacher Profile
+              </p>
+            </router-link>
+          </li>       
+          @endcan -->
+          
+          <li class="nav-item">
+            <router-link to="/about" class="nav-link">
+              <i class="nav-icon fas fa-info-circle"></i>
+              <p>
+                About
+              </p>
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
+                <i class="fa fa-sign-out-alt nav-icon" style="color:red;"></i>
+                <p>
+                  {{ __('Logout') }}  
+                </p>
+            </a>
 
-                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                      @csrf
-                  </form>
-            </li>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
