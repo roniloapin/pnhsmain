@@ -746,9 +746,10 @@
         created() {
             fire.$on('searching', ()=>{
                 let query = this.$parent.search;
-                axios.get('api/findLearnerType?q=' + query)
+                axios.get('api/approved_student?u=' + query)
                 .then(({data}) => {
-                    this.learner_types = data
+                    this.approved_students = data,
+                    this.pending_students = data
                 })
                 .catch(()=>{
                     

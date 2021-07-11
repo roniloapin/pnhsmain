@@ -3618,9 +3618,88 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
+  data: function data() {
+    return {
+      userCount: {},
+      studentCount: {},
+      announcementCount: {},
+      publicAnnouncementCount: {},
+      scheduleCount: {}
+    };
+  },
+  methods: {
+    loadDashboards: function loadDashboards() {
+      var _this = this;
+
+      axios.get("api/dashboard").then(function (_ref) {
+        var data = _ref.data;
+        return [_this.userCount = data, _this.studentCount = data, _this.scheduleCount = data, _this.announcementCount = data, _this.publicAnnouncementCount = data];
+      });
+    }
+  },
+  created: function created() {
+    var _this2 = this;
+
+    this.loadDashboards();
+    fire.$on('AfterCreate', function () {
+      _this2.loadDashboards();
+    });
   }
 });
 
@@ -4816,9 +4895,9 @@ __webpack_require__.r(__webpack_exports__);
 
     fire.$on('searching', function () {
       var query = _this11.$parent.search;
-      axios.get('api/findLearnerType?q=' + query).then(function (_ref6) {
+      axios.get('api/approved_student?u=' + query).then(function (_ref6) {
         var data = _ref6.data;
-        _this11.learner_types = data;
+        _this11.approved_students = data, _this11.pending_students = data;
       })["catch"](function () {});
     });
     this.loadLearnerTypes();
@@ -6339,6 +6418,7 @@ __webpack_require__.r(__webpack_exports__);
       schoolyears: {},
       approved_students: {},
       pending_students: {},
+      students: {},
       form1: new Form({
         id: '',
         learner_type_id: '',
@@ -6530,9 +6610,9 @@ __webpack_require__.r(__webpack_exports__);
 
     fire.$on('searching', function () {
       var query = _this11.$parent.search;
-      axios.get('api/findLearnerType?q=' + query).then(function (_ref6) {
+      axios.get('api/findStudent?u=' + query).then(function (_ref6) {
         var data = _ref6.data;
-        _this11.learner_types = data;
+        _this11.students = data;
       })["catch"](function () {});
     });
     this.loadLearnerTypes();
@@ -7500,7 +7580,7 @@ var routes = [{
   path: '/studentprofile',
   component: __webpack_require__(/*! ./components/StudentProfile.vue */ "./resources/js/components/StudentProfile.vue").default
 }, {
-  path: '/teacherprofile',
+  path: '/profile',
   component: __webpack_require__(/*! ./components/TeacherProfile.vue */ "./resources/js/components/TeacherProfile.vue").default
 }, {
   path: '/jhsstudents',
@@ -7575,7 +7655,9 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_4__.default({
   el: '#app',
   router: router,
   data: {
-    search: ''
+    search: '',
+    searchshs: '',
+    searchjhs: ''
   },
   methods: {
     searchit: _.debounce(function () {
@@ -75007,29 +75089,139 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _vm.$gate.isTeacher()
+          ? _c("div", { staticClass: "row mt-2" }, [
+              _c("h2", { staticClass: "text-primary" }, [
+                _vm._v("Welcome to PNHS Enrollment System!")
+              ])
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.$gate.isAdmin()
+          ? _c("div", { staticClass: "row mt-2" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-3 col-sm-6 col-xs-12 mt-2" }, [
+                _c("div", { staticClass: "info-box" }, [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "info-box-content" }, [
+                    _c("span", { staticClass: "info-box-text text-center" }, [
+                      _vm._v("System Users")
+                    ]),
+                    _vm._v(" "),
+                    _c("h2", { staticClass: "info-box-number text-center" }, [
+                      _vm._v(" " + _vm._s(_vm.userCount.userCount) + " ")
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-3 col-sm-6 col-xs-12 mt-2" }, [
+                _c("div", { staticClass: "info-box" }, [
+                  _vm._m(2),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "info-box-content" }, [
+                    _c("span", { staticClass: "info-box-text text-center" }, [
+                      _vm._v("Students")
+                    ]),
+                    _vm._v(" "),
+                    _c("h2", { staticClass: "info-box-number text-center" }, [
+                      _vm._v(_vm._s(_vm.studentCount.studentCount))
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-3 col-sm-6 col-xs-12 mt-2" }, [
+                _c("div", { staticClass: "info-box" }, [
+                  _vm._m(3),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "info-box-content" }, [
+                    _c("span", { staticClass: "info-box-text text-center" }, [
+                      _vm._v("Schedule")
+                    ]),
+                    _vm._v(" "),
+                    _c("h2", { staticClass: "info-box-number text-center" }, [
+                      _vm._v(_vm._s(_vm.scheduleCount.scheduleCount))
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-3 col-sm-6 col-xs-12 mt-2" }, [
+                _c("div", { staticClass: "info-box" }, [
+                  _vm._m(4),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "info-box-content" }, [
+                    _c("span", { staticClass: "info-box-text text-center" }, [
+                      _vm._v("Announcements")
+                    ]),
+                    _vm._v(" "),
+                    _c("h2", { staticClass: "info-box-number text-center" }, [
+                      _vm._v(
+                        " " +
+                          _vm._s(
+                            _vm.announcementCount.announcementCount +
+                              _vm.publicAnnouncementCount
+                                .publicAnnouncementCount
+                          ) +
+                          " "
+                      )
+                    ])
+                  ])
+                ])
+              ])
+            ])
+          : _vm._e()
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Dashboard Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              )
-            ])
-          ])
-        ])
+    return _c("div", { staticClass: "col-md-12" }, [
+      _c("h3", { staticClass: "text-primary" }, [
+        _vm._v("Welcome to PNHS Enrollment System!")
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "info-box-icon bg-green " }, [
+      _c("i", { staticClass: "fa fa-users" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "info-box-icon bg-blue " }, [
+      _c("i", { staticClass: "fa fa-user-graduate" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "info-box-icon bg-orange " }, [
+      _c("i", { staticClass: "fa fa-clock" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "info-box-icon bg-red" }, [
+      _c("i", { staticClass: "fa fa-bullhorn" })
     ])
   }
 ]

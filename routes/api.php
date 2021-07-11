@@ -14,6 +14,7 @@ use App\Http\Controllers\API\RoomController;
 use App\Http\Controllers\API\ScheduleController;
 use App\Http\Controllers\API\AnnouncementController;
 use App\Http\Controllers\API\PublicAnnouncementController;
+use App\Http\Controllers\API\DashboardController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -42,6 +43,7 @@ Route::apiResource('user', UserController::class);
 Route::get('findUser', [UserController::class, 'search']);
 Route::get('profile', [UserController::class, 'profile']);
 Route::get('teacher', [UserController::class, 'indexTeacher']);
+Route::apiResource('dashboard', DashboardController::class);
 
 
 Route::apiResource('learner_type', LearnerTypeController::class);

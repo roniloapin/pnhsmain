@@ -64,8 +64,9 @@ class UserController extends Controller
 
     public function profile()
     {
-        // return auth('api')->user();
-        Auth::user();
+        return auth('api')->user();
+        // $user = Auth::user();
+        // return $user;
     }
 
     /**

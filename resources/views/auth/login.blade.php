@@ -70,6 +70,9 @@
                         </div>
                     </form>
                 </div>
+                <div class="card-footer text-muted">
+                        <label class="float-left">System Version 1.0</label>
+                    </div>
             </div>
         </div>
     </div>

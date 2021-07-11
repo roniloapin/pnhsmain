@@ -585,6 +585,7 @@
                 schoolyears:{},
                 approved_students:{},
                 pending_students:{},
+                students:{},
                 form1: new Form({
                   id: '',
                   learner_type_id: '',
@@ -754,9 +755,9 @@
         created() {
             fire.$on('searching', ()=>{
                 let query = this.$parent.search;
-                axios.get('api/findLearnerType?q=' + query)
+                axios.get('api/findStudent?u=' + query)
                 .then(({data}) => {
-                    this.learner_types = data
+                    this.students = data
                 })
                 .catch(()=>{
                     
