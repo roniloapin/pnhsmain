@@ -72,6 +72,7 @@ let routes = [
     { path: '/publicannouncement', component: require('./components/PublicAnnouncement.vue').default },
     { path: '/announcement', component: require('./components/Announcement.vue').default },
     { path: '/about', component: require('./components/About.vue').default },
+    { path: '/systemsettings', component: require('./components/SystemSettings.vue').default },
     { name: 'print.profile', path: '/print/printprofile/:id', component: require('./components/PrintStudent.vue').default, props: true },
     { path: '*', component: require('./components/NotFound.vue').default },
 

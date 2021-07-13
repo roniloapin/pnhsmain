@@ -42,6 +42,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </style>
 </head>
 <body class="hold-transition sidebar-mini">
+    <input type="text" value="{{ Auth::user()->id }}" hidden id="user_id">
 <div class="wrapper" id="app">
 
   <!-- Navbar -->
@@ -215,6 +216,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <p>Configuration</p>
                 </router-link>
               </li>
+
+              <li class="nav-item">
+                <router-link to="/systemsettings" class="nav-link">
+                  <i class="nav-icon fas fa-cog"></i>
+                  <p>System Settings</p>
+                </router-link>
+              </li>
             </ul>
           </li>
           @endcan
@@ -265,7 +273,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
           @endcan
 
-          <!-- @can('isTeacher')
+          @can('isTeacher')
           <li class="nav-item">
             <router-link to="/profile" class="nav-link">
               <i class="nav-icon fas fa-user-edit"></i>
@@ -274,7 +282,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               </p>
             </router-link>
           </li>       
-          @endcan -->
+          @endcan
           
           <li class="nav-item">
             <router-link to="/about" class="nav-link">

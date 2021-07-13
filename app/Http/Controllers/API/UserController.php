@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('auth:api');
-    // }
+    public function __construct()
+    {
+        // $this->middleware('auth:api');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -62,9 +62,10 @@ class UserController extends Controller
         //
     }
 
-    public function profile()
+    public function profile($id)
     {
-        return auth('api')->user();
+        return User::find($id);
+        // return auth('api')->user();
         // $user = Auth::user();
         // return $user;
     }

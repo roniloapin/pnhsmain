@@ -6770,6 +6770,249 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SystemSettings.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SystemSettings.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      editMode: false,
+      publicannouncements: {},
+      form1: new Form({
+        id: '',
+        posting_date: '',
+        publicannouncement: ''
+      })
+    };
+  },
+  methods: {
+    getResults: function getResults() {
+      var _this = this;
+
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      axios.get('api/publicannouncement?page=' + page).then(function (response) {
+        _this.publicannouncements = response.data;
+      });
+    },
+    loadAnnouncements: function loadAnnouncements() {
+      var _this2 = this;
+
+      axios.get("api/publicannouncement").then(function (_ref) {
+        var data = _ref.data;
+        return _this2.publicannouncements = data;
+      });
+    },
+    newModal: function newModal() {
+      this.editMode = false;
+      this.form1.reset();
+      $('#addNew').modal('show');
+    },
+    editModal: function editModal(publicannouncement) {
+      this.editMode = true;
+      this.form1.reset();
+      $('#addNew').modal('show');
+      this.form1.fill(publicannouncement);
+    },
+    createAnnouncement: function createAnnouncement() {
+      var _this3 = this;
+
+      this.$Progress.start();
+      this.form1.post('api/publicannouncement') //Send HTTP request
+      .then(function () {
+        //if successful then
+        fire.$emit('AfterCreate');
+        $('#addNew').modal('hide');
+        Toast.fire({
+          icon: 'success',
+          title: 'Announcement added successfully'
+        });
+
+        _this3.$Progress.finish();
+      })["catch"](function () {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!'
+        });
+
+        _this3.$Progress.fail();
+      });
+    },
+    deleteAnnouncement: function deleteAnnouncement(id) {
+      var _this4 = this;
+
+      Swal.fire({
+        title: 'Delete Announcement?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function (result) {
+        if (result.value) {
+          _this4.form1["delete"]('api/publicannouncement/' + id).then(function () {
+            Swal.fire('Deleted!', 'Announcement has been deleted.', 'success');
+            fire.$emit('AfterCreate');
+          })["catch"](function () {
+            Swal.fire("Failed!", "There was something wrong.", "warning");
+          });
+        }
+      });
+    },
+    updateAnnouncement: function updateAnnouncement() {
+      var _this5 = this;
+
+      this.$Progress.start();
+      this.form1.put("api/publicannouncement/" + this.form1.id).then(function () {
+        $('#addNew').modal('hide'); // Swal.fire(
+        //     'Updated!',
+        //     'User has been updated.',
+        //     'success'
+        // )
+
+        Toast.fire({
+          icon: 'success',
+          title: 'Announcement has been updated'
+        });
+
+        _this5.$Progress.finish();
+
+        fire.$emit('AfterCreate');
+      })["catch"](function () {
+        Swal.fire("Failed!", "There was something wrong.", "warning");
+
+        _this5.$Progress.fail();
+      });
+    }
+  },
+  created: function created() {
+    var _this6 = this;
+
+    this.loadAnnouncements();
+    fire.$on('AfterCreate', function () {
+      _this6.loadAnnouncements();
+    });
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/TeacherProfile.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/TeacherProfile.vue?vue&type=script&lang=js& ***!
@@ -6873,18 +7116,14 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    var _this2 = this;
-
-    axios.get("api/profile").then(function (_ref) {
+    $user_id = $('#user_id').val();
+    console.log($user_id);
+    axios.get("/api/profile/2").then(function (_ref) {
       var data = _ref.data;
-      return _this2.form.fill(data);
-    });
-    fire.$on('AfterCreate', function () {
-      axios.get("api/profile").then(function (_ref2) {
-        var data = _ref2.data;
-        return _this2.form.fill(data);
-      });
-    });
+      return console.log(data);
+    }); // fire.$on('AfterCreate', ()=>{
+    //     axios.get("/api/profile").then(({ data }) => (this.form.fill(data)));
+    // });
   }
 });
 
@@ -7612,6 +7851,9 @@ var routes = [{
 }, {
   path: '/about',
   component: __webpack_require__(/*! ./components/About.vue */ "./resources/js/components/About.vue").default
+}, {
+  path: '/systemsettings',
+  component: __webpack_require__(/*! ./components/SystemSettings.vue */ "./resources/js/components/SystemSettings.vue").default
 }, {
   name: 'print.profile',
   path: '/print/printprofile/:id',
@@ -70869,6 +71111,45 @@ component.options.__file = "resources/js/components/StudentProfile.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/SystemSettings.vue":
+/*!****************************************************!*\
+  !*** ./resources/js/components/SystemSettings.vue ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _SystemSettings_vue_vue_type_template_id_7455559d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SystemSettings.vue?vue&type=template&id=7455559d& */ "./resources/js/components/SystemSettings.vue?vue&type=template&id=7455559d&");
+/* harmony import */ var _SystemSettings_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SystemSettings.vue?vue&type=script&lang=js& */ "./resources/js/components/SystemSettings.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _SystemSettings_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _SystemSettings_vue_vue_type_template_id_7455559d___WEBPACK_IMPORTED_MODULE_0__.render,
+  _SystemSettings_vue_vue_type_template_id_7455559d___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/SystemSettings.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/TeacherProfile.vue":
 /*!****************************************************!*\
   !*** ./resources/js/components/TeacherProfile.vue ***!
@@ -71196,6 +71477,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/SystemSettings.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/components/SystemSettings.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SystemSettings_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./SystemSettings.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SystemSettings.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SystemSettings_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/components/TeacherProfile.vue?vue&type=script&lang=js&":
 /*!*****************************************************************************!*\
   !*** ./resources/js/components/TeacherProfile.vue?vue&type=script&lang=js& ***!
@@ -71517,6 +71814,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/SystemSettings.vue?vue&type=template&id=7455559d&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/components/SystemSettings.vue?vue&type=template&id=7455559d& ***!
+  \***********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SystemSettings_vue_vue_type_template_id_7455559d___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SystemSettings_vue_vue_type_template_id_7455559d___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SystemSettings_vue_vue_type_template_id_7455559d___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./SystemSettings.vue?vue&type=template&id=7455559d& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SystemSettings.vue?vue&type=template&id=7455559d&");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/TeacherProfile.vue?vue&type=template&id=0a7219dc&":
 /*!***********************************************************************************!*\
   !*** ./resources/js/components/TeacherProfile.vue?vue&type=template&id=0a7219dc& ***!
@@ -71608,12 +71922,12 @@ var staticRenderFns = [
                 _c("br"),
                 _vm._v("\n                        Developers: "),
                 _c("strong", { staticStyle: { color: "green" } }, [
-                  _vm._v("     Kim Shin Nodalo, Jazmine, Joel Marinay ")
+                  _vm._v("     Kim Shin Nodalo, Jazmine Daep, Joel Marinay ")
                 ]),
                 _c("br"),
                 _vm._v("\n                        Copyright: "),
                 _c("strong", { staticStyle: { color: "green" } }, [
-                  _vm._v("        2020 @ DOH CHD - Bicol ")
+                  _vm._v("        2021 @ PNHS ")
                 ]),
                 _c("br"),
                 _c("br"),
@@ -84618,6 +84932,474 @@ var staticRenderFns = [
           [_vm._v("Update")]
         )
       ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SystemSettings.vue?vue&type=template&id=7455559d&":
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/SystemSettings.vue?vue&type=template&id=7455559d& ***!
+  \**************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "container" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _vm.$gate.isTeacherOrAdmin()
+      ? _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("div", { staticClass: "card" }, [
+              _c("div", { staticClass: "card-header" }, [
+                _c("h3", { staticClass: "card-title" }, [
+                  _vm._v("Public Announcements")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-tools" }, [
+                  _vm.$gate.isAdmin()
+                    ? _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-success",
+                          attrs: { type: "button" },
+                          on: { click: _vm.newModal }
+                        },
+                        [_vm._v("Add")]
+                      )
+                    : _vm._e()
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-body table-responsive p-0" }, [
+                _c(
+                  "table",
+                  { staticClass: "table table-head-fixed table-hover" },
+                  [
+                    _c("thead", [
+                      _c("tr", { staticStyle: { "text-align": "center" } }, [
+                        _vm.$gate.isAdmin()
+                          ? _c("th", { staticStyle: { width: "10px" } }, [
+                              _vm._v("Action")
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _c("th", { staticStyle: { width: "200px" } }, [
+                          _vm._v("Posting Date")
+                        ]),
+                        _vm._v(" "),
+                        _c("th", { staticStyle: { "text-align": "left" } }, [
+                          _vm._v("Announcement")
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "tbody",
+                      [
+                        _vm.publicannouncements.total == 0
+                          ? _c("tr", [_vm._m(1)])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm._l(_vm.publicannouncements.data, function(
+                          publicannouncement
+                        ) {
+                          return _c(
+                            "tr",
+                            {
+                              key: publicannouncement.id,
+                              staticStyle: { "text-align": "center" }
+                            },
+                            [
+                              _vm.$gate.isAdmin()
+                                ? _c("td", [
+                                    _c(
+                                      "a",
+                                      {
+                                        attrs: { href: "#" },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.editModal(
+                                              publicannouncement
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass: "fa fa-edit color-blue",
+                                          attrs: { title: "Edit" }
+                                        })
+                                      ]
+                                    ),
+                                    _vm._v(
+                                      "\n                        |\n                        "
+                                    ),
+                                    _c(
+                                      "a",
+                                      {
+                                        attrs: { href: "#" },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.deleteAnnouncement(
+                                              publicannouncement.id
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("i", {
+                                          staticClass:
+                                            "fa fa-trash-alt color-red",
+                                          attrs: { title: "Delete" }
+                                        })
+                                      ]
+                                    )
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _c("td", [
+                                _vm._v(_vm._s(publicannouncement.posting_date))
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                { staticStyle: { "text-align": "left" } },
+                                [
+                                  _vm._v(
+                                    _vm._s(
+                                      publicannouncement.publicannouncement
+                                    )
+                                  )
+                                ]
+                              )
+                            ]
+                          )
+                        })
+                      ],
+                      2
+                    )
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "pagination mb-0 justify-content-center" },
+                [
+                  _c(
+                    "pagination",
+                    {
+                      attrs: { data: _vm.publicannouncements },
+                      on: { "pagination-change-page": _vm.getResults }
+                    },
+                    [
+                      _c(
+                        "span",
+                        { attrs: { slot: "prev-nav" }, slot: "prev-nav" },
+                        [_vm._v("< Previous")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "span",
+                        { attrs: { slot: "next-nav" }, slot: "next-nav" },
+                        [_vm._v("Next >")]
+                      )
+                    ]
+                  )
+                ],
+                1
+              )
+            ])
+          ])
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    !_vm.$gate.isTeacherOrAdmin() ? _c("div", [_c("not-found")], 1) : _vm._e(),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "addNew",
+          tabindex: "-1",
+          "aria-labelledby": "addNewLabel",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c("div", { staticClass: "modal-dialog modal-dialog-scrollable" }, [
+          _c("div", { staticClass: "modal-content" }, [
+            _c("div", { staticClass: "modal-header" }, [
+              _c(
+                "h5",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: !_vm.editMode,
+                      expression: "!editMode"
+                    }
+                  ],
+                  staticClass: "modal-title fas fa-bullhorn",
+                  attrs: { id: "addNewTitle" }
+                },
+                [_vm._v(" Add New Announcement")]
+              ),
+              _vm._v(" "),
+              _c(
+                "h5",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.editMode,
+                      expression: "editMode"
+                    }
+                  ],
+                  staticClass: "modal-title fas fa-bullhorn",
+                  attrs: { id: "addNewTitle" }
+                },
+                [_vm._v(" Update Announcement")]
+              ),
+              _vm._v(" "),
+              _c("button", {
+                staticClass: "close",
+                attrs: {
+                  type: "button",
+                  "data-dismiss": "modal",
+                  "aria-label": "Close"
+                }
+              }),
+              _vm._v(" "),
+              _c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])
+            ]),
+            _vm._v(" "),
+            _c(
+              "form",
+              {
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    _vm.editMode
+                      ? _vm.updateAnnouncement()
+                      : _vm.createAnnouncement()
+                  }
+                }
+              },
+              [
+                _c(
+                  "div",
+                  {
+                    staticClass: "modal-body",
+                    staticStyle: { "overflow-y": "auto" }
+                  },
+                  [
+                    _c(
+                      "div",
+                      { staticClass: "form-group mb-1" },
+                      [
+                        _vm._m(2),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form1.posting_date,
+                              expression: "form1.posting_date"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          class: {
+                            "is-invalid": _vm.form1.errors.has("posting_date")
+                          },
+                          attrs: {
+                            type: "date",
+                            name: "posting_date",
+                            placeholder: "Posting Date"
+                          },
+                          domProps: { value: _vm.form1.posting_date },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.form1,
+                                "posting_date",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("has-error", {
+                          attrs: { form: _vm.form1, field: "posting_date" }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "form-group mb-1" },
+                      [
+                        _vm._m(3),
+                        _vm._v(" "),
+                        _c("textarea", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form1.publicannouncement,
+                              expression: "form1.publicannouncement"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          class: {
+                            "is-invalid": _vm.form1.errors.has(
+                              "publicannouncement"
+                            )
+                          },
+                          attrs: {
+                            rows: "6",
+                            type: "text",
+                            name: "publicannouncement",
+                            placeholder: "Enter Public Announcement"
+                          },
+                          domProps: { value: _vm.form1.publicannouncement },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.form1,
+                                "publicannouncement",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("has-error", {
+                          attrs: {
+                            form: _vm.form1,
+                            field: "publicannouncement"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-footer" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger",
+                      attrs: { type: "button", "data-dismiss": "modal" }
+                    },
+                    [_vm._v("Close")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.editMode,
+                          expression: "editMode"
+                        }
+                      ],
+                      staticClass: "btn btn-primary",
+                      attrs: { type: "submit" }
+                    },
+                    [
+                      _vm._v("Update "),
+                      _c("i", { staticClass: "fas fa-bullhorn" })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: !_vm.editMode,
+                          expression: "!editMode"
+                        }
+                      ],
+                      staticClass: "btn btn-success",
+                      attrs: { type: "submit" }
+                    },
+                    [
+                      _vm._v("Create "),
+                      _c("i", { staticClass: "fas fa-bullhorn" })
+                    ]
+                  )
+                ])
+              ]
+            )
+          ])
+        ])
+      ]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h3", [_c("strong", [_vm._v(" Announcements")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { staticClass: "text-center", attrs: { colspan: "6" } }, [
+      _c("label", [_vm._v("No records yet.")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "posting_date" } }, [
+      _vm._v("Posting Date"),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "publicannouncement" } }, [
+      _vm._v("Public Announcement "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   }
 ]

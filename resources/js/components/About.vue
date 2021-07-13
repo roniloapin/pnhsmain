@@ -15,8 +15,8 @@
                     <div class="card-body">
                         <p>
                             System Name: <strong style="color: green;"> PNHS Enrollment System </strong><br>
-                            Developers: <strong style="color: green;"> &nbsp;&nbsp;&nbsp; Kim Shin Nodalo, Jazmine, Joel Marinay </strong><br>
-                            Copyright: <strong style="color: green;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2020 @ DOH CHD - Bicol </strong><br><br>
+                            Developers: <strong style="color: green;"> &nbsp;&nbsp;&nbsp; Kim Shin Nodalo, Jazmine Daep, Joel Marinay </strong><br>
+                            Copyright: <strong style="color: green;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2021 @ PNHS </strong><br><br>
                             System Development:
                         </p>
                             <li style="text-indent: 10px;">Back-end: <strong>PHP, MySQL</strong></li>

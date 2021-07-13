@@ -41,7 +41,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::apiResource('user', UserController::class);
 // Route::get('findUser', 'API\UserController@search');
 Route::get('findUser', [UserController::class, 'search']);
-Route::get('profile', [UserController::class, 'profile']);
+Route::get('profile/{id}', [UserController::class, 'profile']);
 Route::get('teacher', [UserController::class, 'indexTeacher']);
 Route::apiResource('dashboard', DashboardController::class);
 

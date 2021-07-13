@@ -92,10 +92,12 @@
             },
         },
         created(){
-            axios.get("api/profile").then(({ data }) => (this.form.fill(data)));
-            fire.$on('AfterCreate', ()=>{
-                axios.get("api/profile").then(({ data }) => (this.form.fill(data)));
-            });
+            $user_id = $('#user_id').val();
+            console.log($user_id);
+            axios.get("/api/profile/2").then(({ data }) => (console.log(data)));
+            // fire.$on('AfterCreate', ()=>{
+            //     axios.get("/api/profile").then(({ data }) => (this.form.fill(data)));
+            // });
         }
     }
 </script>

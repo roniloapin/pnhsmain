@@ -49,12 +49,28 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         // dd($request->file('requirement'));
-        // $this->validate($request,[
-        //     'learner_type' => 'required|string|max:191',
-        //     'lrn' => 'required|string|max:191|unique:students',
-        //     'last_name' => 'required|string|max:191',
-        //     'first_name' => 'required|string|max:191',
-        // ]);
+        $this->validate($request,[
+            'learner_type_id' => 'required|integer',
+            'last_name' => 'required|string|max:191',
+            'first_name' => 'required|string|max:191',
+            'date_of_birth' => 'required|date|max:191',
+            'gender' => 'required|string|max:191',
+            'religion_id' => 'required|integer',
+            'indigenous' => 'required|string|max:191',
+            'mother_tongue_id' => 'required|string',
+            'special_educational' => 'required|string|max:191',
+            'region' => 'required|string|max:191',
+            'province' => 'required|string|max:191',
+            'city_municipality' => 'required|string|max:191',
+            'barangay' => 'required|string|max:191',
+            'father_name' => 'required|string|max:191',
+            'mother_name' => 'required|string|max:191',
+            'guardian_name' => 'required|string|max:191',
+            'key_stage' => 'required|string|max:191',
+            'schoolyear_id' => 'required|integer',
+            'requirement' => 'required',
+            
+        ]);
 
         // $learnertype = LearnerType::findOrFail($request['learner_type_id']);
         
@@ -165,16 +181,30 @@ class StudentController extends Controller
         $student->delete();
     }
     public function search(){
-        if ($search = \Request::get('u')){
-            $students = Student::where(function($query) use ($search){
-                $query->where('lrn', 'LIKE', "%$search%")
-                ->orWhere('last_name', 'LIKE', "%$search%")
-                ->orWhere('first_name', 'LIKE', "%$search%");
-            })->orderBy('last_name', 'asc')->paginate(20);
+        if(jhs){
+            $pending_students = Student::where(['status'=> 'Pending', 'key_stage' => 'jhs'])->orderBy('last_name', 'asc')->paginate(20);
+            $approved_students = Student::where(['status'=> 'Approved', 'key_stage' => 'jhs'])->orderBy('last_name', 'asc')->paginate(20);
+        }else if(shs){
+            $pending_students = Student::where(['status'=> 'Pending', 'key_stage' => 'jhs'])->orderBy('last_name', 'asc')->paginate(20);
+            $approved_students = Student::where(['status'=> 'Approved', 'key_stage' => 'jhs'])->orderBy('last_name', 'asc')->paginate(20);
         }else{
-            $students = Student::orderBy('last_name', 'asc')->paginate(20);
+            $pending_students = Student::where(['status'=> 'Pending', 'key_stage' => 'jhs'])->orderBy('last_name', 'asc')->paginate(20);
+            $approved_students = Student::where(['status'=> 'Approved', 'key_stage' => 'jhs'])->orderBy('last_name', 'asc')->paginate(20);
         }
-        return $students;
+        return response()->json([
+            'pending_students' => $pending_students,
+            'approved_students' => $approved_students,
+        ]);
+        // if ($search = \Request::get('u')){
+        //     $students = Student::where(function($query) use ($search){
+        //         $query->where('lrn', 'LIKE', "%$search%")
+        //         ->orWhere('last_name', 'LIKE', "%$search%")
+        //         ->orWhere('first_name', 'LIKE', "%$search%");
+        //     })->orderBy('last_name', 'asc')->paginate(20);
+        // }else{
+        //     $students = Student::orderBy('last_name', 'asc')->paginate(20);
+        // }
+        // return $students;
     }
 }
 
