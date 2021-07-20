@@ -6884,10 +6884,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -6928,7 +6924,7 @@ __webpack_require__.r(__webpack_exports__);
       $('#addNew').modal('show');
       this.form1.fill(publicannouncement);
     },
-    createAnnouncement: function createAnnouncement() {
+    createSystemSetting: function createSystemSetting() {
       var _this3 = this;
 
       this.$Progress.start();
@@ -6953,7 +6949,7 @@ __webpack_require__.r(__webpack_exports__);
         _this3.$Progress.fail();
       });
     },
-    deleteAnnouncement: function deleteAnnouncement(id) {
+    deleteSystemSetting: function deleteSystemSetting(id) {
       var _this4 = this;
 
       Swal.fire({
@@ -6975,7 +6971,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    updateAnnouncement: function updateAnnouncement() {
+    updateSystemSetting: function updateSystemSetting() {
       var _this5 = this;
 
       this.$Progress.start();
@@ -7117,11 +7113,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     $user_id = $('#user_id').val();
-    console.log($user_id);
-    axios.get("/api/profile/2").then(function (_ref) {
-      var data = _ref.data;
-      return console.log(data);
-    }); // fire.$on('AfterCreate', ()=>{
+    console.log($user_id); // axios.get("/api/profile/2").then(({ data }) => (console.log(data)));
+    // fire.$on('AfterCreate', ()=>{
     //     axios.get("/api/profile").then(({ data }) => (this.form.fill(data)));
     // });
   }
@@ -84960,29 +84953,11 @@ var render = function() {
   return _c("div", { staticClass: "container" }, [
     _vm._m(0),
     _vm._v(" "),
-    _vm.$gate.isTeacherOrAdmin()
+    _vm.$gate.isAdmin()
       ? _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-md-12" }, [
             _c("div", { staticClass: "card" }, [
-              _c("div", { staticClass: "card-header" }, [
-                _c("h3", { staticClass: "card-title" }, [
-                  _vm._v("Public Announcements")
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "card-tools" }, [
-                  _vm.$gate.isAdmin()
-                    ? _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-success",
-                          attrs: { type: "button" },
-                          on: { click: _vm.newModal }
-                        },
-                        [_vm._v("Add")]
-                      )
-                    : _vm._e()
-                ])
-              ]),
+              _vm._m(1),
               _vm._v(" "),
               _c("div", { staticClass: "card-body table-responsive p-0" }, [
                 _c(
@@ -84998,11 +84973,11 @@ var render = function() {
                           : _vm._e(),
                         _vm._v(" "),
                         _c("th", { staticStyle: { width: "200px" } }, [
-                          _vm._v("Posting Date")
+                          _vm._v("System Name")
                         ]),
                         _vm._v(" "),
                         _c("th", { staticStyle: { "text-align": "left" } }, [
-                          _vm._v("Announcement")
+                          _vm._v("Logo")
                         ])
                       ])
                     ]),
@@ -85010,17 +84985,17 @@ var render = function() {
                     _c(
                       "tbody",
                       [
-                        _vm.publicannouncements.total == 0
-                          ? _c("tr", [_vm._m(1)])
+                        _vm.system_settings.total == 0
+                          ? _c("tr", [_vm._m(2)])
                           : _vm._e(),
                         _vm._v(" "),
-                        _vm._l(_vm.publicannouncements.data, function(
-                          publicannouncement
+                        _vm._l(_vm.system_settings.data, function(
+                          system_setting
                         ) {
                           return _c(
                             "tr",
                             {
-                              key: publicannouncement.id,
+                              key: system_setting.id,
                               staticStyle: { "text-align": "center" }
                             },
                             [
@@ -85032,9 +85007,7 @@ var render = function() {
                                         attrs: { href: "#" },
                                         on: {
                                           click: function($event) {
-                                            return _vm.editModal(
-                                              publicannouncement
-                                            )
+                                            return _vm.editModal(system_setting)
                                           }
                                         }
                                       },
@@ -85054,8 +85027,8 @@ var render = function() {
                                         attrs: { href: "#" },
                                         on: {
                                           click: function($event) {
-                                            return _vm.deleteAnnouncement(
-                                              publicannouncement.id
+                                            return _vm.deleteSystemSetting(
+                                              system_setting.id
                                             )
                                           }
                                         }
@@ -85072,19 +85045,13 @@ var render = function() {
                                 : _vm._e(),
                               _vm._v(" "),
                               _c("td", [
-                                _vm._v(_vm._s(publicannouncement.posting_date))
+                                _vm._v(_vm._s(system_setting.sys_name))
                               ]),
                               _vm._v(" "),
                               _c(
                                 "td",
                                 { staticStyle: { "text-align": "left" } },
-                                [
-                                  _vm._v(
-                                    _vm._s(
-                                      publicannouncement.publicannouncement
-                                    )
-                                  )
-                                ]
+                                [_vm._v(_vm._s(system_setting.sys_logo))]
                               )
                             ]
                           )
@@ -85103,7 +85070,7 @@ var render = function() {
                   _c(
                     "pagination",
                     {
-                      attrs: { data: _vm.publicannouncements },
+                      attrs: { data: _vm.system_settings },
                       on: { "pagination-change-page": _vm.getResults }
                     },
                     [
@@ -85128,7 +85095,7 @@ var render = function() {
         ])
       : _vm._e(),
     _vm._v(" "),
-    !_vm.$gate.isTeacherOrAdmin() ? _c("div", [_c("not-found")], 1) : _vm._e(),
+    !_vm.$gate.isAdmin() ? _c("div", [_c("not-found")], 1) : _vm._e(),
     _vm._v(" "),
     _c(
       "div",
@@ -85159,7 +85126,7 @@ var render = function() {
                   staticClass: "modal-title fas fa-bullhorn",
                   attrs: { id: "addNewTitle" }
                 },
-                [_vm._v(" Add New Announcement")]
+                [_vm._v(" Add New System Settings")]
               ),
               _vm._v(" "),
               _c(
@@ -85176,7 +85143,7 @@ var render = function() {
                   staticClass: "modal-title fas fa-bullhorn",
                   attrs: { id: "addNewTitle" }
                 },
-                [_vm._v(" Update Announcement")]
+                [_vm._v(" Update System Settings")]
               ),
               _vm._v(" "),
               _c("button", {
@@ -85198,8 +85165,8 @@ var render = function() {
                   submit: function($event) {
                     $event.preventDefault()
                     _vm.editMode
-                      ? _vm.updateAnnouncement()
-                      : _vm.createAnnouncement()
+                      ? _vm.updateSystemSetting()
+                      : _vm.createSystemSetting()
                   }
                 }
               },
@@ -85215,27 +85182,27 @@ var render = function() {
                       "div",
                       { staticClass: "form-group mb-1" },
                       [
-                        _vm._m(2),
+                        _vm._m(3),
                         _vm._v(" "),
                         _c("input", {
                           directives: [
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.form1.posting_date,
-                              expression: "form1.posting_date"
+                              value: _vm.form1.sys_name,
+                              expression: "form1.sys_name"
                             }
                           ],
                           staticClass: "form-control",
                           class: {
-                            "is-invalid": _vm.form1.errors.has("posting_date")
+                            "is-invalid": _vm.form1.errors.has("sys_name")
                           },
                           attrs: {
                             type: "date",
-                            name: "posting_date",
-                            placeholder: "Posting Date"
+                            name: "sys_name",
+                            placeholder: "System Name"
                           },
-                          domProps: { value: _vm.form1.posting_date },
+                          domProps: { value: _vm.form1.sys_name },
                           on: {
                             input: function($event) {
                               if ($event.target.composing) {
@@ -85243,7 +85210,7 @@ var render = function() {
                               }
                               _vm.$set(
                                 _vm.form1,
-                                "posting_date",
+                                "sys_name",
                                 $event.target.value
                               )
                             }
@@ -85251,63 +85218,13 @@ var render = function() {
                         }),
                         _vm._v(" "),
                         _c("has-error", {
-                          attrs: { form: _vm.form1, field: "posting_date" }
+                          attrs: { form: _vm.form1, field: "sys_name" }
                         })
                       ],
                       1
                     ),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "form-group mb-1" },
-                      [
-                        _vm._m(3),
-                        _vm._v(" "),
-                        _c("textarea", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.form1.publicannouncement,
-                              expression: "form1.publicannouncement"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          class: {
-                            "is-invalid": _vm.form1.errors.has(
-                              "publicannouncement"
-                            )
-                          },
-                          attrs: {
-                            rows: "6",
-                            type: "text",
-                            name: "publicannouncement",
-                            placeholder: "Enter Public Announcement"
-                          },
-                          domProps: { value: _vm.form1.publicannouncement },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.form1,
-                                "publicannouncement",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("has-error", {
-                          attrs: {
-                            form: _vm.form1,
-                            field: "publicannouncement"
-                          }
-                        })
-                      ],
-                      1
-                    )
+                    _vm._m(4)
                   ]
                 ),
                 _vm._v(" "),
@@ -85374,7 +85291,15 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("h3", [_c("strong", [_vm._v(" Announcements")])])
+    return _c("h3", [_c("strong", [_vm._v(" System Settings")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h3", { staticClass: "card-title" }, [_vm._v("System Settings")])
+    ])
   },
   function() {
     var _vm = this
@@ -85388,8 +85313,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("label", { attrs: { for: "posting_date" } }, [
-      _vm._v("Posting Date"),
+    return _c("label", { attrs: { for: "sys_name" } }, [
+      _vm._v("System Name"),
       _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   },
@@ -85397,9 +85322,11 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("label", { attrs: { for: "publicannouncement" } }, [
-      _vm._v("Public Announcement "),
-      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    return _c("div", { staticClass: "form-group mb-1" }, [
+      _c("label", { attrs: { for: "sys_logo" } }, [
+        _vm._v("Logo "),
+        _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+      ])
     ])
   }
 ]
@@ -85427,9 +85354,11 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "row justify-content-center mt-3" }, [
-      !_vm.$gate.isTeacher() ? _c("div", [_c("not-found")], 1) : _vm._e(),
+      !_vm.$gate.isTeacherOrAdmin()
+        ? _c("div", [_c("not-found")], 1)
+        : _vm._e(),
       _vm._v(" "),
-      _vm.$gate.isTeacher()
+      _vm.$gate.isTeacherOrAdmin()
         ? _c("div", { staticClass: "col-md-10" }, [
             _c("div", { staticClass: "card" }, [
               _c(

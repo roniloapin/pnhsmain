@@ -1,11 +1,11 @@
 <template>
     <div class="container">
         <div class="row justify-content-center mt-3">
-            <div v-if="!$gate.isTeacher()">
+            <div v-if="!$gate.isTeacherOrAdmin()">
                 <not-found></not-found>
             </div>
 
-            <div class="col-md-10" v-if="$gate.isTeacher()">
+            <div class="col-md-10" v-if="$gate.isTeacherOrAdmin()">
                 <div class="card">
                     <div class="card-header card-success card-outline text-success fas fa-user-edit"> User Profile</div>
                         <div class="card-body">
@@ -94,7 +94,7 @@
         created(){
             $user_id = $('#user_id').val();
             console.log($user_id);
-            axios.get("/api/profile/2").then(({ data }) => (console.log(data)));
+            // axios.get("/api/profile/2").then(({ data }) => (console.log(data)));
             // fire.$on('AfterCreate', ()=>{
             //     axios.get("/api/profile").then(({ data }) => (this.form.fill(data)));
             // });

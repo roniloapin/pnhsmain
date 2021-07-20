@@ -1,15 +1,15 @@
 <template>
     <div class="container">
-         <h3><strong> Announcements</strong></h3>
-        <div class="row" v-if="$gate.isTeacherOrAdmin()">
+         <h3><strong> System Settings</strong></h3>
+        <div class="row" v-if="$gate.isAdmin()">
           <div class="col-md-12" >
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Public Announcements</h3>
+                <h3 class="card-title">System Settings</h3>
 
-                <div class="card-tools">
+                <!-- <div class="card-tools">
                   <button type="button" class="btn btn-success" @click="newModal" v-if="$gate.isAdmin()">Add</button>
-                </div>
+                </div> -->
 
               </div>
               <!-- /.card-header -->
@@ -18,26 +18,26 @@
                   <thead>
                     <tr style="text-align:center;">
                         <th v-if="$gate.isAdmin()" style="width:10px">Action</th>
-                        <th style="width:200px">Posting Date</th>
-                        <th style="text-align:left;">Announcement</th>
+                        <th style="width:200px">System Name</th>
+                        <th style="text-align:left;">Logo</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-if="publicannouncements.total == 0">
+                    <tr v-if="system_settings.total == 0">
                         <td colspan="6" class="text-center"><label>No records yet.</label></td>
                     </tr>
-                    <tr style="text-align:center;" v-for="publicannouncement in publicannouncements.data" :key="publicannouncement.id">
+                    <tr style="text-align:center;" v-for="system_setting in system_settings.data" :key="system_setting.id">
                         <td v-if="$gate.isAdmin()">
-                            <a href="#" @click="editModal(publicannouncement)">
+                            <a href="#" @click="editModal(system_setting)">
                                 <i class="fa fa-edit color-blue" title="Edit"></i>
                             </a>
                             |
-                            <a href="#" @click="deleteAnnouncement(publicannouncement.id)">
+                            <a href="#" @click="deleteSystemSetting(system_setting.id)">
                                 <i class="fa fa-trash-alt color-red" title="Delete"></i>
                             </a>
                         </td>
-                        <td>{{publicannouncement.posting_date}}</td>
-                        <td style="text-align:left;">{{publicannouncement.publicannouncement}}</td> 
+                        <td>{{system_setting.sys_name}}</td>
+                        <td style="text-align:left;">{{system_setting.sys_logo}}</td> 
                     </tr>
                     
                   </tbody>
@@ -45,7 +45,7 @@
               </div>
               <!-- /.card-body -->
               <div class="pagination mb-0 justify-content-center">
-                    <pagination :data="publicannouncements" @pagination-change-page="getResults">
+                    <pagination :data="system_settings" @pagination-change-page="getResults">
                         <span slot="prev-nav">&lt; Previous</span>
                         <span slot="next-nav">Next &gt;</span>
                     </pagination>
@@ -55,7 +55,7 @@
           </div>
         </div>
 
-      <div v-if="!$gate.isTeacherOrAdmin()">
+      <div v-if="!$gate.isAdmin()">
             <not-found></not-found>
       </div>
 
@@ -64,30 +64,26 @@
         <div class="modal-dialog modal-dialog-scrollable">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title fas fa-bullhorn" v-show="!editMode" id="addNewTitle"> Add New Announcement</h5>
-              <h5 class="modal-title fas fa-bullhorn" v-show="editMode" id="addNewTitle"> Update Announcement</h5>
+              <h5 class="modal-title fas fa-bullhorn" v-show="!editMode" id="addNewTitle"> Add New System Settings</h5>
+              <h5 class="modal-title fas fa-bullhorn" v-show="editMode" id="addNewTitle"> Update System Settings</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
               <span aria-hidden="true">&times;</span>
             </div>
 
-            <form @submit.prevent="editMode ? updateAnnouncement() : createAnnouncement()">
+            <form @submit.prevent="editMode ? updateSystemSetting() : createSystemSetting()">
               
                 <div class="modal-body" style="overflow-y: auto;">
                     <div class="form-group mb-1">
-                        <label for="posting_date">Posting Date<span class="text-danger">*</span> </label>
-                        <input v-model="form1.posting_date" type="date" name="posting_date"
-                            placeholder="Posting Date"
-                            class="form-control" :class="{ 'is-invalid': form1.errors.has('posting_date') }">
-                        <has-error :form="form1" field="posting_date"></has-error>
+                        <label for="sys_name">System Name<span class="text-danger">*</span> </label>
+                        <input v-model="form1.sys_name" type="date" name="sys_name"
+                            placeholder="System Name"
+                            class="form-control" :class="{ 'is-invalid': form1.errors.has('sys_name') }">
+                        <has-error :form="form1" field="sys_name"></has-error>
                     </div>
 
                     <div class="form-group mb-1">
-                        <label for="publicannouncement">Public Announcement <span class="text-danger">*</span></label>
-                        <textarea rows="6" v-model="form1.publicannouncement" type="text" name="publicannouncement"
-                            placeholder="Enter Public Announcement"
-                            class="form-control" :class="{ 'is-invalid': form1.errors.has('publicannouncement') }">
-                        </textarea>
-                        <has-error :form="form1" field="publicannouncement"></has-error>
+                        <label for="sys_logo">Logo <span class="text-danger">*</span></label>
+                        
                     </div>
 
                     
@@ -144,7 +140,7 @@
                 this.form1.fill(publicannouncement);
           },
 
-          createAnnouncement(){
+          createSystemSetting(){
             this.$Progress.start()
 
             this.form1.post('api/publicannouncement') //Send HTTP request
@@ -168,7 +164,7 @@
             })
           },
 
-          deleteAnnouncement(id){
+          deleteSystemSetting(id){
               Swal.fire({
                       title: 'Delete Announcement?',
                       text: "You won't be able to revert this!",
@@ -192,7 +188,7 @@
                       }
                   })
           },
-          updateAnnouncement(){
+          updateSystemSetting(){
               this.$Progress.start();
               this.form1.put("api/publicannouncement/"+this.form1.id)
               .then(()=>{

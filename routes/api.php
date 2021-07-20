@@ -15,6 +15,7 @@ use App\Http\Controllers\API\ScheduleController;
 use App\Http\Controllers\API\AnnouncementController;
 use App\Http\Controllers\API\PublicAnnouncementController;
 use App\Http\Controllers\API\DashboardController;
+use App\Http\Controllers\API\SystemSettingController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -83,3 +84,5 @@ Route::get('findAnnouncement', [AnnouncementController::class, 'search']);
 
 Route::apiResource('publicannouncement', PublicAnnouncementController::class);
 Route::get('findPublicAnnouncement', [PublicAnnouncementController::class, 'search']);
+
+Route::apiResource('systemsetting', SystemSettingController::class);

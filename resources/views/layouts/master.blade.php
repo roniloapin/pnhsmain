@@ -217,12 +217,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </router-link>
               </li>
 
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <router-link to="/systemsettings" class="nav-link">
                   <i class="nav-icon fas fa-cog"></i>
                   <p>System Settings</p>
                 </router-link>
-              </li>
+              </li> -->
             </ul>
           </li>
           @endcan
@@ -273,16 +273,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
           @endcan
 
-          @can('isTeacher')
+          <!-- @can('isTeacherOrAdmin')
           <li class="nav-item">
             <router-link to="/profile" class="nav-link">
               <i class="nav-icon fas fa-user-edit"></i>
               <p>
-                Teacher Profile
+                 Profile
               </p>
             </router-link>
           </li>       
-          @endcan
+          @endcan -->
           
           <li class="nav-item">
             <router-link to="/about" class="nav-link">
