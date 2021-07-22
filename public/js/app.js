@@ -5499,9 +5499,8 @@ __webpack_require__.r(__webpack_exports__);
       // axios.get("api/approved_student").then(({ data }) => (this.approved_students = data));
       axios.get("api/approved_student").then(function (response) {
         this.approved_students = response.data.approved_students;
-        this.pending_students = response.data.pending_students;
-        console.log(this.approved_students.total);
-        console.log(response.data.pending_students);
+        this.pending_students = response.data.pending_students; // console.log(this.approved_students.total);
+        // console.log(response.data.pending_students);
       }.bind(this));
     } // loadPendingStudents(){
     //     axios.get("api/pending_student").then(({ data }) => (this.pending_students = data));
@@ -5513,9 +5512,9 @@ __webpack_require__.r(__webpack_exports__);
 
     fire.$on('searching', function () {
       var query = _this11.$parent.search;
-      axios.get('api/approved_student?u=' + query).then(function (_ref6) {
+      axios.get('api/findJHSStudent_a?u=' + query).then(function (_ref6) {
         var data = _ref6.data;
-        _this11.approved_students = data, _this11.pending_students = data;
+        _this11.approved_students = data;
       })["catch"](function () {});
     });
     this.loadLearnerTypes();
@@ -6242,9 +6241,9 @@ __webpack_require__.r(__webpack_exports__);
 
     fire.$on('searching', function () {
       var query = _this11.$parent.search;
-      axios.get('api/approved_student?u=' + query).then(function (_ref6) {
+      axios.get('api/findJHSStudent_p?u=' + query).then(function (_ref6) {
         var data = _ref6.data;
-        _this11.approved_students = data, _this11.pending_students = data;
+        _this11.pending_students = data;
       })["catch"](function () {});
     });
     this.loadLearnerTypes();
@@ -7856,9 +7855,8 @@ __webpack_require__.r(__webpack_exports__);
       // axios.get("api/approved_student").then(({ data }) => (this.approved_students = data));
       axios.get("api/shsstudent").then(function (response) {
         this.approved_students = response.data.approved_students;
-        this.pending_students = response.data.pending_students;
-        console.log(this.approved_students.total);
-        console.log(response.data.pending_students);
+        this.pending_students = response.data.pending_students; // console.log(this.approved_students.total);
+        // console.log(response.data.pending_students);
       }.bind(this));
     } // loadPendingStudents(){
     //     axios.get("api/pending_student").then(({ data }) => (this.pending_students = data));
@@ -7872,7 +7870,7 @@ __webpack_require__.r(__webpack_exports__);
       var query = _this11.$parent.search;
       axios.get('api/findSHSStudent_a?u=' + query).then(function (_ref6) {
         var data = _ref6.data;
-        _this11.approved_students = response.data.approved_students;
+        _this11.approved_students = data;
       })["catch"](function () {});
     });
     this.loadLearnerTypes();
@@ -8595,9 +8593,8 @@ __webpack_require__.r(__webpack_exports__);
       // axios.get("api/approved_student").then(({ data }) => (this.approved_students = data));
       axios.get("api/shsstudent").then(function (response) {
         this.approved_students = response.data.approved_students;
-        this.pending_students = response.data.pending_students;
-        console.log(this.approved_students.total);
-        console.log(response.data.pending_students);
+        this.pending_students = response.data.pending_students; // console.log(this.approved_students.total);
+        // console.log(response.data.pending_students);
       }.bind(this));
     } // loadPendingStudents(){
     //     axios.get("api/pending_student").then(({ data }) => (this.pending_students = data));
@@ -8609,9 +8606,9 @@ __webpack_require__.r(__webpack_exports__);
 
     fire.$on('searching', function () {
       var query = _this11.$parent.search;
-      axios.get('api/findStudent?u=' + query).then(function (_ref6) {
+      axios.get('api/findSHSStudent_p?u=' + query).then(function (_ref6) {
         var data = _ref6.data;
-        _this11.students = data;
+        _this11.pending_students = data;
       })["catch"](function () {});
     });
     this.loadLearnerTypes();

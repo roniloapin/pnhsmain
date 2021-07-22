@@ -661,8 +661,8 @@
                 axios.get("api/shsstudent").then(function( response ){
                     this.approved_students = response.data.approved_students;
                     this.pending_students = response.data.pending_students;
-                    console.log(this.approved_students.total);
-                    console.log(response.data.pending_students);
+                    // console.log(this.approved_students.total);
+                    // console.log(response.data.pending_students);
                 }.bind(this));
             },
             // loadPendingStudents(){
@@ -672,9 +672,9 @@
         created() {
             fire.$on('searching', ()=>{
                 let query = this.$parent.search;
-                axios.get('api/findStudent?u=' + query)
+                axios.get('api/findSHSStudent_p?u=' + query)
                 .then(({data}) => {
-                    this.students = data
+                    this.pending_students = data
                 })
                 .catch(()=>{
                     
