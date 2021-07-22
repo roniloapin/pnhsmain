@@ -18,7 +18,7 @@
                                   <thead>
                                     <tr>
                                       <th>Action</th>
-                                      <th>ID</th>
+                                      <!-- <th>ID</th> -->
                                       <th>Name</th>
                                       <th>STRAND</th>
                                       <th>Gender</th>
@@ -51,7 +51,7 @@
                                             <i class="fas fa-file-pdf color-green"></i>
                                         </a>
                                       </td>
-                                      <td>{{student.id}}</td>
+                                      <!-- <td>{{student.id}}</td> -->
                                       <td style="text-align:left;">{{student.last_name}},&nbsp;{{student.first_name}}&nbsp;{{student.middle_name}}</td>
                                       <td><span class="tag tag-success" style="text-align:center;">{{student.strand.strand_code}}</span></td>
                                       <td>{{student.gender}}</td>
@@ -668,9 +668,9 @@
         created() {
             fire.$on('searching', ()=>{
                 let query = this.$parent.search;
-                axios.get('api/findStudent?u=' + query)
+                axios.get('api/findSHSStudent_a?u=' + query)
                 .then(({data}) => {
-                    this.students = data
+                    this.approved_students = response.data.approved_students;
                 })
                 .catch(()=>{
                     

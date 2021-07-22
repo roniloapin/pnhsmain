@@ -7870,9 +7870,9 @@ __webpack_require__.r(__webpack_exports__);
 
     fire.$on('searching', function () {
       var query = _this11.$parent.search;
-      axios.get('api/findStudent?u=' + query).then(function (_ref6) {
+      axios.get('api/findSHSStudent_a?u=' + query).then(function (_ref6) {
         var data = _ref6.data;
-        _this11.students = data;
+        _this11.approved_students = response.data.approved_students;
       })["catch"](function () {});
     });
     this.loadLearnerTypes();
@@ -81551,8 +81551,6 @@ var render = function() {
                         )
                       ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(student.id))]),
-                      _vm._v(" "),
                       _c("td", { staticStyle: { "text-align": "left" } }, [
                         _vm._v(
                           _vm._s(student.last_name) +
@@ -84044,8 +84042,6 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("Action")]),
         _vm._v(" "),
-        _c("th", [_vm._v("ID")]),
-        _vm._v(" "),
         _c("th", [_vm._v("Name")]),
         _vm._v(" "),
         _c("th", [_vm._v("Grade Level")]),
@@ -84400,8 +84396,6 @@ var render = function() {
                           ]
                         )
                       ]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(student.id))]),
                       _vm._v(" "),
                       _c("td", { staticStyle: { "text-align": "left" } }, [
                         _vm._v(
@@ -86894,8 +86888,6 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("Action")]),
         _vm._v(" "),
-        _c("th", [_vm._v("ID")]),
-        _vm._v(" "),
         _c("th", [_vm._v("Name")]),
         _vm._v(" "),
         _c("th", [_vm._v("Grade Level")]),
@@ -89200,8 +89192,6 @@ var render = function() {
                           ]
                         )
                       ]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(student.id))]),
                       _vm._v(" "),
                       _c("td", { staticStyle: { "text-align": "left" } }, [
                         _vm._v(
@@ -91702,8 +91692,6 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("Action")]),
         _vm._v(" "),
-        _c("th", [_vm._v("ID")]),
-        _vm._v(" "),
         _c("th", [_vm._v("Name")]),
         _vm._v(" "),
         _c("th", [_vm._v("STRAND")]),
@@ -92059,8 +92047,6 @@ var render = function() {
                           ]
                         )
                       ]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(student.id))]),
                       _vm._v(" "),
                       _c("td", { staticStyle: { "text-align": "left" } }, [
                         _vm._v(
@@ -94560,8 +94546,6 @@ var staticRenderFns = [
     return _c("thead", [
       _c("tr", [
         _c("th", [_vm._v("Action")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("ID")]),
         _vm._v(" "),
         _c("th", [_vm._v("Name")]),
         _vm._v(" "),

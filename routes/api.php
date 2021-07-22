@@ -63,6 +63,10 @@ Route::apiResource('approved_student', StudentController::class);
 Route::apiResource('pending_student', StudentController::class);
 // Route::apiResource('student', StudentController::class);
 Route::get('shsstudent', [StudentController::class, 'indexSHS']);
+Route::get('findJHSStudent_a', [StudentController::class, 'search_ja']);
+Route::get('findJHSStudent_p', [StudentController::class, 'search_jp']);
+Route::get('findSHSStudent_a', [StudentController::class, 'search_sa']);
+Route::get('findSHSStudent_p', [StudentController::class, 'search_sp']);
 Route::get('findStudent', [StudentController::class, 'search']);
 Route::apiResource('student', StudentController::class);
 

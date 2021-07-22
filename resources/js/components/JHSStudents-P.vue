@@ -16,7 +16,7 @@
                                   <thead>
                                     <tr>
                                       <th>Action</th>
-                                      <th>ID</th>
+                                      <!-- <th>ID</th> -->
                                       <th>Name</th>
                                       <th>Grade Level</th>
                                       <th>Gender</th>
@@ -51,7 +51,7 @@
                                             <i class="fas fa-file-pdf color-green"></i>
                                         </a>
                                       </td>
-                                      <td>{{student.id}}</td>
+                                      <!-- <td>{{student.id}}</td> -->
                                       <td style="text-align:left;">{{student.last_name}},&nbsp;{{student.first_name}}&nbsp;{{student.middle_name}}</td>
                                       <td><span class="tag tag-success" style="text-align:center;">{{student.jhs_grade_level}}</span></td>
                                       <td>{{student.gender}}</td>
