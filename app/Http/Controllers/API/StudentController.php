@@ -21,8 +21,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $pending_students = Student::where(['status'=> 'Pending', 'key_stage' => 'jhs'])->orderBy('last_name', 'asc')->paginate(20);
-        $approved_students = Student::where(['status'=> 'Approved', 'key_stage' => 'jhs'])->orderBy('last_name', 'asc')->paginate(20);
+        $pending_students = Student::where(['status'=> 'Pending', 'key_stage' => 'jhs'])->orderBy('jhs_grade_level', 'asc')->orderBy('last_name', 'asc')->paginate(20);
+        $approved_students = Student::where(['status'=> 'Approved', 'key_stage' => 'jhs'])->orderBy('jhs_grade_level', 'asc')->orderBy('last_name', 'asc')->paginate(20);
         return response()->json([
             'pending_students' => $pending_students,
             'approved_students' => $approved_students,
@@ -239,9 +239,9 @@ class StudentController extends Controller
            $query->where('lrn', 'LIKE', "%$search%")
                    ->orWhere('last_name', 'LIKE', "%$search%")
                    ->orWhere('first_name', 'LIKE', "%$search%");
-                   })->where(['status'=> 'Approved', 'key_stage' => 'jhs'])->orderBy('last_name', 'asc')->paginate(20);
+                   })->where(['status'=> 'Approved', 'key_stage' => 'jhs'])->orderBy('jhs_grade_level', 'asc')->orderBy('last_name', 'asc')->paginate(20);
            }else{
-               $students = Student::where(['status'=> 'Approved', 'key_stage' => 'jhs'])->orderBy('last_name', 'asc')->paginate(20);
+               $students = Student::where(['status'=> 'Approved', 'key_stage' => 'jhs'])->orderBy('jhs_grade_level', 'asc')->orderBy('last_name', 'asc')->paginate(20);
            }
        return $students;
     }
@@ -252,9 +252,9 @@ class StudentController extends Controller
            $query->where('lrn', 'LIKE', "%$search%")
                    ->orWhere('last_name', 'LIKE', "%$search%")
                    ->orWhere('first_name', 'LIKE', "%$search%");
-                   })->where(['status'=> 'Pending', 'key_stage' => 'jhs'])->orderBy('last_name', 'asc')->paginate(20);
+                   })->where(['status'=> 'Pending', 'key_stage' => 'jhs'])->orderBy('jhs_grade_level', 'asc')->orderBy('last_name', 'asc')->paginate(20);
            }else{
-               $students = Student::where(['status'=> 'Pending', 'key_stage' => 'jhs'])->orderBy('last_name', 'asc')->paginate(20);
+               $students = Student::where(['status'=> 'Pending', 'key_stage' => 'jhs'])->orderBy('jhs_grade_level', 'asc')->orderBy('last_name', 'asc')->paginate(20);
            }
        return $students;
     }
