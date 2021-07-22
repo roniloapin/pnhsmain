@@ -83,7 +83,7 @@
 
                     <div class="form-group mb-1">
                         <label for="sys_logo">Logo <span class="text-danger">*</span></label>
-                        
+                        <input type="file">
                     </div>
 
                     
@@ -108,23 +108,23 @@
         data(){
           return{
             editMode: false,
-            publicannouncements: {},
+            system_settings: {},
             form1: new Form({
               id: '',
-              posting_date: '',
-              publicannouncement: '',
+              sys_name: '',
+              sys_logo: '',
             })
           }
         },
         methods:{
           getResults(page = 1) {
-            axios.get('api/publicannouncement?page=' + page)
+            axios.get('api/system_setting?page=' + page)
             .then(response => {
-              this.publicannouncements = response.data;
+              this.system_settings = response.data;
             });
 		      },
-          loadAnnouncements(){
-              axios.get("api/publicannouncement").then(({ data }) => (this.publicannouncements = data));
+          loadSystemSetting(){
+              axios.get("api/system_setting").then(({ data }) => (this.system_settings = data));
           },
           
 
@@ -133,23 +133,23 @@
                 this.form1.reset();
                 $('#addNew').modal('show')
             },
-          editModal(publicannouncement){
+          editModal(system_setting){
                 this.editMode = true;
                 this.form1.reset();
                 $('#addNew').modal('show')
-                this.form1.fill(publicannouncement);
+                this.form1.fill(system_setting);
           },
 
           createSystemSetting(){
             this.$Progress.start()
 
-            this.form1.post('api/publicannouncement') //Send HTTP request
+            this.form1.post('api/system_setting') //Send HTTP request
             .then(()=>{               //if successful then
               fire.$emit('AfterCreate');
               $('#addNew').modal('hide')
               Toast.fire({
                   icon: 'success',
-                  title: 'Announcement added successfully'
+                  title: 'System Settings added successfully'
               })
               this.$Progress.finish();
             })
@@ -166,7 +166,7 @@
 
           deleteSystemSetting(id){
               Swal.fire({
-                      title: 'Delete Announcement?',
+                      title: 'Delete System Setting?',
                       text: "You won't be able to revert this!",
                       icon: 'warning',
                       showCancelButton: true,
@@ -175,10 +175,10 @@
                       confirmButtonText: 'Yes, delete it!'
                   }).then((result) => {
                       if (result.value){
-                          this.form1.delete('api/publicannouncement/'+id).then(()=>{
+                          this.form1.delete('api/system_setting/'+id).then(()=>{
                                   Swal.fire(
                                       'Deleted!',
-                                      'Announcement has been deleted.',
+                                      'System Settings has been deleted.',
                                       'success'
                                   )
                                   fire.$emit('AfterCreate');
@@ -190,7 +190,7 @@
           },
           updateSystemSetting(){
               this.$Progress.start();
-              this.form1.put("api/publicannouncement/"+this.form1.id)
+              this.form1.put("api/system_setting/"+this.form1.id)
               .then(()=>{
                   $('#addNew').modal('hide')
                   // Swal.fire(
@@ -200,7 +200,7 @@
                   // )
                   Toast.fire({
                       icon: 'success',
-                      title: 'Announcement has been updated'
+                      title: 'System Settings has been updated'
                   })
                   this.$Progress.finish();
                   fire.$emit('AfterCreate')
@@ -212,9 +212,9 @@
           },
         },
         created() {
-           this.loadAnnouncements();
+           this.loadSystemSetting();
            fire.$on('AfterCreate', ()=>{
-                this.loadAnnouncements();
+                this.loadSystemSetting();
             });
         }
     }

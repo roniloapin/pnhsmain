@@ -1,16 +1,9 @@
 <template>
+    
     <div class="container">
-        <h3><strong> Junior High School Students</strong></h3>
-        <nav class="mt-3">
-            <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
-                <a class="nav-item nav-link color-blue active" id="nav-student-approved-type-tab" data-toggle="tab" href="#nav-student-approved-type" role="tab" aria-controls="nav-student-approved-type" aria-selected="true"> <strong>Approved</strong> </a>
-                <a class="nav-item nav-link color-blue" id="nav-student-pending-tab" data-toggle="tab" href="#nav-student-pending" role="tab" aria-controls="nav-student-pending" aria-selected="true"><strong>Pending</strong> </a>
-            </div>
-        </nav>
+        <h3><strong> Senior High School Students (Approved)</strong></h3>
 
-        <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="nav-student-approved-type" role="tabpanel" aria-labelledby="nav-approved-tab">
-                <div class="row mt-4">
+              <div class="row mt-4">
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header card-primary card-outline">
@@ -27,7 +20,7 @@
                                       <th>Action</th>
                                       <th>ID</th>
                                       <th>Name</th>
-                                      <th>Grade Level</th>
+                                      <th>STRAND</th>
                                       <th>Gender</th>
                                       <th>Status</th>
                                     </tr>
@@ -40,6 +33,7 @@
                                       <td>
                                         <a href="#" @click="editStudentModal(student)">
                                             <i class="fa fa-edit color-blue" title="Edit"></i>
+                                            <!-- <button class="btn-primary btn-sm"> Edit </button> -->
                                         </a>
                                         |
                                         <a href="#" @click="deleteStudent(student.id)">
@@ -59,7 +53,7 @@
                                       </td>
                                       <td>{{student.id}}</td>
                                       <td style="text-align:left;">{{student.last_name}},&nbsp;{{student.first_name}}&nbsp;{{student.middle_name}}</td>
-                                      <td><span class="tag tag-success" style="text-align:center;">{{student.jhs_grade_level}}</span></td>
+                                      <td><span class="tag tag-success" style="text-align:center;">{{student.strand.strand_code}}</span></td>
                                       <td>{{student.gender}}</td>
                                       <td>{{student.status}}</td>
                                     </tr>
@@ -79,83 +73,8 @@
                         <!-- /.card -->
                     </div>
                 </div>
-            </div>
 
-            <div class="tab-pane fade show" id="nav-student-pending" role="tabpanel" aria-labelledby="nav-student-pending-tab">
-                <div class="row mt-4">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header card-primary card-outline">
-                                <h5 class="m-0 fas text-primary"> Pending Students</h5>
-                                <div class="card-tools">
-                                    <button class="btn btn-success btn-block p-1" @click="addNewStudent" title="Add New Learner Type">Add New</button>
-                                </div>
-                            </div>
-                            <!-- /.card-header -->
-                            <div class="card-body table-responsive p-0" >
-                                <table class="table table-head-fixed table-hover">
-                                  <thead>
-                                    <tr>
-                                      <th>Action</th>
-                                      <th>ID</th>
-                                      <th>Name</th>
-                                      <th>Grade Level</th>
-                                      <th>Gender</th>
-                                      <th>Status</th>
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                    <tr v-if="pending_students.total == 0">
-                                        <td colspan="6" class="text-center"><label>No records yet.</label></td>
-                                    </tr>
-                                    <tr v-for="student in pending_students.data" :key="student.id">
-                                      <td>
-                                        <a href="#" @click="editStudentModal(student)">
-                                            <i class="fa fa-edit color-blue" title="Edit"></i>
-                                        </a>
-                                        |
-                                        <a href="#" @click="deleteStudent(student.id)">
-                                            <i class="fa fa-trash-alt color-red" title="Delete"></i>
-                                        </a>
-                                        |
-                                        <!-- <a href="#">
-                                            <i class="fas fa-eye color-green"></i>
-                                        </a> -->
-                                        <!-- <router-link :to="{name: 'print.profile', params:{id: student.id}}" target="_blank">
-                                            <i class="fa fa-print color-dark" title="Print"></i>
-                                        </router-link> -->
-                                        <a target="_blank" :href="'/printstudent/'+student.id">
-                                            <i class="fa fa-print color-dark" title="Print"></i>
-                                        </a>
-                                        |
-                                        <a target="_blank" :href="'requirements/'+student.id+'/'+student.requirement">
-                                            <i class="fas fa-file-pdf color-green"></i>
-                                        </a>
-                                      </td>
-                                      <td>{{student.id}}</td>
-                                      <td style="text-align:left;">{{student.last_name}},&nbsp;{{student.first_name}}&nbsp;{{student.middle_name}}</td>
-                                      <td><span class="tag tag-success" style="text-align:center;">{{student.jhs_grade_level}}</span></td>
-                                      <td>{{student.gender}}</td>
-                                      <td>{{student.status}}</td>
-                                    </tr>
-                                    
-                                  </tbody>
-                                </table>
-                            </div>
-                            <!-- /.card-body -->
-                            <div class="card-footer">
-                                    <pagination :data="pending_students" @pagination-change-page="getStudentResults_p">
-                                        <span slot="prev-nav">&lt; Previous</span>
-                                        <span slot="next-nav">Next &gt;</span>
-                                    </pagination>
-                            </div>
-                        </div>
-                        <!-- /.card -->
-                    </div>
-                </div>
-            </div>
 
-        </div>
 
 <!-- Modals  -->
     <!-- 1. Learner Type Modal -->
@@ -237,7 +156,7 @@
                             <div class="form-group mb-1">
                                 <label for="date_of_birth">Date of Birth <span class="text-danger">*</span> </label>
                                 <input v-model="form1.date_of_birth" type="date" name="date_of_birth"
-                                    placeholder="Date of Birth"
+                                    placeholder="E-mail Address"
                                     class="form-control" :class="{ 'is-invalid': form1.errors.has('date_of_birth') }">
                                 <has-error :form="form1" field="date_of_birth"></has-error>
                             </div>
@@ -504,6 +423,7 @@
                                     :class="{
                                     'is-invalid': form1.errors.has('jhs_grade_level') }">
                                     <option value="" selected>Select</option>
+                                    <!-- <option value="">-blank-</option> -->
                                     <option value="7">7</option>
                                     <option value="8">8</option>
                                     <option value="9">9</option>
@@ -515,6 +435,7 @@
                                 <label for="strand_id">If Senior High School, select STRAND  </label>
                                 <select class="form-control"  name="strand_id"  v-model="form1.strand_id" :class="{ 'is-invalid': form1.errors.has('strand_id') }">
                                     <option value="" selected>Select Strand</option>
+                                    <!-- <option value="">-blank-</option> -->
                                     <option v-for="strand in strands.data" :key="strand.id" :value="strand.id" selected>{{ strand.strand_name}}</option>
                                     <has-error :form="form1" field="strand_id"></has-error>
                                 </select>
@@ -523,7 +444,7 @@
                             <div class="form-group mb-1">
                                 <label for="schoolyear_id">School Year</label>
                                 <select class="form-control"  name="schoolyear_id"  v-model="form1.schoolyear_id" :class="{ 'is-invalid': form1.errors.has('schoolyear_id') }">
-                                    <!-- <option value="" disabled selected>Select School Year</option> -->
+                                    <option value="" disabled selected>Select School Year</option>
                                     <option v-for="schoolyear in schoolyears.data" :key="schoolyear.id" :value="schoolyear.id" selected>{{ schoolyear.schoolyear}}</option>
                                     <has-error :form="form1" field="schoolyear_id"></has-error>
                                 </select>
@@ -577,6 +498,7 @@
                 schoolyears:{},
                 approved_students:{},
                 pending_students:{},
+                students:{},
                 form1: new Form({
                   id: '',
                   learner_type_id: '',
@@ -732,7 +654,7 @@
             },
             load_students(){
                 // axios.get("api/approved_student").then(({ data }) => (this.approved_students = data));
-                axios.get("api/approved_student").then(function( response ){
+                axios.get("api/shsstudent").then(function( response ){
                     this.approved_students = response.data.approved_students;
                     this.pending_students = response.data.pending_students;
                     console.log(this.approved_students.total);
@@ -746,10 +668,9 @@
         created() {
             fire.$on('searching', ()=>{
                 let query = this.$parent.search;
-                axios.get('api/approved_student?u=' + query)
+                axios.get('api/findStudent?u=' + query)
                 .then(({data}) => {
-                    this.approved_students = data,
-                    this.pending_students = data
+                    this.students = data
                 })
                 .catch(()=>{
                     

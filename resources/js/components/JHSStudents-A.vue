@@ -1,16 +1,7 @@
 <template>
     <div class="container">
         <h3><strong> Junior High School Students (Approved)</strong></h3>
-        <nav class="mt-3">
-            <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
-                <a class="nav-item nav-link color-blue active" id="nav-student-approved-type-tab" data-toggle="tab" href="#nav-student-approved-type" role="tab" aria-controls="nav-student-approved-type" aria-selected="true"> <strong>Approved</strong> </a>
-                <!-- <a class="nav-item nav-link color-blue" id="nav-student-pending-tab" data-toggle="tab" href="#nav-student-pending" role="tab" aria-controls="nav-student-pending" aria-selected="true"><strong>Pending</strong> </a> -->
-            </div>
-        </nav>
-
-        <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="nav-student-approved-type" role="tabpanel" aria-labelledby="nav-approved-tab">
-                <div class="row mt-4">
+               <div class="row mt-4">
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header card-primary card-outline">
@@ -79,9 +70,6 @@
                         <!-- /.card -->
                     </div>
                 </div>
-            </div>
-
-        </div>
 
 <!-- Modals  -->
     <!-- 1. Learner Type Modal -->

@@ -141,23 +141,43 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview" style="margin-left:20px;">
-              <li class="nav-item">
-                  <router-link to="/jhsstudents" class="nav-link">
-                    <i class="nav-icon fas fa-user-graduate"></i>
-                    <p>JHS Students</p>
-                  </router-link>
-              </li>
-            </ul>
-            <ul class="nav nav-treeview" style="margin-left:20px;">
-              <li class="nav-item">
-                  <router-link to="/shsstudents" class="nav-link">
-                    <i class="nav-icon fas fa-user-graduate"></i>
-                    <p>SHS Students</p>
-                  </router-link>
-              </li>
-            </ul>
-            
+                <ul class="nav nav-treeview" style="margin-left:20px;">
+                  <li class="nav-item">
+                      <router-link to="/jhsstudents-p" class="nav-link">
+                        <i class="nav-icon fas fa-user-graduate"></i>
+                        <p>Pending JHS Students</p>
+                      </router-link>
+                  </li>
+                </ul>
+
+                <ul class="nav nav-treeview" style="margin-left:20px;">
+                  <li class="nav-item">
+                      <router-link to="/jhsstudents-a" class="nav-link">
+                        <i class="nav-icon fas fa-user-graduate"></i>
+                        <p>Approved JHS Students</p>
+                      </router-link>
+                  </li>
+                </ul>
+
+                <ul class="nav nav-treeview" style="margin-left:20px;">
+                  <li class="nav-item">
+                      <router-link to="/shsstudents-p" class="nav-link">
+                        <i class="nav-icon fas fa-user-graduate"></i>
+                        <p>Pending SHS Students</p>
+                      </router-link>
+                  </li>
+                </ul>
+
+                <ul class="nav nav-treeview" style="margin-left:20px;">
+                  <li class="nav-item">
+                      <router-link to="/shsstudents-a" class="nav-link">
+                        <i class="nav-icon fas fa-user-graduate"></i>
+                        <p>Approved SHS Students</p>
+                      </router-link>
+                  </li>
+                </ul>
+
+
           </li>
           @endcan
           @can('isTeacherOrAdmin')
@@ -217,12 +237,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </router-link>
               </li>
 
-              <!-- <li class="nav-item">
+              <li class="nav-item">
                 <router-link to="/systemsettings" class="nav-link">
                   <i class="nav-icon fas fa-cog"></i>
                   <p>System Settings</p>
                 </router-link>
-              </li> -->
+              </li>
             </ul>
           </li>
           @endcan

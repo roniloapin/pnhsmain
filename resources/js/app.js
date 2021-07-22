@@ -62,8 +62,10 @@ let routes = [
     { path: '/dashboard', component: require('./components/Dashboard.vue').default },
     { path: '/studentprofile', component: require('./components/StudentProfile.vue').default },
     { path: '/profile', component: require('./components/TeacherProfile.vue').default },
-    { path: '/jhsstudents', component: require('./components/JHSStudents.vue').default },
-    { path: '/shsstudents', component: require('./components/SHSStudents.vue').default },
+    { path: '/jhsstudents-a', component: require('./components/JHSStudents-A.vue').default },
+    { path: '/jhsstudents-p', component: require('./components/JHSStudents-P.vue').default },
+    { path: '/shsstudents-a', component: require('./components/SHSStudents-A.vue').default },
+    { path: '/shsstudents-p', component: require('./components/SHSStudents-P.vue').default },
     { path: '/teachers', component: require('./components/Teachers.vue').default },
     { path: '/configuration', component: require('./components/Configuration.vue').default },
     { path: '/jhsschedule', component: require('./components/JHSSchedule.vue').default },
@@ -120,8 +122,6 @@ const app = new Vue({
     router,
     data:{
       search: '',
-      searchshs: '',
-      searchjhs:'',
     },
     methods:{
       searchit: _.debounce(()=>{
