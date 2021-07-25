@@ -6,7 +6,7 @@
                     <h2 class="text-primary">Welcome to PNHS Enrollment System!</h2>
                 </div>
 
-                <div class="row mt-2" v-if="$gate.isAdmin()">
+                <div class="row mt-2" v-if="$gate.isAdminOrRegistrar()">
                     <div class="col-md-12"><h3 class="text-primary">Welcome to PNHS Enrollment System!</h3></div>
                     
 

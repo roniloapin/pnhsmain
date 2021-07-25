@@ -12,8 +12,20 @@ export default class Gate{
         return this.user.role === 'teacher';
     }
 
+    isAdminOrRegistrar(){
+        if(this.user.role === 'admin' || this.user.role === 'registrar'){
+            return true;
+        }
+    }
+
     isTeacherOrAdmin(){
         if(this.user.role === 'admin' || this.user.role === 'teacher'){
+            return true;
+        }
+    }
+
+    isTeacherOrAdminOrRegistrar(){
+        if(this.user.role === 'admin' || this.user.role === 'teacher' || this.user.role === 'registrar'){
             return true;
         }
     }

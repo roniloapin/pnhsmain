@@ -21,7 +21,7 @@ class UserController extends Controller
      */
     public function index()
     {   
-        return User::orderBy('name', 'asc')->where('role', 'admin')->paginate(20);
+        return User::orderBy('name', 'asc')->where('role', 'admin')->orWhere('role', 'registrar')->paginate(20);
     }
 
     public function indexTeacher()

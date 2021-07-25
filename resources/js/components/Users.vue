@@ -110,8 +110,10 @@
                     'is-invalid': form.errors.has('role') }">
                         <option value="" disabled>Select User Role</option>
                         <option value="admin">Admin</option>
+                        <option value="registrar">Registrar</option>
                         <option value="teacher">Teacher</option>
-                        <!-- <option value="teacher">Teacher</option>
+                        
+                        <!-- <option value="registrar">Teacher</option>
                         <option value="student">Student</option> -->
                     </select>
                     <has-error :form="form" field="role"></has-error>

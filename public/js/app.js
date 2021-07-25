@@ -9541,6 +9541,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -9711,9 +9713,23 @@ var Gate = /*#__PURE__*/function () {
       return this.user.role === 'teacher';
     }
   }, {
+    key: "isAdminOrRegistrar",
+    value: function isAdminOrRegistrar() {
+      if (this.user.role === 'admin' || this.user.role === 'registrar') {
+        return true;
+      }
+    }
+  }, {
     key: "isTeacherOrAdmin",
     value: function isTeacherOrAdmin() {
       if (this.user.role === 'admin' || this.user.role === 'teacher') {
+        return true;
+      }
+    }
+  }, {
+    key: "isTeacherOrAdminOrRegistrar",
+    value: function isTeacherOrAdminOrRegistrar() {
+      if (this.user.role === 'admin' || this.user.role === 'teacher' || this.user.role === 'registrar') {
         return true;
       }
     }
@@ -77551,7 +77567,7 @@ var render = function() {
             ])
           : _vm._e(),
         _vm._v(" "),
-        _vm.$gate.isAdmin()
+        _vm.$gate.isAdminOrRegistrar()
           ? _c("div", { staticClass: "row mt-2" }, [
               _vm._m(0),
               _vm._v(" "),
@@ -80613,7 +80629,7 @@ var render = function() {
   return _c("div", { staticClass: "container" }, [
     _vm._m(0),
     _vm._v(" "),
-    _vm.$gate.isTeacherOrAdmin()
+    _vm.$gate.isTeacherOrAdminOrRegistrar()
       ? _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-md-12" }, [
             _c("div", { staticClass: "card" }, [
@@ -80623,7 +80639,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "card-tools" }, [
-                  _vm.$gate.isAdmin()
+                  _vm.$gate.isAdminOrRegistrar()
                     ? _c(
                         "button",
                         {
@@ -80644,7 +80660,7 @@ var render = function() {
                   [
                     _c("thead", [
                       _c("tr", { staticStyle: { "text-align": "center" } }, [
-                        _vm.$gate.isAdmin()
+                        _vm.$gate.isAdminOrRegistrar()
                           ? _c("th", [_vm._v("Action")])
                           : _vm._e(),
                         _vm._v(" "),
@@ -80677,7 +80693,7 @@ var render = function() {
                               staticStyle: { "text-align": "center" }
                             },
                             [
-                              _vm.$gate.isAdmin()
+                              _vm.$gate.isAdminOrRegistrar()
                                 ? _c("td", [
                                     _c(
                                       "a",
@@ -80783,7 +80799,9 @@ var render = function() {
         ])
       : _vm._e(),
     _vm._v(" "),
-    !_vm.$gate.isTeacherOrAdmin() ? _c("div", [_c("not-found")], 1) : _vm._e(),
+    !_vm.$gate.isTeacherOrAdminOrRegistrar()
+      ? _c("div", [_c("not-found")], 1)
+      : _vm._e(),
     _vm._v(" "),
     _c(
       "div",
@@ -88224,7 +88242,7 @@ var render = function() {
   return _c("div", { staticClass: "container" }, [
     _vm._m(0),
     _vm._v(" "),
-    _vm.$gate.isTeacherOrAdmin()
+    _vm.$gate.isTeacherOrAdminOrRegistrar()
       ? _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-md-12" }, [
             _c("div", { staticClass: "card" }, [
@@ -88234,7 +88252,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "card-tools" }, [
-                  _vm.$gate.isAdmin()
+                  _vm.$gate.isAdminOrRegistrar()
                     ? _c(
                         "button",
                         {
@@ -88255,7 +88273,7 @@ var render = function() {
                   [
                     _c("thead", [
                       _c("tr", { staticStyle: { "text-align": "center" } }, [
-                        _vm.$gate.isAdmin()
+                        _vm.$gate.isAdminOrRegistrar()
                           ? _c("th", [_vm._v("Action")])
                           : _vm._e(),
                         _vm._v(" "),
@@ -88288,7 +88306,7 @@ var render = function() {
                               staticStyle: { "text-align": "center" }
                             },
                             [
-                              _vm.$gate.isAdmin()
+                              _vm.$gate.isAdminOrRegistrar()
                                 ? _c("td", [
                                     _c(
                                       "a",
@@ -88396,7 +88414,9 @@ var render = function() {
         ])
       : _vm._e(),
     _vm._v(" "),
-    !_vm.$gate.isTeacherOrAdmin() ? _c("div", [_c("not-found")], 1) : _vm._e(),
+    !_vm.$gate.isTeacherOrAdminOrRegistrar()
+      ? _c("div", [_c("not-found")], 1)
+      : _vm._e(),
     _vm._v(" "),
     _c(
       "div",
@@ -96590,6 +96610,10 @@ var render = function() {
                           _vm._v(" "),
                           _c("option", { attrs: { value: "admin" } }, [
                             _vm._v("Admin")
+                          ]),
+                          _vm._v(" "),
+                          _c("option", { attrs: { value: "registrar" } }, [
+                            _vm._v("Registrar")
                           ]),
                           _vm._v(" "),
                           _c("option", { attrs: { value: "teacher" } }, [
