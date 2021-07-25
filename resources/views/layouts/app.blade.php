@@ -82,6 +82,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/schedule" style="color: white;">Schedule</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/registrationform" style="color: white;">Registration</a>
+                        </li>
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
