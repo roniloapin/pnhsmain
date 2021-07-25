@@ -437,7 +437,7 @@
 
                         <div class="form-group mb-2">
                             <label for="schoolyear_id">School Year <span class="text-danger">*</span> </label>
-                            <select class="form-select custom-select @error('schoolyear_id') is-invalid @enderror" id="schoolyear_id" name="schoolyear_id"  value="{{ old('schoolyear_id') }} required autocomplete="schoolyear_id" autofocus> 
+                            <select class="form-select custom-select @error('schoolyear_id') is-invalid @enderror" id="schoolyear_id" name="schoolyear_id"  value="{{ old('schoolyear_id') }} required  autofocus> 
                                 <option disabled selected>Select School Year</option>
                                 @foreach ($schoolyears as $schoolyear)
                                     <option value="{{ $schoolyear->id}}">{{ $schoolyear->schoolyear }}</option>
