@@ -8876,11 +8876,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       editMode: false,
       system_settings: {},
+      avatar: null,
       form1: new Form({
         id: '',
         sys_name: '',
@@ -8890,24 +8892,35 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     getBase64: function getBase64(e) {
+      var _this = this;
+
       // $('#new_image').val(null)
-      var file = e.target.files[0];
-      this.form1 = e.target.files;
+      // const file = e.target.files[0];
+      // this.form1 = e.target.files;
+      // console.log(e.target.files)
+      var image = e.target.files[0];
+      var reader = new FileReader();
+      reader.readAsDataURL(image);
+
+      reader.onload = function (e) {
+        _this.avatar = e.target.result;
+        console.log(e);
+      };
     },
     getResults: function getResults() {
-      var _this = this;
+      var _this2 = this;
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       axios.get('api/system_setting?page=' + page).then(function (response) {
-        _this.system_settings = response.data;
+        _this2.system_settings = response.data;
       });
     },
     loadSystemSetting: function loadSystemSetting() {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.get("api/system_setting").then(function (_ref) {
         var data = _ref.data;
-        return _this2.system_settings = data;
+        return _this3.system_settings = data;
       });
     },
     newModal: function newModal() {
@@ -8922,7 +8935,7 @@ __webpack_require__.r(__webpack_exports__);
       this.form1.fill(system_setting);
     },
     createSystemSetting: function createSystemSetting() {
-      var _this3 = this;
+      var _this4 = this;
 
       this.$Progress.start();
       this.form1.post('api/system_setting') //Send HTTP request
@@ -8935,7 +8948,7 @@ __webpack_require__.r(__webpack_exports__);
           title: 'System Settings added successfully'
         });
 
-        _this3.$Progress.finish();
+        _this4.$Progress.finish();
       })["catch"](function () {
         Swal.fire({
           icon: 'error',
@@ -8943,11 +8956,11 @@ __webpack_require__.r(__webpack_exports__);
           text: 'Something went wrong!'
         });
 
-        _this3.$Progress.fail();
+        _this4.$Progress.fail();
       });
     },
     deleteSystemSetting: function deleteSystemSetting(id) {
-      var _this4 = this;
+      var _this5 = this;
 
       Swal.fire({
         title: 'Delete System Setting?',
@@ -8959,7 +8972,7 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: 'Yes, delete it!'
       }).then(function (result) {
         if (result.value) {
-          _this4.form1["delete"]('api/system_setting/' + id).then(function () {
+          _this5.form1["delete"]('api/system_setting/' + id).then(function () {
             Swal.fire('Deleted!', 'System Settings has been deleted.', 'success');
             fire.$emit('AfterCreate');
           })["catch"](function () {
@@ -8969,7 +8982,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     updateSystemSetting: function updateSystemSetting() {
-      var _this5 = this;
+      var _this6 = this;
 
       this.$Progress.start();
       this.form1.put("api/system_setting/" + this.form1.id).then(function () {
@@ -8984,22 +8997,22 @@ __webpack_require__.r(__webpack_exports__);
           title: 'System Settings has been updated'
         });
 
-        _this5.$Progress.finish();
+        _this6.$Progress.finish();
 
         fire.$emit('AfterCreate');
       })["catch"](function () {
         Swal.fire("Failed!", "There was something wrong.", "warning");
 
-        _this5.$Progress.fail();
+        _this6.$Progress.fail();
       });
     }
   },
   created: function created() {
-    var _this6 = this;
+    var _this7 = this;
 
     this.loadSystemSetting();
     fire.$on('AfterCreate', function () {
-      _this6.loadSystemSetting();
+      _this7.loadSystemSetting();
     });
   }
 });
@@ -95354,6 +95367,12 @@ var render = function() {
                           accept: "image/x-png,image/gif,image/jpeg"
                         },
                         on: { change: _vm.getBase64 }
+                      }),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("img", {
+                        staticStyle: { width: "100px", height: "100px" },
+                        attrs: { src: _vm.avatar, alt: "Image" }
                       })
                     ])
                   ]

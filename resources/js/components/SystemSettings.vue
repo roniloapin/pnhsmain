@@ -82,7 +82,8 @@
 
                     <div class="form-group mb-1">
                         <label for="system_logo">Logo <span class="text-danger">*</span></label>
-                        <input type="file" @change="getBase64" id="system_logo" accept="image/x-png,image/gif,image/jpeg">
+                        <input type="file" @change="getBase64" id="system_logo" accept="image/x-png,image/gif,image/jpeg"><br>
+                        <img :src="avatar" alt="Image" style="width: 100px; height:100px;">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -105,6 +106,7 @@
           return{
             editMode: false,
             system_settings: {},
+            avatar: null,
             form1: new Form({
               id: '',
               sys_name: '',
@@ -115,8 +117,19 @@
         methods:{
           getBase64(e){
               // $('#new_image').val(null)
-              const file = e.target.files[0];
-              this.form1 = e.target.files;
+              // const file = e.target.files[0];
+              // this.form1 = e.target.files;
+              // console.log(e.target.files)
+
+              let image =   e.target.files[0]
+              let reader =  new FileReader();
+              reader.readAsDataURL(image);
+              reader.onload = e => {
+                
+                this.avatar = e.target.result
+                console.log(e)
+              }
+
           },
           getResults(page = 1) {
             axios.get('api/system_setting?page=' + page)
