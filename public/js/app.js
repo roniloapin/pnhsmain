@@ -8876,10 +8876,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -8893,6 +8889,11 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    getBase64: function getBase64(e) {
+      // $('#new_image').val(null)
+      var file = e.target.files[0];
+      this.form1 = e.target.files;
+    },
     getResults: function getResults() {
       var _this = this;
 
@@ -95057,7 +95058,25 @@ var render = function() {
       ? _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-md-12" }, [
             _c("div", { staticClass: "card" }, [
-              _vm._m(1),
+              _c("div", { staticClass: "card-header" }, [
+                _c("h3", { staticClass: "card-title" }, [
+                  _vm._v("System Settings")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-tools" }, [
+                  _vm.$gate.isAdmin()
+                    ? _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-success",
+                          attrs: { type: "button" },
+                          on: { click: _vm.newModal }
+                        },
+                        [_vm._v("Add")]
+                      )
+                    : _vm._e()
+                ])
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "card-body table-responsive p-0" }, [
                 _c(
@@ -95086,7 +95105,7 @@ var render = function() {
                       "tbody",
                       [
                         _vm.system_settings.total == 0
-                          ? _c("tr", [_vm._m(2)])
+                          ? _c("tr", [_vm._m(1)])
                           : _vm._e(),
                         _vm._v(" "),
                         _vm._l(_vm.system_settings.data, function(
@@ -95223,10 +95242,13 @@ var render = function() {
                       expression: "!editMode"
                     }
                   ],
-                  staticClass: "modal-title fas fa-bullhorn",
+                  staticClass: "modal-title",
                   attrs: { id: "addNewTitle" }
                 },
-                [_vm._v(" Add New System Settings")]
+                [
+                  _c("i", { staticClass: "fas fa-bullhorn" }),
+                  _vm._v(" Add New System Settings")
+                ]
               ),
               _vm._v(" "),
               _c(
@@ -95240,10 +95262,13 @@ var render = function() {
                       expression: "editMode"
                     }
                   ],
-                  staticClass: "modal-title fas fa-bullhorn",
+                  staticClass: "modal-title",
                   attrs: { id: "addNewTitle" }
                 },
-                [_vm._v(" Update System Settings")]
+                [
+                  _c("i", { staticClass: "fas fa-bullhorn" }),
+                  _vm._v(" Update System Settings")
+                ]
               ),
               _vm._v(" "),
               _c("button", {
@@ -95264,9 +95289,7 @@ var render = function() {
                 on: {
                   submit: function($event) {
                     $event.preventDefault()
-                    _vm.editMode
-                      ? _vm.updateSystemSetting()
-                      : _vm.createSystemSetting()
+                    return _vm.updateSystemSetting()
                   }
                 }
               },
@@ -95282,7 +95305,7 @@ var render = function() {
                       "div",
                       { staticClass: "form-group mb-1" },
                       [
-                        _vm._m(3),
+                        _vm._m(2),
                         _vm._v(" "),
                         _c("input", {
                           directives: [
@@ -95294,11 +95317,8 @@ var render = function() {
                             }
                           ],
                           staticClass: "form-control",
-                          class: {
-                            "is-invalid": _vm.form1.errors.has("sys_name")
-                          },
                           attrs: {
-                            type: "date",
+                            type: "text",
                             name: "sys_name",
                             placeholder: "System Name"
                           },
@@ -95324,7 +95344,18 @@ var render = function() {
                       1
                     ),
                     _vm._v(" "),
-                    _vm._m(4)
+                    _c("div", { staticClass: "form-group mb-1" }, [
+                      _vm._m(3),
+                      _vm._v(" "),
+                      _c("input", {
+                        attrs: {
+                          type: "file",
+                          id: "system_logo",
+                          accept: "image/x-png,image/gif,image/jpeg"
+                        },
+                        on: { change: _vm.getBase64 }
+                      })
+                    ])
                   ]
                 ),
                 _vm._v(" "),
@@ -95397,14 +95428,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-header" }, [
-      _c("h3", { staticClass: "card-title" }, [_vm._v("System Settings")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("td", { staticClass: "text-center", attrs: { colspan: "6" } }, [
       _c("label", [_vm._v("No records yet.")])
     ])
@@ -95422,13 +95445,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group mb-1" }, [
-      _c("label", { attrs: { for: "sys_logo" } }, [
-        _vm._v("Logo "),
-        _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
-      ]),
-      _vm._v(" "),
-      _c("input", { attrs: { type: "file" } })
+    return _c("label", { attrs: { for: "system_logo" } }, [
+      _vm._v("Logo "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   }
 ]

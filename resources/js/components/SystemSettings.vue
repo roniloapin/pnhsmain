@@ -6,10 +6,10 @@
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">System Settings</h3>
-
-                <!-- <div class="card-tools">
+  
+                <div class="card-tools">
                   <button type="button" class="btn btn-success" @click="newModal" v-if="$gate.isAdmin()">Add</button>
-                </div> -->
+                </div>
 
               </div>
               <!-- /.card-header -->
@@ -64,37 +64,33 @@
         <div class="modal-dialog modal-dialog-scrollable">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title fas fa-bullhorn" v-show="!editMode" id="addNewTitle"> Add New System Settings</h5>
-              <h5 class="modal-title fas fa-bullhorn" v-show="editMode" id="addNewTitle"> Update System Settings</h5>
+              <h5 class="modal-title" v-show="!editMode" id="addNewTitle"> <i class="fas fa-bullhorn"></i> Add New System Settings</h5>
+              <h5 class="modal-title" v-show="editMode" id="addNewTitle"> <i class="fas fa-bullhorn"></i> Update System Settings</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
               <span aria-hidden="true">&times;</span>
             </div>
 
-            <form @submit.prevent="editMode ? updateSystemSetting() : createSystemSetting()">
-              
+            <form @submit.prevent="updateSystemSetting()">
                 <div class="modal-body" style="overflow-y: auto;">
                     <div class="form-group mb-1">
                         <label for="sys_name">System Name<span class="text-danger">*</span> </label>
-                        <input v-model="form1.sys_name" type="date" name="sys_name"
+                        <input v-model="form1.sys_name" type="text" name="sys_name"
                             placeholder="System Name"
-                            class="form-control" :class="{ 'is-invalid': form1.errors.has('sys_name') }">
+                            class="form-control">
                         <has-error :form="form1" field="sys_name"></has-error>
                     </div>
 
                     <div class="form-group mb-1">
-                        <label for="sys_logo">Logo <span class="text-danger">*</span></label>
-                        <input type="file">
+                        <label for="system_logo">Logo <span class="text-danger">*</span></label>
+                        <input type="file" @change="getBase64" id="system_logo" accept="image/x-png,image/gif,image/jpeg">
                     </div>
-
-                    
                 </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-              <button v-show="editMode" type="submit" class="btn btn-primary">Update <i class="fas fa-bullhorn"></i></button>
-              <button v-show="!editMode" type="submit" class="btn btn-success">Create <i class="fas fa-bullhorn"></i></button>
-            </div>
-
-          </form> 
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                  <button v-show="editMode" type="submit" class="btn btn-primary">Update <i class="fas fa-bullhorn"></i></button>
+                  <button v-show="!editMode" type="submit" class="btn btn-success">Create <i class="fas fa-bullhorn"></i></button>
+                </div>
+            </form> 
           </div>
         </div>
       </div>
@@ -117,6 +113,11 @@
           }
         },
         methods:{
+          getBase64(e){
+              // $('#new_image').val(null)
+              const file = e.target.files[0];
+              this.form1 = e.target.files;
+          },
           getResults(page = 1) {
             axios.get('api/system_setting?page=' + page)
             .then(response => {
