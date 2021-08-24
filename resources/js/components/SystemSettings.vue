@@ -8,7 +8,7 @@
                 <h3 class="card-title">System Settings</h3>
   
                 <div class="card-tools">
-                  <button type="button" class="btn btn-success" @click="newModal" v-if="$gate.isAdmin()">Add</button>
+                  <button type="button" class="btn btn-success" @click="newModal" v-if="$gate.isAdmin()">Edit</button>
                 </div>
 
               </div>
@@ -77,13 +77,15 @@
                         <input v-model="form1.sys_name" type="text" name="sys_name"
                             placeholder="System Name"
                             class="form-control">
-                        <has-error :form="form1" field="sys_name"></has-error>
+                        <has-error :form="form1" field="sys_name"></has-error><br>
                     </div>
 
                     <div class="form-group mb-1">
                         <label for="system_logo">Logo <span class="text-danger">*</span></label>
+                        
                         <input type="file" @change="getBase64" id="system_logo" accept="image/x-png,image/gif,image/jpeg"><br>
-                        <img :src="avatar" alt="Image" style="width: 100px; height:100px;">
+                        <br><label for="preview">Preview: </label>
+                        <img :src="avatar" alt="Image" id="preview" style="width: 100px; height:100px;">
                     </div>
                 </div>
                 <div class="modal-footer">

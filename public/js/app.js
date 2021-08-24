@@ -8877,6 +8877,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -95085,7 +95087,7 @@ var render = function() {
                           attrs: { type: "button" },
                           on: { click: _vm.newModal }
                         },
-                        [_vm._v("Add")]
+                        [_vm._v("Edit")]
                       )
                     : _vm._e()
                 ])
@@ -95352,7 +95354,8 @@ var render = function() {
                         _vm._v(" "),
                         _c("has-error", {
                           attrs: { form: _vm.form1, field: "sys_name" }
-                        })
+                        }),
+                        _c("br")
                       ],
                       1
                     ),
@@ -95370,9 +95373,14 @@ var render = function() {
                       }),
                       _c("br"),
                       _vm._v(" "),
+                      _c("br"),
+                      _c("label", { attrs: { for: "preview" } }, [
+                        _vm._v("Preview: ")
+                      ]),
+                      _vm._v(" "),
                       _c("img", {
                         staticStyle: { width: "100px", height: "100px" },
-                        attrs: { src: _vm.avatar, alt: "Image" }
+                        attrs: { src: _vm.avatar, alt: "Image", id: "preview" }
                       })
                     ])
                   ]
