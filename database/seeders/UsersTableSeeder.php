@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\SystemSetting;
 
 class UsersTableSeeder extends Seeder
 {
@@ -21,6 +22,11 @@ class UsersTableSeeder extends Seeder
             'name' => 'PNHS Admin',
             'role' => 'admin', 
             'password' => Hash::make('12345678') // password
+        ]);
+
+        SystemSetting::create([
+            'sys_name' => 'PNHS',
+            'sys_logo' => 'logo.png'
         ]);
     }
 }

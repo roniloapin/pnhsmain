@@ -129,7 +129,8 @@
               reader.onload = e => {
                 
                 this.avatar = e.target.result
-                console.log(e)
+                this.form1.sys_logo = e.target.result;
+                // console.log(e.target.result)
               }
 
           },
@@ -140,7 +141,7 @@
             });
 		      },
           loadSystemSetting(){
-              axios.get("api/system_setting").then(({ data }) => (this.system_settings = data));
+              // axios.get("api/system_setting").then(({ data }) => (this.system_settings = data));
           },
           
 
@@ -206,25 +207,43 @@
           },
           updateSystemSetting(){
               this.$Progress.start();
-              this.form1.put("api/system_setting/"+this.form1.id)
-              .then(()=>{
-                  $('#addNew').modal('hide')
-                  // Swal.fire(
-                  //     'Updated!',
-                  //     'User has been updated.',
-                  //     'success'
-                  // )
-                  Toast.fire({
-                      icon: 'success',
-                      title: 'System Settings has been updated'
-                  })
-                  this.$Progress.finish();
-                  fire.$emit('AfterCreate')
-              })
-              .catch(()=>{
+              axios.put('api/systemsetting/'+1, this.form1).then(res=>{
+                  if(res.status==200){
+                    console.log(res.data.base64)
+                    $('#addNew').modal('hide')
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'System Settings has been updated'
+                    })
+                    this.$Progress.finish();
+                    fire.$emit('AfterCreate')
+                  }
+              }).catch(err=>{
+                console.log(err);
                   Swal.fire("Failed!", "There was something wrong.", "warning");
                   this.$Progress.fail();
-              })
+              });
+
+              // this.form1.put("api/systemsetting/"+1, this.form1)
+              // .then(()=>{
+              //   console.log
+              //     $('#addNew').modal('hide')
+              //     // Swal.fire(
+              //     //     'Updated!',
+              //     //     'User has been updated.',
+              //     //     'success'
+              //     // )
+              //     Toast.fire({
+              //         icon: 'success',
+              //         title: 'System Settings has been updated'
+              //     })
+              //     this.$Progress.finish();
+              //     fire.$emit('AfterCreate')
+              // })
+              // .catch(()=>{
+              //     Swal.fire("Failed!", "There was something wrong.", "warning");
+              //     this.$Progress.fail();
+              // })
           },
         },
         created() {
