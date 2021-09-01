@@ -8837,48 +8837,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -8887,7 +8845,7 @@ __webpack_require__.r(__webpack_exports__);
       avatar: null,
       form1: new Form({
         id: '',
-        sys_name: '',
+        sys_name: 'System Logo',
         sys_logo: ''
       })
     };
@@ -8906,7 +8864,7 @@ __webpack_require__.r(__webpack_exports__);
 
       reader.onload = function (e) {
         _this.avatar = e.target.result;
-        console.log(e);
+        _this.form1.sys_logo = e.target.result; // console.log(e.target.result)
       };
     },
     getResults: function getResults() {
@@ -8917,13 +8875,7 @@ __webpack_require__.r(__webpack_exports__);
         _this2.system_settings = response.data;
       });
     },
-    loadSystemSetting: function loadSystemSetting() {
-      var _this3 = this;
-
-      axios.get("api/system_setting").then(function (_ref) {
-        var data = _ref.data;
-        return _this3.system_settings = data;
-      });
+    loadSystemSetting: function loadSystemSetting() {//  axios.get("api/system_setting").then(({ data }) => (this.system_settings = data));
     },
     newModal: function newModal() {
       this.editMode = false;
@@ -8937,7 +8889,7 @@ __webpack_require__.r(__webpack_exports__);
       this.form1.fill(system_setting);
     },
     createSystemSetting: function createSystemSetting() {
-      var _this4 = this;
+      var _this3 = this;
 
       this.$Progress.start();
       this.form1.post('api/system_setting') //Send HTTP request
@@ -8950,7 +8902,7 @@ __webpack_require__.r(__webpack_exports__);
           title: 'System Settings added successfully'
         });
 
-        _this4.$Progress.finish();
+        _this3.$Progress.finish();
       })["catch"](function () {
         Swal.fire({
           icon: 'error',
@@ -8958,11 +8910,11 @@ __webpack_require__.r(__webpack_exports__);
           text: 'Something went wrong!'
         });
 
-        _this4.$Progress.fail();
+        _this3.$Progress.fail();
       });
     },
     deleteSystemSetting: function deleteSystemSetting(id) {
-      var _this5 = this;
+      var _this4 = this;
 
       Swal.fire({
         title: 'Delete System Setting?',
@@ -8974,7 +8926,7 @@ __webpack_require__.r(__webpack_exports__);
         confirmButtonText: 'Yes, delete it!'
       }).then(function (result) {
         if (result.value) {
-          _this5.form1["delete"]('api/system_setting/' + id).then(function () {
+          _this4.form1["delete"]('api/system_setting/' + id).then(function () {
             Swal.fire('Deleted!', 'System Settings has been deleted.', 'success');
             fire.$emit('AfterCreate');
           })["catch"](function () {
@@ -8984,37 +8936,57 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     updateSystemSetting: function updateSystemSetting() {
-      var _this6 = this;
+      var _this5 = this;
 
       this.$Progress.start();
-      this.form1.put("api/system_setting/" + this.form1.id).then(function () {
-        $('#addNew').modal('hide'); // Swal.fire(
-        //     'Updated!',
-        //     'User has been updated.',
-        //     'success'
-        // )
+      axios.put('api/systemsetting/' + 1, this.form1).then(function (res) {
+        if (res.status == 200) {
+          console.log(res.data.base64);
+          $('#addNew').modal('hide');
+          Toast.fire({
+            icon: 'success',
+            title: 'System Logo has been updated'
+          });
 
-        Toast.fire({
-          icon: 'success',
-          title: 'System Settings has been updated'
-        });
+          _this5.$Progress.finish();
 
-        _this6.$Progress.finish();
-
-        fire.$emit('AfterCreate');
-      })["catch"](function () {
+          fire.$emit('AfterCreate');
+        }
+      })["catch"](function (err) {
+        console.log(err);
         Swal.fire("Failed!", "There was something wrong.", "warning");
 
-        _this6.$Progress.fail();
-      });
+        _this5.$Progress.fail();
+      }); // this.form1.put("api/systemsetting/"+1, this.form1)
+      // .then(()=>{
+      //   console.log
+      //     $('#addNew').modal('hide')
+      //     // Swal.fire(
+      //     //     'Updated!',
+      //     //     'User has been updated.',
+      //     //     'success'
+      //     // )
+      //     Toast.fire({
+      //         icon: 'success',
+      //         title: 'System Settings has been updated'
+      //     })
+      //     this.$Progress.finish();
+      //     fire.$emit('AfterCreate')
+      // })
+      // .catch(()=>{
+      //     Swal.fire("Failed!", "There was something wrong.", "warning");
+      //     this.$Progress.fail();
+      // })
     }
   },
   created: function created() {
-    var _this7 = this;
+    var _this6 = this;
 
     this.loadSystemSetting();
     fire.$on('AfterCreate', function () {
-      _this7.loadSystemSetting();
+      _this6.loadSystemSetting();
+
+      location.reload();
     });
   }
 });
@@ -95071,160 +95043,27 @@ var render = function() {
     _vm._v(" "),
     _vm.$gate.isAdmin()
       ? _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-12" }, [
-            _c("div", { staticClass: "card" }, [
-              _c("div", { staticClass: "card-header" }, [
-                _c("h3", { staticClass: "card-title" }, [
-                  _vm._v("System Settings")
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "card-tools" }, [
-                  _vm.$gate.isAdmin()
-                    ? _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-success",
-                          attrs: { type: "button" },
-                          on: { click: _vm.newModal }
-                        },
-                        [_vm._v("Edit")]
-                      )
-                    : _vm._e()
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "card-body table-responsive p-0" }, [
-                _c(
-                  "table",
-                  { staticClass: "table table-head-fixed table-hover" },
-                  [
-                    _c("thead", [
-                      _c("tr", { staticStyle: { "text-align": "center" } }, [
-                        _vm.$gate.isAdmin()
-                          ? _c("th", { staticStyle: { width: "10px" } }, [
-                              _vm._v("Action")
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _c("th", { staticStyle: { width: "200px" } }, [
-                          _vm._v("System Name")
-                        ]),
-                        _vm._v(" "),
-                        _c("th", { staticStyle: { "text-align": "left" } }, [
-                          _vm._v("Logo")
-                        ])
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "tbody",
-                      [
-                        _vm.system_settings.total == 0
-                          ? _c("tr", [_vm._m(1)])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm._l(_vm.system_settings.data, function(
-                          system_setting
-                        ) {
-                          return _c(
-                            "tr",
-                            {
-                              key: system_setting.id,
-                              staticStyle: { "text-align": "center" }
-                            },
-                            [
-                              _vm.$gate.isAdmin()
-                                ? _c("td", [
-                                    _c(
-                                      "a",
-                                      {
-                                        attrs: { href: "#" },
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.editModal(system_setting)
-                                          }
-                                        }
-                                      },
-                                      [
-                                        _c("i", {
-                                          staticClass: "fa fa-edit color-blue",
-                                          attrs: { title: "Edit" }
-                                        })
-                                      ]
-                                    ),
-                                    _vm._v(
-                                      "\n                        |\n                        "
-                                    ),
-                                    _c(
-                                      "a",
-                                      {
-                                        attrs: { href: "#" },
-                                        on: {
-                                          click: function($event) {
-                                            return _vm.deleteSystemSetting(
-                                              system_setting.id
-                                            )
-                                          }
-                                        }
-                                      },
-                                      [
-                                        _c("i", {
-                                          staticClass:
-                                            "fa fa-trash-alt color-red",
-                                          attrs: { title: "Delete" }
-                                        })
-                                      ]
-                                    )
-                                  ])
-                                : _vm._e(),
-                              _vm._v(" "),
-                              _c("td", [
-                                _vm._v(_vm._s(system_setting.sys_name))
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "td",
-                                { staticStyle: { "text-align": "left" } },
-                                [_vm._v(_vm._s(system_setting.sys_logo))]
-                              )
-                            ]
-                          )
-                        })
-                      ],
-                      2
-                    )
-                  ]
+          _c("div", { staticClass: "col-md-6" }, [
+            _vm.$gate.isAdmin()
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success",
+                    staticStyle: { float: "left" },
+                    attrs: { type: "button" },
+                    on: { click: _vm.newModal }
+                  },
+                  [_vm._v("Edit")]
                 )
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "pagination mb-0 justify-content-center" },
-                [
-                  _c(
-                    "pagination",
-                    {
-                      attrs: { data: _vm.system_settings },
-                      on: { "pagination-change-page": _vm.getResults }
-                    },
-                    [
-                      _c(
-                        "span",
-                        { attrs: { slot: "prev-nav" }, slot: "prev-nav" },
-                        [_vm._v("< Previous")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "span",
-                        { attrs: { slot: "next-nav" }, slot: "next-nav" },
-                        [_vm._v("Next >")]
-                      )
-                    ]
-                  )
-                ],
-                1
-              )
-            ])
+              : _vm._e(),
+            _vm._v(" "),
+            _c("br"),
+            _c("br"),
+            _vm._v(" "),
+            _c("img", {
+              staticStyle: { width: "200px", height: "200px", align: "center" },
+              attrs: { src: "/img/logo.png", alt: "System Logo" }
+            })
           ])
         ])
       : _vm._e(),
@@ -95260,30 +95099,7 @@ var render = function() {
                   staticClass: "modal-title",
                   attrs: { id: "addNewTitle" }
                 },
-                [
-                  _c("i", { staticClass: "fas fa-bullhorn" }),
-                  _vm._v(" Add New System Settings")
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "h5",
-                {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: _vm.editMode,
-                      expression: "editMode"
-                    }
-                  ],
-                  staticClass: "modal-title",
-                  attrs: { id: "addNewTitle" }
-                },
-                [
-                  _c("i", { staticClass: "fas fa-bullhorn" }),
-                  _vm._v(" Update System Settings")
-                ]
+                [_vm._v(" Update System Logo")]
               ),
               _vm._v(" "),
               _c("button", {
@@ -95316,52 +95132,8 @@ var render = function() {
                     staticStyle: { "overflow-y": "auto" }
                   },
                   [
-                    _c(
-                      "div",
-                      { staticClass: "form-group mb-1" },
-                      [
-                        _vm._m(2),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.form1.sys_name,
-                              expression: "form1.sys_name"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "text",
-                            name: "sys_name",
-                            placeholder: "System Name"
-                          },
-                          domProps: { value: _vm.form1.sys_name },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.form1,
-                                "sys_name",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("has-error", {
-                          attrs: { form: _vm.form1, field: "sys_name" }
-                        }),
-                        _c("br")
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
                     _c("div", { staticClass: "form-group mb-1" }, [
-                      _vm._m(3),
+                      _vm._m(1),
                       _vm._v(" "),
                       _c("input", {
                         attrs: {
@@ -95403,37 +95175,14 @@ var render = function() {
                         {
                           name: "show",
                           rawName: "v-show",
-                          value: _vm.editMode,
-                          expression: "editMode"
+                          value: !_vm.editMode,
+                          expression: "!editMode"
                         }
                       ],
                       staticClass: "btn btn-primary",
                       attrs: { type: "submit" }
                     },
-                    [
-                      _vm._v("Update "),
-                      _c("i", { staticClass: "fas fa-bullhorn" })
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      directives: [
-                        {
-                          name: "show",
-                          rawName: "v-show",
-                          value: !_vm.editMode,
-                          expression: "!editMode"
-                        }
-                      ],
-                      staticClass: "btn btn-success",
-                      attrs: { type: "submit" }
-                    },
-                    [
-                      _vm._v("Create "),
-                      _c("i", { staticClass: "fas fa-bullhorn" })
-                    ]
+                    [_vm._v("Update")]
                   )
                 ])
               ]
@@ -95449,24 +95198,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("h3", [_c("strong", [_vm._v(" System Settings")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", { staticClass: "text-center", attrs: { colspan: "6" } }, [
-      _c("label", [_vm._v("No records yet.")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("label", { attrs: { for: "sys_name" } }, [
-      _vm._v("System Name"),
-      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
-    ])
+    return _c("h3", [_c("strong", [_vm._v(" System Logo")])])
   },
   function() {
     var _vm = this

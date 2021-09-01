@@ -1,57 +1,15 @@
 <template>
     <div class="container">
-         <h3><strong> System Settings</strong></h3>
+         <h3><strong> System Logo</strong></h3>
         <div class="row" v-if="$gate.isAdmin()">
-          <div class="col-md-12" >
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">System Settings</h3>
-  
-                <div class="card-tools">
-                  <button type="button" class="btn btn-success" @click="newModal" v-if="$gate.isAdmin()">Edit</button>
-                </div>
-
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body table-responsive p-0">
-                <table class="table table-head-fixed table-hover">
-                  <thead>
-                    <tr style="text-align:center;">
-                        <th v-if="$gate.isAdmin()" style="width:10px">Action</th>
-                        <th style="width:200px">System Name</th>
-                        <th style="text-align:left;">Logo</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr v-if="system_settings.total == 0">
-                        <td colspan="6" class="text-center"><label>No records yet.</label></td>
-                    </tr>
-                    <tr style="text-align:center;" v-for="system_setting in system_settings.data" :key="system_setting.id">
-                        <td v-if="$gate.isAdmin()">
-                            <a href="#" @click="editModal(system_setting)">
-                                <i class="fa fa-edit color-blue" title="Edit"></i>
-                            </a>
-                            |
-                            <a href="#" @click="deleteSystemSetting(system_setting.id)">
-                                <i class="fa fa-trash-alt color-red" title="Delete"></i>
-                            </a>
-                        </td>
-                        <td>{{system_setting.sys_name}}</td>
-                        <td style="text-align:left;">{{system_setting.sys_logo}}</td> 
-                    </tr>
-                    
-                  </tbody>
-                </table>
-              </div>
-              <!-- /.card-body -->
-              <div class="pagination mb-0 justify-content-center">
-                    <pagination :data="system_settings" @pagination-change-page="getResults">
-                        <span slot="prev-nav">&lt; Previous</span>
-                        <span slot="next-nav">Next &gt;</span>
-                    </pagination>
-                </div>
-            </div>
+          <div class="col-md-6" >
+            <button type="button" class="btn btn-success" style="float:left;" @click="newModal" v-if="$gate.isAdmin()">Edit</button>
+            
+            <!-- <button type="button" class="btn btn-dark" style="float:left; margin-left:5px" @click="newModal" v-if="$gate.isAdmin()">Download</button> -->
+            <br><br>
+            <img src="/img/logo.png" alt="System Logo" style="width:200px; height:200px; align:center; ">
             <!-- /.card -->
+
           </div>
         </div>
 
@@ -64,22 +22,22 @@
         <div class="modal-dialog modal-dialog-scrollable">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" v-show="!editMode" id="addNewTitle"> <i class="fas fa-bullhorn"></i> Add New System Settings</h5>
-              <h5 class="modal-title" v-show="editMode" id="addNewTitle"> <i class="fas fa-bullhorn"></i> Update System Settings</h5>
+              <h5 class="modal-title" v-show="!editMode" id="addNewTitle"> Update System Logo</h5>
+              <!-- <h5 class="modal-title" v-show="editMode" id="addNewTitle"> <i class="fas fa-bullhorn"></i> Update System Settings</h5> -->
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
               <span aria-hidden="true">&times;</span>
             </div>
 
             <form @submit.prevent="updateSystemSetting()">
                 <div class="modal-body" style="overflow-y: auto;">
-                    <div class="form-group mb-1">
+                    <!-- <div class="form-group mb-1">
                         <label for="sys_name">System Name<span class="text-danger">*</span> </label>
                         <input v-model="form1.sys_name" type="text" name="sys_name"
                             placeholder="System Name"
                             class="form-control">
                         <has-error :form="form1" field="sys_name"></has-error><br>
-                    </div>
-
+                    </div> -->
+                    
                     <div class="form-group mb-1">
                         <label for="system_logo">Logo <span class="text-danger">*</span></label>
                         
@@ -90,8 +48,8 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                  <button v-show="editMode" type="submit" class="btn btn-primary">Update <i class="fas fa-bullhorn"></i></button>
-                  <button v-show="!editMode" type="submit" class="btn btn-success">Create <i class="fas fa-bullhorn"></i></button>
+                  <button v-show="!editMode" type="submit" class="btn btn-primary">Update</button>
+                  <!-- <button v-show="!editMode" type="submit" class="btn btn-success">Create <i class="fas fa-bullhorn"></i></button> -->
                 </div>
             </form> 
           </div>
@@ -111,7 +69,7 @@
             avatar: null,
             form1: new Form({
               id: '',
-              sys_name: '',
+              sys_name: 'System Logo',
               sys_logo: '',
             })
           }
@@ -141,7 +99,7 @@
             });
 		      },
           loadSystemSetting(){
-              // axios.get("api/system_setting").then(({ data }) => (this.system_settings = data));
+              //  axios.get("api/system_setting").then(({ data }) => (this.system_settings = data));
           },
           
 
@@ -213,9 +171,10 @@
                     $('#addNew').modal('hide')
                     Toast.fire({
                         icon: 'success',
-                        title: 'System Settings has been updated'
+                        title: 'System Logo has been updated'
                     })
                     this.$Progress.finish();
+                    
                     fire.$emit('AfterCreate')
                   }
               }).catch(err=>{
@@ -250,6 +209,7 @@
            this.loadSystemSetting();
            fire.$on('AfterCreate', ()=>{
                 this.loadSystemSetting();
+                location.reload();
             });
         }
     }
