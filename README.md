@@ -38,6 +38,7 @@ To install the project on your PC, follow the steps below:
 - cd to project folder.
 - Run composer install
 - Save as the .env.example to .env and set your database information (DB_DATABASE=pnhsmain, DB_USERNAME=root)
+- Create database and set the same database name
 - Run php artisan key:generate to generate the app key
 - Run npm install
 - Run php artisan migrate:fresh --seed
